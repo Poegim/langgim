@@ -1,3 +1,18 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
+
+.primary-bg
+{
+    background-color: #BC00D9;
+}
+
+.secondary-bg
+{
+    background-color: #D90089;
+}
+
+.third-bg
+{
+    background-color: #5000D9;
+}
