@@ -1,22 +1,38 @@
 <div>
-    <div class="px-12 pt-16 grid sm:grid-cols-2">
-        <div>
-            <x-buttons.primary class="w-full h-16">Register</x-buttons.primary>
-        </div>
-        <div class="clear-both">
-            <span class="text-sm font-extralight">
-                Register account and improve your experience.
-            </span>
-        </div>
+    <div class="flex justify-center pt-16">
+        <x-jet-application-mark class="w-48 h-48"/>
+    </div>
+    <div class="px-4 pt-16 flex justify-center">
+        <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/4">
+            <div>
+                <a href="{{route('register')}}">
+                    <x-buttons.primary class="w-full h-18">
+                        <div>Register</div>
+                        <div class="text-sm font-extralight">Rejestracja</div>
+                    </x-buttons.primary>
+                </a>
 
-        <div class="flex justify-center mt-20">
-            <x-buttons.secondary class="w-full h-16">Log in</x-buttons.primary>
-        </div>
-        <div class="flex justify-center mt-6">
-            <x-buttons.third class="w-full h-16">Guest mode</x-buttons.primary>
-        </div>
-        <div>
+            </div>
+            <div class="mt-2">
+                <span class="text-sm font-extralight">
+                    Register account and improve your experience.
+                </span>
+            </div>
 
+            <div class="mt-24">
+                <a href="{{route('register')}}"><x-buttons.secondary class="w-full h-16">
+                    <div>Log in</div>
+                    <div class="text-sm font-extralight">Zaloguj</div>
+                </x-buttons.primary>
+            </a>
+            </div>
+            <div class="mt-6">
+                <a href="{{route('register')}}"><x-buttons.third class="w-full h-16">
+                    <div>Guest mode</div>
+                    <div class="text-sm font-extralight">Tryb gościa</div>
+                </x-buttons.primary>
+            </a>
+            </div>
         </div>
     </div>
 </div>
