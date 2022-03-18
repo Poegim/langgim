@@ -1,8 +1,8 @@
 <div>
     <div class="flex justify-center pt-16">
-        <x-jet-application-mark class="w-48 h-48"/>
+        <x-jet-application-mark class="w-32 h-32"/>
     </div>
-    <div class="px-4 pt-16 flex justify-center">
+    <div class="px-4 pt-12 flex justify-center">
         <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/4">
             <div>
                 <a href="{{route('register')}}">

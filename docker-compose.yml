@@ -45,6 +45,20 @@ services:
             test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
             retries: 3
             timeout: 5s
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links:
+            - mysql:mysql
+        ports:
+            - 8080:80
+        environment:
+            MYSQL_USERNAME: "poegim"
+            MYSQL_ROOT_PASSWORD: "krakow"
+            PMA_HOST: mysql
+        networks:
+            - sail
+
     redis:
         image: 'redis:alpine'
         ports:

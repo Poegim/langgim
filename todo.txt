@@ -1,7 +1,4 @@
-DESIGN FIXES
- -- Landing image / page
+FEATURES
 
-
-
-Please, copy this code on your website to accredit the author:
-<a href="http://www.freepik.com">Designed by katemangostar / Freepik</a>
+MODULES
+    -- contact form
