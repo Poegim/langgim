@@ -75,11 +75,11 @@
                 <div class="ml-3 relative">
                     @guest
                     <a href="{{ route('login') }}"
-                    class="text-sm text-gray-600 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100">Log in
+                    class="text-sm text-gray-900 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100">Log in
                 </a>
 
                 <a href="{{ route('register') }}"
-                class="text-sm text-gray-600 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100" >Register
+                class="text-sm text-gray-900 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100" >Register
             </a>
             @endguest
             <x-jet-dropdown align="right" width="48">

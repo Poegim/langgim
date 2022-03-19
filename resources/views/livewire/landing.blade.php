@@ -20,14 +20,14 @@
             </div>
 
             <div class="mt-24">
-                <a href="{{route('register')}}"><x-buttons.secondary class="w-full h-16">
+                <a href="{{route('login')}}"><x-buttons.secondary class="w-full h-16">
                     <div>Log in</div>
                     <div class="text-sm font-extralight">Zaloguj</div>
                 </x-buttons.primary>
             </a>
             </div>
             <div class="mt-6">
-                <a href="{{route('register')}}"><x-buttons.third class="w-full h-16">
+                <a href="{{route('guest')}}"><x-buttons.third class="w-full h-16">
                     <div>Guest mode</div>
                     <div class="text-sm font-extralight">Tryb gościa</div>
                 </x-buttons.primary>

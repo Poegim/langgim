@@ -4,8 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +15,7 @@ use Illuminate\Http\Request;
 |
 */
 
+//Landing Page
 Route::get('/', function () {
 
     if(auth()->check())
@@ -28,6 +27,8 @@ Route::get('/', function () {
 
 });
 
+
+//Email verification routes
 Route::get('/email/verify', function () {
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
@@ -44,6 +45,13 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+
+//Dashboard
+Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+
+//Guest mode
+Route::get('/guest', function () {
+    return 'Guest mode';
+})->name('guest');
