@@ -1,14 +1,57 @@
-<div class="text-gray-800 bg-gray-50 p-6 rounded-md w-8/12 mx-auto mt-12">
-    <div>
-        <h1>{{ $lastKey }}</h1>
+<div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12">
+
+    <div class="h-10">
+        <h1 class="mt-5">{{ $lastKey }}</h1>
     </div>
 
 </div>
 
 <script>
 
-        document.addEventListener('keydown', function (event) {
-            @this.keyPressed(event.key);
-        });
+    allowedKeys = [
+        'A',
+        'Ą',
+        'B',
+        'C',
+        'Ć',
+        'D',
+        'E',
+        'Ę',
+        'F',
+        'G',
+        'H',
+        'I',
+        'J',
+        'K',
+        'L',
+        'Ł',
+        'M',
+        'N',
+        'O',
+        'Ó',
+        'P',
+        'Q',
+        'R',
+        'S',
+        'T',
+        'U',
+        'V',
+        'W',
+        'X',
+        'Y',
+        'Z',
+        'Ź',
+        'Ż',
+    ];
+
+    document.addEventListener('keydown', function (event) {
+
+        for (const element of allowedKeys) {
+            if((element == event.key) || (element.toLowerCase() == event.key))
+            {
+                @this.keyPressed(event.key);
+            }
+        }
+    });
 
 </script>
