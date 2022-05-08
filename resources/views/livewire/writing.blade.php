@@ -1,4 +1,8 @@
-<div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12">
+<div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
+
+    <div class="h-10">
+        <h1 class="mt-5">{{ $word->ua_word }}</h1>
+    </div>
 
     <div class="h-10">
         <h1 class="mt-5">{{ $lastKey }}</h1>
