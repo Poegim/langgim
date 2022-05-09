@@ -1045,11 +1045,11 @@ select {
 .mt-24 {
   margin-top: 6rem;
 }
-.-mt-px {
-  margin-top: -1px;
-}
 .mt-12 {
   margin-top: 3rem;
+}
+.-mt-px {
+  margin-top: -1px;
 }
 .block {
   display: block;

@@ -4,12 +4,19 @@
         <h1 class="mt-5">{{ $word->ua_word }}</h1>
     </div>
 
-    <div class="h-10">
-        <h1 class="mt-5">{{ $lastKey }}</h1>
+    <div>
+        <h1 class="mt-5">
+            {{ $guessedChars }}
+            @for($i = 1; $i<(strlen($word->pl_word)+1)-$charNumber; $i++)
+                <span id={{$i."_char"}}>_</span>
+            
+            @endfor
+        </h1>
+        <h1 class="pt-5"> {{ $lastKey }} </h1>
     </div>
 
     <div class="h-10">
-        <p>Actual char: {{ $charNumber }}</p>
+        <p>Actual char: {{ $charNumber+1 }}</p>
         <p>Word legth: {{ $wordLength }} </p>
     </div>
 
@@ -44,6 +51,7 @@
         'Q',
         'R',
         'S',
+        'Ś',
         'T',
         'U',
         'V',
@@ -55,14 +63,21 @@
         'Ż',
     ];
 
+    var charSpan = null;
+
     document.addEventListener('keydown', function (event) {
 
         for (const element of allowedKeys) {
             if((element == event.key) || (element.toLowerCase() == event.key))
             {
                 @this.keyPressed(event.key.toLowerCase());
+                console.log(event.key.toLowerCase());
             }
         }
+    });
+
+    document.addEventListener('invalidKey', function (data) {
+        console.log('Invalid key: '+data.detail.key);
     });
 
 </script>
