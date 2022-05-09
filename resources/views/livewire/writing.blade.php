@@ -8,6 +8,13 @@
         <h1 class="mt-5">{{ $lastKey }}</h1>
     </div>
 
+    <div class="h-10">
+        <p>Actual char: {{ $charNumber }}</p>
+        <p>Word legth: {{ $wordLength }} </p>
+    </div>
+
+
+
 </div>
 
 <script>
@@ -53,7 +60,7 @@
         for (const element of allowedKeys) {
             if((element == event.key) || (element.toLowerCase() == event.key))
             {
-                @this.keyPressed(event.key);
+                @this.keyPressed(event.key.toLowerCase());
             }
         }
     });

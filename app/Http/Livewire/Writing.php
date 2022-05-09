@@ -9,23 +9,39 @@ class Writing extends Component
 {
     public $lastKey;
     public $word;
-    public $charNumer = 0;
+    public $charNumber = 0;
+    public $wordLength;
 
     public function boot()
     {
         $this->word = Word::inRandomOrder()->first();
+        $this->wordLength = strlen($this->word->pl_word);
     }
 
     public function keyPressed($key)
     {
         $this->isKeyValid($key);
+        $this->wordLength = strlen($this->word->pl_word);
+
     }
 
-    public function isKeyValid($key): bool
+    public function isKeyValid($key)
     {
-        dd(substr($this->word->pl_word, 0, 1));
+        $actualChar = substr($this->word->pl_word, $this->charNumber, 1);
 
-        $this->lastKey = $key;
+        if($actualChar == $key)
+        {
+            $this->lastKey = $key;
+            $this->charNumber++;
+        } else 
+        {
+            $this->wrongLetter();
+        }       
+    }
+
+    public function wrongLetter()
+    {
+        return null;
     }
 
     public function render()
