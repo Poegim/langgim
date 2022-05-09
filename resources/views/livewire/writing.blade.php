@@ -20,8 +20,6 @@
         <p>Word legth: {{ $wordLength }} </p>
     </div>
 
-
-
 </div>
 
 <script>

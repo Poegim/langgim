@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Word;
 use Livewire\Component;
+use Illuminate\Support\Str;
 
 class Writing extends Component
 {
@@ -32,20 +33,22 @@ class Writing extends Component
         // $key = $this->removePolishSymbols($key);
 
         $this->lastKey = $key;
+
         
-        if($actualChar == $key)
+        if(ord($actualChar) == ord($key))
         {
             $this->charNumber++;
             $this->guessedChars = $this->guessedChars.$key;
             $this->dispatchBrowserEvent('validKey', ['key' => $key, 'charId' => $this->charNumber]);
         } else 
         {
-            $this->wrongChar();
+            $this->wrongChar($actualChar, $key);
         }       
     }
 
-    public function wrongChar()
+    public function wrongChar($a, $b)
     {
+        dd($a." ".ord($a)." / ".$b." ".ord($b));
         $this->dispatchBrowserEvent('invalidKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
     }
 
