@@ -26,13 +26,10 @@
 
     allowedKeys = [
         'A',
-        'Ą',
         'B',
         'C',
-        'Ć',
         'D',
         'E',
-        'Ę',
         'F',
         'G',
         'H',
@@ -40,16 +37,13 @@
         'J',
         'K',
         'L',
-        'Ł',
         'M',
         'N',
         'O',
-        'Ó',
         'P',
         'Q',
         'R',
         'S',
-        'Ś',
         'T',
         'U',
         'V',
@@ -57,19 +51,15 @@
         'X',
         'Y',
         'Z',
-        'Ź',
-        'Ż',
     ];
-
-    var charSpan = null;
 
     document.addEventListener('keydown', function (event) {
 
         for (const element of allowedKeys) {
-            if((element == event.key) || (element.toLowerCase() == event.key))
+            if((element == event.key) || (element.toUpperCase() == event.key))
             {
-                @this.keyPressed(event.key.toLowerCase());
-                console.log(event.key.toLowerCase());
+                @this.keyPressed(event.key.toUpperCase());
+                console.log(event.key.toUpperCase());
             }
         }
     });

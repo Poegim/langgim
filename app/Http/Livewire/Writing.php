@@ -31,24 +31,24 @@ class Writing extends Component
     {
         $actualChar = substr($this->word->pl_word, $this->charNumber, 1);
         // $key = $this->removePolishSymbols($key);
-
+       
         $this->lastKey = $key;
 
         
-        if(ord($actualChar) == ord($key))
+        if ($actualChar == $this->lastKey)
         {
             $this->charNumber++;
-            $this->guessedChars = $this->guessedChars.$key;
-            $this->dispatchBrowserEvent('validKey', ['key' => $key, 'charId' => $this->charNumber]);
+            $this->guessedChars = $this->guessedChars.$this->lastKey;
+            $this->dispatchBrowserEvent('validKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
         } else 
         {
-            $this->wrongChar($actualChar, $key);
+            $this->wrongChar($actualChar, $this->lastKey);
         }       
     }
 
-    public function wrongChar($a, $b)
+    public function wrongChar($ExpectedChar, $keyClicked)
     {
-        dd($a." ".ord($a)." / ".$b." ".ord($b));
+        dd("Actual char is:".$ExpectedChar." ".ord($ExpectedChar)." / Key clicked:".$keyClicked." ".ord($keyClicked));
         $this->dispatchBrowserEvent('invalidKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
     }
 
