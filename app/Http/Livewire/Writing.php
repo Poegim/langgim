@@ -13,37 +13,36 @@ class Writing extends Component
     public $guessedChars = '';
     public $charNumber = 0;
     public $wordLength;
+    public $wordArray = [];
 
     public function boot()
     {
         $this->word = Word::inRandomOrder()->first();
-        $this->wordLength = strlen($this->word->pl_word);
+        $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
+
+        for ($i = 0; $i < $this->wordLength; $i++) {
+            $this->wordArray[] = strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'));
+        }
     }
 
     public function keyPressed($key)
     {
         $this->isKeyValid($key);
-        $this->wordLength = strlen($this->word->pl_word);
-
     }
 
     public function isKeyValid($key)
     {
-        $actualChar = substr($this->word->pl_word, $this->charNumber, 1);
-        // $key = $this->removePolishSymbols($key);
-       
         $this->lastKey = $key;
 
-        
-        if ($actualChar == $this->lastKey)
+        if (ord($this->wordArray[$this->charNumber]) == ord($this->lastKey))
         {
             $this->charNumber++;
             $this->guessedChars = $this->guessedChars.$this->lastKey;
             $this->dispatchBrowserEvent('validKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
-        } else 
+        } else
         {
-            $this->wrongChar($actualChar, $this->lastKey);
-        }       
+            $this->wrongChar($this->wordArray[$this->charNumber], $this->lastKey);
+        }
     }
 
     public function wrongChar($ExpectedChar, $keyClicked)
@@ -73,7 +72,7 @@ class Writing extends Component
                 case "ó":
                     return "o";
                     break;
-    
+
                 case "ś":
                     return "s";
                     break;

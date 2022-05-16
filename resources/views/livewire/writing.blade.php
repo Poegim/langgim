@@ -7,10 +7,9 @@
     <div>
         <h1 class="mt-5">
             {{ $guessedChars }}
-            @for($i = 1; $i<(strlen($word->pl_word)+1)-$charNumber; $i++)
-                <span id={{$i."_char"}}>_</span>
-
-            @endfor
+            @foreach($wordArray as $key => $char)
+                <span id={{$key."_char"}}> _ ({{$char}})</span>
+            @endforeach
         </h1>
         <h1 class="pt-5"> {{ $lastKey }} </h1>
     </div>
@@ -26,10 +25,13 @@
 
     allowedKeys = [
         'A',
+        'Ą',
         'B',
         'C',
+        'Ć',
         'D',
         'E',
+        'Ę',
         'F',
         'G',
         'H',
@@ -37,13 +39,16 @@
         'J',
         'K',
         'L',
+        'Ł',
         'M',
         'N',
         'O',
+        'Ó',
         'P',
         'Q',
         'R',
         'S',
+        'Ś',
         'T',
         'U',
         'V',
@@ -51,17 +56,27 @@
         'X',
         'Y',
         'Z',
+        'Ż',
+        'Ź',
     ];
+
+    let span;
 
     document.addEventListener('keydown', function (event) {
 
         for (const element of allowedKeys) {
-            if((element == event.key) || (element.toUpperCase() == event.key))
+            if(element.toLowerCase() == event.key.toLowerCase())
             {
-                @this.keyPressed(event.key.toUpperCase());
-                console.log(event.key.toUpperCase());
+                @this.keyPressed(event.key.toLowerCase());
+                console.log(event.key.toLowerCase());
             }
         }
+    });
+
+    document.addEventListener('validKey', function (data) {
+        span = document.getElementById((data.detail.charId-1)+"_char");
+        console.log(span);
+
     });
 
     document.addEventListener('invalidKey', function (data) {
