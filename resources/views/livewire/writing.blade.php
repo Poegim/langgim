@@ -9,7 +9,7 @@
             {{ $guessedChars }}
             @for($i = 1; $i<(strlen($word->pl_word)+1)-$charNumber; $i++)
                 <span id={{$i."_char"}}>_</span>
-            
+
             @endfor
         </h1>
         <h1 class="pt-5"> {{ $lastKey }} </h1>
@@ -22,7 +22,7 @@
 
 </div>
 
-<script>
+<script type="text/javascript">
 
     allowedKeys = [
         'A',
