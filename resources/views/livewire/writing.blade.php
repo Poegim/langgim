@@ -6,9 +6,8 @@
 
     <div>
         <h1 class="mt-5">
-            {{ $guessedChars }}
-            @foreach($wordArray as $key => $char)
-                <span id={{$key."_char"}}> _ ({{$char}})</span>
+            @foreach($guessedChars as $key => $char)
+                <span id={{$key."_char"}}> {{$char}} </span>
             @endforeach
         </h1>
         <h1 class="pt-5"> {{ $lastKey }} </h1>
@@ -80,7 +79,7 @@
     });
 
     document.addEventListener('invalidKey', function (data) {
-        console.log('Invalid key: '+data.detail.key);
+        // console.log('Invalid key: '+data.detail.key);
     });
 
 </script>

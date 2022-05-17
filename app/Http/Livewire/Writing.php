@@ -10,7 +10,7 @@ class Writing extends Component
 {
     public $lastKey;
     public $word;
-    public $guessedChars = '';
+    public $guessedChars = [];
     public $charNumber = 0;
     public $wordLength;
     public $wordArray = [];
@@ -21,8 +21,10 @@ class Writing extends Component
         $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
 
         for ($i = 0; $i < $this->wordLength; $i++) {
-            $this->wordArray[] = strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'));
+            $this->wordArray[$i] = strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'));
+            $this->guessedChars[$i] = '_';
         }
+
     }
 
     public function keyPressed($key)
@@ -37,11 +39,11 @@ class Writing extends Component
         if (ord($this->wordArray[$this->charNumber]) == ord($this->lastKey))
         {
             $this->charNumber++;
-            $this->guessedChars = $this->guessedChars.$this->lastKey;
+            $this->guessedChars[$this->charNumber-1] = $this->lastKey;
             $this->dispatchBrowserEvent('validKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
         } else
         {
-            $this->wrongChar($this->wordArray[$this->charNumber], $this->lastKey);
+            // $this->wrongChar($this->wordArray[$this->charNumber], $this->lastKey);
         }
     }
 
@@ -86,7 +88,6 @@ class Writing extends Component
         }
 
         return $key;
-
 
     }
 
