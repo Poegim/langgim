@@ -73,12 +73,6 @@ class Writing extends Component
         }
     }
 
-    public function wrongChar($ExpectedChar, $keyClicked)
-    {
-        dd("Actual char is:".$ExpectedChar." ".ord($ExpectedChar)." / Key clicked:".$keyClicked." ".ord($keyClicked));
-        $this->dispatchBrowserEvent('invalidKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
-    }
-
     public function removePolishSymbols($key)
     {
         $polishSymbols = ['ą', 'ć',  'ę', 'ł', 'ó', 'ś', 'ż', 'ź'];
@@ -119,6 +113,7 @@ class Writing extends Component
 
     public function success()
     {
+        $this->dispatchBrowserEvent('successWord');
         $this->loadWord();
     }
 
