@@ -62,15 +62,13 @@ class Writing extends Component
         {
             $this->charNumber++;
             $this->guessedChars[$this->charNumber-1] = $this->lastKey;
+            $this->dispatchBrowserEvent('validKey');
             $this->charNumber == $this->wordLength ? $this->success() : null;
-
-            $this->dispatchBrowserEvent('validKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
 
         } else
         {   
-            // $this->dispatchBrowserEvent('invalidKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
-
             $this->wrongTry++;
+            $this->dispatchBrowserEvent('invalidKey');
             $this->wrongTry >= 3 ? $this->failure() : null;
         }
     }
