@@ -18,6 +18,14 @@
         <p>Word legth: {{ $wordLength }} </p>
     </div>
 
+    <div x-data="{show: false}" x-show="show" x-init="setTimeout(() => show = false, 3000)" class="bg-green-200 text-black mr-4 px-2" style="display: none;">
+    Your personal information has been updated!  (1614715825)
+    </div>
+
+    <div class="flex justify-center">
+    <x-clarity-success-line class="h12- w-12"/>
+    </div>
+
 </div>
 
 <script type="text/javascript">

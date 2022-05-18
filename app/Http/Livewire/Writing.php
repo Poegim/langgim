@@ -5,26 +5,48 @@ namespace App\Http\Livewire;
 use App\Models\Word;
 use Livewire\Component;
 use Illuminate\Support\Str;
+use Arr;
 
 class Writing extends Component
 {
     public $lastKey;
     public $word;
+    public $words;
     public $guessedChars = [];
-    public $charNumber = 0;
-    public $wordLength;
     public $wordArray = [];
+    public int $wordLength;
+    public int $charNumber = 0;
+    public int $wrongTry = 0;
 
     public function boot()
     {
-        $this->word = Word::inRandomOrder()->first();
-        $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
+        $this->words = Word::inRandomOrder()->get();
+        $this->loadWord();
+    }
 
+    public function loadWord()
+    {
+        $this->resetVariables();
+        $this->word = $this->words->random();
+        $this->generateWordArrays();
+    }
+
+    public function resetVariables()
+    {
+        $this->charNumber = 0;
+        $this->wrongTry = 0;
+        $this->wordArray = [];
+        $this->guessedChars = [];
+        $this->lastKey = null;
+    }
+
+    public function generateWordArrays()
+    {
+        $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
         for ($i = 0; $i < $this->wordLength; $i++) {
             $this->wordArray[$i] = strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'));
             $this->guessedChars[$i] = '_';
         }
-
     }
 
     public function keyPressed($key)
@@ -40,10 +62,16 @@ class Writing extends Component
         {
             $this->charNumber++;
             $this->guessedChars[$this->charNumber-1] = $this->lastKey;
+            $this->charNumber == $this->wordLength ? $this->success() : null;
+
             $this->dispatchBrowserEvent('validKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
+
         } else
-        {
-            // $this->wrongChar($this->wordArray[$this->charNumber], $this->lastKey);
+        {   
+            // $this->dispatchBrowserEvent('invalidKey', ['key' => $this->lastKey, 'charId' => $this->charNumber]);
+
+            $this->wrongTry++;
+            $this->wrongTry >= 3 ? $this->failure() : null;
         }
     }
 
@@ -89,6 +117,16 @@ class Writing extends Component
 
         return $key;
 
+    }
+
+    public function success()
+    {
+        $this->loadWord();
+    }
+
+    public function failure()
+    {
+        $this->loadWord();
     }
 
     public function render()
