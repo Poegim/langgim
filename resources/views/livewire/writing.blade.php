@@ -1,7 +1,7 @@
 <div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
-    
+
     <div class="flex justify-center h-12">
-        
+
 
         <div class="hidden text-red-600" id="failure">
             <x-clarity-times-line class="h12- w-12"/>
@@ -12,7 +12,7 @@
         <h1 class="mt-5">{{ $word->ua_word }}</h1>
     </div>
 
-    <div> 
+    <div>
         <div id="word_div" class="">
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
@@ -29,7 +29,7 @@
                 @endforeach
             </div>
             <h1 class="pt-5 h-16"> {{ $lastKey }} </h1>
-            
+
             <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
                 <p>Word legth: {{ $wordLength }} </p>
