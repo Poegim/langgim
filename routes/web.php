@@ -54,4 +54,4 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
 //Guest mode
 Route::get('/guest', function () {
     return view('dashboard');
-})->name('guest');
+})->middleware('admin')->name('guest');
