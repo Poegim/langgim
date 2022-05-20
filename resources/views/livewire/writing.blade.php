@@ -32,8 +32,16 @@
             </div>
         </div>
 
-        <div id="word_success" class="h-full w-full flex justify-center hidden">
-        <x-clarity-success-line class="h-20 w-20 text-green-400"/>
+        <div id="word_success" class="h-full w-full hidden">
+            <div class="flex justify-center">
+                <x-clarity-success-line class="h-20 w-20 text-green-400"/>
+            </div>
+            <div class="text-center">
+                {{$word->sample_sentence}}
+            </div>
+            <div class="mt-4">
+                <x-jet-secondary-button onclick="hideSuccess()">Następne</x-jet-secondary-button>
+            </div>
         </div>
 
         <div id="word_failure" class="h-full w-full flex justify-center hidden">
@@ -77,7 +85,7 @@
         }, 500);
     });
 
-    document.addEventListener('successWord', function (data) {
+    document.addEventListener('successWord', function () {
         let word_div;
         let word_succes;
         word_div = document.getElementById("word_div");
@@ -86,19 +94,14 @@
         word_div.classList.add("hidden");
         word_succes.classList.remove("hidden");
 
-        setTimeout( function(){
-            word_div.classList.remove("hidden");
-            word_succes.classList.add("hidden");
-        }, 3000);
+
     });
 
-    document.addEventListener('failureWord', function (data) {
+    document.addEventListener('failureWord', function () {
         let word_div;
         let word_failure;
         word_div = document.getElementById("word_div");
         word_failure = document.getElementById("word_failure");
-
-        console.log(word_failure);
 
         word_div.classList.add("hidden");
         word_failure.classList.remove("hidden");
@@ -108,5 +111,20 @@
             word_failure.classList.add("hidden");
         }, 3000);
     });
+
+    function hideSuccess() {
+        @this.loadWord();
+        let word_div;
+        let word_succes;
+        word_div = document.getElementById("word_div");
+        word_succes = document.getElementById("word_success");
+        word_div.classList.remove("hidden");
+        word_succes.classList.add("hidden");
+
+    };
+
+
+
+
 
 </script>

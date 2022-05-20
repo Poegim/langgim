@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('words', function (Blueprint $table) {
             $table->id();
             $table->string('pl_word');
+            $table->string('sample_sentence')->default('');
             $table->string('ua_word');
             $table->foreignId('category_id')->constrained();
             $table->timestamps();

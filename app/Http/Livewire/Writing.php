@@ -63,7 +63,7 @@ class Writing extends Component
             $this->charNumber++;
             $this->guessedChars[$this->charNumber-1] = $this->lastKey;
             $this->dispatchBrowserEvent('validKey', ['charNumber' => $this->charNumber]);
-            $this->charNumber == $this->wordLength ? $this->success() : null;
+            $this->charNumber == $this->wordLength ? $this->showSuccess() : null;
 
         } else
         {   
@@ -109,6 +109,11 @@ class Writing extends Component
 
         return $key;
 
+    }
+
+    public function showSuccess()
+    {
+        $this->dispatchBrowserEvent('successWord');
     }
 
     public function success()
