@@ -40,12 +40,23 @@
                 {{$word->sample_sentence}}
             </div>
             <div class="mt-4">
-                <x-jet-secondary-button onclick="hideSuccess()">Następne</x-jet-secondary-button>
+                <x-buttons.primary onclick="hideSuccess()">Następne</x-buttons.primary>
             </div>
         </div>
 
-        <div id="word_failure" class="h-full w-full flex justify-center hidden">
-        <x-clarity-times-line class="h-20 w-20 text-red-500"/>
+        <div id="word_failure" class="h-full w-full hidden">
+		<div class="">
+			{{$word->pl_word}}
+		</div>
+        	<div class="flex justify-center">
+                	<x-clarity-times-line class="h-20 w-20 text-red-500"/>
+		</div>
+            <div class="text-center">
+                {{$word->sample_sentence}}
+            </div>
+            <div class="mt-4">
+		<x-buttons.third onclick="hideFailure()">Następne</x-buttons.third>
+            </div>
         </div>
 
 
@@ -58,13 +69,21 @@
     allowedKeys = ['A','Ą','B','C','Ć','D','E','Ę','F','G','H','I','J','K','L','Ł','M','N','O','Ó','P','Q','R','S','Ś','T','U','V','W','X','Y','Z','Ż','Ź'];
 
     document.addEventListener('keydown', function (event) {
-
-        for (const element of allowedKeys) {
-            if(element.toLowerCase() == event.key.toLowerCase())
-            {
-                @this.keyPressed(event.key.toLowerCase());
-            }
-        }
+    
+        let word_failure;
+        let word_succes;
+        word_failure = document.getElementById("word_failure");
+        word_success = document.getElementById("word_success");
+	
+	if((word_failure.classList.contains('hidden'))  && (word_success.classList.contains('hidden')))
+	{
+       		for (const element of allowedKeys) {
+            	if(element.toLowerCase() == event.key.toLowerCase())
+            	{
+               	 @this.keyPressed(event.key.toLowerCase());
+       		}
+        	}
+	}
     });
 
     document.addEventListener('validKey', function (data) {
@@ -106,10 +125,6 @@
         word_div.classList.add("hidden");
         word_failure.classList.remove("hidden");
 
-        setTimeout( function(){
-            word_div.classList.remove("hidden");
-            word_failure.classList.add("hidden");
-        }, 3000);
     });
 
     function hideSuccess() {
@@ -120,11 +135,16 @@
         word_succes = document.getElementById("word_success");
         word_div.classList.remove("hidden");
         word_succes.classList.add("hidden");
-
     };
 
-
-
-
+	function hideFailure() {
+   	@this.loadWord();
+       	let word_div;
+        let word_failure;
+        word_div = document.getElementById("word_div");
+        word_succes = document.getElementById("word_failure");
+        word_div.classList.remove("hidden");
+        word_succes.classList.add("hidden");
+    }
 
 </script>
