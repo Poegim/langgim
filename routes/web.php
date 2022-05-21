@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\ControlPanel;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +14,7 @@ use Illuminate\Http\Request;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 
 //Landing Page
 Route::get('/', function () {
@@ -26,6 +27,20 @@ Route::get('/', function () {
     return view('welcome');
 
 });
+
+
+//Dashboard
+Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+
+//Guest mode
+Route::get('/guest', function () {
+    return view('dashboard');
+})->name('guest');
+
+//Control Panel
+Route::get('control-panel', [ControlPanel::class, 'index'])->prefix('admin')->name('control-panel');
 
 
 //Email verification routes
@@ -44,14 +59,3 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
-
-//Dashboard
-Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-//Guest mode
-Route::get('/guest', function () {
-    return view('dashboard');
-})->name('guest');

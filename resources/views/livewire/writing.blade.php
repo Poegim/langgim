@@ -1,7 +1,4 @@
 <div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
-
-
-
     <div>
         <div id="word_div" class="">
             <div class="h-10">
