@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\ControlPanel;
+use App\Http\Controllers\Admin\ControlPanel;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\WordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,6 +44,11 @@ Route::get('/guest', function () {
 //Control Panel
 Route::get('control-panel', [ControlPanel::class, 'index'])->prefix('admin')->name('control-panel');
 
+//Categories 
+Route::resource('categories', CategoryController::class);
+
+//Words
+Route::resource('words', WordController::class);
 
 //Email verification routes
 Route::get('/email/verify', function () {

@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\Word;
 use Illuminate\Http\Request;
 
 class WordController extends Controller
@@ -40,10 +42,10 @@ class WordController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Word $word)
     {
         //
     }
@@ -51,10 +53,10 @@ class WordController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Word $word)
     {
         //
     }
@@ -63,10 +65,10 @@ class WordController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Word $word)
     {
         //
     }
@@ -74,10 +76,10 @@ class WordController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Word  $word
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Word $word)
     {
         //
     }
