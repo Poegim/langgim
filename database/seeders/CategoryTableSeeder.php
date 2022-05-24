@@ -16,7 +16,18 @@ class CategoryTableSeeder extends Seeder
     public function run()
     {
         Category::create([
-            'name' => 'test',
+            'name' => 'Pomieszczenia',
+            'parent_id' => null,
+        ]);
+
+        Category::create([
+            'name' => 'Przedmioty',
+            'parent_id' => null,
+        ]);
+
+        Category::create([
+            'name' => 'Przedmioty w domu',
+            'parent_id' => 2,
         ]);
     }
 }

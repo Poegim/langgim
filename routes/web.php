@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\ControlPanel;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\WordController;
+use App\Http\Middleware\IsAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,17 +40,20 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
 
 //Guest mode
 Route::get('/guest', function () {
-    return view('dashboard');
+    return view('guest');
 })->name('guest');
 
 //Control Panel
-Route::get('control-panel', [ControlPanel::class, 'index'])->prefix('admin')->name('control-panel');
 
-//Categories 
-Route::resource('categories', CategoryController::class);
-
-//Words
-Route::resource('words', WordController::class);
+//Admin
+Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {
+    Route::get('control-panel', [ControlPanel::class, 'index'])->name('control-panel');
+    Route::resource('categories', CategoryController::class);
+    Route::resource('words', WordController::class);
+    Route::get('users', function () {
+        return view('dashboard');
+    })->name('users.index');
+});
 
 //Email verification routes
 Route::get('/email/verify', function () {
