@@ -13,13 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('words', function (Blueprint $table) {
+        Schema::create('subcategories', function (Blueprint $table) {
             $table->id();
-            $table->string('pl_word');
-            $table->string('sample_sentence')->default('');
-            $table->string('ua_word');
+            $table->string('name');
             $table->foreignId('category_id')->constrained();
-            $table->foreignId('subcategory_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('words');
+        Schema::dropIfExists('subcategories');
     }
 };
