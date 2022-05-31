@@ -4,3 +4,4 @@ MODULES
     	-- contact form
 
 FIXES
+		-- key spam causes error

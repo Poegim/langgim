@@ -1,4 +1,4 @@
-<div class="text-gray-200 bg-gray-800 p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
+<div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
     <div>
         <div id="word_div" class="">
             <div class="h-10">
@@ -11,7 +11,7 @@
                         <span class="text-xl"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
-                        <div class="text-green-400 hidden" id="success_{{$key}}">
+                        <div class="text-green-500 hidden" id="success_{{$key}}">
                             <x-clarity-success-line class="h-4 w-4" />
                         </div>
                         <div class="text-red-500 hidden" id="failure_{{$key}}">
