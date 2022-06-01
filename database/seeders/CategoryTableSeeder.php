@@ -17,17 +17,14 @@ class CategoryTableSeeder extends Seeder
     {
         Category::create([
             'name' => 'Pomieszczenia',
-            'parent_id' => null,
         ]);
 
         Category::create([
             'name' => 'Przedmioty',
-            'parent_id' => null,
         ]);
 
         Category::create([
             'name' => 'Przedmioty w domu',
-            'parent_id' => 2,
         ]);
     }
 }

@@ -1,8 +1,7 @@
 <x-app-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Create Category') }}
+            {{ __('Create Subcategory') }}
         </h2>
     </x-slot>
 
@@ -10,7 +9,7 @@
         <div class="overflow-x-auto">
             <div class="inline-block min-w-full overflow-hidden align-middle">
 
-                <form method="POST" action="{{route('admin.categories.store')}}">
+                <form method="POST" action="{{route('admin.subcategories.store')}}">
                     @csrf
 
                     <div>

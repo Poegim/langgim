@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Admin\ControlPanel;
-use App\Http\Controllers\Admin\CategoryController;
-use App\Http\Controllers\Admin\WordController;
 use App\Http\Middleware\IsAdmin;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\ControlPanel;
+use App\Http\Controllers\Admin\WordController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,7 @@ Route::get('/guest', function () {
 Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {
     Route::get('control-panel', [ControlPanel::class, 'index'])->name('control-panel');
     Route::resource('categories', CategoryController::class);
+    Route::resource('subcategories', SubcategoryController::class);
     Route::resource('words', WordController::class);
     Route::get('users', function () {
         return view('dashboard');
