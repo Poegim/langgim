@@ -47,7 +47,8 @@
                                 <a href="{{route('admin.categories.edit', $category)}}">
                                     <x-clarity-note-edit-line class="w-5 h-5 text-blue-700" />
                                 </a>
-                                <x-clarity-remove-line class="w-5 h-5 text-red-700" />
+
+                                <livewire:admin.categories.delete :category="$category" />
                             </div>
 
                         </td>

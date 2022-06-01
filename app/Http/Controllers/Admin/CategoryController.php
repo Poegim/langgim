@@ -59,11 +59,6 @@ class CategoryController extends Controller
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->route('admin.categories.index');
 
-
     }
 
-    public function destroy(Category $category)
-    {
-        //
-    }
 }

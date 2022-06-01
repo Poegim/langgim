@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('pl_word');
             $table->string('sample_sentence')->default('');
             $table->string('ua_word');
-            $table->foreignId('category_id')->constrained();
-            $table->foreignId('subcategory_id')->nullable()->constrained();
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('subcategory_id')->nullable()->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
