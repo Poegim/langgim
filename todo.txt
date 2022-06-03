@@ -4,4 +4,5 @@ MODULES
     	-- contact form
 
 FIXES
-		-- key spam causes error
+		-- key spam causes error on low specs?
+        -- validation of subcategories and categories unique combination

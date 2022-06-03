@@ -86,11 +86,11 @@
                 <div class="ml-3 relative">
                     @guest
                     <a href="{{ route('login') }}"
-                    class="text-sm text-gray-900 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100">Log in
+                    class="text-sm text-gray-900 hover:text-gray-400 px-2">Log in
                 </a>
 
                 <a href="{{ route('register') }}"
-                class="text-sm text-gray-900 hover:text-gray-800 px-2 dark:text-gray-300 dark:hover:text-gray-100" >Register
+                class="text-sm text-gray-900 hover:text-gray-400 px-2" >Register
             </a>
             @endguest
             <x-jet-dropdown align="right" width="48">
@@ -162,9 +162,11 @@
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
         <div class="pt-2 pb-3 space-y-1">
+
             <x-jet-responsive-nav-link href="{{ route('guest') }}" :active="request()->routeIs('guest')">
                 {{ __('Guest Mode') }}
             </x-jet-responsive-nav-link>
+
         </div>
 
         @guest
@@ -183,6 +185,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('admin.control-panel') }}" :active="request()->routeIs('admin.control-panel')">
+                {{ __('Control Panel') }}
             </x-jet-responsive-nav-link>
         </div>
 
