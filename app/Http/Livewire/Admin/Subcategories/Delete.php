@@ -23,7 +23,6 @@ class Delete extends Component
         session()->flash('flash.banner', 'Subcategory removed!');
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->route('admin.categories.index');
-        rollback
 
     }
 

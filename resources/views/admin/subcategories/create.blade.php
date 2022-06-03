@@ -12,15 +12,30 @@
                 <form method="POST" action="{{route('admin.subcategories.store')}}">
                     @csrf
 
-                    <div>
+                    <div class="space-y-3">
                         <div>
                             <x-jet-label for="name">Name:</x-jet-label>
-                            <x-jet-input name="name" id="name" type="text" />
+                            <x-jet-input name="name" id="name" type="text" class="w-64"/>
                             <x-jet-input-error for="name"/>
                         </div>
-                    </div>
-                    <div class="mt-2">
-                        <x-jet-button>Save</x-jet-button>
+
+                        <div>
+                            <x-jet-label for="category">Category:</x-jet-label>
+                            <select name="category" id="category" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
+                                @foreach ($categories as $category)
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
+                                @endforeach
+                            </select>
+                            <x-jet-input-error for="category"/>
+                        </div>
+
+                        <div>
+                            <x-jet-button>Save</x-jet-button>
+                            <a href="{{route('admin.categories.index')}}">
+                                <x-jet-danger-button type="button">Back</x-jet-danger-button>
+                            </a>
+                        </div>
+
                     </div>
                 </form>
 

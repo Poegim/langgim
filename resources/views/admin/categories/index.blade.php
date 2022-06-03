@@ -35,38 +35,24 @@
                     <thead>
                         <tr>
                             <th
-                                class="sm:px-4 px-1 py-2 text-xs sm:text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50 w-1">
                                 ID
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-xs sm:text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Title
                             </th>
 
                             <th
-                                class="sm:px-4 px-1 py-2 text-xs sm:text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                 Subcategories
                             </th>
 
-                            <th
-                                class="sm:px-4 px-1 py-2 text-sm text-left text-gray-500 border-b border-gray-200 bg-gray-50">
-                                Action</th>
-                        </tr>
                     </thead>
                     @foreach($categories as $category)
-                    <tr class="bg-white text-gray-800 text-xs sm:text-sm text-left">
+                    <tr class="bg-white text-gray-800 text-sm text-left border-b">
                         <td class="sm:px-4 px-1 py-2 ">{{$category->id}}</td>
-                        <td class="sm:px-4 px-1 py-2 ">{{$category->name}}</td>
-                        <td class="sm:px-4 px-1 py-2 ">
-                            <div>
-                                @foreach ($category->subcategories as $subcategory)
-                                    <div>
-                                        {{$subcategory->name}}
-                                    </div>
-                                @endforeach
-                            </div>
-                        </td>
-                        <td class="sm:px-4 px-1 py-2 ">
+                        <td class="sm:px-4 px-1 py-2 flex space-x-1">
                             <div class="flex justify-center">
                                 <a href="{{route('admin.categories.edit', $category)}}">
                                     <x-clarity-note-edit-line class="w-5 h-5 text-blue-700" />
@@ -74,7 +60,28 @@
 
                                 <livewire:admin.categories.delete :category="$category" />
                             </div>
+                            <div>
+                                {{$category->name}}
+                            </div>
+                        </td>
+                        <td class="sm:px-4 px-1 py-2 ">
+                            <div>
+                                @foreach ($category->subcategories as $subcategory)
+                                    <div class="flex space-x-1">
+                                        <livewire:admin.subcategories.delete :subcategory="$subcategory" />
+                                        <div>
+                                            <a href="{{route('admin.subcategories.edit', $subcategory)}}">
+                                                <x-clarity-note-edit-line class="w-5 h-5 text-blue-700" />
+                                            </a>
+                                        </div>
+                                        <div>
+                                            {{$subcategory->name}}
+                                        </div>
 
+                                    </div>
+                                @endforeach
+
+                            </div>
                         </td>
                     </tr>
                     @endforeach
