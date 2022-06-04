@@ -17,17 +17,15 @@ class WordTableSeeder extends Seeder
     {
         Word::insert([
             [
-            'pl_word' => 'cześć',
-            'sample_sentence' => 'Cześć, co u ciebie?',
-            'ua_word' => 'привіт',
-            'category_id' => 1,
-        ],
-        [
-            'pl_word' => 'dziękuje',
-            'sample_sentence' => 'Dziękuje za pomoc.',
-            'ua_word' => 'дякую',
-            'category_id' => 1,
-        ]
-    ]);
+                'pl_word' => 'cześć',
+                'sample_sentence' => 'Cześć, co u ciebie?',
+                'category_id' => 1,
+            ],
+            [
+                'pl_word' => 'dziękuje',
+                'sample_sentence' => 'Dziękuje za pomoc.',
+                'category_id' => 1,
+            ]
+        ]);
     }
 }

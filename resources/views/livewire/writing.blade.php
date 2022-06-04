@@ -2,7 +2,7 @@
     <div>
         <div id="word_div" class="">
             <div class="h-10">
-                <h1 class="mt-5 text-lg tracking-wider">{{ $word->ua_word }}</h1>
+                <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
             </div>
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)

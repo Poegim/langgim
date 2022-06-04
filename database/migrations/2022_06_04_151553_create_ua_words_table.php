@@ -13,12 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('words', function (Blueprint $table) {
-            $table->id();
-            $table->string('pl_word');
-            $table->string('sample_sentence')->default('');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
-            $table->foreignId('subcategory_id')->nullable()->constrained()->onDelete('cascade');
+        Schema::create('ua_words', function (Blueprint $table) {
+            $table->integer('id');
+            $table->string('word');
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('words');
+        Schema::dropIfExists('ua_words');
     }
 };
