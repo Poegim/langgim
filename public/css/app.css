@@ -1309,6 +1309,11 @@ select {
   margin-right: calc(0.5rem * var(--tw-space-x-reverse));
   margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+}
 .overflow-hidden {
   overflow: hidden;
 }
@@ -2050,16 +2055,6 @@ select {
   .dark\:bg-gray-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-  }
-
-  .dark\:text-gray-300 {
-    --tw-text-opacity: 1;
-    color: rgb(209 213 219 / var(--tw-text-opacity));
-  }
-
-  .dark\:hover\:text-gray-100:hover {
-    --tw-text-opacity: 1;
-    color: rgb(243 244 246 / var(--tw-text-opacity));
   }
 }
 @media (min-width: 640px) {

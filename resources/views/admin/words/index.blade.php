@@ -4,6 +4,17 @@
     <div class="max-w-7xl mx-auto mt-8 p-2">
         <div class="flex flex-col">
             <div class="overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+                <div class="flex justify-end py-2 px-0 space-x-2 mb-2">
+                    <a href="{{route('admin.words.create')}}" class="w-full">
+                    <x-jet-secondary-button class="w-full">
+                        <div class="mt-1">
+                            Add word
+                        </div>
+                        <x-clarity-add-line class="w-6 h-6"/>
+                    </x-jet-secondary-button>
+                    </a>
+
+                </div>
                 <div
                     class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                     <table class="min-w-full">
@@ -40,11 +51,11 @@
                         <tr class="bg-white text-gray-800 text-sm text-left">
                             <td class="px-2 py-3 ">{{$word->id}}</td>
                             <td class="px-2 py-3 ">{{$word->pl_word}}</td>
-                            <td class="px-2 py-3 ">{{$word->ua_word}}</td>
+                            <td class="px-2 py-3 ">@php $word->uaWord->word != '' ? $word->uaWord->word : null; @endphp</td>
                             <td class="px-2 py-3 ">{!! $word->sample_sentence !!}</td>
                             <td class="px-2 py-3 ">{!! $word->category->name !!}</td>
                             <td class="px-2 py-3 ">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
-                            <td class="px-2 py-3 ">CRUD + FILE</td>
+                            <td class="px-2 py-3 ">UD + AUDIO</td>
                         </tr>
                         @endforeach
                         <tbody class="bg-white">

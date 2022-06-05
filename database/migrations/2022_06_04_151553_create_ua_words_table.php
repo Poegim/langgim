@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('word');
             $table->timestamps();
         });
+
     }
 
     /**
