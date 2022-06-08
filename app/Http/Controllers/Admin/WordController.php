@@ -6,7 +6,6 @@ use App\Models\Word;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 
 class WordController extends Controller
 {
@@ -39,13 +38,13 @@ class WordController extends Controller
 
         //Audio file managment
         $file = $request->file('audio_file');
-        if($file != NULL)
+        if($file)
         {
             $generatedName = hexdec(uniqid());
             $fileName = $generatedName . '.mp3';
-            $uploadLocation = '../storage/app/public/audio/';
+            $uploadLocation = 'audio/words/';
             $file->move($uploadLocation,$fileName);
-            $newFilePath = '../storage/app/public/audio/'.$fileName;
+            $newFilePath = 'audio/words/'.$fileName;
         }
 
 
@@ -54,7 +53,7 @@ class WordController extends Controller
         $word->pl_word = $request->word;
         $word->sample_sentence = $request->sample_sentence;
         $word->category_id = $request->category[0];
-        $request->file ? $word->audio_file = $newFilePath : null;
+        $request->audio_file ? $word->audio_file = $newFilePath : null;
 
         //Check is subcategory choosed and assign value if yes.
         $request->category[1] != 0 ? $word->subcategory_id = $request->category[1] : $word->subcategory_id = null;
@@ -86,12 +85,51 @@ class WordController extends Controller
 
     public function update(Request $request, Word $word)
     {
-        //
-    }
+        $request->validate([
+            'word' => ['required',],
+            'ua_word' => ['nullable',],
+            'sample_sentecne' => ['nullable',],
+            'category' => ['required',],
+            'audio_file' => ['nullable','mimes:mp3','max:2048'],
+        ]);
 
-    public function destroy(Word $word)
-    {
-        //
+        //Split category input into category/subcategory array.
+        $request->category = explode( '.', $request->category );
+
+        //Audio file managment
+        $file = $request->file('audio_file');
+        if($file)
+        {
+            $generatedName = hexdec(uniqid());
+            $fileName = $generatedName . '.mp3';
+            $uploadLocation = 'audio/words/';
+            $file->move($uploadLocation,$fileName);
+            $newFilePath = 'audio/words/'.$fileName;
+
+            //Delete old audio file from disc
+            file_exists($word->audio_file) ? unlink($word->audio_file) : null;
+
+        }
+
+        //Saving data
+        $word->pl_word = $request->word;
+        $word->sample_sentence = $request->sample_sentence;
+        $word->category_id = $request->category[0];
+        $request->audio_file ? $word->audio_file = $newFilePath : null;
+
+        //Check is subcategory choosed and assign value if yes.
+        $request->category[1] != 0 ? $word->subcategory_id = $request->category[1] : $word->subcategory_id = null;
+
+        $word->save();
+
+        $word->uaWord()->update([
+            'word' => $request->ua_word ? $request->ua_word : '',
+        ]);
+
+        //Redirect
+        session()->flash('flash.banner', 'Word updated!');
+        session()->flash('flash.bannerStyle', 'success');
+        return redirect()->route('admin.words.index');
     }
 
 }
