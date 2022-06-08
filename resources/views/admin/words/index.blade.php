@@ -42,20 +42,27 @@
                                 <th
                                     class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Subcategory</th>
-                                <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Action</th>
+
                             </tr>
                         </thead>
                         @foreach($words as $word)
                         <tr class="bg-white text-gray-800 text-sm text-left">
-                            <td class="px-2 py-3 ">{{$word->id}}</td>
-                            <td class="px-2 py-3 ">{{$word->pl_word}}</td>
-                            <td class="px-2 py-3 ">@php $word->uaWord->word != '' ? $word->uaWord->word : null; @endphp</td>
-                            <td class="px-2 py-3 ">{!! $word->sample_sentence !!}</td>
-                            <td class="px-2 py-3 ">{!! $word->category->name !!}</td>
-                            <td class="px-2 py-3 ">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
-                            <td class="px-2 py-3 ">UD + AUDIO</td>
+                            <td class="px-2 py-3">{{$word->id}}</td>
+                            <td class="px-2 py-3 flex space-x-1">
+                                <div class="flex justify-center">
+                                    <a href="{{route('admin.words.edit', $word)}}">
+                                        <x-clarity-note-edit-line class="w-5 h-5 text-blue-700" />
+                                    </a>
+                                        <livewire:admin.words.delete :word="$word" />
+                                    </div>
+                                    <div>
+                                        {{$word->pl_word}}
+                                    </div>
+                            </td>
+                            <td class="px-2 py-3"><?php if(isset($word->uaWord->word)) echo $word->uaWord->word ?></td>
+                            <td class="px-2 py-3">{!! $word->sample_sentence !!}</td>
+                            <td class="px-2 py-3">{!! $word->category->name !!}</td>
+                            <td class="px-2 py-3">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
                         </tr>
                         @endforeach
                         <tbody class="bg-white">

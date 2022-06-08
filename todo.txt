@@ -6,3 +6,6 @@ MODULES
 FIXES
 		-- key spam causes error on low specs?
         -- validation of subcategories and categories unique combination
+
+FEATURES
+        -- enter key as "next" after entering word
