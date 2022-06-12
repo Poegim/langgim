@@ -1,22 +1,21 @@
 <div>
-    <div class="flex justify-center pt-16">
-        <x-jet-application-mark class="w-32 h-32"/>
-    </div>
     <div class="px-4 pt-12 flex justify-center">
         <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/4">
-            <div>
-                <a href="{{route('register')}}">
+            <div class="hidden">
+                {{-- <a href="{{route('register')}}"> --}}
                     <x-buttons.primary class="w-full h-18">
                         <div>Register</div>
                         <div class="text-sm font-extralight">Rejestracja</div>
                     </x-buttons.primary>
-                </a>
+                {{-- </a> --}}
 
             </div>
             <div class="mt-2">
                 <span class="text-sm font-extralight">
-                    Register account and improve your experience.
+                    Registeration is temporary unavailable.
+                    This app is under development.
                 </span>
+
             </div>
 
             <div class="mt-24">
