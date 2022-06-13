@@ -4,8 +4,9 @@ MODULES
     	-- contact form
 
 FIXES
-		-- key spam causes error on low specs?
+        -- key spam causes error on low specs?
         -- validation of subcategories and categories unique combination
+        -- mark colors pallete
 
 FEATURES
         -- enter key as "next" after entering word

@@ -10,10 +10,11 @@
                 {{-- </a> --}}
 
             </div>
-            <div class="mt-2">
+            <div class="mt-2 text-center">
                 <span class="text-sm font-extralight">
-                    Registeration is temporary unavailable.
-                    This app is under development.
+                    Registration is temporary unavailable.
+                    <p>This app is under development.</p>
+                    <p class="mt-4">Please give us some time : )</p>
                 </span>
 
             </div>
