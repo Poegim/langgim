@@ -4,7 +4,7 @@
 </svg> --}}
 
 <div class="rounded-full text-white">
-    <div class="text-sm rounded-3xl p-2 uppercase bg-blue-900">
+    <div class="text-sm rounded-3xl p-2 uppercase bg-fuchsia-900">
         <span >Learn</span>
         <span class="text-red-400">Polish</span>
     </div>

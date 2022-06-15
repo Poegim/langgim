@@ -1,12 +1,17 @@
 FEATURES
 
 MODULES
-    	-- contact form
+    -- contact form
 
 FIXES
-        -- key spam causes error on low specs?
-        -- validation of subcategories and categories unique combination
-        -- mark colors pallete
+    -- key spam causes error on high latency
+    -- validation of subcategories and categories unique combination
+    -- trigger keyboard show on mobile
+    -- enter key as "next" after entering word
+    -- delete livewire VIEWs are typicaly same except item name, should be merged into one view
 
 FEATURES
-        -- enter key as "next" after entering word
+    -- Admin / Users
+    -- User / User
+    -- Fill database
+    -- Voices

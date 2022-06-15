@@ -25,7 +25,8 @@
 
             gtag('config', 'G-N5KFMQZ01K');
             </script>
-        @endif 
+            G-analitics should be true
+        @endif
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
