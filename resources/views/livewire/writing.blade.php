@@ -60,31 +60,84 @@
                 <x-buttons.third onclick="hideFailure()">Następne</x-buttons.third>
             </div>
         </div>
-
-
     </div>
+
+
+    <!-- Prototype modal success-->
+    <x-jet-dialog-modal wire:model="modalSuccessVisibility">
+        <x-slot name="title" >
+            {{ __("Success") }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ $word->pl_word }}
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="space-x-1">
+
+                <x-jet-secondary-button
+                wire:click="loadWord"
+                {{-- onclick="hideSuccess()" --}}
+                >
+                {{ __("Next")}}
+                </x-jet-secondary-button>
+
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
+
+        <!-- Prototype modal failure-->
+        <x-jet-dialog-modal wire:model="modalFailureVisibility">
+            <x-slot name="title" >
+                {{ __("Failure") }}
+            </x-slot>
+
+            <x-slot name="content">
+                {{ $word->pl_word }}
+            </x-slot>
+
+            <x-slot name="footer">
+                <div class="space-x-1">
+
+                    <x-jet-secondary-button
+                    wire:click="loadWord"
+                    {{-- onclick="hideFailure()" --}}
+                    >
+                    {{ __("Next")}}
+                    </x-jet-secondary-button>
+
+                </div>
+            </x-slot>
+        </x-jet-dialog-modal>
 
 </div>
 
 <script type="text/javascript">
+
     allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O', 'Ó',
         'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
     ];
 
     document.addEventListener('keydown', function (event) {
 
-        let word_failure;
-        let word_succes;
-        word_failure = document.getElementById("word_failure");
-        word_success = document.getElementById("word_success");
-
-        if ((word_failure.classList.contains('hidden')) && (word_success.classList.contains('hidden'))) {
+        if((@this.modalSuccessVisibility == false) && (@this.modalFailureVisibility == false))
+        {
             for (const element of allowedKeys) {
                 if (element.toLowerCase() == event.key.toLowerCase()) {
                     @this.keyPressed(event.key.toLowerCase());
                 }
             }
+        } else
+        {
+            console.log(event);
+            console.log(@this.modalSuccessVisibility);
+            console.log(@this.modalFailureVisibility);
+            if (event.key == 'Enter') {
+                console.log('Enter has been hited');
+            }
         }
+
     });
 
     document.addEventListener('validKey', function (data) {
@@ -105,47 +158,12 @@
         }, 500);
     });
 
-    document.addEventListener('successWord', function () {
-        let word_div;
-        let word_succes;
-        word_div = document.getElementById("word_div");
-        word_succes = document.getElementById("word_success");
-
-        word_div.classList.add("hidden");
-        word_succes.classList.remove("hidden");
-
-
-    });
-
-    document.addEventListener('failureWord', function () {
-        let word_div;
-        let word_failure;
-        word_div = document.getElementById("word_div");
-        word_failure = document.getElementById("word_failure");
-
-        word_div.classList.add("hidden");
-        word_failure.classList.remove("hidden");
-
-    });
-
     function hideSuccess() {
         @this.loadWord();
-        let word_div;
-        let word_succes;
-        word_div = document.getElementById("word_div");
-        word_succes = document.getElementById("word_success");
-        word_div.classList.remove("hidden");
-        word_succes.classList.add("hidden");
     };
 
     function hideFailure() {
         @this.loadWord();
-        let word_div;
-        let word_failure;
-        word_div = document.getElementById("word_div");
-        word_succes = document.getElementById("word_failure");
-        word_div.classList.remove("hidden");
-        word_succes.classList.add("hidden");
     }
 
 </script>

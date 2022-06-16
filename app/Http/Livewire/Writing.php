@@ -18,6 +18,9 @@ class Writing extends Component
     public int $charNumber = 0;
     public int $wrongTry = 0;
 
+    public bool $modalSuccessVisibility = false;
+    public bool $modalFailureVisibility = false;
+
     public function boot()
     {
         $this->words = Word::inRandomOrder()->get();
@@ -38,6 +41,8 @@ class Writing extends Component
         $this->wordArray = [];
         $this->guessedChars = [];
         $this->lastKey = null;
+        $this->modalSuccessVisibility = false;
+        $this->modalFailureVisibility = false;
     }
 
     public function generateWordArrays()
@@ -63,69 +68,64 @@ class Writing extends Component
             $this->charNumber++;
             $this->guessedChars[$this->charNumber-1] = $this->lastKey;
             $this->dispatchBrowserEvent('validKey', ['charNumber' => $this->charNumber]);
-            $this->charNumber == $this->wordLength ? $this->showSuccess() : null;
+            $this->charNumber == $this->wordLength ? $this->success() : null;
 
         } else
-        {   
+        {
             $this->wrongTry++;
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
             $this->wrongTry >= 3 ? $this->failure() : null;
         }
     }
 
-    public function removePolishSymbols($key)
-    {
-        $polishSymbols = ['ą', 'ć',  'ę', 'ł', 'ó', 'ś', 'ż', 'ź'];
+    // public function removePolishSymbols($key)
+    // {
+    //     $polishSymbols = ['ą', 'ć',  'ę', 'ł', 'ó', 'ś', 'ż', 'ź'];
 
-        if (in_array($key, $polishSymbols)) {
-            switch ($key) {
-                case "ą":
-                    return "a";
-                    break;
-                case "ć":
-                    return "c";
-                    break;
-                case "ę":
-                    return "e";
-                    break;
-                case "ł":
-                    return "l";
-                    break;
-                case "ó":
-                    return "o";
-                    break;
+    //     if (in_array($key, $polishSymbols)) {
+    //         switch ($key) {
+    //             case "ą":
+    //                 return "a";
+    //                 break;
+    //             case "ć":
+    //                 return "c";
+    //                 break;
+    //             case "ę":
+    //                 return "e";
+    //                 break;
+    //             case "ł":
+    //                 return "l";
+    //                 break;
+    //             case "ó":
+    //                 return "o";
+    //                 break;
 
-                case "ś":
-                    return "s";
-                    break;
-                case "ź":
-                    return "z";
-                    break;
-                case "ż":
-                    return "z";
-                    break;
-            }
-        }
+    //             case "ś":
+    //                 return "s";
+    //                 break;
+    //             case "ź":
+    //                 return "z";
+    //                 break;
+    //             case "ż":
+    //                 return "z";
+    //                 break;
+    //         }
+    //     }
 
-        return $key;
+    //     return $key;
 
-    }
-
-    public function showSuccess()
-    {
-        $this->dispatchBrowserEvent('successWord');
-    }
+    // }
 
     public function success()
     {
-        $this->dispatchBrowserEvent('successWord');
         $this->loadWord();
+        $this->modalSuccessVisibility = true;
     }
 
     public function failure()
     {
-        $this->dispatchBrowserEvent('failureWord');
         $this->loadWord();
+        $this->modalFailureVisibility = true;
     }
 
     public function render()

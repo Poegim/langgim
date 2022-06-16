@@ -4,11 +4,11 @@ MODULES
     -- contact form
 
 FIXES
-    -- key spam causes error on high latency
     -- validation of subcategories and categories unique combination
     -- trigger keyboard show on mobile
     -- enter key as "next" after entering word
     -- delete livewire VIEWs are typicaly same except item name, should be merged into one view
+    -- mouse hiding modal doesnt toggle visibility variable
 
 FEATURES
     -- Admin / Users
