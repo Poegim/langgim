@@ -95,7 +95,7 @@
         //If modals are hidden then user can write.
         if((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none'))
         {
-            //If livewire variable of modal visibility is true set is to false wich is real state of modal.
+            //If livewire variable of modals visibility is true set is to false wich is real state of modals.
             if(@this.modalSuccessVisibility == true)
             {
                 @this.modalSuccessVisibility = false;
@@ -106,7 +106,7 @@
                 @this.modalFailureVisibility = false;
             }
 
-            //Check is hited key is in allowed list if yes run livewire controller method.
+            //Check is hited key allowed, if yes run livewire controller method.
             for (const element of allowedKeys) {
                 if (element.toLowerCase() == event.key.toLowerCase()) {
                     @this.keyPressed(event.key.toLowerCase());
@@ -114,9 +114,8 @@
             }
         } else
         {
-            //If any modal is visible and hited key is Enter, hide modal and.
+            //If any modal is visible and hited key is Enter, hide modal.
             if (event.key == 'Enter') {
-                console.log('Enter has been hited');
                 @this.modalSuccessVisibility = false;
                 @this.modalFailureVisibility = false;
             }

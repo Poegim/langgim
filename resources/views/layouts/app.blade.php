@@ -25,7 +25,6 @@
 
             gtag('config', 'G-N5KFMQZ01K');
             </script>
-            G-analitics should be true
         @endif
 
         <!-- Scripts -->
