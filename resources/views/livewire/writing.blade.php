@@ -29,42 +29,9 @@
             </div>
         </div>
 
-        <!-- WORD SUCCESS MESSAGE -->
-        <div id="word_success" class="h-full w-full hidden">
-            <div class="text-2xl font-extrabold">
-                {{$word->pl_word}}
-            </div>
-            <div class="flex justify-center">
-                <x-clarity-success-line class="h-20 w-20 text-green-400" />
-            </div>
-            <div class="text-center">
-                {{$word->sample_sentence}}
-            </div>
-            <div class="mt-4">
-                <x-buttons.primary onclick="hideSuccess()">Następne</x-buttons.primary>
-            </div>
-        </div>
-
-        <!-- WORD FAILURE MESSAGE -->
-        <div id="word_failure" class="h-full w-full hidden">
-            <div class="text-2xl font-extrabold">
-                {{$word->pl_word}}
-            </div>
-            <div class="flex justify-center">
-                <x-clarity-times-line class="h-20 w-20 text-red-500" />
-            </div>
-            <div class="text-center">
-                {{$word->sample_sentence}}
-            </div>
-            <div class="mt-4">
-                <x-buttons.third onclick="hideFailure()">Następne</x-buttons.third>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Prototype modal success-->
-    <x-jet-dialog-modal wire:model="modalSuccessVisibility">
+    <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
         <x-slot name="title" >
             {{ __("Success") }}
         </x-slot>
@@ -88,7 +55,7 @@
     </x-jet-dialog-modal>
 
         <!-- Prototype modal failure-->
-        <x-jet-dialog-modal wire:model="modalFailureVisibility">
+        <x-jet-dialog-modal wire:model="modalFailureVisibility" id="modalFailure">
             <x-slot name="title" >
                 {{ __("Failure") }}
             </x-slot>
@@ -102,8 +69,8 @@
 
                     <x-jet-secondary-button
                     wire:click="loadWord"
-                    {{-- onclick="hideFailure()" --}}
                     >
+
                     {{ __("Next")}}
                     </x-jet-secondary-button>
 
@@ -121,8 +88,25 @@
 
     document.addEventListener('keydown', function (event) {
 
-        if((@this.modalSuccessVisibility == false) && (@this.modalFailureVisibility == false))
+        //Modals
+        $modalFailure = document.getElementById('modalFailure');
+        $modalSuccess = document.getElementById('modalSuccess');
+
+        //If modals are hidden then user can write.
+        if((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none'))
         {
+            //If livewire variable of modal visibility is true set is to false wich is real state of modal.
+            if(@this.modalSuccessVisibility == true)
+            {
+                @this.modalSuccessVisibility = false;
+            }
+
+            if(@this.modalFailureVisibility == true)
+            {
+                @this.modalFailureVisibility = false;
+            }
+
+            //Check is hited key is in allowed list if yes run livewire controller method.
             for (const element of allowedKeys) {
                 if (element.toLowerCase() == event.key.toLowerCase()) {
                     @this.keyPressed(event.key.toLowerCase());
@@ -130,16 +114,17 @@
             }
         } else
         {
-            console.log(event);
-            console.log(@this.modalSuccessVisibility);
-            console.log(@this.modalFailureVisibility);
+            //If any modal is visible and hited key is Enter, hide modal and.
             if (event.key == 'Enter') {
                 console.log('Enter has been hited');
+                @this.modalSuccessVisibility = false;
+                @this.modalFailureVisibility = false;
             }
         }
 
     });
 
+    //If valid key is hited this event is loaded
     document.addEventListener('validKey', function (data) {
         let div;
         div = document.getElementById("success_" + (data.detail.charNumber - 1));
@@ -149,6 +134,7 @@
         }, 500);
     });
 
+    //If invalid key is hited this event is loaded
     document.addEventListener('invalidKey', function (data) {
         let div;
         div = document.getElementById("failure_" + (data.detail.charNumber - 1));
@@ -157,13 +143,5 @@
             div.classList.add("hidden");
         }, 500);
     });
-
-    function hideSuccess() {
-        @this.loadWord();
-    };
-
-    function hideFailure() {
-        @this.loadWord();
-    }
 
 </script>
