@@ -1,17 +1,22 @@
-FEATURES
-
-MODULES
-    -- contact form
-
 FIXES
     -- validation of subcategories and categories unique combination
     -- trigger keyboard show on mobile
-    -- enter key as "next" after entering word
-    -- delete livewire VIEWs are typicaly same except item name, should be merged into one view
     -- mouse hiding modal doesnt toggle visibility variable
 
 FEATURES
-    -- Admin / Users
-    -- User / User
     -- Fill database
-    -- Voices
+    -- User profiles and personal settings
+    -- Upload audio
+    -- Contact form
+    -- Bug reports system
+
+
+REFACTOR
+    -- delete livewire VIEWs are typicaly same except item name, should be merged into one view
+
+
+IN CONSIDERATION
+    -- blog
+
+FUTURE
+    -- more languages

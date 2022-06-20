@@ -118,13 +118,11 @@ class Writing extends Component
 
     public function success()
     {
-        $this->loadWord();
         $this->modalSuccessVisibility = true;
     }
 
     public function failure()
     {
-        $this->loadWord();
         $this->modalFailureVisibility = true;
     }
 
