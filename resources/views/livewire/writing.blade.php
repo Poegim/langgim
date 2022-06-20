@@ -4,7 +4,11 @@
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
                 <p>
+
+                    <x-clarity-keyboard-line class="w-8 h-8" id="keyboard_icon"/>
                     <input type="text" id="super_hidden_secret_input" autofocus/>
+
+
                 </p>
             </div>
             <div class="mt-5 flex justify-center">
@@ -118,6 +122,7 @@ allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J
 
         });
 
+
         //If valid key is hited this event is loaded
         document.addEventListener('validKey', function (data) {
             let div;
@@ -138,8 +143,15 @@ allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J
             }, 500);
         });
 
-        var target = document.getElementById("super_hidden_secret_input");
-        console.log(target);
-        target.focus();
-        // target.click();
+        keyboardButton = document.getElementById('keyboard_icon');
+        keyboardButton.addEventListener("click", showKeyboard);
+
+        function showKeyboard() {
+            let target = document.getElementById("super_hidden_secret_input");
+            console.log(target);
+            target.focus();
+            target.click();
+        }
+
+
         </script>
