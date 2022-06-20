@@ -4,7 +4,7 @@
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
                 <p>
-                    <x-jet-input id="super_hidden_secret_input"/>
+                    <input type="text" id="super_hidden_secret_input"/>
                 </p>
             </div>
             <div class="mt-5 flex justify-center">
@@ -79,12 +79,8 @@
 
     <script type="text/javascript">
 
-        var target = document.getElementById("super_hidden_secret_input");
-        console.log(target);
-        target.focus();
-        // target.click();
 
-        allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
+allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
             'Ó',
             'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
         ];
@@ -142,4 +138,8 @@
             }, 500);
         });
 
-    </script>
+        var target = document.getElementById("super_hidden_secret_input");
+        console.log(target);
+        target.focus();
+        // target.click();
+        </script>
