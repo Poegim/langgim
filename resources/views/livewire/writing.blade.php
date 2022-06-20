@@ -4,7 +4,7 @@
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
                 <p>
-                    <input type="text" id="super_hidden_secret_input"/>
+                    <input type="text" id="super_hidden_secret_input" autofocus/>
                 </p>
             </div>
             <div class="mt-5 flex justify-center">
