@@ -3,6 +3,9 @@
         <div id="word_div" class="">
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
+                <p>
+                    <x-jet-input id="super_hidden_secret_input"/>
+                </p>
             </div>
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
@@ -76,13 +79,10 @@
 
     <script type="text/javascript">
 
-        var target = document.getElementsByTagName("field_0");
+        var target = document.getElementById("super_hidden_secret_input");
         console.log(target);
-
-        if (event.target != target) {
-            target.focus();
-            target.click();
-        }
+        target.focus();
+        target.click();
 
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
             'Ó',
