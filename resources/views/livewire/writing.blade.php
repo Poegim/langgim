@@ -82,7 +82,7 @@
         var target = document.getElementById("super_hidden_secret_input");
         console.log(target);
         target.focus();
-        target.click();
+        // target.click();
 
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
             'Ó',
