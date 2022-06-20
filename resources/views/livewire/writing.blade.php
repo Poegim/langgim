@@ -3,13 +3,7 @@
         <div id="word_div" class="">
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
-                <p>
 
-                    <x-clarity-keyboard-line class="w-8 h-8" id="keyboard_icon"/>
-                    <input type="text" id="super_hidden_secret_input" autofocus/>
-
-
-                </p>
             </div>
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
@@ -36,6 +30,20 @@
             </div>
         </div>
 
+        <div class="flex justify-center mt-2">
+
+            <div class="flex" id="keyboard_icon">
+
+                <x-clarity-keyboard-line class="w-10 h-10" />
+                <span class="mt-2 ml-1">
+                    Show Keyboard
+                </span>
+
+            </div>
+            <div class="invisible">
+                <input type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
+            </div>
+        </div>
 
         <!-- Prototype modal success-->
         <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
