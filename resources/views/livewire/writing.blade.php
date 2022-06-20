@@ -7,7 +7,7 @@
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
                 <div class="grid grid-cols-1">
-                    <div class="w-4">
+                    <div class="w-4" id="field_{{$key}}">
                         <span class="text-xl"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
@@ -75,6 +75,15 @@
     </div>
 
     <script type="text/javascript">
+
+        var target = document.getElementsByTagName("field_0");
+        console.log(target);
+
+        if (event.target != target) {
+            target.focus();
+            target.click();
+        }
+
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
             'Ó',
             'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
