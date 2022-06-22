@@ -40,7 +40,7 @@
                 </span>
 
             </div>
-            <div class="">
+            <div class="invisible">
                 <input type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
             </div>
         </div>
