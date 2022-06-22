@@ -91,13 +91,18 @@
 
     <script type="text/javascript">
 
+        let textInput;
 
-allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
+        allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
             'Ó',
             'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
         ];
 
         document.addEventListener('keydown', function (event) {
+
+            //Clear hidden text input
+            textInput = document.getElementById('super_hidden_secret_input');
+            textInput.value = '';
 
             //Modals
             $modalFailure = document.getElementById('modalFailure');
@@ -156,7 +161,6 @@ allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J
 
         function showKeyboard() {
             let target = document.getElementById("super_hidden_secret_input");
-            console.log(target);
             target.focus();
             target.click();
         }

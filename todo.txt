@@ -1,6 +1,5 @@
 FIXES
     -- validation of subcategories and categories unique combination
-    -- trigger keyboard show on mobile
 
 FEATURES
     -- Fill database
