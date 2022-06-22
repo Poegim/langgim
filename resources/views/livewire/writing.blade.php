@@ -40,8 +40,8 @@
                 </span>
 
             </div>
-            <div class="invisible">
-                <input type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
+            <div class="">
+                <input type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus class="invisible"/>
             </div>
         </div>
 
