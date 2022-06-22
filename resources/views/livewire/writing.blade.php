@@ -32,17 +32,17 @@
 
         <div class="flex justify-center mt-2">
 
-            <div class="flex" id="keyboard_icon">
+            <div class="flex overflow-hidden relative" id="keyboard_icon">
 
-                <x-clarity-keyboard-line class="w-10 h-10" />
-                <span class="mt-2 ml-1">
+                <x-clarity-keyboard-line class="w-10 h-10 z-30" />
+                <span class="mt-2 ml-1 z-20">
                     Show Keyboard
                 </span>
+                <div class="overflow-hidden relative">
+                    <input class="absolute" type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
+                </div>
+            </div>
 
-            </div>
-            <div class="">
-                <input type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus class="invisible"/>
-            </div>
         </div>
 
         <!-- Prototype modal success-->

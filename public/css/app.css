@@ -935,9 +935,6 @@ select {
 .visible {
   visibility: visible;
 }
-.invisible {
-  visibility: hidden;
-}
 .fixed {
   position: fixed;
 }
@@ -959,11 +956,11 @@ select {
 .right-0 {
   right: 0px;
 }
+.left-10 {
+  left: 2.5rem;
+}
 .top-0 {
   top: 0px;
-}
-.top-1 {
-  top: 0.25rem;
 }
 .z-0 {
   z-index: 0;
@@ -971,11 +968,11 @@ select {
 .z-50 {
   z-index: 50;
 }
+.z-30 {
+  z-index: 30;
+}
 .z-20 {
   z-index: 20;
-}
-.z-10 {
-  z-index: 10;
 }
 .col-span-6 {
   grid-column: span 6 / span 6;
