@@ -13,20 +13,29 @@
                     <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
                 </div>
             </div>
-
         </div>
 
+        <div class="flex justify-center">
+            <span class="h-16 text-3xl font-extrabold"> {{ $lastKey }} </span>
+            <span id="correctKey" class="hidden">
+                <x-clarity-success-line class="h-8 w-8 text-green-500" />
+            </span>
+            <span id="wrongKey" class="hidden">
+                <x-clarity-times-line class="h-8 w-8 text-red-500" />
+            </span>
+        </div>
 
         <div id="word_div" class="">
             <div class="h-10">
-                <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
+
+                <h1 class="mt-5 text-3xl font-extrabold tracking-wider">{{ $word->uaWord->word }}</h1>
 
             </div>
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
                 <div class="grid grid-cols-1">
                     <div class="w-4" id="field_{{$key}}">
-                        <span class="text-xl"> {{$char}} </span>
+                        <span class="text-3xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
                         <div class="text-green-500 hidden" id="success_{{$key}}">
@@ -39,15 +48,12 @@
                 </div>
                 @endforeach
             </div>
-            <h1 class="pt-5 h-16"> {{ $lastKey }} </h1>
 
-            <div class="h-10">
+            {{-- <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
                 <p>Word legth: {{ $wordLength }} </p>
-            </div>
+            </div> --}}
         </div>
-
-
 
         <!-- Prototype modal success-->
         <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
@@ -56,7 +62,7 @@
             </x-slot>
 
             <x-slot name="content">
-                {{ $word->pl_word }}
+                {{ $previousWord->pl_word }}
             </x-slot>
 
             <x-slot name="footer">
@@ -77,7 +83,7 @@
             </x-slot>
 
             <x-slot name="content">
-                {{ $word->pl_word }}
+                {{ $previousWord->pl_word }}
             </x-slot>
 
             <x-slot name="footer">
@@ -143,23 +149,41 @@
         //If valid key is hited this event is loaded
         document.addEventListener('validKey', function (data) {
             let div;
+            let span;
+
             div = document.getElementById("success_" + (data.detail.charNumber - 1));
             div.classList.remove("hidden");
             setTimeout(function () {
                 div.classList.add("hidden");
+            }, 500);
+
+            span = document.getElementById("correctKey");
+            span.classList.remove("hidden");
+            setTimeout(function () {
+                span.classList.add("hidden");
             }, 500);
         });
 
         //If invalid key is hited this event is loaded
         document.addEventListener('invalidKey', function (data) {
             let div;
+            let span;
+
             div = document.getElementById("failure_" + (data.detail.charNumber - 1));
             div.classList.remove("hidden");
             setTimeout(function () {
                 div.classList.add("hidden");
             }, 500);
+
+            span = document.getElementById("wrongKey");
+            span.classList.remove("hidden");
+            setTimeout(function () {
+                span.classList.add("hidden");
+            }, 500);
+
         });
 
+        //Show virtual keyboard on mobile devices
         keyboardButton = document.getElementById('keyboard_icon');
         keyboardButton.addEventListener("click", showKeyboard);
 

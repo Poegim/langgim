@@ -956,9 +956,6 @@ select {
 .right-0 {
   right: 0px;
 }
-.left-10 {
-  left: 2.5rem;
-}
 .top-0 {
   top: 0px;
 }
@@ -1652,6 +1649,9 @@ select {
 }
 .font-extralight {
   font-weight: 200;
+}
+.font-extrabold {
+  font-weight: 800;
 }
 .uppercase {
   text-transform: uppercase;

@@ -10,8 +10,9 @@ use Arr;
 class Writing extends Component
 {
     public $lastKey;
-    public $word;
     public $words;
+    public $word;
+    public $previousWord;
     public $guessedChars = [];
     public $wordArray = [];
     public int $wordLength;
@@ -32,6 +33,7 @@ class Writing extends Component
     {
         $this->resetVariables();
         $this->word = $this->words->random();
+        $this->previousWord == null ? $this->previousWord = $this->word : null;
         $this->generateWordArrays();
     }
 
@@ -82,12 +84,14 @@ class Writing extends Component
 
     public function success()
     {
+        $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalSuccessVisibility = true;
     }
 
     public function failure()
     {
+        $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalFailureVisibility = true;
     }
