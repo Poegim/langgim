@@ -1,7 +1,6 @@
 FIXES
     -- validation of subcategories and categories unique combination
     -- trigger keyboard show on mobile
-    -- mouse hiding modal doesnt toggle visibility variable
 
 FEATURES
     -- Fill database
