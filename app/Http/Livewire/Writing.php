@@ -17,6 +17,7 @@ class Writing extends Component
     public int $wordLength;
     public int $charNumber = 0;
     public int $wrongTry = 0;
+    public const ALLOWED_TRIES = 3;
 
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
@@ -74,56 +75,27 @@ class Writing extends Component
         {
             $this->wrongTry++;
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
-            $this->wrongTry >= 3 ? $this->failure() : null;
+            $this->wrongTry >= self::ALLOWED_TRIES ? $this->failure() : null;
         }
+
     }
-
-    // public function removePolishSymbols($key)
-    // {
-    //     $polishSymbols = ['ą', 'ć',  'ę', 'ł', 'ó', 'ś', 'ż', 'ź'];
-
-    //     if (in_array($key, $polishSymbols)) {
-    //         switch ($key) {
-    //             case "ą":
-    //                 return "a";
-    //                 break;
-    //             case "ć":
-    //                 return "c";
-    //                 break;
-    //             case "ę":
-    //                 return "e";
-    //                 break;
-    //             case "ł":
-    //                 return "l";
-    //                 break;
-    //             case "ó":
-    //                 return "o";
-    //                 break;
-
-    //             case "ś":
-    //                 return "s";
-    //                 break;
-    //             case "ź":
-    //                 return "z";
-    //                 break;
-    //             case "ż":
-    //                 return "z";
-    //                 break;
-    //         }
-    //     }
-
-    //     return $key;
-
-    // }
 
     public function success()
     {
+        $this->loadWord();
         $this->modalSuccessVisibility = true;
     }
 
     public function failure()
     {
+        $this->loadWord();
         $this->modalFailureVisibility = true;
+    }
+
+    public function hideModals()
+    {
+        $this->modalSuccessVisibility = false;
+        $this->modalFailureVisibility = false;
     }
 
     public function render()

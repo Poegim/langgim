@@ -1,5 +1,22 @@
 <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
     <div>
+
+        <div class="flex justify-center mt-2">
+
+            <div class="flex overflow-hidden relative" id="keyboard_icon">
+
+                <x-clarity-keyboard-line class="w-10 h-10 z-30" />
+                <span class="mt-2 ml-1 z-20">
+                    Show Mobile Keyboard
+                </span>
+                <div class="overflow-hidden relative">
+                    <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
+                </div>
+            </div>
+
+        </div>
+
+
         <div id="word_div" class="">
             <div class="h-10">
                 <h1 class="mt-5 text-lg tracking-wider">{{ $word->uaWord->word }}</h1>
@@ -30,20 +47,7 @@
             </div>
         </div>
 
-        <div class="flex justify-center mt-2">
 
-            <div class="flex overflow-hidden relative" id="keyboard_icon">
-
-                <x-clarity-keyboard-line class="w-10 h-10 z-30" />
-                <span class="mt-2 ml-1 z-20">
-                    Show Keyboard
-                </span>
-                <div class="overflow-hidden relative">
-                    <input class="absolute" type="text" id="super_hidden_secret_input" style="width:0px; height:0px; opacity:none; " autofocus/>
-                </div>
-            </div>
-
-        </div>
 
         <!-- Prototype modal success-->
         <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
@@ -58,7 +62,7 @@
             <x-slot name="footer">
                 <div class="space-x-1">
 
-                    <x-jet-secondary-button wire:click="loadWord" {{-- onclick="hideSuccess()" --}}>
+                    <x-jet-secondary-button wire:click="hideModals" {{-- onclick="hideSuccess()" --}}>
                         {{ __("Next")}}
                     </x-jet-secondary-button>
 
@@ -79,7 +83,7 @@
             <x-slot name="footer">
                 <div class="space-x-1">
 
-                    <x-jet-secondary-button wire:click="loadWord">
+                    <x-jet-secondary-button wire:click="hideModals">
                         {{ __("Next")}}
                     </x-jet-secondary-button>
 
