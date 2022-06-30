@@ -8,7 +8,6 @@ FEATURES
     -- Contact form
     -- Bug reports system
 
-
 REFACTOR
     -- delete livewire VIEWs are typicaly same except item name, should be merged into one view
 

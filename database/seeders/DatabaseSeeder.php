@@ -4,9 +4,10 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\WordTableSeeder;
-use Database\Seeders\UaWordsTableSeeder;
 use Database\Seeders\UsersTableSeeder;
+use Database\Seeders\UaWordsTableSeeder;
 use Database\Seeders\CategoryTableSeeder;
+use Database\Seeders\SubcategoriesTableSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DatabaseSeeder extends Seeder
@@ -19,7 +20,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(CategoryTableSeeder::class);
         $this->call(WordTableSeeder::class);
         $this->call(UaWordsTableSeeder::class);
 
