@@ -49,6 +49,7 @@
                             </th>
 
                     </thead>
+                    <tbody class="bg-white">
                     @foreach($categories as $category)
                     <tr class="bg-white text-gray-800 text-sm text-left border-b">
                         <td class="sm:px-4 px-1 py-2 ">{{$category->id}}</td>
@@ -85,7 +86,6 @@
                         </td>
                     </tr>
                     @endforeach
-                    <tbody class="bg-white">
                     </tbody>
                 </table>
             </div>

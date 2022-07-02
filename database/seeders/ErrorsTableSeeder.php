@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class SubcategoriesTableSeeder extends Seeder
+class ErrorsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,12 +20,15 @@ class SubcategoriesTableSeeder extends Seeder
 
         if(env('APP_ENV') == 'local')
         {
-            for ($i=0; $i < 25; $i++) {
+            for ($i=0; $i < 10; $i++) {
 
-                DB::table('subcategories')->insert(
+                DB::table('errors')->insert(
                     [
-                        'name' => $this->faker->word(),
-                        'category_id' => rand(1,15),
+                        'user_id' => 1,
+                        'word_id' => rand(1,300),
+                        'title' => $this->faker->word(),
+                        'description' => $this->faker->realText($maxNbChars = 200),
+                        'status' => rand(0,1),
                     ]
                 );
             }

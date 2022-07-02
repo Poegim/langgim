@@ -23,6 +23,7 @@ return new class extends Migration
                 ->nullOnDelete();
 
             $table->foreignId('word_id')->constrained()->onDelete('cascade');
+            $table->string('title');
             $table->text('description');
             $table->tinyInteger('status')->default(0);
 
