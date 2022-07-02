@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\ControlPanel;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ErrorController;
 use App\Http\Controllers\Admin\SubcategoryController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -50,6 +51,7 @@ Route::get('/guest', function () {
 //Admin
 Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {
     Route::get('control-panel', [ControlPanel::class, 'index'])->name('control-panel');
+    Route::get('errors', [ErrorController::class, 'index'])->name('errors');
     Route::resource('categories', CategoryController::class);
     Route::resource('subcategories', SubcategoryController::class);
     Route::resource('words', WordController::class);
