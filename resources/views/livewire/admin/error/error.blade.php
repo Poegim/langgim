@@ -44,7 +44,22 @@
                                 <td class="px-6 py-3 ">{{$errorItem->status}}</td>
                                 <td class="px-6 py-3 ">{{$errorItem->created_at}}</td>
                                 <td>
-                                    CRUD
+                                    <div class="flex">
+                                        <a
+                                        class="cursor-pointer"
+                                        wire:click="showDeleteModal({{$errorItem->id}})"
+                                        wire:loading.attr="disabled"
+                                        >
+                                            <x-clarity-remove-line class="w-5 h-5 text-red-700" />
+                                        </a>
+                                        <a
+                                        class="cursor-pointer"
+                                        wire:click="showViewModal({{$errorItem->id}})"
+                                        wire:loading.attr="disabled"
+                                        >
+                                        <x-clarity-eye-line class="w-5 h-5 text-blue-500" />
+                                        </a>
+                                    </div>
                                 </td>
                             </tr>
                             @endforeach
@@ -53,4 +68,67 @@
                 </div>
             </div>
         </div>
+
+        <!-- Delete Modal -->
+        <x-jet-dialog-modal wire:model="deleteModalVisibility">
+            <x-slot name="title" >
+                {{ __("Delete Error: ")}} {{$errorModelId}}
+            </x-slot>
+
+            <x-slot name="content">
+                {{ __("CRITICAL WARNING! Are you sure want to delete? You cant undo this action!")}}
+            </x-slot>
+
+            <x-slot name="footer">
+                <div class="space-x-1">
+
+                    <x-jet-secondary-button
+                    wire:click="$toggle('deleteModalVisibility')"
+                    wire:loading.attr="disabled"
+                    >
+                    {{ __("Cancel")}}
+                </x-jet-secondary-button>
+
+                <x-jet-danger-button wire:click="destroyModel" wire:loading.attr='disabled'>
+                    {{ __("Delete")}}
+                </x-jet-danger-button>
+                </div>
+            </x-slot>
+        </x-jet-dialog-modal>
+
+        <!-- view / Edit Modal -->
+        <x-jet-dialog-modal wire:model="viewModalVisibility">
+            <x-slot name="title" >
+                {!! $title !!} {{$status}}
+            </x-slot>
+
+            <x-slot name="content">
+                <div>
+                    {!! $description !!}
+                </div>
+                <div>
+                    @if ($errorModel)
+                    {{ $errorModel->user->name}}, {{$date ? $date : ''}}
+                    @endif
+                </div>
+            </x-slot>
+
+            <x-slot name="footer">
+                <div class="space-x-1">
+
+                    <x-jet-secondary-button
+                    wire:click="$toggle('viewModalVisibility')"
+                    wire:loading.attr="disabled"
+                    >
+                    {{ __("Cancel")}}
+                </x-jet-secondary-button>
+
+                <x-jet-button wire:click="update" wire:loading.attr='disabled'>
+                    {{ __("Save")}}
+                </x-jet-button>
+                </div>
+            </x-slot>
+        </x-jet-dialog-modal>
+
+
 </div>
