@@ -28,7 +28,7 @@ class ErrorsTableSeeder extends Seeder
                         'word_id' => rand(1,300),
                         'title' => $this->faker->word(),
                         'description' => $this->faker->realText($maxNbChars = 200),
-                        'status' => rand(0,1),
+                        'status' => (bool)random_int(0, 1),
                     ]
                 );
             }

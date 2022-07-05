@@ -4,20 +4,21 @@ namespace App\Http\Livewire\Admin\Error;
 
 use Livewire\Component;
 use App\Models\Error as ErrorModel;
+use App\Models\User;
 
 class Error extends Component
 {
-    public $errorModel;
-    public $deleteModalVisibility = false;
-    public $viewModalVisibility= false;
+    public bool $deleteModalVisibility = false;
+    public bool $viewModalVisibility= false;
 
 
-    public $errorModelId;
-    public $title;
-    public $description;
-    public $user;
-    public $status;
-    public $date;
+    public ?ErrorModel $errorModel;
+    public ?int $errorModelId;
+    public ?string $title;
+    public ?string $description;
+    public ?User $user;
+    public ?bool $status;
+    public ?string $date;
 
 
     public function showDeleteModal($errorModelId): void
@@ -43,7 +44,13 @@ class Error extends Component
 
     public function updateModel()
     {
-        //
+        $this->errorModel->status = $this->status;
+        $this->errorModel->save();
+        session()->flash('flash.banner', 'Status updated!');
+        session()->flash('flash.bannerStyle', 'success');
+        $this->resetVars();
+        $this->viewModalVisibility= false;
+
     }
 
     public function destroyModel()
@@ -51,7 +58,19 @@ class Error extends Component
         ErrorModel::findOrfail($this->errorModelId)->delete();
         session()->flash('flash.banner', 'Error removed!');
         session()->flash('flash.bannerStyle', 'success');
+        $this->resetVars();
         $this->deleteModalVisibility = false;
+    }
+
+    public function resetVars(): void
+    {
+        $this->errorModel = null;
+        $this->errorModelId = null;
+        $this->title = null;
+        $this->description = null;
+        $this->user = null;
+        $this->status = null;
+        $this->date = null;
     }
 
 
