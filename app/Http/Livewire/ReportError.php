@@ -9,11 +9,13 @@ class ReportError extends Component
 {
     public bool $modalVisibility = false;
     public ?Word $word;
-    public ?int $id;
+    public ?int $wordId;
+    public ?string $message;
 
-    public function showModal(Word $word):void
+    public function showModal():void
     {
-        //
+        $this->resetErrorBag();
+        $this->modalVisibility = true;
     }
 
     public function reportError(): void
