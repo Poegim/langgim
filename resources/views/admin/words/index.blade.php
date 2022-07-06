@@ -53,6 +53,7 @@
 
                             </tr>
                         </thead>
+                        <tbody class="bg-white">
                         @foreach($words as $word)
                         <tr class="bg-white text-gray-800 text-sm text-left">
                             <td class="px-2 py-3">{{$word->id}}</td>
@@ -85,7 +86,6 @@
                             <td class="px-2 py-3">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
                         </tr>
                         @endforeach
-                        <tbody class="bg-white">
                         </tbody>
                     </table>
                 </div>

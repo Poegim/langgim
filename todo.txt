@@ -1,5 +1,7 @@
 FIXES
     -- validation of subcategories and categories unique combination
+    -- faker seeders for local env
+    -- reporting error system require to know wich language is native
 
 FEATURES
     -- Fill database

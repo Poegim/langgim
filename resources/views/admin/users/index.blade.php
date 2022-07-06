@@ -25,6 +25,7 @@
                             </th>
                         </tr>
                     </thead>
+                    <tbody class="bg-white">
                         @foreach ($users as $user)
                         <tr class="bg-white text-gray-800 text-sm text-left">
                             <td class="px-6 py-3 ">{{$user->id}}</td>
@@ -42,7 +43,6 @@
                             </td>
                         </tr>
                         @endforeach
-                    <tbody class="bg-white">
                     </tbody>
                 </table>
             </div>
