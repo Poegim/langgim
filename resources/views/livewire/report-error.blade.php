@@ -18,7 +18,7 @@
             <div>
                 Is there any mistake?
             </div>
-            <div class="mt-4">
+        <div class="mt-4">
                 PL word: <span class="text-wider font-extrabold">{{$word->pl_word}}</span>
             </div>
             <div>

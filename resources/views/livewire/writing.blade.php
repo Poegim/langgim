@@ -1,6 +1,7 @@
 <div>
+    @if ($word != null)
     <div class="flex justify-end">
-        <livewire:report-error :word="$word"/>
+        <livewire:report-error :word="$word" :language="$language" />
     </div>
 
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
@@ -102,6 +103,47 @@
         </x-slot>
     </x-jet-dialog-modal>
 
+    @else
+    <div class="flex justify-center">
+        <x-jet-button wire:click="$toggle('modalLanguagePickVisibility')">Select Language</x-jet-button>
+    </div>
+
+    @endif
+    <!-- Modal pick language-->
+    <x-jet-dialog-modal wire:model="modalLanguagePickVisibility" id="modalPickLanguage">
+        <x-slot name="title">
+            {{ __("Choose your language") }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div class="flex justify-center mt-6">
+                <div class="flex justify-center p-4">
+                    <a href="">
+                        <img src="{{asset('storage/images/flags/ua.svg')}}"
+                        class="w-24 h-24"
+                        alt="">
+                    </a>
+                </div>
+                <div class="flex justify-center p-4">
+                    <a href="">
+                        <img src="{{asset('storage/images/flags/us.svg')}}"
+                        class="w-24 h-24"
+                        alt="">
+                    </a>
+                </div>
+                <div class="flex justify-center p-4">
+                    <a href="">
+                        <img src="{{asset('storage/images/flags/de.svg')}}"
+                        class="w-24 h-24"
+                        alt="">
+                    </a>
+                </div>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
 
 <script type="text/javascript">

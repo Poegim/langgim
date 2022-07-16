@@ -42,8 +42,10 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
 })->name('dashboard');
 
 //Guest mode
-Route::get('/guest', function () {
-    return view('guest');
+Route::get('/guest/{language?}', function ($language = null) {
+    return view('guest', [
+        'language' => $language,
+    ]);
 })->name('guest');
 
 //Control Panel

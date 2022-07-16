@@ -4,14 +4,18 @@ namespace App\Http\Livewire;
 
 use App\Models\Word;
 use Livewire\Component;
-use Illuminate\Support\Str;
-use Arr;
 
 class Writing extends Component
 {
+    public $language;
+    public array $allowedLanguages = ['ukrainian', 'german', 'english'];
+    public $category;
+    public $subcategory;
+
     public $lastKey;
     public $words;
     public $word;
+    public $foreignWord;
     public $previousWord;
     public $guessedChars = [];
     public $wordArray = [];
@@ -22,19 +26,41 @@ class Writing extends Component
 
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
+    public bool $modalLanguagePickVisibility = false;
 
-    public function boot()
+
+    public function booted()
     {
         $this->words = Word::inRandomOrder()->get();
-        $this->loadWord();
+        $this->checkLanguagePick();
+
+    }
+
+    public function checkLanguagePick()
+    {
+
+        if (in_array($this->language, $this->allowedLanguages))
+        {
+            $this->loadWord();
+        } else
+        {
+            $this->modalLanguagePickVisibility = true;
+        }
+
     }
 
     public function loadWord()
     {
-        $this->resetVariables();
-        $this->word = $this->words->random();
-        $this->previousWord == null ? $this->previousWord = $this->word : null;
-        $this->generateWordArrays();
+        if (in_array($this->language, $this->allowedLanguages))
+        {
+            $this->checkLanguagePick();
+        } else
+        {
+            $this->resetVariables();
+            $this->word = $this->words->random();
+            $this->previousWord == null ? $this->previousWord = $this->word : null;
+            $this->generateWordArrays();
+        }
     }
 
     public function resetVariables()
