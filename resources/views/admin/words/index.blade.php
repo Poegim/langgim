@@ -32,7 +32,7 @@
                                     Polish
                                 </th>
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Ukrainian
                                 </th>
 
@@ -42,13 +42,13 @@
                                 </th>
 
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Sample Sentence</th>
                                 <th
                                     class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Category</th>
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Subcategory</th>
 
                             </tr>
@@ -57,7 +57,7 @@
                         @foreach($words as $word)
                         <tr class="bg-white text-gray-800 text-sm text-left">
                             <td class="px-2 py-3">{{$word->id}}</td>
-                            <td>
+                            <td class="">
                                 <div class="flex">
                                     <a href="{{route('admin.words.edit', $word)}}">
                                         <x-clarity-note-edit-line class="w-5 h-5 text-blue-700" />
@@ -65,14 +65,14 @@
                                     <livewire:admin.words.delete :word="$word" />
                                 </div>
                             </td>
-                            <td class="px-2 py-3 flex space-x-1">
+                            <td class="flex px-2 py-3 space-x-1">
                                     <div>
                                         {{$word->pl_word}}
                                     </div>
                             </td>
-                            <td class="px-2 py-3"><?php if(isset($word->uaWord->word)) echo $word->uaWord->word ?></td>
+                            <td class="hidden md:table-cell px-2 py-3"><?php if(isset($word->uaWord->word)) echo $word->uaWord->word ?></td>
 
-                            <td class="flex justify-start">
+                            <td class="">
                                 @if($word->audio_file)
                                     <x-tni-file-tick-o class="w-5 h-5 text-green-600"/>
                                     <livewire:admin.words.audio-file.delete :word="$word" />
@@ -81,9 +81,9 @@
                                 @endif
                             </td>
 
-                            <td class="px-2 py-3">{!! $word->sample_sentence !!}</td>
+                            <td class="hidden md:table-cell px-2 py-3">{!! $word->sample_sentence !!}</td>
                             <td class="px-2 py-3">{!! $word->category->name !!}</td>
-                            <td class="px-2 py-3">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
+                            <td class="hidden md:table-cell px-2 py-3">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
                         </tr>
                         @endforeach
                         </tbody>

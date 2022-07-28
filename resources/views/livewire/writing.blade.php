@@ -109,6 +109,7 @@
     </div>
 
     @endif
+
     <!-- Modal pick language-->
     <x-jet-dialog-modal wire:model="modalLanguagePickVisibility" id="modalPickLanguage">
         <x-slot name="title">
