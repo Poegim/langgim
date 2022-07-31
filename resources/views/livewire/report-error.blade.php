@@ -1,13 +1,22 @@
 
 <div class="inline text-gray-700">
 
+    @auth
     <a
-        class="cursor-pointer flex"
-        wire:click="showModal"
-        wire:loading.attr="disabled"
-        >
-        <x-clarity-error-standard-solid class="w-8 h-8 text-red-700" />
+    class="cursor-pointer flex"
+    wire:click="showModal"
+    wire:loading.attr="disabled"
+    >
+        <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-red-700" />
     </a>
+    @endauth
+
+    @guest
+    <a href="{{route('login')}}" title="Please login to report error!" class="flex">
+        <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-gray-500"/>
+    </a>
+    @endguest
+
 
     <x-jet-dialog-modal wire:model="modalVisibility">
         <x-slot name="title" >

@@ -20,7 +20,15 @@ class ReportError extends Component
 
     public function reportError(): void
     {
-        //
+        $this->word->errors()->create([
+            'user_id' => 1,
+            'word_id' => $this->word->id,
+            'title' => rand(0,10000),
+            'description' => rand(0,100000),
+        ]);
+
+        dd('done');
+
     }
 
     public function render()

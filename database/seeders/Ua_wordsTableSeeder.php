@@ -18,18 +18,32 @@ class Ua_wordsTableSeeder extends Seeder
     {
         $this->faker = Factory::create('ua_UA');
 
-        if(env('APP_ENV') == 'local')
-        {
-            for ($i=0; $i < 300; $i++) {
+        // if(env('APP_ENV') == 'local')
+        // {
+        //     for ($i=0; $i < 150; $i++) {
 
-                DB::table('ua_words')->insert(
-                    [
-                        'id' => $i+1,
-                        'word' => $this->faker->word(),
-                    ]
-                );
-            }
+        //         DB::table('ua_words')->insert(
+        //             [
+        //                 'id' => $i+1,
+        //                 'word' => $this->faker->word(),
+        //             ]
+        //         );
+        //     }
 
-        }
+        // }
+
+        DB::table('ua_words')->insert(
+            [
+                'id' => 1,
+                'word' => 'osa',
+            ]
+        );
+
+        DB::table('ua_words')->insert(
+            [
+                'id' => 2,
+                'word' => 'ala',
+            ]
+        );
     }
 }

@@ -1,9 +1,5 @@
 <div>
     @if ($word != null)
-    <div class="flex justify-end">
-        <livewire:report-error :word="$word" :language="$language" />
-    </div>
-
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
 
         <div class="flex justify-center mt-2">
@@ -55,10 +51,16 @@
                 @endforeach
             </div>
 
-            {{-- <div class="h-10">
+            <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
             <p>Word legth: {{ $wordLength }} </p>
+        </div>
+
+        {{-- <div class="flex justify-center mt-12">
+            <livewire:report-error :word="$word" :language="$language" />
         </div> --}}
+
+
     </div>
 
     <!-- Prototype modal success-->
@@ -104,6 +106,7 @@
     </x-jet-dialog-modal>
 
     @else
+
     <div class="flex justify-center">
         <x-jet-button wire:click="$toggle('modalLanguagePickVisibility')">Select Language</x-jet-button>
     </div>
@@ -119,26 +122,26 @@
         <x-slot name="content">
             <div class="flex justify-center mt-6">
                 <div class="flex justify-center p-4">
-                    <a href="">
+                    <button wire:click="setLanguage('ukrainian')">
                         <img src="{{asset('storage/images/flags/ua.svg')}}"
                         class="w-24 h-24"
                         alt="">
-                    </a>
+                    </button>
                 </div>
-                <div class="flex justify-center p-4">
-                    <a href="">
+                {{-- <div class="flex justify-center p-4">
+                    <button wire:click="setLanguage('english')">
                         <img src="{{asset('storage/images/flags/us.svg')}}"
                         class="w-24 h-24"
                         alt="">
-                    </a>
+                    </button>
                 </div>
                 <div class="flex justify-center p-4">
-                    <a href="">
+                    <button wire:click="setLanguage('german')">
                         <img src="{{asset('storage/images/flags/de.svg')}}"
                         class="w-24 h-24"
                         alt="">
-                    </a>
-                </div>
+                    </button>
+                </div> --}}
             </div>
         </x-slot>
 
@@ -148,6 +151,7 @@
 </div>
 
 <script type="text/javascript">
+
     let textInput;
 
     allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',

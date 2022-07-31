@@ -2,6 +2,7 @@ FIXES
     -- validation of subcategories and categories unique combination
     -- faker seeders for local env
     -- reporting error system require to know wich language is native
+    -- every keyboard hit reload writing component
 
 FEATURES
     -- Fill database
@@ -19,3 +20,4 @@ IN CONSIDERATION
 
 FUTURE
     -- more languages
+    -- Blade-UI icons should be switched due to unchangable(?) titles
