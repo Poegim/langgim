@@ -1,5 +1,4 @@
 <div>
-
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
 
         <div class="flex justify-center mt-2">
@@ -53,33 +52,32 @@
 
             <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
-            <p>Word length: {{ $wordLength }} </p>
-        </div>
+                <p>Word length: {{ $wordLength }} </p>
+            </div>
 
-        <div class="flex justify-center mt-12">
-            @auth
-                <a
-                class="cursor-pointer flex"
-                wire:click="$toggle('modalReportErrorVisibility')"
-                wire:loading.attr="disabled"
-                >
-                    <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-red-700" />
+            <div class="flex justify-center mt-12">
+                @auth
+                <a class="cursor-pointer flex" wire:click="$toggle('modalReportErrorVisibility')"
+                    wire:loading.attr="disabled">
+                    <span class="mt-2 mr-1 text-xs">Report error</span>
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-red-700" />
                 </a>
                 @endauth
 
                 @guest
                 <a href="{{route('login')}}" title="Please login to report error!" class="flex">
-                    <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-gray-500"/>
+                    <span class="mt-2 mr-1 text-xs">Report error</span>
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-gray-500" />
                 </a>
-            @endguest
+                @endguest
+            </div>
+
         </div>
-
-
     </div>
 
     <!-- Modal Report Error -->
     <x-jet-dialog-modal wire:model="modalReportErrorVisibility" id="modalError">
-        <x-slot name="title" >
+        <x-slot name="title">
             {{ __("Report Error") }}
         </x-slot>
 
@@ -87,7 +85,7 @@
             <div>
                 Is there any mistake?
             </div>
-        <div class="mt-4">
+            <div class="mt-4">
                 PL word: <span class="text-wider font-extrabold">{{$word->pl_word}}</span>
             </div>
             <div>
@@ -95,25 +93,30 @@
             </div>
 
             <div class="mt-4 mb-4">
-                <label for="message">Message:</label>
-                <x-jet-input type="text" class="w-full" name="message" id="message" wire:model='message'></x-jet-input>
-                <x-jet-input-error for="message"/>
+
+                <label for="title">Title:</label>
+                <x-jet-input type="text" class="w-full" name="title" id="title" wire:model='title'>
+                </x-jet-input>
+                <x-jet-input-error for="title" />
+
+
+                <label for="message" class="mt-2">Message:</label>
+                <x-jet-input type="text" class="w-full" name="message" id="message" wire:model='message'>
+                </x-jet-input>
+                <x-jet-input-error for="message" />
             </div>
         </x-slot>
 
         <x-slot name="footer">
             <div class="space-x-1">
 
-                <x-jet-secondary-button
-                wire:click="$toggle('modalReportErrorVisibility')"
-                wire:loading.attr="disabled"
-                >
-                {{ __("Cancel")}}
-            </x-jet-secondary-button>
+                <x-jet-secondary-button wire:click="$toggle('modalReportErrorVisibility')" wire:loading.attr="disabled">
+                    {{ __("Cancel")}}
+                </x-jet-secondary-button>
 
-            <x-jet-danger-button wire:click="reportError" wire:loading.attr='disabled'>
-                {{ __("Report Error")}}
-            </x-jet-danger-button>
+                <x-jet-danger-button wire:click="reportError" wire:loading.attr='disabled'>
+                    {{ __("Report Error")}}
+                </x-jet-danger-button>
             </div>
         </x-slot>
     </x-jet-dialog-modal>
@@ -161,109 +164,112 @@
     </x-jet-dialog-modal>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
+        let textInput;
 
-    let textInput;
+        allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N',
+            'O',
+            'Ó',
+            'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
+        ];
 
-    allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N', 'O',
-        'Ó',
-        'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
-    ];
+        document.addEventListener('keydown', function (event) {
 
-    document.addEventListener('keydown', function (event) {
+            console.log(event);
+            console.log(@this.lastKey);
 
-        console.log(event);
-        console.log(@this.lastKey);
+            //Clear hidden text input
+            textInput = document.getElementById('super_hidden_secret_input');
+            textInput.value = '';
 
-        //Clear hidden text input
-        textInput = document.getElementById('super_hidden_secret_input');
-        textInput.value = '';
+            //Modals
+            modalFailure = document.getElementById('modalFailure');
+            modalSuccess = document.getElementById('modalSuccess');
+            modalError = document.getElementById('modalError');
 
-        //Modals
-        modalFailure = document.getElementById('modalFailure');
-        modalSuccess = document.getElementById('modalSuccess');
-        modalError = document.getElementById('modalError');
+            //If modals are hidden then user can write.
+            if ((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none') && (
+                    modalError
+                    .style.display == 'none')) {
+                //If livewire variable of modals visibility is true set is to false wich is real state of modals.
+                if (@this.modalSuccessVisibility == true) {
+                    @this.modalSuccessVisibility = false;
+                }
 
-        //If modals are hidden then user can write.
-        if ((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none') && (modalError.style.display == 'none')) {
-            //If livewire variable of modals visibility is true set is to false wich is real state of modals.
-            if (@this.modalSuccessVisibility == true) {
-                @this.modalSuccessVisibility = false;
-            }
+                if (@this.modalFailureVisibility == true) {
+                    @this.modalFailureVisibility = false;
+                }
 
-            if (@this.modalFailureVisibility == true) {
-                @this.modalFailureVisibility = false;
-            }
+                if (@this.modalReportErrorVisibility == true) {
+                    @this.modalReportErrorVisibility = false;
+                }
 
-            if (@this.modalReportErrorVisibility == true) {
-                @this.modalReportErrorVisibility = false;
-            }
-
-            //Check is hited key allowed, if yes run livewire controller method.
-            for (const element of allowedKeys) {
-                if (element.toLowerCase() == event.key.toLowerCase()) {
-                    @this.keyPressed(event.key.toLowerCase());
+                //Check is hited key allowed, if yes run livewire controller method.
+                for (const element of allowedKeys) {
+                    if (element.toLowerCase() == event.key.toLowerCase()) {
+                        @this.keyPressed(event.key.toLowerCase());
+                    }
+                }
+            } else {
+                //If any modal is visible and hited key is Enter, hide modal.
+                if (event.key == 'Enter') {
+                    @this.modalSuccessVisibility = false;
+                    @this.modalFailureVisibility = false;
                 }
             }
-        } else {
-            //If any modal is visible and hited key is Enter, hide modal.
-            if (event.key == 'Enter') {
-                @this.modalSuccessVisibility = false;
-                @this.modalFailureVisibility = false;
-            }
+
+        });
+
+
+        //If valid key is hited this event is loaded
+        document.addEventListener('validKey', function (data) {
+            let div;
+            let span;
+
+            div = document.getElementById("success_" + (data.detail.charNumber - 1));
+            div.classList.remove("hidden");
+            setTimeout(function () {
+                div.classList.add("hidden");
+            }, 500);
+
+            span = document.getElementById("correctKey");
+            span.classList.remove("hidden");
+            setTimeout(function () {
+                span.classList.add("hidden");
+            }, 500);
+        });
+
+        //If invalid key is hited this event is loaded
+        document.addEventListener('invalidKey', function (data) {
+            let div;
+            let span;
+
+            div = document.getElementById("failure_" + (data.detail.charNumber - 1));
+            div.classList.remove("hidden");
+            setTimeout(function () {
+                div.classList.add("hidden");
+            }, 500);
+
+            span = document.getElementById("wrongKey");
+            span.classList.remove("hidden");
+            setTimeout(function () {
+                span.classList.add("hidden");
+            }, 500);
+
+        });
+
+        //Show virtual keyboard on mobile devices
+        keyboardButton = document.getElementById('keyboard_icon');
+        if (keyboardButton) {
+            keyboardButton.addEventListener("click", showKeyboard);
         }
 
-    });
+        function showKeyboard() {
+            let target = document.getElementById("super_hidden_secret_input");
+            target.focus();
+            target.click();
+        }
 
+    </script>
 
-    //If valid key is hited this event is loaded
-    document.addEventListener('validKey', function (data) {
-        let div;
-        let span;
-
-        div = document.getElementById("success_" + (data.detail.charNumber - 1));
-        div.classList.remove("hidden");
-        setTimeout(function () {
-            div.classList.add("hidden");
-        }, 500);
-
-        span = document.getElementById("correctKey");
-        span.classList.remove("hidden");
-        setTimeout(function () {
-            span.classList.add("hidden");
-        }, 500);
-    });
-
-    //If invalid key is hited this event is loaded
-    document.addEventListener('invalidKey', function (data) {
-        let div;
-        let span;
-
-        div = document.getElementById("failure_" + (data.detail.charNumber - 1));
-        div.classList.remove("hidden");
-        setTimeout(function () {
-            div.classList.add("hidden");
-        }, 500);
-
-        span = document.getElementById("wrongKey");
-        span.classList.remove("hidden");
-        setTimeout(function () {
-            span.classList.add("hidden");
-        }, 500);
-
-    });
-
-    //Show virtual keyboard on mobile devices
-    keyboardButton = document.getElementById('keyboard_icon');
-    if(keyboardButton)
-    {
-        keyboardButton.addEventListener("click", showKeyboard);
-    }
-
-    function showKeyboard() {
-        let target = document.getElementById("super_hidden_secret_input");
-        target.focus();
-        target.click();
-    }
-
-</script>
+</div>

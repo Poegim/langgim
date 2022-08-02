@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('errorable_type');
 
             $table->string('title');
-            $table->text('description');
+            $table->text('message');
             $table->boolean('status')->default(0);
 
 

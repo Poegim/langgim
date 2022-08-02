@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\UaWord;
 use App\Models\Word;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Writing extends Component
 {
+    public ?string $message = null;
+    public ?string $title = null;
 
-    public $message;
     public $lastKey;
     public $words;
     public $word;
@@ -27,18 +28,23 @@ class Writing extends Component
     public bool $modalFailureVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
-    public function boot()
+    protected $rules = [
+        'title' => 'required|min:4',
+        'message' => 'required|min:6',
+    ];
+
+    public function boot(): void
     {
         $this->words = Word::inRandomOrder()->get();
     }
 
-    public function mount($language)
+    public function mount($language): void
     {
         $this->loadWord();
         $this->langauge = $language;
     }
 
-    public function loadWord()
+    public function loadWord(): void
     {
         $this->resetVariables();
         $this->word = $this->words->random();
@@ -50,11 +56,10 @@ class Writing extends Component
 
                 $this->foreignWord = $this->word->uaWord;
                 break;
-
         }
     }
 
-    public function resetVariables()
+    public function resetVariables(): void
     {
         $this->charNumber = 0;
         $this->wrongTry = 0;
@@ -65,7 +70,7 @@ class Writing extends Component
         $this->modalFailureVisibility = false;
     }
 
-    public function generateWordArrays()
+    public function generateWordArrays(): void
     {
         $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
         for ($i = 0; $i < $this->wordLength; $i++) {
@@ -74,12 +79,12 @@ class Writing extends Component
         }
     }
 
-    public function keyPressed($key)
+    public function keyPressed($key): void
     {
         $this->isKeyValid($key);
     }
 
-    public function isKeyValid($key)
+    public function isKeyValid($key): void
     {
         $this->lastKey = $key;
 
@@ -99,21 +104,21 @@ class Writing extends Component
 
     }
 
-    public function success()
+    public function success(): void
     {
         $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalSuccessVisibility = true;
     }
 
-    public function failure()
+    public function failure(): void
     {
         $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalFailureVisibility = true;
     }
 
-    public function hideModals()
+    public function hideModals(): void
     {
         $this->modalSuccessVisibility = false;
         $this->modalFailureVisibility = false;
@@ -122,21 +127,22 @@ class Writing extends Component
 
     public function reportError(): void
     {
-
+        $this->validate();
 
         $this->foreignWord->errors()->create([
             'user_id' => auth()->id(),
             'word_id' => $this->word->id,
-            'title' => rand(0,10000),
-            'description' => $this->message,
+            'title' => $this->title,
+            'message' => $this->message,
         ]);
 
         $this->modalReportErrorVisibility = false;
         $this->message = null;
+        $this->title = null;
 
     }
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.writing');
     }
