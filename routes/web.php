@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\Guest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -42,9 +43,7 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
 })->name('dashboard');
 
 //Guest mode
-Route::get('/guest', function () {
-    return view('guest');
-})->name('guest');
+Route::get('/guest/{language?}', [Guest::class, 'index'])->name('guest');
 
 //Control Panel
 

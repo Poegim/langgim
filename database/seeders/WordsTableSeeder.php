@@ -21,20 +21,42 @@ class WordsTableSeeder extends Seeder
     {
         $this->faker = Factory::create();
 
-        if(env('APP_ENV') == 'local')
-        {
-            for ($i=0; $i < 300; $i++) {
+        // if(env('APP_ENV') == 'local')
+        // {
+        //     for ($i=0; $i < 150; $i++) {
 
-                DB::table('words')->insert(
-                    [
-                        'pl_word' => $this->faker->word(),
-                        'sample_sentence' => $this->faker->realText(25),
-                        'category_id' => rand(1,15),
-                        'subcategory_id' => rand(1,5),
-                    ]
-                );
-            }
+        //         DB::table('words')->insert(
+        //             [
+        //                 'pl_word' => $this->faker->word(),
+        //                 'sample_sentence' => $this->faker->realText(25),
+        //                 'category_id' => rand(1,15),
+        //                 'subcategory_id' => rand(1,5),
+        //             ]
+        //         );
+        //     }
 
-        }
+        // }
+
+        DB::table('words')
+            ->insert(
+            [
+                'pl_word' => 'osa',
+                'sample_sentence' => $this->faker->realText(25),
+                'category_id' => rand(1,15),
+                'subcategory_id' => rand(1,5),
+            ]
+        );
+
+        DB::table('words')
+            ->insert(
+            [
+                'pl_word' => 'ala',
+                'sample_sentence' => $this->faker->realText(25),
+                'category_id' => rand(1,15),
+                'subcategory_id' => rand(1,5),
+            ]
+        );
+
+
     }
 }

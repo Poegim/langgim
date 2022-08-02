@@ -8,7 +8,20 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden sm:rounded-lg">
-                @livewire('writing')
+                @if ((!$language == NULL) && in_array($language, $allowedLanguages))
+                    <livewire:writing :language="$language">
+                @else
+                    <div class="flex justify-center space-x-4">
+                        <a href="{{route('guest', 'ukrainian')}}">
+                            <img src="{{asset('/storage/images/flags/ua.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                        </a>
+
+                        <img src="{{asset('/storage/images/flags/de.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+
+
+                        <img src="{{asset('/storage/images/flags/gb.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                    </div>
+                @endif
             </div>
         </div>
     </div>
