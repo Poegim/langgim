@@ -1,5 +1,5 @@
 <div>
-    @if ($word != null)
+
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
 
         <div class="flex justify-center mt-2">
@@ -53,15 +53,70 @@
 
             <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
-            <p>Word legth: {{ $wordLength }} </p>
+            <p>Word length: {{ $wordLength }} </p>
         </div>
 
-        {{-- <div class="flex justify-center mt-12">
-            <livewire:report-error :word="$word" :language="$language" />
-        </div> --}}
+        <div class="flex justify-center mt-12">
+            @auth
+                <a
+                class="cursor-pointer flex"
+                wire:click="$toggle('modalReportErrorVisibility')"
+                wire:loading.attr="disabled"
+                >
+                    <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-red-700" />
+                </a>
+                @endauth
+
+                @guest
+                <a href="{{route('login')}}" title="Please login to report error!" class="flex">
+                    <span class="mt-2 mr-1 text-xs">Report error</span><x-clarity-error-standard-solid class="w-6 h-6 text-gray-500"/>
+                </a>
+            @endguest
+        </div>
 
 
     </div>
+
+    <!-- Modal Report Error -->
+    <x-jet-dialog-modal wire:model="modalReportErrorVisibility" id="modalError">
+        <x-slot name="title" >
+            {{ __("Report Error") }}
+        </x-slot>
+
+        <x-slot name="content">
+            <div>
+                Is there any mistake?
+            </div>
+        <div class="mt-4">
+                PL word: <span class="text-wider font-extrabold">{{$word->pl_word}}</span>
+            </div>
+            <div>
+                Foreign word: <span class="text-wider font-extrabold">{{$word->uaWord->word}}</span>
+            </div>
+
+            <div class="mt-4 mb-4">
+                <label for="message">Message:</label>
+                <x-jet-input type="text" class="w-full" name="message" id="message" wire:model='message'></x-jet-input>
+                <x-jet-input-error for="message"/>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="space-x-1">
+
+                <x-jet-secondary-button
+                wire:click="$toggle('modalReportErrorVisibility')"
+                wire:loading.attr="disabled"
+                >
+                {{ __("Cancel")}}
+            </x-jet-secondary-button>
+
+            <x-jet-danger-button wire:click="reportError" wire:loading.attr='disabled'>
+                {{ __("Report Error")}}
+            </x-jet-danger-button>
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
 
     <!-- Prototype modal success-->
     <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
@@ -105,50 +160,6 @@
         </x-slot>
     </x-jet-dialog-modal>
 
-    @else
-
-    <div class="flex justify-center">
-        <x-jet-button wire:click="$toggle('modalLanguagePickVisibility')">Select Language</x-jet-button>
-    </div>
-
-    @endif
-
-    <!-- Modal pick language-->
-    <x-jet-dialog-modal wire:model="modalLanguagePickVisibility" id="modalPickLanguage">
-        <x-slot name="title">
-            {{ __("Choose your language") }}
-        </x-slot>
-
-        <x-slot name="content">
-            <div class="flex justify-center mt-6">
-                <div class="flex justify-center p-4">
-                    <button wire:click="setLanguage('ukrainian')">
-                        <img src="{{asset('storage/images/flags/ua.svg')}}"
-                        class="w-24 h-24"
-                        alt="">
-                    </button>
-                </div>
-                {{-- <div class="flex justify-center p-4">
-                    <button wire:click="setLanguage('english')">
-                        <img src="{{asset('storage/images/flags/us.svg')}}"
-                        class="w-24 h-24"
-                        alt="">
-                    </button>
-                </div>
-                <div class="flex justify-center p-4">
-                    <button wire:click="setLanguage('german')">
-                        <img src="{{asset('storage/images/flags/de.svg')}}"
-                        class="w-24 h-24"
-                        alt="">
-                    </button>
-                </div> --}}
-            </div>
-        </x-slot>
-
-        <x-slot name="footer">
-        </x-slot>
-    </x-jet-dialog-modal>
-</div>
 
 <script type="text/javascript">
 
@@ -161,16 +172,20 @@
 
     document.addEventListener('keydown', function (event) {
 
+        console.log(event);
+        console.log(@this.lastKey);
+
         //Clear hidden text input
         textInput = document.getElementById('super_hidden_secret_input');
         textInput.value = '';
 
         //Modals
-        $modalFailure = document.getElementById('modalFailure');
-        $modalSuccess = document.getElementById('modalSuccess');
+        modalFailure = document.getElementById('modalFailure');
+        modalSuccess = document.getElementById('modalSuccess');
+        modalError = document.getElementById('modalError');
 
         //If modals are hidden then user can write.
-        if ((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none')) {
+        if ((modalFailure.style.display == 'none') && (modalSuccess.style.display == 'none') && (modalError.style.display == 'none')) {
             //If livewire variable of modals visibility is true set is to false wich is real state of modals.
             if (@this.modalSuccessVisibility == true) {
                 @this.modalSuccessVisibility = false;
@@ -178,6 +193,10 @@
 
             if (@this.modalFailureVisibility == true) {
                 @this.modalFailureVisibility = false;
+            }
+
+            if (@this.modalReportErrorVisibility == true) {
+                @this.modalReportErrorVisibility = false;
             }
 
             //Check is hited key allowed, if yes run livewire controller method.
@@ -236,7 +255,10 @@
 
     //Show virtual keyboard on mobile devices
     keyboardButton = document.getElementById('keyboard_icon');
-    keyboardButton.addEventListener("click", showKeyboard);
+    if(keyboardButton)
+    {
+        keyboardButton.addEventListener("click", showKeyboard);
+    }
 
     function showKeyboard() {
         let target = document.getElementById("super_hidden_secret_input");
