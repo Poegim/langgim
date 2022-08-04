@@ -1,10 +1,9 @@
 FIXES
     -- validation of subcategories and categories unique combination
     -- faker seeders for local env
-    -- testable second language
+    -- testable second language (after changes in naming convention?)
 
 FEATURES
-    -- bug reports system
     -- fill database
     -- user profiles and personal settings
     -- upload audio
