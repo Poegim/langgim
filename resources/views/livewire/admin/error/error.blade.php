@@ -91,7 +91,7 @@
     <x-jet-dialog-modal wire:model="viewModalVisibility">
         <x-slot name="title">
             <div class="flex justify-between">
-                <div>
+                <div class="mt-2 text-sm">
                     {!! $title !!}
                 </div>
                 <div>
@@ -107,12 +107,23 @@
         </x-slot>
 
         <x-slot name="content">
-            <div>
-                {!! $description !!}
+            <div class="text-sm">
+                <p>
+                    Language: {{ $language }}
+                </p>
+                <p class="mt-4">
+                    Message:
+                </p>
+                <p class="">
+                    {!! $message !!}
+                </p>
             </div>
-            <div>
+            <div class="text-xs mt-4">
                 @if ($errorModel)
-                {{ $errorModel->user->name}}, {{$date ? $date : ''}}
+                Created by: {{ $errorModel->user->name }}, {{ $errorModel->user->email }}
+                <p>
+                Created at:    {{ $date ? $date : '' }}
+                </p>
                 @endif
             </div>
         </x-slot>

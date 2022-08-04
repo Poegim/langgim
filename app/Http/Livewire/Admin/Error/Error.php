@@ -15,11 +15,12 @@ class Error extends Component
     public ?ErrorModel $errorModel;
     public ?int $errorModelId;
     public ?string $title;
-    public ?string $description;
+    public ?string $message;
     public ?User $user;
     public ?bool $status;
     public ?string $date;
-
+    public $errorable;
+    public ?string $language;
 
     public function showDeleteModal($errorModelId): void
     {
@@ -30,26 +31,36 @@ class Error extends Component
 
     public function showViewModal($errorModelId): void
     {
+
         $this->resetErrorBag();
         $this->errorModelId = $errorModelId;
         $this-> errorModel = ErrorModel::findOrfail($this->errorModelId);
-        $this->id = $this->errorModel->errorModelId;
         $this->title = $this->errorModel->title;
-        $this->description = $this->errorModel->description;
+        $this->message = $this->errorModel->message;
         $this->user = $this->errorModel->user;
         $this->status = $this->errorModel->status;
-        $this->date = $this->errorModel->date;
+        $this->date = $this->errorModel->created_at;
+        $this->errorable = $this->errorModel->errorable;
+
+        $this->language = get_class($this->errorable);
+
+        //Model naming should fix it
+        switch ($this->language) {
+            case 'App\Models\UaWord':
+                $this->language = 'Ukrainian';
+                break;
+            }
+
         $this->viewModalVisibility = true;
+
     }
 
     public function updateModel()
     {
+        $this->viewModalVisibility= false;
         $this->errorModel->status = $this->status;
         $this->errorModel->save();
-        session()->flash('flash.banner', 'Status updated!');
-        session()->flash('flash.bannerStyle', 'success');
         $this->resetVars();
-        $this->viewModalVisibility= false;
 
     }
 
@@ -67,7 +78,7 @@ class Error extends Component
         $this->errorModel = null;
         $this->errorModelId = null;
         $this->title = null;
-        $this->description = null;
+        $this->message = null;
         $this->user = null;
         $this->status = null;
         $this->date = null;
@@ -76,7 +87,11 @@ class Error extends Component
 
     public function render()
     {
-        $errors = ErrorModel::all();
+        $errors =
+            ErrorModel::orderBy('status', 'asc')
+            ->orderBy('id', 'asc')
+            ->get();
+
         return view('livewire.admin.error.error', [
             'errorsCollection' => $errors,
         ]);
