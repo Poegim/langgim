@@ -1,24 +1,22 @@
 FIXES
     -- validation of subcategories and categories unique combination
     -- faker seeders for local env
-    -- reporting error system require to know wich language is native
-    -- report error needs to be in writing component,
-        ill allow to manage key detecting when modal is visible
+    -- testable second language (after changes in naming convention?)
 
 FEATURES
-    -- Fill database
-    -- User profiles and personal settings
-    -- Upload audio
-    -- Contact form
-    -- Bug reports system
+    -- fill database
+    -- user profiles and personal settings
+    -- upload audio
+    -- contact form
+    -- flashes
 
 REFACTOR
-    -- "delete.blade" livewire views, are typicaly same except item name, should be merged into one view
-
+    -- "delete.blade" livewire views are typicaly same except item name, should be merged into one view
 
 IN CONSIDERATION
     -- blog
+    -- new approach to naming models
 
 FUTURE
     -- more languages
-    -- Blade-UI icons should be switched due to unchangable(?) titles
+    -- Blade-UI icons should be switched due to unchangable(?) HTML titles
