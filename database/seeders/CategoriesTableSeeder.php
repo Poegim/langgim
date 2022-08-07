@@ -18,8 +18,8 @@ class CategoriesTableSeeder extends Seeder
     {
         $this->faker = Factory::create();
 
-        if(env('APP_ENV') == 'local')
-        {
+        // if(env('APP_ENV') == 'local')
+        // {
             for ($i=0; $i < 15; $i++) {
 
                 DB::table('categories')->insert(
@@ -30,5 +30,5 @@ class CategoriesTableSeeder extends Seeder
             }
 
         }
-    }
+    // }
 }

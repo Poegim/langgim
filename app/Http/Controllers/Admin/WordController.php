@@ -63,15 +63,15 @@ class WordController extends Controller
         $word->save();
 
         $word->uaWord()->create([
-            'word' => $request->ua_word ? $request->ua_word : NULL,
+            'word' => $request->ua_word ? $request->ua_word : '',
         ]);
 
         $word->enWord()->create([
-            'word' => $request->en_word ? $request->en_word : NULL,
+            'word' => $request->en_word ? $request->en_word : '',
         ]);
 
         $word->geWord()->create([
-            'word' => $request->ge_word ? $request->ge_word : NULL,
+            'word' => $request->ge_word ? $request->ge_word : '',
         ]);
 
         //Redirect
@@ -134,15 +134,15 @@ class WordController extends Controller
         $word->save();
 
         $word->uaWord()->update([
-            'word' => $request->ua_word ? $request->ua_word : NULL,
+            'word' => $request->ua_word ? $request->ua_word : '',
         ]);
 
         $word->enWord()->update([
-            'word' => $request->en_word ? $request->en_word : NULL,
+            'word' => $request->en_word ? $request->en_word : '',
         ]);
 
         $word->geWord()->update([
-            'word' => $request->ge_word ? $request->ge_word : NULL,
+            'word' => $request->ge_word ? $request->ge_word : '',
         ]);
 
         //Redirect

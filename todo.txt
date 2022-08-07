@@ -1,18 +1,22 @@
 TODO
-    -- managing languages
-
-FIXES
-    -- polish letters
-
-FEATURES
+    -- managing languages for registered users
+    -- success failure modals
     -- fill database
     -- user profiles and personal settings
     -- upload audio
     -- contact form
     -- flashes
 
+FIXES
+    -- polish letters
+
+FEATURES
+
+
 REFACTOR
     -- "delete.blade" livewire views are typicaly same except item name, should be merged into one view
+
+TESTING
 
 IN CONSIDERATION
     -- additional validation of subcategories and categories unique combination
@@ -22,3 +26,6 @@ IN CONSIDERATION
 FUTURE
     -- more languages
     -- Blade-UI icons should be switched due to unchangable(?) HTML titles
+
+READY TO DEPLoY?
+NO.
