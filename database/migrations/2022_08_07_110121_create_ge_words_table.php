@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ge_words', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id('id');
             $table->string('word')->nullable();
             $table->timestamps();
         });

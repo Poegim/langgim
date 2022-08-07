@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class Guest extends Controller
 {
-    public array $allowedLanguages = ['ukrainian'];
+    public array $allowedLanguages = ['ukrainian', 'english', 'german'];
 
     public function index($language = null)
     {

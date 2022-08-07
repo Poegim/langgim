@@ -16,10 +16,14 @@
                             <img src="{{asset('/storage/images/flags/ua.svg')}}" class="w-24 hover:opacity-90 rounded-md">
                         </a>
 
-                        <img src="{{asset('/storage/images/flags/de.svg')}}" class="w-24 hover:opacity-90 rounded-md">
-
-
+                        <a href="{{route('guest', 'english')}}">
                         <img src="{{asset('/storage/images/flags/gb.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                        </a>
+
+                        <a href="{{route('guest', 'german')}}">
+                        <img src="{{asset('/storage/images/flags/de.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                        </a>
+
                     </div>
                 @endif
             </div>

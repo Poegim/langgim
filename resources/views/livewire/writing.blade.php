@@ -29,7 +29,7 @@
         <div id="word_div" class="">
             <div class="h-10">
 
-                <h1 class="mt-5 text-3xl font-extrabold tracking-wider">{{ $word->uaWord->word }}</h1>
+                <h1 class="mt-5 text-3xl font-extrabold tracking-wider">{{ $foreignWord->word }}</h1>
 
             </div>
             <div class="mt-5 flex justify-center">
@@ -89,7 +89,7 @@
                 PL word: <span class="text-wider font-extrabold">{{$word->pl_word}}</span>
             </div>
             <div>
-                Foreign word: <span class="text-wider font-extrabold">{{$word->uaWord->word}}</span>
+                Foreign word: <span class="text-wider font-extrabold">{{$foreignWord->word}}</span>
             </div>
 
             <div class="mt-4 mb-4">
@@ -134,7 +134,7 @@
         <x-slot name="footer">
             <div class="space-x-1">
 
-                <x-jet-secondary-button wire:click="hideModals" {{-- onclick="hideSuccess()" --}}>
+                <x-jet-secondary-button wire:click="hideModals">
                     {{ __("Next")}}
                 </x-jet-secondary-button>
 

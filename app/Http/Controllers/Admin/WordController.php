@@ -28,6 +28,8 @@ class WordController extends Controller
         $request->validate([
             'word' => ['required',],
             'ua_word' => ['nullable',],
+            'en_word' => ['nullable',],
+            'ge_word' => ['nullable',],
             'sample_sentecne' => ['nullable',],
             'category' => ['required',],
             'audio_file' => ['nullable','mimes:mp3','max:2048'],
@@ -60,9 +62,16 @@ class WordController extends Controller
 
         $word->save();
 
-        $word->uaWord()->insert([
-            'id' => $word->id,
-            'word' => $request->ua_word ? $request->ua_word : '',
+        $word->uaWord()->create([
+            'word' => $request->ua_word ? $request->ua_word : NULL,
+        ]);
+
+        $word->enWord()->create([
+            'word' => $request->en_word ? $request->en_word : NULL,
+        ]);
+
+        $word->geWord()->create([
+            'word' => $request->ge_word ? $request->ge_word : NULL,
         ]);
 
         //Redirect
@@ -88,6 +97,8 @@ class WordController extends Controller
         $request->validate([
             'word' => ['required',],
             'ua_word' => ['nullable',],
+            'en_word' => ['nullable',],
+            'ge_word' => ['nullable',],
             'sample_sentecne' => ['nullable',],
             'category' => ['required',],
             'audio_file' => ['nullable','mimes:mp3','max:2048'],
@@ -123,7 +134,15 @@ class WordController extends Controller
         $word->save();
 
         $word->uaWord()->update([
-            'word' => $request->ua_word ? $request->ua_word : '',
+            'word' => $request->ua_word ? $request->ua_word : NULL,
+        ]);
+
+        $word->enWord()->update([
+            'word' => $request->en_word ? $request->en_word : NULL,
+        ]);
+
+        $word->geWord()->update([
+            'word' => $request->ge_word ? $request->ge_word : NULL,
         ]);
 
         //Redirect

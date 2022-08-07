@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Word;
-use Illuminate\View\View;
 use Livewire\Component;
+use Illuminate\View\View;
 
 class Writing extends Component
 {
@@ -33,15 +33,39 @@ class Writing extends Component
         'message' => 'required|min:6',
     ];
 
-    public function boot(): void
-    {
-        $this->words = Word::inRandomOrder()->get();
-    }
-
     public function mount($language): void
     {
+        $this->queryBuilder();
         $this->loadWord();
         $this->langauge = $language;
+    }
+
+    public function queryBuilder()
+    {
+        switch ($this->language) {
+            case 'ukrainian':
+                $withLanguage = 'uaWord';
+                break;
+
+            case 'english':
+                $withLanguage = 'enWord';
+                break;
+
+            case 'german':
+                $withLanguage = 'geWord';
+                break;
+
+            default:
+                abort(403, 'Unknown error, contact administrator.');
+                break;
+        }
+
+        $this->words = Word::with($withLanguage)
+            ->whereRelation($withLanguage, 'word', '!=', '')
+            ->get();
+
+            // dd($this->words);
+
     }
 
     public function loadWord(): void
@@ -55,6 +79,14 @@ class Writing extends Component
             case 'ukrainian':
 
                 $this->foreignWord = $this->word->uaWord;
+                break;
+
+            case 'english':
+                $this->foreignWord = $this->word->enWord;
+                break;
+
+            case 'german':
+                $this->foreignWord = $this->word->geWord;
                 break;
         }
     }

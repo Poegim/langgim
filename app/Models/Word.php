@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\EnWord;
+use App\Models\GeWord;
 use App\Models\UaWord;
 use App\Models\Category;
 use App\Models\Subcategory;
@@ -24,6 +25,11 @@ class Word extends Model
     public function enWord(): HasOne
     {
         return $this->hasOne(EnWord::class, 'id');
+    }
+
+    public function geWord(): HasOne
+    {
+        return $this->hasOne(GeWord::class, 'id');
     }
 
     public function category(): BelongsTo

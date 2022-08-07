@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Faker\Factory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -44,6 +45,8 @@ class WordsTableSeeder extends Seeder
                 'sample_sentence' => $this->faker->realText(25),
                 'category_id' => rand(1,15),
                 'subcategory_id' => rand(1,5),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         );
 
@@ -54,6 +57,8 @@ class WordsTableSeeder extends Seeder
                 'sample_sentence' => $this->faker->realText(25),
                 'category_id' => rand(1,15),
                 'subcategory_id' => rand(1,5),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         );
 
