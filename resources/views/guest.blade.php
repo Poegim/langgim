@@ -13,15 +13,15 @@
                 @else
                     <div class="flex justify-center space-x-4">
                         <a href="{{route('guest', 'ukrainian')}}">
-                            <img src="{{asset('/storage/images/flags/ua.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                            <img src="{{asset('/images/flags/ua.svg')}}" class="w-24 hover:opacity-90 rounded-md">
                         </a>
 
                         <a href="{{route('guest', 'english')}}">
-                        <img src="{{asset('/storage/images/flags/gb.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                        <img src="{{asset('/images/flags/gb.svg')}}" class="w-24 hover:opacity-90 rounded-md">
                         </a>
 
                         <a href="{{route('guest', 'german')}}">
-                        <img src="{{asset('/storage/images/flags/de.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                        <img src="{{asset('/images/flags/de.svg')}}" class="w-24 hover:opacity-90 rounded-md">
                         </a>
 
                     </div>
