@@ -1,7 +1,8 @@
+TODO
+    -- managing languages
+
 FIXES
-    -- validation of subcategories and categories unique combination
-    -- faker seeders for local env
-    -- testable second language (after changes in naming convention?)
+    -- polish letters
 
 FEATURES
     -- fill database
@@ -14,6 +15,7 @@ REFACTOR
     -- "delete.blade" livewire views are typicaly same except item name, should be merged into one view
 
 IN CONSIDERATION
+    -- additional validation of subcategories and categories unique combination
     -- blog
     -- new approach to naming models
 

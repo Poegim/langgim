@@ -26,6 +26,16 @@
                             <x-jet-input-error for="ua_word" />
                         </div>
                         <div>
+                            <x-jet-label for="en_word">English:</x-jet-label>
+                            <x-jet-input name="en_word" id="en_word" type="text" value="{{$word->uenord ? $word->enWord->word : ''}}"/>
+                            <x-jet-input-error for="en_word" />
+                        </div>
+                        <div>
+                            <x-jet-label for="ge_word">German:</x-jet-label>
+                            <x-jet-input name="ge_word" id="ge_word" type="text" value="{{$word->geWord ? $word->geWord->word : ''}}"/>
+                            <x-jet-input-error for="ge_word" />
+                        </div>
+                        <div>
                             <x-jet-label for="sample_sentence">Sample sentecne:</x-jet-label>
                             <x-jet-input name="sample_sentence" id="sample_sentence" type="text" value="{{$word->sample_sentence}}"/>
                             <x-jet-input-error for="sample_sentence" />

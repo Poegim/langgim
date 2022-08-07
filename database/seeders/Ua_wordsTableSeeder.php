@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Faker\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -35,14 +36,18 @@ class Ua_wordsTableSeeder extends Seeder
         DB::table('ua_words')->insert(
             [
                 'id' => 1,
-                'word' => 'osa',
+                'word' => 'uaosa',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         );
 
         DB::table('ua_words')->insert(
             [
                 'id' => 2,
-                'word' => 'ala',
+                'word' => 'uaala',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]
         );
     }

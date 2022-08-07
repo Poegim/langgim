@@ -44,12 +44,19 @@ class Error extends Component
 
         $this->language = get_class($this->errorable);
 
-        //Model naming should fix it
         switch ($this->language) {
             case 'App\Models\UaWord':
                 $this->language = 'Ukrainian';
                 break;
-            }
+
+            case 'App\Models\EnWord':
+                $this->language = 'English';
+                break;
+
+            case 'App\Models\GeWord':
+                $this->language = 'German';
+                break;
+        }
 
         $this->viewModalVisibility = true;
 

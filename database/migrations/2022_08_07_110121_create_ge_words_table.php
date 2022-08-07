@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('en_words', function (Blueprint $table) {
+        Schema::create('ge_words', function (Blueprint $table) {
             $table->id('id');
             $table->string('word')->nullable();
             $table->timestamps();
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('en_words');
+        Schema::dropIfExists('ge_words');
     }
 };

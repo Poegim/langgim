@@ -19,10 +19,23 @@
                             <x-jet-input name="word" id="word" type="text" />
                             <x-jet-input-error for="word" />
                         </div>
+
                         <div>
                             <x-jet-label for="ua_word">Ukrainian:</x-jet-label>
                             <x-jet-input name="ua_word" id="ua_word" type="text" />
                             <x-jet-input-error for="ua_word" />
+                        </div>
+
+                        <div>
+                            <x-jet-label for="en_word">English:</x-jet-label>
+                            <x-jet-input name="en_word" id="en_word" type="text" />
+                            <x-jet-input-error for="en_word" />
+                        </div>
+
+                        <div>
+                            <x-jet-label for="ge_word">German:</x-jet-label>
+                            <x-jet-input name="ge_word" id="ge_word" type="text" />
+                            <x-jet-input-error for="ge_word" />
                         </div>
                         <div>
                             <x-jet-label for="sample_sentence">Sample sentecne:</x-jet-label>
