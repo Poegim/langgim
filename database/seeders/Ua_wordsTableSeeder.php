@@ -35,14 +35,14 @@ class Ua_wordsTableSeeder extends Seeder
         DB::table('ua_words')->insert(
             [
                 'id' => 1,
-                'word' => 'osa',
+                'word' => 'uaosa',
             ]
         );
 
         DB::table('ua_words')->insert(
             [
                 'id' => 2,
-                'word' => 'ala',
+                'word' => 'uaala',
             ]
         );
     }

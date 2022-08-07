@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\EnWord;
+use App\Models\UaWord;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\UaWord;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
@@ -18,6 +19,11 @@ class Word extends Model
     public function uaWord(): HasOne
     {
         return $this->hasOne(UaWord::class, 'id');
+    }
+
+    public function enWord(): HasOne
+    {
+        return $this->hasOne(EnWord::class, 'id');
     }
 
     public function category(): BelongsTo

@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('ua_words', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('word');
+            $table->id('id');
+            $table->string('word')->nullable();
             $table->timestamps();
         });
 
