@@ -19,7 +19,7 @@ class Writing extends Component
     public $wordArray = [];
     public $language;
     public $foreignWord;
-    public int $wordLength;
+    public ?int $wordLength;
     public int $charNumber = 0;
 
     public bool $modalSuccessVisibility = false;
@@ -44,9 +44,8 @@ class Writing extends Component
         $this->langauge = $language;
     }
 
-
     /**
-     * queryBuilder gets words list wich related child words of second languege
+     * queryBuilder gets words list with related child words of second languege
      */
     public function queryBuilder(): void
     {
@@ -68,14 +67,15 @@ class Writing extends Component
                 break;
         }
 
-
-        $this->words = Word::with($withLanguage)
+        $this
+            ->words = Word::with($withLanguage)
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
-
     }
 
-
+    /**
+     * Loads single word
+     */
     public function loadWord(): void
     {
         $this->resetVariables();
@@ -111,10 +111,17 @@ class Writing extends Component
     }
 
     /**
-     * Genarates word array with subarrays,
-     * the word is split into single characters,
+     * Genarates word array with subarrays, and guessed chars array.
+     * In word array the word is split into single characters,
      * if the character is present only in the polish alphabet,
-     * a key with an alternative latin alphabet character is added
+     * a key with an alternative latin alphabet character is added,
+     * to avoid sittuation where a user who doesnt have a polish keyboard
+     * is unable to guess the char
+     *
+     * example: letter 'ą' is represented by array of 'a' and 'ą',
+     * so if expected char is 'ą' user can use just 'a'
+     *
+     * Guessed chars array keeps "_" chars as long as this char isnt guessed.
      */
     public function generateWordArrays(): void
     {
@@ -151,14 +158,10 @@ class Writing extends Component
                 case 'ż':
                     $this->wordArray[$i][1] = 'z';
                     break;
-                case 'ą':
-                    $this->wordArray[$i][1] = 'a';
-                    break;
             }
 
             $this->guessedChars[$i] = '_';
         }
-
     }
 
     public function keyPressed($key): void
@@ -168,7 +171,7 @@ class Writing extends Component
     }
 
     /**
-     * Checks in word arrays is pressed key is an expected key.
+     * Checks is pressed key is an expected key.
      */
     public function isKeyValid(): void
     {
@@ -185,7 +188,6 @@ class Writing extends Component
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
             $this->wrongTry >= self::ALLOWED_TRIES ? $this->failure() : null;
         }
-
     }
 
     /**
