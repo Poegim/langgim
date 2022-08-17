@@ -11,7 +11,7 @@ class Writing extends Component
     public ?string $message = null;
     public ?string $title = null;
 
-    public $lastKey;
+    public ?string $lastKey = null;
     public $words;
     public $word;
     public $previousWord;
@@ -21,13 +21,17 @@ class Writing extends Component
     public $foreignWord;
     public int $wordLength;
     public int $charNumber = 0;
-    public int $wrongTry = 0;
-    public const ALLOWED_TRIES = 3;
 
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
+    private int $wrongTry = 0;
+    private const ALLOWED_TRIES = 3;
+
+    /**
+     * rules for reporting error validator
+     */
     protected $rules = [
         'title' => 'required|min:4',
         'message' => 'required|min:6',
@@ -40,7 +44,11 @@ class Writing extends Component
         $this->langauge = $language;
     }
 
-    public function queryBuilder()
+
+    /**
+     * queryBuilder gets words list wich related child words of second languege
+     */
+    public function queryBuilder(): void
     {
         switch ($this->language) {
             case 'ukrainian':
@@ -60,13 +68,13 @@ class Writing extends Component
                 break;
         }
 
+
         $this->words = Word::with($withLanguage)
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
 
-            // dd($this->words);
-
     }
+
 
     public function loadWord(): void
     {
@@ -102,25 +110,69 @@ class Writing extends Component
         $this->modalFailureVisibility = false;
     }
 
+    /**
+     * Genarates word array with subarrays,
+     * the word is split into single characters,
+     * if the character is present only in the polish alphabet,
+     * a key with an alternative latin alphabet character is added
+     */
     public function generateWordArrays(): void
     {
         $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
+
         for ($i = 0; $i < $this->wordLength; $i++) {
-            $this->wordArray[$i] = strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'));
+            $this->wordArray[$i] = [strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'))];
+
+            switch ($this->wordArray[$i][0] ) {
+                case 'ą':
+                    $this->wordArray[$i][1] = 'a';
+                    break;
+                case 'ć':
+                    $this->wordArray[$i][1] = 'c';
+                    break;
+                case 'ę':
+                    $this->wordArray[$i][1] = 'e';
+                    break;
+                case 'ł':
+                    $this->wordArray[$i][1] = 'l';
+                    break;
+                case 'ń':
+                    $this->wordArray[$i][1] = 'n';
+                    break;
+                case 'ó':
+                    $this->wordArray[$i][1] = 'o';
+                    break;
+                case 'ś':
+                    $this->wordArray[$i][1] = 's';
+                    break;
+                case 'ź':
+                    $this->wordArray[$i][1] = 'z';
+                    break;
+                case 'ż':
+                    $this->wordArray[$i][1] = 'z';
+                    break;
+                case 'ą':
+                    $this->wordArray[$i][1] = 'a';
+                    break;
+            }
+
             $this->guessedChars[$i] = '_';
         }
+
     }
 
     public function keyPressed($key): void
     {
-        $this->isKeyValid($key);
+        $this->lastKey = $key;
+        $this->isKeyValid();
     }
 
-    public function isKeyValid($key): void
+    /**
+     * Checks in word arrays is pressed key is an expected key.
+     */
+    public function isKeyValid(): void
     {
-        $this->lastKey = $key;
-
-        if (ord($this->wordArray[$this->charNumber]) == ord($this->lastKey))
+        if (in_array($this->lastKey, $this->wordArray[$this->charNumber]))
         {
             $this->charNumber++;
             $this->guessedChars[$this->charNumber-1] = $this->lastKey;
@@ -136,6 +188,10 @@ class Writing extends Component
 
     }
 
+    /**
+     * success is called when word has been guessed
+     * shows success modal ale load next word
+     */
     public function success(): void
     {
         $this->previousWord = $this->word;
@@ -143,6 +199,10 @@ class Writing extends Component
         $this->modalSuccessVisibility = true;
     }
 
+    /**
+     * failure is called what user failed to guess word
+     * shows modal failure and load next word
+     */
     public function failure(): void
     {
         $this->previousWord = $this->word;
