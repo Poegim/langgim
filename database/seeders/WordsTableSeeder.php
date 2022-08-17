@@ -41,7 +41,7 @@ class WordsTableSeeder extends Seeder
         DB::table('words')
             ->insert(
             [
-                'pl_word' => 'osa',
+                'pl_word' => 'osą',
                 'sample_sentence' => $this->faker->realText(25),
                 'category_id' => rand(1,15),
                 'subcategory_id' => rand(1,5),
@@ -53,7 +53,7 @@ class WordsTableSeeder extends Seeder
         DB::table('words')
             ->insert(
             [
-                'pl_word' => 'ala',
+                'pl_word' => 'ała',
                 'sample_sentence' => $this->faker->realText(25),
                 'category_id' => rand(1,15),
                 'subcategory_id' => rand(1,5),
