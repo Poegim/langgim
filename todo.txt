@@ -8,6 +8,7 @@ TODO
     -- flashes
 
 FIXES
+    -- Blade-UI icons should be switched due to unchangable(?) HTML titles
 
 FEATURES
 
@@ -20,11 +21,3 @@ TESTING
 IN CONSIDERATION
     -- additional validation of subcategories and categories unique combination
     -- blog
-    -- new approach to naming models
-
-FUTURE
-    -- more languages
-    -- Blade-UI icons should be switched due to unchangable(?) HTML titles
-
-READY TO DEPLOY?
-NO.
