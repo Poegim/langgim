@@ -62,6 +62,10 @@ class Writing extends Component
                 $withLanguage = 'geWord';
                 break;
 
+            case 'spanish':
+                $withLanguage = 'esWord';
+                break;
+
             default:
                 abort(403, 'Unknown error, contact administrator.');
                 break;
@@ -95,6 +99,10 @@ class Writing extends Component
 
             case 'german':
                 $this->foreignWord = $this->word->geWord;
+                break;
+
+            case 'spanish':
+                $this->foreignWord = $this->word->esWord;
                 break;
         }
     }

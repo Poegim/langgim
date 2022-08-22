@@ -65,6 +65,29 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
+
+        <!-- Default language -->
+        <div class="col-span-6 sm:col-span-4">
+            @php
+                $null = null;
+            @endphp
+            <x-jet-label for="language" value="{{ __('Default language') }}" />
+            <select
+                class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="language"
+                wire:model.defer="state.language"
+                id="language" name="language">
+
+                <option></option>
+                <option value="ukrainian" @if(auth()->user()->language == 'ukrainian') selected="selected" @endif>Ukrainian</option>
+                <option value="english" @if(auth()->user()->language == 'english') selected="selected" @endif disabled>English</option>
+                <option value="german" @if(auth()->user()->language == 'german') selected="selected" @endif disabled>German</option>
+                <option value="spanish" @if(auth()->user()->language == 'spanish') selected="selected" @endif disabled>Spanish</option>
+
+            </select>
+            <x-jet-input-error for="language" class="mt-2" />
+        </div>
+
+
     </x-slot>
 
     <x-slot name="actions">
