@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Word;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,18 +16,19 @@ class Ge_wordsTableSeeder extends Seeder
      */
     public function run()
     {
+        $words = Word::all();
+
         if(env('APP_ENV') == 'local')
         {
-            for ($i=0; $i < 150; $i++) {
-
+            foreach($words as $word)
+            {
                 DB::table('ge_words')->insert(
                     [
-                        'id' => $i+1,
-                        'word' => 'geword'.$i+1,
+                        'id' => $word->id,
+                        'word' => 'geword'.filter_var($word->pl_word, FILTER_SANITIZE_NUMBER_INT),
                     ]
                 );
             }
-
         }
     }
 }

@@ -16,17 +16,17 @@ class Writing extends Component
     public ?string $title = null;
 
     public ?string $lastKey = null;
-    public ?Collection $words;
+    public ?Collection $words = null;
     public ?Word $word = null;
     public ?Word $previousWord = null;
     public array $guessedChars = [];
     public array $wordArray = [];
 
     public ?string $language;
-    public ?Category $category;
-    public ?Subcategory $subcategory;
-    public ?ForeignWordInterface $foreignWord;
-    public ?int $wordLength;
+    public ?Category $category = null;
+    public ?Subcategory $subcategory = null;
+    public ?ForeignWordInterface $foreignWord = null;
+    public ?int $wordLength = null;
     public int $charNumber = 0;
 
     public bool $modalSuccessVisibility = false;
