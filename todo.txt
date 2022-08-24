@@ -1,5 +1,5 @@
 TODO
-    -- managing languages for registered users
+    -- dashboard landing
     -- success failure modals
     -- fill database
     -- user profiles and personal settings

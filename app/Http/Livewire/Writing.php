@@ -2,9 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Word;
 use Livewire\Component;
+use App\Models\Word;
+use App\Models\Category;
+use App\Models\Subcategory;
+use App\Models\Interfaces\ForeignWordInterface;
 use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class Writing extends Component
 {
@@ -12,22 +16,25 @@ class Writing extends Component
     public ?string $title = null;
 
     public ?string $lastKey = null;
-    public $words;
-    public $word;
-    public $previousWord;
-    public $guessedChars = [];
-    public $wordArray = [];
-    public $language;
-    public $foreignWord;
-    public ?int $wordLength;
+    public ?Collection $words = null;
+    public ?Word $word = null;
+    public ?Word $previousWord = null;
+    public array $guessedChars = [];
+    public array $wordArray = [];
+
+    public ?string $language;
+    public ?Category $category = null;
+    public ?Subcategory $subcategory = null;
+    public ?ForeignWordInterface $foreignWord = null;
+    public ?int $wordLength = null;
     public int $charNumber = 0;
 
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
-    private int $wrongTry = 0;
-    private const ALLOWED_TRIES = 3;
+    public int $wrongTry = 0;
+    public const ALLOWED_TRIES = 3;
 
     /**
      * rules for reporting error validator
@@ -62,15 +69,42 @@ class Writing extends Component
                 $withLanguage = 'geWord';
                 break;
 
+            case 'spanish':
+                $withLanguage = 'esWord';
+                break;
+
             default:
                 abort(403, 'Unknown error, contact administrator.');
                 break;
         }
 
-        $this
+        if ($this->category != null) {
+
+            if($this->subcategory !=null)
+            {
+                $this
+                ->words = Word::with($withLanguage)
+                ->where('category_id', '=', $this->category->id)
+                ->where('subcategory_id', '=', $this->subcategory->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
+            } else
+            {
+                $this
+                ->words = Word::with($withLanguage)
+                ->where('category_id', '=', $this->category->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
+            }
+
+        } else
+        {
+            $this
             ->words = Word::with($withLanguage)
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
+        }
+
     }
 
     /**
@@ -95,6 +129,10 @@ class Writing extends Component
 
             case 'german':
                 $this->foreignWord = $this->word->geWord;
+                break;
+
+            case 'spanish':
+                $this->foreignWord = $this->word->esWord;
                 break;
         }
     }
@@ -175,6 +213,7 @@ class Writing extends Component
      */
     public function isKeyValid(): void
     {
+
         if (in_array($this->lastKey, $this->wordArray[$this->charNumber]))
         {
             $this->charNumber++;
@@ -187,6 +226,7 @@ class Writing extends Component
             $this->wrongTry++;
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
             $this->wrongTry >= self::ALLOWED_TRIES ? $this->failure() : null;
+
         }
     }
 

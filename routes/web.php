@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\WordController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorController;
 use App\Http\Controllers\Admin\SubcategoryController;
+use App\Http\Controllers\CategoryController as UsersCategoryController;
 use App\Http\Controllers\Guest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -42,10 +43,22 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
     return view('dashboard');
 })->name('dashboard');
 
+//Non-admin category controller group
+Route::name('category.')->prefix('category')->middleware(['auth:sanctum'])->group(function () {
+
+    Route::get('/', [UsersCategoryController::class, 'index'])
+    ->name('index');
+
+    Route::get('/{category:name}/{subcategory:name?}', [UsersCategoryController::class, 'show'])
+    ->name('show');
+
+});
+
+
+
+
 //Guest mode
 Route::get('/guest/{language?}', [Guest::class, 'index'])->name('guest');
-
-//Control Panel
 
 //Admin
 Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {

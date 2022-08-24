@@ -56,6 +56,10 @@ class Error extends Component
             case 'App\Models\GeWord':
                 $this->language = 'German';
                 break;
+
+            case 'App\Models\EsWord':
+                $this->language = 'Spanish';
+                break;
         }
 
         $this->viewModalVisibility = true;

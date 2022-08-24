@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Word;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -15,18 +16,19 @@ class En_wordsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('en_words')->insert(
-            [
-                'id' => 1,
-                'word' => 'enosa',
-            ]
-        );
+        $words = Word::all();
 
-        DB::table('en_words')->insert(
-            [
-                'id' => 2,
-                'word' => 'enala',
-            ]
-        );
+        // if(env('APP_ENV') == 'local')
+        // {
+            foreach($words as $word)
+            {
+                DB::table('en_words')->insert(
+                    [
+                        'id' => $word->id,
+                        'word' => 'enword'.filter_var($word->pl_word, FILTER_SANITIZE_NUMBER_INT),
+                    ]
+                );
+            }
+        // }
     }
 }
