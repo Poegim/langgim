@@ -18,8 +18,8 @@ class Ua_wordsTableSeeder extends Seeder
     {
         $words = Word::all();
 
-        if(env('APP_ENV') == 'local')
-        {
+        // if(env('APP_ENV') == 'local')
+        // {
             foreach($words as $word)
             {
                 DB::table('ua_words')->insert(
@@ -29,7 +29,7 @@ class Ua_wordsTableSeeder extends Seeder
                     ]
                 );
             }
-        }
+        // }
 
     }
 }

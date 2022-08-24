@@ -18,8 +18,8 @@ class Ge_wordsTableSeeder extends Seeder
     {
         $words = Word::all();
 
-        if(env('APP_ENV') == 'local')
-        {
+        // if(env('APP_ENV') == 'local')
+        // {
             foreach($words as $word)
             {
                 DB::table('ge_words')->insert(
@@ -29,6 +29,6 @@ class Ge_wordsTableSeeder extends Seeder
                     ]
                 );
             }
-        }
+        // }
     }
 }
