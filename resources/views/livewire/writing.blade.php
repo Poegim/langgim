@@ -1,4 +1,4 @@
-<div>
+<div class="rounded-lg bg-white shadow-md mb-2">
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
 
         <div class="flex justify-center mt-2">
@@ -168,7 +168,7 @@
         let textInput;
 
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N',
-            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź'
+            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0'
         ];
 
         document.addEventListener('keydown', function (event) {
@@ -192,7 +192,8 @@
                 )
             {
 
-                    //If livewire variable of modals visibility is true set is to false wich is real state of modals.
+                    //If livewire variable of modals visibility is true this sets it to false
+                    //wich is real state of modals.
                     if (@this.modalSuccessVisibility == true) {
                         @this.modalSuccessVisibility = false;
                     }

@@ -15,18 +15,18 @@ class En_wordsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('en_words')->insert(
-            [
-                'id' => 1,
-                'word' => 'enosa',
-            ]
-        );
+        if(env('APP_ENV') == 'local')
+        {
+            for ($i=0; $i < 150; $i++) {
 
-        DB::table('en_words')->insert(
-            [
-                'id' => 2,
-                'word' => 'enala',
-            ]
-        );
+                DB::table('en_words')->insert(
+                    [
+                        'id' => $i+1,
+                        'word' => 'enword'.$i+1,
+                    ]
+                );
+            }
+
+        }
     }
 }

@@ -15,18 +15,18 @@ class Ge_wordsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('ge_words')->insert(
-            [
-                'id' => 1,
-                'word' => 'geosa',
-            ]
-        );
+        if(env('APP_ENV') == 'local')
+        {
+            for ($i=0; $i < 150; $i++) {
 
-        DB::table('ge_words')->insert(
-            [
-                'id' => 2,
-                'word' => 'geala',
-            ]
-        );
+                DB::table('ge_words')->insert(
+                    [
+                        'id' => $i+1,
+                        'word' => 'geword'.$i+1,
+                    ]
+                );
+            }
+
+        }
     }
 }

@@ -20,11 +20,12 @@ class SubcategoriesTableSeeder extends Seeder
 
         // if(env('APP_ENV') == 'local')
         // {
-            for ($i=0; $i < 25; $i++) {
+            for ($i=0; $i < 50; $i++) {
 
                 DB::table('subcategories')->insert(
                     [
-                        'name' => $this->faker->word(),
+                        // 'name' => $this->faker->word(),
+                        'name' => 'subcategory'.$i+1,
                         'category_id' => rand(1,15),
                     ]
                 );

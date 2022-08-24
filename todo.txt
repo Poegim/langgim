@@ -1,5 +1,5 @@
 TODO
-    -- lessons/categories
+    -- dashboard landing
     -- success failure modals
     -- fill database
     -- user profiles and personal settings

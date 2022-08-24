@@ -2,7 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
+use App\Models\Subcategory;
 use App\Models\Word;
+use App\Models\Interfaces\ForeignWordInterface;
 use Livewire\Component;
 use Illuminate\View\View;
 
@@ -17,8 +20,10 @@ class Writing extends Component
     public $previousWord;
     public $guessedChars = [];
     public $wordArray = [];
-    public $language;
-    public $foreignWord;
+    public ?string $language;
+    public ?Category $category;
+    public ?Subcategory $subcategory;
+    public ?ForeignWordInterface $foreignWord;
     public ?int $wordLength;
     public int $charNumber = 0;
 
@@ -26,8 +31,8 @@ class Writing extends Component
     public bool $modalFailureVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
-    private int $wrongTry = 0;
-    private const ALLOWED_TRIES = 3;
+    public int $wrongTry = 0;
+    public const ALLOWED_TRIES = 3;
 
     /**
      * rules for reporting error validator
@@ -183,6 +188,7 @@ class Writing extends Component
      */
     public function isKeyValid(): void
     {
+
         if (in_array($this->lastKey, $this->wordArray[$this->charNumber]))
         {
             $this->charNumber++;
@@ -195,6 +201,7 @@ class Writing extends Component
             $this->wrongTry++;
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
             $this->wrongTry >= self::ALLOWED_TRIES ? $this->failure() : null;
+
         }
     }
 

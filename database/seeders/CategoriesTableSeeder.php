@@ -24,7 +24,8 @@ class CategoriesTableSeeder extends Seeder
 
                 DB::table('categories')->insert(
                     [
-                        'name' => $this->faker->word(),
+                        // 'name' => $this->faker->word(),
+                        'name' => 'category'.$i+1,
                     ]
                 );
             }
