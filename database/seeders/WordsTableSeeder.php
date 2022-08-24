@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use Faker\Factory;
-use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,21 +21,28 @@ class WordsTableSeeder extends Seeder
     public function run()
     {
         $this->faker = Factory::create();
+        $categories = Category::all();
 
         if(env('APP_ENV') == 'local')
         {
-            for ($i=0; $i < 150; $i++) {
-
-                DB::table('words')->insert(
-                    [
-                        'pl_word' => 'word'.$i+1,
-                        'sample_sentence' => $this->faker->realText(25),
-                        'category_id' => rand(1,15),
-                        'subcategory_id' => rand(1,5),
-                    ]
-                );
+            foreach ($categories as $category)
+            {
+                foreach($category->subcategories as $subcategory)
+                {
+                    for ($i=0; $i < 10; $i++) {
+                        DB::table('words')->insert(
+                            [
+                                'pl_word' => 'word'.$category->id.$subcategory->id.$i+1,
+                                'sample_sentence' => $this->faker->realText(25),
+                                'category_id' => $category->id,
+                                'subcategory_id' => $subcategory->id,
+                            ]
+                        );
+                    }
+                }
             }
-
         }
+
     }
+
 }

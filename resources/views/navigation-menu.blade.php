@@ -17,6 +17,10 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('category.index') }}" :active="request()->routeIs('category.index')">
+                        {{ __('Start Learning') }}
+                    </x-jet-nav-link>
                     @endauth
 
                     @if ((auth()->check() && (auth()->user()->isAdmin())))
@@ -197,6 +201,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-jet-responsive-nav-link>
+            <x-jet-responsive-nav-link href="{{ route('category.index') }}" :active="request()->routeIs('category.index')">
+                {{ __('Start Learning') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('admin.control-panel') }}"
                 :active="request()->routeIs('admin.control-panel')">

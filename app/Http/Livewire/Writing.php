@@ -2,12 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\Component;
+use App\Models\Word;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\Word;
 use App\Models\Interfaces\ForeignWordInterface;
-use Livewire\Component;
 use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class Writing extends Component
 {
@@ -15,11 +16,12 @@ class Writing extends Component
     public ?string $title = null;
 
     public ?string $lastKey = null;
-    public $words;
-    public $word;
-    public $previousWord;
-    public $guessedChars = [];
-    public $wordArray = [];
+    public ?Collection $words;
+    public ?Word $word = null;
+    public ?Word $previousWord = null;
+    public array $guessedChars = [];
+    public array $wordArray = [];
+
     public ?string $language;
     public ?Category $category;
     public ?Subcategory $subcategory;
@@ -76,10 +78,33 @@ class Writing extends Component
                 break;
         }
 
-        $this
+        if ($this->category != null) {
+
+            if($this->subcategory !=null)
+            {
+                $this
+                ->words = Word::with($withLanguage)
+                ->where('category_id', '=', $this->category->id)
+                ->where('subcategory_id', '=', $this->subcategory->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
+            } else
+            {
+                $this
+                ->words = Word::with($withLanguage)
+                ->where('category_id', '=', $this->category->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
+            }
+
+        } else
+        {
+            $this
             ->words = Word::with($withLanguage)
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
+        }
+
     }
 
     /**
