@@ -17,6 +17,7 @@ class Ua_wordsTableSeeder extends Seeder
     public function run()
     {
         $words = Word::all();
+
         if(env('APP_ENV') == 'local')
         {
             foreach($words as $word)
