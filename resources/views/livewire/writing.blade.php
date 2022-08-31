@@ -1,11 +1,11 @@
 <div class="rounded-lg bg-white shadow-md mb-2">
     <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
 
-        <div class="flex justify-center mt-2">
-
-            <div class="flex overflow-hidden relative" id="keyboard_icon">
-
-                <x-clarity-keyboard-line class="w-10 h-10 z-30" />
+        <div class="flex justify-center mt-1">
+            <div class="sm:flex overflow-hidden relative border rounded-lg p-2 hover:border-gray-400" id="keyboard_icon">
+                <div class="flex justify-center">
+                    <x-clarity-keyboard-line class="w-10 h-10 z-30" />
+                </div>
                 <span class="mt-2 ml-1 z-20">
                     Show Mobile Keyboard
                 </span>
@@ -16,27 +16,27 @@
             </div>
         </div>
 
-        <div class="flex justify-center">
-            <span class="h-16 text-3xl font-extrabold"> {{ $lastKey }} </span>
+        <div class="flex justify-center mt-4">
+            <span class="h-12"> {{ __('Last key:')}} {{ $lastKey }} </span>
             <span id="correctKey" class="hidden">
-                <x-clarity-success-line class="h-8 w-8 text-green-500" />
+                <x-clarity-success-line class="h-4 w-4 text-green-500" />
             </span>
             <span id="wrongKey" class="hidden">
-                <x-clarity-times-line class="h-8 w-8 text-red-500" />
+                <x-clarity-times-line class="h-4 w-4 text-red-500" />
             </span>
         </div>
 
         <div id="word_div" class="">
             <div class="h-10">
 
-                <h1 class="mt-5 text-3xl font-extrabold tracking-wider">{{ $foreignWord->word }}</h1>
+                <h1 class="mt-2 text-xl font-extrabold tracking-wider lowercase">{{ $foreignWord->word }}</h1>
 
             </div>
             <div class="mt-5 flex justify-center">
                 @foreach($guessedChars as $key => $char)
-                <div class="grid grid-cols-1">
+                <div class="grid grid-cols-1 lowercase">
                     <div class="w-4" id="field_{{$key}}">
-                        <span class="text-3xl font-extrabold tracking-wider"> {{$char}} </span>
+                        <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
                         <div class="text-green-500 hidden" id="success_{{$key}}">
