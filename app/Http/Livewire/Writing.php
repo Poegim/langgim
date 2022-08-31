@@ -6,8 +6,8 @@ use Livewire\Component;
 use App\Models\Word;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\Interfaces\ForeignWordInterface;
 use App\Models\User;
+use App\Models\Interfaces\ForeignWordInterface;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
 

@@ -7,14 +7,24 @@
             <div class="px-6 py-4 relative">
                 <h4 class="mb-3 text-xl font-semibold tracking-tight text-gray-800">Continue learning</h4>
                 <p class="leading-normal text-gray-700">
-                    Category: {{ $category }}
+                    Category: {{ $category->name }}
                 </p>
+                @if($subcategory != NULL)
                 <p class="leading-normal text-gray-700">
-                    Subcategory: {{ $subcategory }}
+                    Subcategory: {{ $subcategory->name }}
                 </p>
+                @endif
             </div>
             <div class="mt-auto mb-2 px-2">
-                <x-buttons.third class="mt-2 w-full">Go!</x-button.third>
+                    @if($subcategory != NULL)
+                    <a href="{{route('category.show', [$category, $subcategory])}}">
+                        <x-buttons.third class="mt-2 w-full">Go!</x-button.third>
+                    </a>
+                    @else
+                    <a href="{{route('category.show', [$category])}}">
+                        <x-buttons.third class="mt-2 w-full">Go!</x-button.third>
+                    </a>
+                    @endif
             </div>
         </div>
         @endif
