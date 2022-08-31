@@ -7,6 +7,7 @@ use App\Models\Word;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\Interfaces\ForeignWordInterface;
+use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -44,11 +45,35 @@ class Writing extends Component
         'message' => 'required|min:6',
     ];
 
-    public function mount($language): void
+    public function mount($language, $category = NULL, $subcategory = NULL): void
     {
         $this->queryBuilder();
         $this->loadWord();
         $this->langauge = $language;
+        $this->category = $category;
+        $this->subcategory = $subcategory;
+        $this->saveLastUsedCategory();
+    }
+
+    public function saveLastUsedCategory()
+    {
+        if(auth()->check())
+        {
+            if ($this->subcategory != NULL)
+            {
+                $user = User::findOrFail(auth()->id());
+                $user->subcategory = $this->subcategory->id;
+                $user->category = $this->category->id;
+                $user->save();
+            } elseif($this->category != NULL)
+            {
+                $user = User::findOrFail(auth()->id());
+                $user->category = $this->category->id;
+                $user->subcategory = NULL;
+                $user->save();
+            }
+        }
+
     }
 
     /**
