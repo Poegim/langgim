@@ -6,5 +6,6 @@ interface ForeignWordInterface {
 
     public function errors();
     public function word();
+    public function userWords();
 
 }

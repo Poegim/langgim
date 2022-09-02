@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -30,6 +31,11 @@ class Word extends Model
     public function geWord(): HasOne
     {
         return $this->hasOne(GeWord::class, 'id');
+    }
+
+    public function userWords(): HasMany
+    {
+        return $this->hasMany(UserWord::class, 'wordable_id')->where('user_id', '=', auth()->id());
     }
 
     public function category(): BelongsTo

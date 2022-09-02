@@ -53,6 +53,7 @@
             <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
                 <p>Word length: {{ $wordLength }} </p>
+                <p>Word id: {{ $word->id }} </p>
             </div>
 
             <div class="flex justify-center mt-12">
@@ -164,6 +165,28 @@
     </x-jet-dialog-modal>
 
 
+    <!-- Prototype modal lesson success-->
+    <x-jet-dialog-modal wire:model="modalLessonSuccessVisibility" id="modalLessonSuccess">
+        <x-slot name="title">
+            {{ __("Success") }}
+        </x-slot>
+
+        <x-slot name="content">
+            Lesson Success!
+        </x-slot>
+
+        <x-slot name="footer">
+            <div class="space-x-1">
+
+                <x-jet-secondary-button wire:click="hideModals">
+                    {{ __("Next")}}
+                </x-jet-secondary-button>
+
+            </div>
+        </x-slot>
+    </x-jet-dialog-modal>
+
+
     <script type="text/javascript">
         let textInput;
 
@@ -182,12 +205,14 @@
             //Modals
             modalFailure = document.getElementById('modalFailure');
             modalSuccess = document.getElementById('modalSuccess');
+            modalLessonSuccess = document.getElementById('modalLessonSuccess');
             modalError = document.getElementById('modalError');
 
             //If modals are hidden then user can write.
             if (
                 (modalFailure.style.display == 'none') &&
                 (modalSuccess.style.display == 'none') &&
+                (modalLessonSuccess.style.display == 'none') &&
                 (modalError.style.display == 'none')
                 )
             {
