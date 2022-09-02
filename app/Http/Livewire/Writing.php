@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\User;
 use App\Models\Interfaces\ForeignWordInterface;
+use App\Models\UserWord;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -23,15 +24,18 @@ class Writing extends Component
     public array $guessedChars = [];
     public array $wordArray = [];
 
+
     public ?string $language;
     public ?Category $category = null;
     public ?Subcategory $subcategory = null;
     public ?ForeignWordInterface $foreignWord = null;
     public ?int $wordLength = null;
+    public int $learnedWords = 0;
     public int $charNumber = 0;
 
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
+    public bool $modalLessonSuccessVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
     public int $wrongTry = 0;
@@ -53,27 +57,6 @@ class Writing extends Component
         $this->category = $category;
         $this->subcategory = $subcategory;
         $this->saveLastUsedCategory();
-    }
-
-    public function saveLastUsedCategory()
-    {
-        if(auth()->check())
-        {
-            if ($this->subcategory != NULL)
-            {
-                $user = User::findOrFail(auth()->id());
-                $user->subcategory = $this->subcategory->id;
-                $user->category = $this->category->id;
-                $user->save();
-            } elseif($this->category != NULL)
-            {
-                $user = User::findOrFail(auth()->id());
-                $user->category = $this->category->id;
-                $user->subcategory = NULL;
-                $user->save();
-            }
-        }
-
     }
 
     /**
@@ -108,7 +91,8 @@ class Writing extends Component
             if($this->subcategory !=null)
             {
                 $this
-                ->words = Word::with($withLanguage)
+                ->words = Word::with([$withLanguage, 'userWords'])
+                ->with('userWords')
                 ->where('category_id', '=', $this->category->id)
                 ->where('subcategory_id', '=', $this->subcategory->id)
                 ->whereRelation($withLanguage, 'word', '!=', '')
@@ -117,6 +101,7 @@ class Writing extends Component
             {
                 $this
                 ->words = Word::with($withLanguage)
+                ->with('userWords')
                 ->where('category_id', '=', $this->category->id)
                 ->whereRelation($withLanguage, 'word', '!=', '')
                 ->get();
@@ -130,6 +115,7 @@ class Writing extends Component
             ->get();
         }
 
+
     }
 
     /**
@@ -139,6 +125,7 @@ class Writing extends Component
     {
         $this->resetVariables();
         $this->word = $this->words->random();
+
         $this->previousWord == null ? $this->previousWord = $this->word : null;
         $this->generateWordArrays();
 
@@ -160,6 +147,28 @@ class Writing extends Component
                 $this->foreignWord = $this->word->esWord;
                 break;
         }
+    }
+
+
+    public function saveLastUsedCategory()
+    {
+        if(auth()->check())
+        {
+            if ($this->subcategory != NULL)
+            {
+                $user = User::findOrFail(auth()->id());
+                $user->subcategory = $this->subcategory->id;
+                $user->category = $this->category->id;
+                $user->save();
+            } elseif($this->category != NULL)
+            {
+                $user = User::findOrFail(auth()->id());
+                $user->category = $this->category->id;
+                $user->subcategory = NULL;
+                $user->save();
+            }
+        }
+
     }
 
     public function resetVariables(): void
@@ -251,8 +260,8 @@ class Writing extends Component
             $this->wrongTry++;
             $this->dispatchBrowserEvent('invalidKey', ['charNumber' => ($this->charNumber+1)]);
             $this->wrongTry >= self::ALLOWED_TRIES ? $this->failure() : null;
-
         }
+
     }
 
     /**
@@ -261,10 +270,28 @@ class Writing extends Component
      */
     public function success(): void
     {
-        auth()->check() ? $this->updateUserWord(true) : null;
-        $this->previousWord = $this->word;
-        $this->loadWord();
-        $this->modalSuccessVisibility = true;
+        if(auth()->check())
+        {
+            $this->updateUserWord(true);
+
+            if($this->isLessonFinished())
+            {
+                $this->previousWord = $this->word;
+                $this->modalLessonSuccessVisibility = true;
+
+            } else
+            {
+                $this->previousWord = $this->word;
+                $this->loadWord();
+                $this->modalSuccessVisibility = true;
+            }
+        } else
+        {
+            $this->previousWord = $this->word;
+            $this->loadWord();
+            $this->modalSuccessVisibility = true;
+        }
+
     }
 
     /**
@@ -298,6 +325,24 @@ class Writing extends Component
                 'is_learned' => $isSucces,
             ]
         );
+    }
+
+    public function isLessonFinished(): bool
+    {
+        foreach($this->words as $word)
+        {
+            if($word->userWords->first() == false)
+            {
+                return false;
+            }elseif($word->userWords->first()->is_learned == false)
+            {
+                return false;
+            }else
+            {
+                return true;
+            }
+
+        }
     }
 
     public function hideModals(): void
