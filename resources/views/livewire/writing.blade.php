@@ -53,6 +53,7 @@
             <div class="h-10">
                 <p>Actual char: {{ $charNumber+1 }}</p>
                 <p>Word length: {{ $wordLength }} </p>
+                <p>Word id: {{ $word->id }} </p>
             </div>
 
             <div class="flex justify-center mt-12">

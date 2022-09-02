@@ -1,4 +1,6 @@
 TODO
+    -- UI simple project
+    -- Learning words -> stop randoming
     -- dashboard landing
     -- success failure modals
     -- fill database

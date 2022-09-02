@@ -261,6 +261,7 @@ class Writing extends Component
      */
     public function success(): void
     {
+        auth()->check() ? $this->updateUserWord(true) : null;
         $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalSuccessVisibility = true;
@@ -272,9 +273,31 @@ class Writing extends Component
      */
     public function failure(): void
     {
+        auth()->check() ? $this->updateUserWord(false) : null;
         $this->previousWord = $this->word;
         $this->loadWord();
         $this->modalFailureVisibility = true;
+    }
+
+    /**
+     * Saves user progress of learning actual word.
+     * First table checks is combination of word/user/foreignword exist,
+     * then update or create.
+     */
+    public function updateUserWord(bool $isSucces): void
+    {
+        $this->foreignWord->userWords()->updateOrCreate(
+            [
+                'user_id' => auth()->id(),
+                'wordable_id' => $this->foreignWord->id,
+                'wordable_type' => ($this->foreignWord->userWords->first() ? $this->foreignWord->userWords[0]->wordable_type : null),
+            ],
+            [
+                'user_id' => auth()->id(),
+                'wrong_try' => $this->wrongTry,
+                'is_learned' => $isSucces,
+            ]
+        );
     }
 
     public function hideModals(): void
