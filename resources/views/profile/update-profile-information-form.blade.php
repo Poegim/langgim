@@ -79,8 +79,8 @@
 
                 <option></option>
                 <option value="ukrainian" @if(auth()->user()->language == 'ukrainian') selected="selected" @endif>Ukrainian</option>
-                <option value="english" @if(auth()->user()->language == 'english') selected="selected" @endif disabled>English</option>
-                <option value="german" @if(auth()->user()->language == 'german') selected="selected" @endif disabled>German</option>
+                <option value="english" @if(auth()->user()->language == 'english') selected="selected" @endif >English</option>
+                <option value="german" @if(auth()->user()->language == 'german') selected="selected" @endif >German</option>
                 <option value="spanish" @if(auth()->user()->language == 'spanish') selected="selected" @endif disabled>Spanish</option>
 
             </select>

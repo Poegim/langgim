@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('wordable_type');
             $table->foreignId('user_id')->constrained();
             $table->integer('wrong_try')->default(0);
-            $table->boolean('is_learned')->default(0);
+            $table->integer('is_learned')->default(0);
             $table->timestamps();
         });
     }

@@ -2,15 +2,14 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use App\Models\Word;
-use App\Models\Category;
-use App\Models\Subcategory;
 use App\Models\User;
-use App\Models\Interfaces\ForeignWordInterface;
-use App\Models\UserWord;
+use App\Models\Word;
+use Livewire\Component;
+use App\Models\Category;
 use Illuminate\View\View;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Interfaces\ForeignWordInterface;
 
 class Writing extends Component
 {
@@ -51,12 +50,21 @@ class Writing extends Component
 
     public function mount($language, $category = NULL, $subcategory = NULL): void
     {
-        $this->queryBuilder();
-        $this->loadWord();
+
         $this->langauge = $language;
         $this->category = $category;
         $this->subcategory = $subcategory;
-        $this->saveLastUsedCategory();
+        $this->loadWord();
+
+        if(auth()->check())
+        {
+            if($this->category != NULL)
+            {
+                $this->createUserWords();
+            }
+
+            $this->saveLastUsedCategory();
+        }
     }
 
     /**
@@ -96,7 +104,24 @@ class Writing extends Component
                 ->where('category_id', '=', $this->category->id)
                 ->where('subcategory_id', '=', $this->subcategory->id)
                 ->whereRelation($withLanguage, 'word', '!=', '')
+                ->whereRelation('userWords', 'is_learned', '<', 3)
                 ->get();
+
+                /**
+                 * If first time in this category or subcategory, get words without user words
+                 * becouse user words not exist jet.
+                 */
+                if($this->words->isEmpty())
+                {
+                    $this
+                    ->words = Word::with([$withLanguage, 'userWords'])
+                    ->with('userWords')
+                    ->where('category_id', '=', $this->category->id)
+                    ->where('subcategory_id', '=', $this->subcategory->id)
+                    ->whereRelation($withLanguage, 'word', '!=', '')
+                    ->get();
+                }
+
             } else
             {
                 $this
@@ -104,7 +129,22 @@ class Writing extends Component
                 ->with('userWords')
                 ->where('category_id', '=', $this->category->id)
                 ->whereRelation($withLanguage, 'word', '!=', '')
+                ->whereRelation('userWords', 'is_learned', '<', 3)
                 ->get();
+
+                /**
+                 * If first time in this category or subcategory, get words without user words
+                 * becouse user words not exist jet.
+                 */
+                if($this->words->isEmpty())
+                {
+                    $this
+                    ->words = Word::with($withLanguage)
+                    ->with('userWords')
+                    ->where('category_id', '=', $this->category->id)
+                    ->whereRelation($withLanguage, 'word', '!=', '')
+                    ->get();
+                }
             }
 
         } else
@@ -114,8 +154,6 @@ class Writing extends Component
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
         }
-
-
     }
 
     /**
@@ -124,7 +162,15 @@ class Writing extends Component
     public function loadWord(): void
     {
         $this->resetVariables();
-        $this->word = $this->words->random();
+        $this->queryBuilder();
+
+        if(auth()->check())
+        {
+            $this->word = $this->words->random();
+        } else
+        {
+            $this->word = $this->words->random();
+        }
 
         $this->previousWord == null ? $this->previousWord = $this->word : null;
         $this->generateWordArrays();
@@ -150,22 +196,91 @@ class Writing extends Component
     }
 
 
-    public function saveLastUsedCategory()
+    public function saveLastUsedCategory(): void
     {
-        if(auth()->check())
+
+        if ($this->subcategory != NULL)
         {
-            if ($this->subcategory != NULL)
-            {
-                $user = User::findOrFail(auth()->id());
-                $user->subcategory = $this->subcategory->id;
-                $user->category = $this->category->id;
-                $user->save();
-            } elseif($this->category != NULL)
-            {
-                $user = User::findOrFail(auth()->id());
-                $user->category = $this->category->id;
-                $user->subcategory = NULL;
-                $user->save();
+            $user = User::findOrFail(auth()->id());
+            $user->subcategory = $this->subcategory->id;
+            $user->category = $this->category->id;
+            $user->save();
+        } elseif($this->category != NULL)
+        {
+            $user = User::findOrFail(auth()->id());
+            $user->category = $this->category->id;
+            $user->subcategory = NULL;
+            $user->save();
+        }
+
+    }
+
+    /**
+     * If user learning this category first time, we are creating user_words
+     * to save learning progress.
+     */
+    public function createUserWords()
+    {
+        foreach($this->words as $word)
+        {
+            switch ($this->language) {
+                case 'ukrainian':
+
+                    $word->uaWord->userWords()->updateOrCreate(
+                        [
+                            'user_id' => auth()->id(),
+                            'wordable_id' => $word->id,
+                            'wordable_type' => 'App\Models\UaWord',
+                        ],
+                        [
+                            'user_id' => auth()->id(),
+                            'wrong_try' => 0,
+                        ]
+                    );
+
+                    break;
+
+                case 'english':
+                    $word->enWord->userWords()->updateOrCreate(
+                        [
+                            'user_id' => auth()->id(),
+                            'wordable_id' => $word->id,
+                            'wordable_type' => 'App\Models\EnWord'
+                        ],
+                        [
+                            'user_id' => auth()->id(),
+                            'wrong_try' => 0,
+                        ]
+                    );
+                    break;
+
+                case 'german':
+                    $word->geWord->userWords()->updateOrCreate(
+                        [
+                            'user_id' => auth()->id(),
+                            'wordable_id' => $word->id,
+                            'wordable_type' => 'App\Models\GeWord',
+                        ],
+                        [
+                            'user_id' => auth()->id(),
+                            'wrong_try' => 0,
+                        ]
+                    );
+                    break;
+
+                case 'spanish':
+                    $word->esWord->userWords()->updateOrCreate(
+                        [
+                            'user_id' => auth()->id(),
+                            'wordable_id' => $word->id,
+                            'wordable_type' => 'App\Models\EsWord'
+                        ],
+                        [
+                            'user_id' => auth()->id(),
+                            'wrong_try' => 0,
+                        ]
+                    );
+                    break;
             }
         }
 
@@ -272,19 +387,23 @@ class Writing extends Component
     {
         if(auth()->check())
         {
-            $this->updateUserWord(true);
-
-            if($this->isLessonFinished())
+            if($this->updateUserWord(true) == true)
             {
-                $this->previousWord = $this->word;
-                $this->modalLessonSuccessVisibility = true;
 
-            } else
-            {
-                $this->previousWord = $this->word;
-                $this->loadWord();
-                $this->modalSuccessVisibility = true;
+                if($this->isLessonFinished())
+                {
+                    $this->previousWord = $this->word;
+                    $this->modalLessonSuccessVisibility = true;
+
+                } else
+                {
+                    $this->previousWord = $this->word;
+                    $this->loadWord();
+                    $this->modalSuccessVisibility = true;
+                }
             }
+
+
         } else
         {
             $this->previousWord = $this->word;
@@ -308,41 +427,53 @@ class Writing extends Component
 
     /**
      * Saves user progress of learning actual word.
-     * First table checks is combination of word/user/foreignword exist,
-     * then update or create.
      */
-    public function updateUserWord(bool $isSucces): void
+    public function updateUserWord(bool $isSucces): bool
     {
-        $this->foreignWord->userWords()->updateOrCreate(
+
+        $word = $this->foreignWord->userWords()->firstOrNew(
             [
                 'user_id' => auth()->id(),
                 'wordable_id' => $this->foreignWord->id,
                 'wordable_type' => ($this->foreignWord->userWords->first() ? $this->foreignWord->userWords[0]->wordable_type : null),
-            ],
-            [
-                'user_id' => auth()->id(),
-                'wrong_try' => $this->wrongTry,
-                'is_learned' => $isSucces,
             ]
         );
+
+        $word->user_id = auth()->id();
+        $word->wrong_try = $this->wrongTry;
+
+        if($isSucces)
+        {
+            $word->is_learned++;
+        } else
+        {
+            $word->is_learned <= 0 ? null : $word->is_learned--;
+        }
+
+        if($word->save())
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
     }
 
-    public function isLessonFinished(): bool
+    public function isLessonFinished()
     {
         foreach($this->words as $word)
         {
-            if($word->userWords->first() == false)
+
+            if($word->userWords[0]->is_learned < 3)
             {
                 return false;
-            }elseif($word->userWords->first()->is_learned == false)
-            {
-                return false;
-            }else
-            {
-                return true;
             }
 
         }
+
+        return true;
+
     }
 
     public function hideModals(): void
