@@ -1211,12 +1211,6 @@ select {
 .max-w-6xl {
   max-width: 72rem;
 }
-.max-w-sm {
-  max-width: 24rem;
-}
-.max-w-md {
-  max-width: 28rem;
-}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2418,10 +2412,6 @@ select {
 
   .md\:mt-0 {
     margin-top: 0px;
-  }
-
-  .md\:mr-12 {
-    margin-right: 3rem;
   }
 
   .md\:table-cell {

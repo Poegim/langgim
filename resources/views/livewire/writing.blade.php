@@ -178,9 +178,12 @@
         <x-slot name="footer">
             <div class="space-x-1">
 
-                <x-jet-secondary-button wire:click="hideModals">
-                    {{ __("Next")}}
-                </x-jet-secondary-button>
+                <a href="{{ route('category.index') }}">
+                    <x-jet-secondary-button>
+                        {{ __("Back to categories")}}
+                    </x-jet-secondary-button>
+                </a>
+
 
             </div>
         </x-slot>

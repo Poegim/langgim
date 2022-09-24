@@ -1,25 +1,28 @@
 TODO
     -- UI simple project
     -- Learning words -> stop randoming
+    -- Reset learned category or words(?) progress
     -- dashboard landing
     -- success failure modals
     -- fill database
     -- user profiles and personal settings
     -- upload audio
     -- contact form
-    -- flashes
 
 FIXES
+    -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
+        lesson finish modal
     -- Blade-UI icons should be switched due to unchangable(?) HTML titles
 
 FEATURES
 
-
 REFACTOR
-    -- "delete.blade" livewire views are typicaly same except item name, should be merged into one view
 
 TESTING
 
 IN CONSIDERATION
+    -- separate writing component
+    -- "delete.blade" livewire views are typicaly same except item name, could be merged into one view
+    -- flashes
     -- additional validation of subcategories and categories unique combination
     -- blog
