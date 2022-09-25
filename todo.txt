@@ -1,7 +1,7 @@
 TODO
     -- Reset learned category or words(?) progress
     -- dashboard landing
-    -- UI simple project
+    -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- success failure modals
     -- user profiles and personal settings
     -- fill database

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    public $language;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -17,6 +19,7 @@ class CategoryController extends Controller
     {
         return view('categories.index', [
             'categories' => Category::with('subcategories')->get(),
+            'language' => auth()->user()->language,
         ]);
     }
 
