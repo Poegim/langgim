@@ -1,11 +1,10 @@
 TODO
-    -- UI simple project
-    -- Learning words -> stop randoming
     -- Reset learned category or words(?) progress
     -- dashboard landing
+    -- UI simple project
     -- success failure modals
-    -- fill database
     -- user profiles and personal settings
+    -- fill database
     -- upload audio
     -- contact form
 

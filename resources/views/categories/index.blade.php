@@ -7,19 +7,30 @@
 
     @foreach ($categories as $category)
     <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 sm:mx-2 flex flex-col p-4">
-        <span class="font-extrabold">
+        <div class="font-extrabold flex justify-between">
             <a href="{{route('category.show', [$category])}}">
                 {{$category->name}}
             </a>
-        </span>
+            <span class="mr-3">
+                <livewire:categories.reset
+                :category="$category"
+                >
+            </span>
+        </div>
 
         <ul class="divide-y-2 divide-gray-100">
             @foreach ($category->subcategories as $subcategory)
-                <li class="p-3 ml-4">
-                    <a href="{{route('category.show', [$category, $subcategory])}}">
-                        {{$subcategory->name}}
-                    </a>
-                </li>
+                <div class="flex p-3 ml-4 justify-between">
+                    <li>
+                        <a href="{{route('category.show', [$category, $subcategory])}}">
+                            {{$subcategory->name}}
+                        </a>
+                    </li>
+                    <livewire:categories.reset
+                    :category="$category"
+                    :subcategory="$subcategory"
+                    >
+                </div>
             @endforeach
         </ul>
     </div>
