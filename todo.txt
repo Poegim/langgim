@@ -1,19 +1,20 @@
 TODO
-    -- Reset learned category or words(?) progress
     -- dashboard landing
     -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- success failure modals
-    -- user profiles and personal settings
     -- fill database
     -- upload audio
-    -- contact form
 
 FIXES
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
     -- Blade-UI icons should be switched due to unchangable(?) HTML titles
+    -- Category learning takes only subcategory words
 
 FEATURES
+    -- show is category learned
+    -- user profiles and personal settings
+    -- contact form
 
 REFACTOR
 

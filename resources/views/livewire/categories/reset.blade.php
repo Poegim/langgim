@@ -12,7 +12,7 @@
         <div
         x-show="tooltip"
         class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
-        transform -translate-y-8 -translate-x-28">
+        transform translate-y-2">
             Reset progress
          </div>
 

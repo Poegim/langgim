@@ -29,10 +29,30 @@
                             {{$subcategory->name}}
                         </a>
                     </li>
-                    <livewire:categories.reset
-                    :category="$category"
-                    :subcategory="$subcategory"
-                    >
+                    <div class="flex">
+
+                        <span class="mr-2 h-5 w-5 cursor-pointer"
+                        x-data="{ tooltip: false }"
+                        x-on:mouseover="tooltip = true"
+                        x-on:mouseleave="tooltip = false"
+                        class="ml-2 h-5 w-5 cursor-pointer">
+
+                        <x-tni-tick-circle-o class="w-6 h-6 text-blue-500"/>
+
+                        <div
+                        x-show="tooltip"
+                        class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                        transform translate-y-2">
+                            This category has been fully learned.
+                         </div>
+
+                        </span>
+
+                        <livewire:categories.reset
+                        :category="$category"
+                        :subcategory="$subcategory"
+                        >
+                    </div>
                 </div>
             @endforeach
         </ul>
