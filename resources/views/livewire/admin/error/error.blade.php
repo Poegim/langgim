@@ -64,7 +64,7 @@
     </div>
 
     <!-- Delete Modal -->
-    <x-jet-dialog-modal wire:model="deleteModalVisibility">
+    <x-old-dialog-modal wire:model="deleteModalVisibility">
         <x-slot name="title">
             {{ __("Delete Error: ")}} {{$errorModelId}}
         </x-slot>
@@ -85,10 +85,10 @@
                 </x-jet-danger-button>
             </div>
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-old-dialog-modal>
 
     <!-- view / Edit Modal -->
-    <x-jet-dialog-modal wire:model="viewModalVisibility">
+    <x-old-dialog-modal wire:model="viewModalVisibility">
         <x-slot name="title">
             <div class="flex justify-between">
                 <div class="mt-2 text-sm">
@@ -140,7 +140,7 @@
                 </x-jet-button>
             </div>
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-old-dialog-modal>
 
 
 </div>

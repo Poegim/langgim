@@ -7,7 +7,7 @@
         <x-clarity-remove-line class="w-5 h-5 text-red-700" />
     </a>
 
-    <x-jet-dialog-modal wire:model="modalVisibility">
+    <x-old-dialog-modal wire:model="modalVisibility">
         <x-slot name="title" >
             {{ __("Delete Audio File") }}
         </x-slot>
@@ -31,5 +31,5 @@
             </x-jet-danger-button>
             </div>
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-old-dialog-modal>
 </div>
