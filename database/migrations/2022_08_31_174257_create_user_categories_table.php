@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('user_categories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('categoryable_id');
+            $table->string('categoryable_type');
             $table->boolean('is_learned')->default(0);
             $table->timestamps();
         });

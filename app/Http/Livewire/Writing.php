@@ -61,7 +61,13 @@ class Writing extends Component
             if($this->category != NULL)
             {
                 $this->createUserWords();
+                // $this->createUserCategories();
             }
+
+            // if($this->subcategory != NULL)
+            // {
+            //     $this->createUserCategories();
+            // }
 
             $this->saveLastUsedCategory();
         }
@@ -285,6 +291,78 @@ class Writing extends Component
         }
 
     }
+
+    // public function createUserCategories()
+    // {
+    //     switch ($this->language) {
+    //         case 'ukrainian':
+
+    //             auth()->user()->userCategories()->firstOrCreate(
+    //                 ['categoryable_id' =>  $this->category->id],
+    //                 ['categoryable_type' => 'App\Models\UaWord',],
+    //             );
+    //             break;
+
+    //         case 'english':
+    //             auth()->user()->userCategories()->firstOrCreate(
+    //                 ['categoryable_id' =>  $this->category->id],
+    //                 ['categoryable_type' => 'App\Models\EnWord',],
+    //             );
+    //             break;
+
+    //         case 'german':
+    //             auth()->user()->userCategories()->firstOrCreate(
+    //                 ['categoryable_id' =>  $this->category->id],
+    //                 ['categoryable_type' => 'App\Models\GeWord',],
+    //             );
+    //             break;
+
+    //         case 'spanish':
+    //             auth()->user()->userCategories()->firstOrCreate(
+    //                 ['categoryable_id' =>  $this->category->id],
+    //                 ['categoryable_type' => 'App\Models\EsWord',],
+    //             );
+    //             break;
+    //     }
+    // }
+
+    // public function createUserSubcategories()
+    // {
+    //     switch ($this->language) {
+    //         case 'ukrainian':
+
+    //             auth()->user()->userSubcategories()->firstOrCreate(
+    //                 ['subcategoryable_id' =>  $this->subcategory->id],
+    //                 ['subcategoryable_type' => 'App\Models\UaWord',],
+    //                 ['category_id' =>  $this->category->id],
+    //             );
+    //             break;
+
+    //         case 'english':
+    //             auth()->user()->userSubcategories()->firstOrCreate(
+    //                 ['subcategoryable_id' =>  $this->subcategory->id],
+    //                 ['subcategoryable_type' => 'App\Models\EnWord',],
+    //                 ['category_id' =>  $this->category->id],
+    //             );
+    //             break;
+
+    //         case 'german':
+    //             auth()->user()->userSubcategories()->firstOrCreate(
+    //                 ['subcategoryable_id' =>  $this->subcategory->id],
+    //                 ['subcategoryable_type' => 'App\Models\GeWord',],
+    //                 ['category_id' =>  $this->category->id],
+    //             );
+    //             break;
+
+    //         case 'spanish':
+    //             auth()->user()->userSubcategories()->firstOrCreate(
+    //                 ['subcategoryable_id' =>  $this->subcategory->id],
+    //                 ['subcategoryable_type' => 'App\Models\EsWord',],
+    //                 ['category_id' =>  $this->category->id],
+    //             );
+    //             break;
+    //     }
+    // }
 
     public function resetVariables(): void
     {

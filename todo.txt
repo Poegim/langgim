@@ -17,6 +17,9 @@ FEATURES
     -- contact form
 
 REFACTOR
+    -- createOrUpdate to firstorcreate?
+    -- categories index should bo rewrited to livewire since it loads a ton of views, with
+    makes app slow, almost 1000ms of load
 
 TESTING
 
