@@ -19,6 +19,6 @@ class UserWord extends Model
 
     public function word()
     {
-        return $this->belongsTo(Word::class, 'id');
+        return $this->belongsTo(Word::class, 'wordable_id');
     }
 }

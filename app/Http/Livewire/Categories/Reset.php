@@ -33,19 +33,13 @@ class Reset extends Component
         {
             switch ($this->language) {
                 case 'ukrainian':
-
                     $this->words =
                     auth()
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\UaWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\UaWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->get();
 
                     break;
@@ -56,13 +50,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\EnWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\EnWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->get();
 
                     break;
@@ -73,13 +62,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\GeWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\GEWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->get();
 
                     break;
@@ -90,13 +74,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\EsWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\EsWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->get();
 
                     break;
@@ -104,22 +83,21 @@ class Reset extends Component
         } else
         {
             switch ($this->language) {
+
                 case 'ukrainian':
                     $this->words =
                     auth()
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\UaWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\UaWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
                     ->get();
+
                     break;
+
+
 
                 case 'english':
                     $this->words =
@@ -127,13 +105,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\EnWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\EnWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
                     ->get();
                     break;
@@ -144,13 +117,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\GeWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\GeWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
                     ->get();
                     break;
@@ -161,13 +129,8 @@ class Reset extends Component
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_type' => 'App\Models\EsWord',
-
-                        ]
-                    )->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->where('wordable_type', '=', 'App\Models\EsWord')
+                    ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
                     ->get();
                     break;
