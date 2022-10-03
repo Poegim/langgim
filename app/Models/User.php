@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use App\Models\UserWord;
+use App\Models\UserCategory;
 use Illuminate\Support\Carbon;
+use App\Models\UserSubcategory;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -91,6 +93,16 @@ class User extends Authenticatable implements MustVerifyEmail
     public function userWords(): HasMany
     {
         return $this->hasMany(UserWord::class);
+    }
+
+    public function userCategories(): HasMany
+    {
+        return $this->hasMany(UserCategory::class);
+    }
+
+    public function userSubcategories(): HasMany
+    {
+        return $this->hasMany(UserSubcategory::class);
     }
 
     public function isAdmin(): bool
