@@ -11,11 +11,12 @@
 
             </div>
             <div class="mt-2 text-center">
-                <span class="text-sm font-extralight">
-                    Registration is temporary unavailable.
-                    <p>This app is under development.</p>
-                    <p class="mt-4">Please give us some time : )</p>
-                </span>
+                <a href="{{route('login')}}">
+                    <x-buttons.primary class="w-full h-16">
+                        <div>Register</div>
+                        <div class="text-sm font-extralight">Zarejestruj</div>
+                    </x-buttons.primary>
+                </a>
 
             </div>
 
@@ -24,7 +25,7 @@
                     <div>Log in</div>
                     <div class="text-sm font-extralight">Zaloguj</div>
                 </x-buttons.primary>
-            </a>
+                </a>
             </div>
             <div class="mt-6">
                 <a href="{{route('guest')}}"><x-buttons.third class="w-full h-16">
