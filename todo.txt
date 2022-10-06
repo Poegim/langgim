@@ -1,7 +1,6 @@
 TODO
-    -- success failure modals
     -- fill database
-    -- upload audio
+    -- audio
 
 FIXES
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
@@ -20,9 +19,12 @@ REFACTOR
 
 TESTING
 
+FUTURE OPTIONAL
+    -- success failure modals improvements
+
 IN CONSIDERATION
     -- separate writing component
-    -- "delete.blade" livewire views are typicaly same except item name, could be merged into one view
+    -- "delete.blade" livewire views are typicaly same except item name, could be maybe merged into one view
     -- flashes
     -- additional validation of subcategories and categories unique combination
     -- blog
