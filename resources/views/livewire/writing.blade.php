@@ -66,7 +66,7 @@
                 @endauth
 
                 @guest
-                <a href="{{route('login')}}" title="Please login to report error!" class="flex">
+                <a role="link" title="Please login to report error!" class="flex" disabled>
                     <span class="mt-2 mr-1 text-xs">Report error</span>
                     <x-clarity-error-standard-solid class="w-6 h-6 text-gray-500" />
                 </a>

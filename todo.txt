@@ -1,6 +1,4 @@
 TODO
-    -- dashboard landing
-    -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- success failure modals
     -- fill database
     -- upload audio
@@ -8,15 +6,14 @@ TODO
 FIXES
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
-    -- Blade-UI icons should be switched due to unchangable(?) HTML titles
-    -- Category learning takes only subcategory words
 
 FEATURES
-    -- show is category learned
     -- user profiles and personal settings
     -- contact form
 
 REFACTOR
+    -- Blade-UI icons should be switched due to unchangable(?) HTML titles
+    -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- createOrUpdate to firstorcreate?
     -- categories index should bo rewrited to livewire since it loads a ton of views, with
     makes app slow, almost 1000ms of load

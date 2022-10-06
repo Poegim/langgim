@@ -1,20 +1,5 @@
 <x-app-layout>
 
-
-{{-- @foreach ($categories as $category)
-
-    @foreach ($category->words as $word)
-
-    {{ dump($word->userWords->isEmpty()) }}<br>
-
-    {{ $loop->count}} words count <br>
-
-    {{$loop->iteration}} word iteration, <br>
-    {{$loop->parent->iteration}}, category iteration
-
-    @endforeach
-@endforeach --}}
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Choose category') }}
@@ -31,63 +16,58 @@
             </a>
             <div class="mr-3 flex">
 
-                <span class="mr-2 h-5 w-5 cursor-pointer"
-                        x-data="{ tooltip: false }"
-                        x-on:mouseover="tooltip = true"
-                        x-on:mouseleave="tooltip = false"
-                        class="ml-2 h-5 w-5 cursor-pointer">
+                @if ($category->learned_words == $category->words->count())
+                <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
+                    x-on:mouseleave="tooltip = false" class="ml-2 h-5 w-5 cursor-pointer">
 
-                        <x-tni-tick-circle-o class="w-6 h-6 text-blue-500"/>
+                    <x-tni-tick-circle-o class="w-6 h-6 text-blue-500" />
 
-                        <div
-                        x-show="tooltip"
-                        class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
-                        transform translate-y-2">
-                            This category has been fully learned.
-                         </div>
+                    <div x-show="tooltip" class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                transform translate-y-2">
 
-                        </span>
+                        This category has been fully learned.
+                    </div>
 
-                <livewire:categories.reset
-                :category="$category"
-                :subcategory="NULL"
-                >
-                </div>
+                </span>
+                @endif
+                @if ($category->learned_words != 0)
+                <livewire:categories.reset :category="$category" :subcategory="NULL">
+                @endif
+            </div>
         </div>
 
         <ul class="divide-y-2 divide-gray-100">
             @foreach ($category->subcategories as $subcategory)
-                <div class="flex p-3 ml-4 justify-between">
-                    <li>
-                        <a href="{{route('category.show', [$category, $subcategory])}}">
-                            {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->words->count()}})
-                        </a>
-                    </li>
-                    <div class="flex">
+            <div class="flex p-3 ml-4 justify-between">
+                <li>
+                    <a href="{{route('category.show', [$category, $subcategory])}}">
+                        {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->words->count()}})
+                    </a>
+                </li>
+                <div class="flex">
+                    @if ($subcategory->learned_words == $subcategory->words->count())
 
-                        <span class="mr-2 h-5 w-5 cursor-pointer"
-                        x-data="{ tooltip: false }"
-                        x-on:mouseover="tooltip = true"
-                        x-on:mouseleave="tooltip = false"
+                    <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                        x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
                         class="ml-2 h-5 w-5 cursor-pointer">
 
-                        <x-tni-tick-circle-o class="w-6 h-6 text-blue-500"/>
+                        <x-tni-tick-circle-o class="w-6 h-6 text-blue-500" />
 
-                        <div
-                        x-show="tooltip"
-                        class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                        <div x-show="tooltip" class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
                         transform translate-y-2">
                             This category has been fully learned.
-                         </div>
+                        </div>
 
-                        </span>
+                    </span>
+                    @endif
 
-                        <livewire:categories.reset
-                        :category="$category"
-                        :subcategory="$subcategory"
-                        >
-                    </div>
+                    @if ($subcategory->learned_words != 0)
+
+                    <livewire:categories.reset :category="$category" :subcategory="$subcategory">
+                        @endif
+
                 </div>
+            </div>
             @endforeach
         </ul>
     </div>
