@@ -7,7 +7,6 @@ FIXES
         lesson finish modal
 
 FEATURES
-    -- user profiles and personal settings
     -- contact form
 
 REFACTOR
@@ -15,12 +14,14 @@ REFACTOR
     -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- createOrUpdate to firstorcreate?
     -- categories index should bo rewrited to livewire since it loads a ton of views, with
-    makes app slow, almost 1000ms of load
+    makes app slow, almost 1000ms of load (but only localy ???)
+    -- mobile writing design fix
 
 TESTING
 
-FUTURE OPTIONAL
+FUTURE / OPTIONAL
     -- success failure modals improvements
+
 
 IN CONSIDERATION
     -- separate writing component
