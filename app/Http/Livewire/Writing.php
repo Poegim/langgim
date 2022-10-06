@@ -170,6 +170,7 @@ class Writing extends Component
         $this->resetVariables();
         $this->queryBuilder();
 
+
         if(auth()->check())
         {
             $this->word = $this->words->random();
@@ -199,6 +200,7 @@ class Writing extends Component
                 $this->foreignWord = $this->word->esWord;
                 break;
         }
+
     }
 
 
