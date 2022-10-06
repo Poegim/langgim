@@ -11,7 +11,7 @@
 
             </div>
             <div class="mt-2 text-center">
-                <a href="{{route('login')}}">
+                <a href="{{route('register')}}">
                     <x-buttons.primary class="w-full h-16">
                         <div>Register</div>
                         <div class="text-sm font-extralight">Zarejestruj</div>
