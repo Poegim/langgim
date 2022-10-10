@@ -27,6 +27,8 @@
             </script>
         @endif
 
+        <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
+
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
     </head>
@@ -53,6 +55,7 @@
             </main>
         </div>
 
+        @stack('scripts')
         @stack('modals')
         @livewireScripts
     </body>
