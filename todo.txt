@@ -2,7 +2,7 @@ TODO
     -- fill database
     -- audio
 
-FIXES
+BUGS
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
 
@@ -21,6 +21,10 @@ TESTING
 
 FUTURE / OPTIONAL
     -- success failure modals improvements
+
+OUTSIDE PROBLEMS
+    -- better google indexing
+    -- emails server
 
 
 IN CONSIDERATION
