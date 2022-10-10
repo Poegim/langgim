@@ -2,6 +2,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 justify-center">
 
         <!-- Continue Learning -->
+        <!-- Couldnt be just passed a null if subcategory is a null? -->
         @if ($category != NULL)
         <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 mx-2 flex flex-col">
             <div class="p-4 relative">
