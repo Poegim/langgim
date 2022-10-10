@@ -16,9 +16,9 @@
         @livewireStyles
 
         @if (App::environment('production'))
-            <!-- Global site tag (gtag.js) - Google Analytics -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5KFMQZ01K"></script>
-            <script>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5KFMQZ01K"></script>
+        <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -27,10 +27,11 @@
             </script>
         @endif
 
-        <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script>
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
+        {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script> --}}
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ldrr2wiAAAAALaBNlzaDc31aTl7177oV4W3"></script>
     </head>
     <body class="font-sans antialiased">
         <x-jet-banner />
@@ -55,8 +56,8 @@
             </main>
         </div>
 
-        @stack('scripts')
         @stack('modals')
         @livewireScripts
+        @stack('scripts')
     </body>
 </html>
