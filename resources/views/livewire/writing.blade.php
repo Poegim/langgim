@@ -1,5 +1,5 @@
 <div class="rounded-lg bg-white shadow-md mb-2">
-    <div class="p-6 rounded-md w-8/12 mx-auto mt-12 text-center">
+    <div class="p-10 rounded-md w-8/12 mx-auto text-center">
 
         <div class="flex justify-center mt-1">
             <div class="sm:flex overflow-hidden relative border rounded-lg p-2 hover:border-gray-400" id="keyboard_icon">

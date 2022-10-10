@@ -1061,17 +1061,14 @@ select {
 .mb-2 {
   margin-bottom: 0.5rem;
 }
-.mt-24 {
-  margin-top: 6rem;
+.mt-12 {
+  margin-top: 3rem;
 }
 .mb-3 {
   margin-bottom: 0.75rem;
 }
 .mt-auto {
   margin-top: auto;
-}
-.mt-12 {
-  margin-top: 3rem;
 }
 .mr-1 {
   margin-right: 0.25rem;
@@ -1561,6 +1558,9 @@ select {
 .p-3 {
   padding: 0.75rem;
 }
+.p-10 {
+  padding: 2.5rem;
+}
 .px-4 {
   padding-left: 1rem;
   padding-right: 1rem;
@@ -1709,11 +1709,11 @@ select {
 .font-semibold {
   font-weight: 600;
 }
-.font-extralight {
-  font-weight: 200;
-}
 .font-extrabold {
   font-weight: 800;
+}
+.font-extralight {
+  font-weight: 200;
 }
 .uppercase {
   text-transform: uppercase;
