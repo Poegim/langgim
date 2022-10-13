@@ -1,4 +1,5 @@
 TODO
+    -- contact form
     -- fill database
     -- audio
 
@@ -7,7 +8,6 @@ BUGS
         lesson finish modal
 
 FEATURES
-    -- contact form
 
 REFACTOR
     -- Blade-UI icons should be switched due to unchangable(?) HTML titles
