@@ -53,21 +53,20 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <button class="ml-4" id="submitButton" type="button">
+                <x-jet-button class="ml-4">
                     {{ __('Register') }}
-                </button>
+                </x-jet-button>
             </div>
         </form>
 
         @push('scripts')
         <script>
             grecaptcha.ready(function () {
-                document.getElementById('submitButton').addEventListener("click", function (event) {
+                document.getElementById('registerForm').addEventListener("submit", function (event) {
                     event.preventDefault();
                     grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: 'register' })
                         .then(function (token) {
                             document.getElementById("recaptcha_token").value = token;
-                            document.getElementById('registerForm').submit();
                         });
                 });
             });
