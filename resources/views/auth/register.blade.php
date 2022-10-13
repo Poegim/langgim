@@ -39,8 +39,8 @@
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-900 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-900 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -49,20 +49,21 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-900 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <a href="" class="ml-4" id="submitButton" name="submitButton">
+                <x-jet-button class="ml-4">
                     {{ __('Register') }}
-                </a>
+                </x-jet-button>
             </div>
         </form>
+    </x-jet-authentication-card>
 
-        @push('scripts')
+    @push('scripts')
         <script>
             grecaptcha.ready(function () {
-                document.getElementById('submitButton').addEventListener("click", function (event) {
+                document.getElementById('registerForm').addEventListener("submit", function (event) {
                     event.preventDefault();
                     grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: 'register' })
                         .then(function (token) {
@@ -72,9 +73,5 @@
                 });
             });
         </script>
-        @endpush
-
-
-    </x-jet-authentication-card>
-
+    @endpush
 </x-guest-layout>
