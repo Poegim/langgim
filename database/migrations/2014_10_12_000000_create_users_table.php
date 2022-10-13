@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->integer('role')->default(3);
             $table->string('password');
+            $table->integer('role')->default(3);
             $table->string('language')->default('');
             $table->integer('category')->nullable();
             $table->integer('subcategory')->nullable();
