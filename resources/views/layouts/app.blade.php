@@ -33,8 +33,6 @@
 
     </head>
     <body class="font-sans antialiased">
-        @stack('scripts')
-
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
@@ -59,6 +57,5 @@
 
         @stack('modals')
         @livewireScripts
-        @stack('scripts')
     </body>
 </html>
