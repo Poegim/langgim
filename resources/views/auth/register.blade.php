@@ -53,11 +53,11 @@
                     {{ __('Already registered?') }}
                 </a>
 
-            </form>
-                <x-jet-button class="ml-4" id="submitButton" name="submitButton">
+                <a href="" class="ml-4" id="submitButton" name="submitButton">
                     {{ __('Register') }}
-                </x-jet-button>
+                </a>
             </div>
+        </form>
 
         @push('scripts')
         <script>
