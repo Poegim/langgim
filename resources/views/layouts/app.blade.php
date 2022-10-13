@@ -26,8 +26,6 @@
             gtag('config', 'G-N5KFMQZ01K');
             </script>
         @endif
-        <script src="https://www.google.com/recaptcha/api.js?render=6Ldrr2wiAAAAALaBNlzaDc31aTl7177oV4W3-rrs"></script>
-
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>

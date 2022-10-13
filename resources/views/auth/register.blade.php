@@ -53,16 +53,16 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+            </form>
+                <x-jet-button class="ml-4" id="submitButton" name="submitButton">
                     {{ __('Register') }}
                 </x-jet-button>
             </div>
-        </form>
 
         @push('scripts')
         <script>
             grecaptcha.ready(function () {
-                document.getElementById('registerForm').addEventListener("submit", function (event) {
+                document.getElementById('submitButton').addEventListener("click", function (event) {
                     event.preventDefault();
                     grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: 'register' })
                         .then(function (token) {
@@ -76,8 +76,5 @@
 
 
     </x-jet-authentication-card>
-
-
-
 
 </x-guest-layout>

@@ -13,7 +13,7 @@ REFACTOR
     -- Blade-UI icons should be switched due to unchangable(?) HTML titles
     -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- createOrUpdate to firstorcreate?
-    -- categories index should bo rewrited to livewire since it loads a ton of views, with
+    -- categories index could(?) bo rewrited to livewire since it loads a ton of views, with
     makes app slow, almost 1000ms of load (but only localy ???)
     -- mobile writing design fix
 
