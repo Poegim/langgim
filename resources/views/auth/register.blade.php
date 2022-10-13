@@ -67,6 +67,7 @@
                     grecaptcha.execute('{{ config('services.recaptcha.site_key') }}', { action: 'register' })
                         .then(function (token) {
                             document.getElementById("recaptcha_token").value = token;
+                            document.getElementById('registerForm').submit();
                         });
                 });
             });
