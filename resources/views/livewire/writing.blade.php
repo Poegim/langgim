@@ -1,56 +1,52 @@
 <div class="rounded-lg bg-white shadow-md mb-2">
-    <div class="p-10 rounded-md w-8/12 mx-auto text-center">
+    <div class="py-2 sm:py-4 rounded-md mx-auto text-center">
 
-        <div class="flex justify-center mt-1">
-            <div class="sm:flex overflow-hidden relative border rounded-lg p-2 hover:border-gray-400" id="keyboard_icon">
-                <div class="flex justify-center">
-                    <x-clarity-keyboard-line class="w-10 h-10 z-30" />
-                </div>
-                <span class="mt-2 ml-1 z-20">
-                    Show Mobile Keyboard
-                </span>
-                <div class="overflow-hidden relative">
-                    <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input"
+        <div class="sm:flex justify-center mt-1 block px-2">
+            <div class="">
+                <div class="flex overflow-hidden relative border rounded-lg p-2 hover:border-gray-400 justify-center" id="keyboard_icon">
+                    <div class="flex justify-center">
+                        <x-clarity-keyboard-line class="w-8 h-8 z-30" />
+                    </div>
+                    <span class="mt-2 ml-1 z-20 text-sm">
+                        Virtual Keyboard
+                    </span>
+                    <div class="overflow-hidden relative">
+                        <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input"
                         style="width:0px; height:0px; opacity:none; " autofocus />
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="flex justify-center mt-4">
-            <span class="h-12"> {{ __('Last key:')}} {{ $lastKey }} </span>
-            <span id="correctKey" class="hidden">
-                <x-clarity-success-line class="h-4 w-4 text-green-500" />
-            </span>
-            <span id="wrongKey" class="hidden">
-                <x-clarity-times-line class="h-4 w-4 text-red-500" />
-            </span>
+        <div class="flex justify-center mt-2 sm:mt-4">
+            <span class=""> {{ __('Last key:')}} {{ $lastKey }} </span>
         </div>
 
         <div id="word_div" class="">
-            <div class="h-10">
+            <div class="mt-4">
 
                 <h1 class="mt-2 text-xl font-extrabold tracking-wider lowercase">{{ $foreignWord->word }}</h1>
 
             </div>
-            <div class="mt-5 flex justify-center">
+            <div class="mt-4 flex justify-center">
                 @foreach($guessedChars as $key => $char)
                 <div class="grid grid-cols-1 lowercase">
                     <div class="w-4" id="field_{{$key}}">
                         <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
-                        <div class="text-green-500 hidden" id="success_{{$key}}">
-                            <x-clarity-success-line class="h-4 w-4" />
+                        <div class="text-green-500 font-bold hidden" id="success_{{$key}}">
+                            <x-clarity-success-line class="h-5 w-5" />
                         </div>
                         <div class="text-red-500 hidden" id="failure_{{$key}}">
-                            <x-clarity-times-line class="h-4 w-4" />
+                            <x-clarity-times-line class="h-5 w-5" />
                         </div>
                     </div>
                 </div>
                 @endforeach
             </div>
 
-            <div class="flex justify-center mt-12">
+            <div class="flex justify-center mt-4">
                 @auth
                 <a class="cursor-pointer flex" wire:click="$toggle('modalReportErrorVisibility')"
                     wire:loading.attr="disabled">

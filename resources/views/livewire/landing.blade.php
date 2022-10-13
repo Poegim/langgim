@@ -2,11 +2,13 @@
     <div class="px-4 pt-12 flex justify-center">
         <div class="w-full sm:w-2/3 md:w-1/2 lg:w-1/4">
 
-            <div class="text text-lg font-extrabold text-gray-600">
-                <h2>
+            <div class="tracking-wider font-bold text-gray-600">
+                <h1>
                     Welcome to LearnPolish.eu,
-                    this app will help you to quickly learn to write and speak in Polish.
-                </h2>
+                </h1>
+                <span class="font-thin text-md">
+                    simple and free app for people who was learn Polish language.
+                </span>
             </div>
 
             <div class="mt-12 text-center">
