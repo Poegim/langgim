@@ -22,13 +22,15 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        User::factory()->create([
-            'name' => 'Admin2',
-            'email' => 'admin2@example.com',
-            'role' => 1,
-            'password' => bcrypt('password'),
-        ]);
-
+        if(env('APP_ENV' == 'local'))
+        {
+            User::factory()->create([
+                'name' => 'Admin2',
+                'email' => 'admin2@example.com',
+                'role' => 1,
+                'password' => bcrypt('password'),
+            ]);
+        }
 
     }
 }

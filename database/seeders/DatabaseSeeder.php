@@ -23,13 +23,18 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(UsersTableSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(SubcategoriesTableSeeder::class);
-        $this->call(WordsTableSeeder::class);
-        $this->call(Ua_wordsTableSeeder::class);
-        $this->call(En_wordsTableSeeder::class);
-        $this->call(Ge_wordsTableSeeder::class);
-        $this->call(ErrorsTableSeeder::class);
+
+        if(env('APP_ENV' == 'local'))
+        {
+            $this->call(CategoriesTableSeeder::class);
+            $this->call(SubcategoriesTableSeeder::class);
+            $this->call(WordsTableSeeder::class);
+            $this->call(Ua_wordsTableSeeder::class);
+            $this->call(En_wordsTableSeeder::class);
+            $this->call(Ge_wordsTableSeeder::class);
+            $this->call(ErrorsTableSeeder::class);
+        }
+
 
         // \App\Models\User::factory(10)->create();
     }
