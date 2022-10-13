@@ -59,7 +59,7 @@
             </div>
         </form>
 
-        {{-- @push('scripts')
+        @push('scripts')
         <script>
             grecaptcha.ready(function () {
                 document.getElementById('registerForm').addEventListener("submit", function (event) {
@@ -72,7 +72,7 @@
                 });
             });
         </script>
-        @endpush --}}
+        @endpush
 
 
     </x-jet-authentication-card>
