@@ -15,7 +15,7 @@
 
         @livewireStyles
 
-        @if (App::environment('production'))
+        {{-- @if (App::environment('production')) --}}
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5KFMQZ01K"></script>
         <script>
@@ -25,15 +25,17 @@
 
             gtag('config', 'G-N5KFMQZ01K');
             </script>
-        @endif
+        {{-- @endif --}}
 
 
         <!-- Scripts -->
         <script src="{{ mix('js/app.js') }}" defer></script>
-        {{-- <script src="https://www.google.com/recaptcha/api.js?render={{ config('services.recaptcha.site_key') }}"></script> --}}
-        <script src="https://www.google.com/recaptcha/api.js?render=6Ldrr2wiAAAAALaBNlzaDc31aTl7177oV4W3"></script>
+        <script src="https://www.google.com/recaptcha/api.js?render=6Ldrr2wiAAAAALaBNlzaDc31aTl7177oV4W3-rrs"></script>
+
     </head>
     <body class="font-sans antialiased">
+        @stack('scripts')
+
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
