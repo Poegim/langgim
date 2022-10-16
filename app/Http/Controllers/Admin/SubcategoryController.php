@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Subcategory;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\Models\Subcategory;
+use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
+use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 
 class SubcategoryController extends Controller
 {
@@ -25,8 +26,21 @@ class SubcategoryController extends Controller
             'category' => 'required|exists:categories,id',
         ]);
 
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $validated = $request->validate([
+                $language => 'unique:subcategories,'.$language.'|max:25|min:3|nullable'
+            ]);
+        }
+
         $subcategory = new Subcategory();
         $subcategory->name = $request->name;
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $subcategory->{$language} = $request->{$language};
+        }
+
         $subcategory->category_id = $request->category;
         $subcategory->save();
 
@@ -54,7 +68,20 @@ class SubcategoryController extends Controller
             'category' => 'required|exists:categories,id',
         ]);
 
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $validated = $request->validate([
+                $language => ['max:25', 'min:3', Rule::unique('subcategories', $language)->ignore($subcategory->id, 'id'), 'nullable']
+            ]);
+        }
+
         $subcategory->name = $request->name;
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $subcategory->{$language} = $request->{$language};
+        }
+
         $subcategory->category_id = $request->category;
         $subcategory->save();
 

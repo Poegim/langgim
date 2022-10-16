@@ -4,7 +4,7 @@ namespace App\Http\Traits;
 
 trait ModelAdress
 {
-    public function getModelAdress($language): string
+    public function getModelAdress(string $language): string
     {
         switch ($language) {
             case 'ukrainian':
