@@ -11,14 +11,15 @@
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
                     <livewire:writing :language="$language">
                 @else
+                <div class="flex justify-center space-x-4">
                     @foreach (config('langgim.allowed_languages') as $language)
-                    <div class="flex justify-center space-x-4">
-                        <a href="{{route('guest', $language)}}">
-                            <img src="{{asset('/images/flags/'.$language.'.svg')}}" class="w-24 hover:opacity-90 rounded-md">
-                        </a>
-
-                    </div>
+                        <div>
+                            <a href="{{route('guest', $language)}}">
+                                <img src="{{asset('/images/flags/'.$language.'.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                            </a>
+                        </div>
                     @endforeach
+                </div>
                 @endif
             </div>
         </div>

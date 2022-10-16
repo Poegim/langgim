@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Traits\ModelAdress;
 use App\Models\User;
 use App\Models\Word;
 use Livewire\Component;
@@ -13,6 +14,8 @@ use App\Models\Interfaces\ForeignWordInterface;
 
 class Writing extends Component
 {
+    use ModelAdress;
+
     public ?string $message = null;
     public ?string $title = null;
 
@@ -51,7 +54,7 @@ class Writing extends Component
     public function mount($language, $category = NULL, $subcategory = NULL): void
     {
 
-        $this->langauge = $language;
+        $this->language = $language;
         $this->category = $category;
         $this->subcategory = $subcategory;
         $this->loadWord();
@@ -294,78 +297,6 @@ class Writing extends Component
 
     }
 
-    // public function createUserCategories()
-    // {
-    //     switch ($this->language) {
-    //         case 'ukrainian':
-
-    //             auth()->user()->userCategories()->firstOrCreate(
-    //                 ['categoryable_id' =>  $this->category->id],
-    //                 ['categoryable_type' => 'App\Models\UaWord',],
-    //             );
-    //             break;
-
-    //         case 'english':
-    //             auth()->user()->userCategories()->firstOrCreate(
-    //                 ['categoryable_id' =>  $this->category->id],
-    //                 ['categoryable_type' => 'App\Models\EnWord',],
-    //             );
-    //             break;
-
-    //         case 'german':
-    //             auth()->user()->userCategories()->firstOrCreate(
-    //                 ['categoryable_id' =>  $this->category->id],
-    //                 ['categoryable_type' => 'App\Models\GeWord',],
-    //             );
-    //             break;
-
-    //         case 'spanish':
-    //             auth()->user()->userCategories()->firstOrCreate(
-    //                 ['categoryable_id' =>  $this->category->id],
-    //                 ['categoryable_type' => 'App\Models\EsWord',],
-    //             );
-    //             break;
-    //     }
-    // }
-
-    // public function createUserSubcategories()
-    // {
-    //     switch ($this->language) {
-    //         case 'ukrainian':
-
-    //             auth()->user()->userSubcategories()->firstOrCreate(
-    //                 ['subcategoryable_id' =>  $this->subcategory->id],
-    //                 ['subcategoryable_type' => 'App\Models\UaWord',],
-    //                 ['category_id' =>  $this->category->id],
-    //             );
-    //             break;
-
-    //         case 'english':
-    //             auth()->user()->userSubcategories()->firstOrCreate(
-    //                 ['subcategoryable_id' =>  $this->subcategory->id],
-    //                 ['subcategoryable_type' => 'App\Models\EnWord',],
-    //                 ['category_id' =>  $this->category->id],
-    //             );
-    //             break;
-
-    //         case 'german':
-    //             auth()->user()->userSubcategories()->firstOrCreate(
-    //                 ['subcategoryable_id' =>  $this->subcategory->id],
-    //                 ['subcategoryable_type' => 'App\Models\GeWord',],
-    //                 ['category_id' =>  $this->category->id],
-    //             );
-    //             break;
-
-    //         case 'spanish':
-    //             auth()->user()->userSubcategories()->firstOrCreate(
-    //                 ['subcategoryable_id' =>  $this->subcategory->id],
-    //                 ['subcategoryable_type' => 'App\Models\EsWord',],
-    //                 ['category_id' =>  $this->category->id],
-    //             );
-    //             break;
-    //     }
-    // }
-
     public function resetVariables(): void
     {
         $this->charNumber = 0;
@@ -542,14 +473,20 @@ class Writing extends Component
 
     public function isLessonFinished()
     {
+        $modelAdress = $this->getModelAdress($this->language);
+
         foreach($this->words as $word)
         {
-
-            if($word->userWords[0]->is_learned < 3)
+            foreach($word->userWords as $userWord)
             {
-                return false;
+                if($userWord->wordable_type == $modelAdress)
+                {
+                    if($userWord->is_learned < 3)
+                    {
+                        return false;
+                    }
+                }
             }
-
         }
 
         return true;

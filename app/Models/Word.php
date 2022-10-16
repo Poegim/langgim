@@ -28,6 +28,11 @@ class Word extends Model
         return $this->hasOne(EnWord::class, 'id');
     }
 
+    public function esWord(): HasOne
+    {
+        return $this->hasOne(EsWord::class, 'id');
+    }
+
     public function geWord(): HasOne
     {
         return $this->hasOne(GeWord::class, 'id');

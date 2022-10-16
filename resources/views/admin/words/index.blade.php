@@ -32,11 +32,6 @@
                                     Polish
                                 </th>
                                 <th
-                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Ukrainian
-                                </th>
-
-                                <th
                                 class="px-1 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
                                     Audio
                                 </th>
@@ -49,7 +44,15 @@
                                     Category</th>
                                 <th
                                     class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
-                                    Subcategory</th>
+                                    Subcategory
+                                </th>
+
+                                @foreach (config('langgim.allowed_languages') as $language)
+                                <th
+                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    {{ substr($language, 0, 4) }}
+                                </th>
+                                @endforeach
 
                             </tr>
                         </thead>
@@ -70,20 +73,57 @@
                                         {{$word->pl_word}}
                                     </div>
                             </td>
-                            <td class="hidden md:table-cell px-2 py-3"><?php if(isset($word->uaWord->word)) echo $word->uaWord->word ?></td>
+
 
                             <td class="">
                                 @if($word->audio_file)
-                                    <x-tni-file-tick-o class="w-5 h-5 text-green-600"/>
-                                    <livewire:admin.words.audio-file.delete :word="$word" />
+                                <x-tni-file-tick-o class="w-5 h-5 text-green-600"/>
+                                <livewire:admin.words.audio-file.delete :word="$word" />
                                 @else
-                                    <x-tni-file-x-o class="w-5 h-5 text-red-700"/>
+                                <x-tni-file-x-o class="w-5 h-5 text-red-700"/>
                                 @endif
                             </td>
 
                             <td class="hidden md:table-cell px-2 py-3">{!! $word->sample_sentence !!}</td>
                             <td class="px-2 py-3">{!! $word->category->name !!}</td>
                             <td class="hidden md:table-cell px-2 py-3">{{$word->subcategory != null ? $word->subcategory->name : null }}</td>
+                            @foreach (config('langgim.allowed_languages') as $language)
+                                @switch($language)
+                                    @case('ukrainian')
+                                    <td class="hidden md:table-cell px-2 py-3">
+                                        @if(isset($word->uaWord->word))
+                                        <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
+                                        @endif
+                                    </td>
+                                        @break
+                                    @case('english')
+                                    <td class="hidden md:table-cell px-2 py-3">
+                                        @if(isset($word->enWord->word))
+                                        <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
+                                        @endif
+                                    </td>
+                                        @break
+
+                                    @case('german')
+                                    <td class="hidden md:table-cell px-2 py-3">
+                                        @if(isset($word->geWord->word))
+                                        <x-clarity-check-circle-line class="h-5 w-5 text-green-600"/>
+                                        @endif
+                                    </td>
+                                        @break
+
+                                    @case('spanish')
+                                    <td class="hidden md:table-cell px-2 py-3">
+                                        @if(isset($word->esWord->word))
+                                        <x-clarity-check-circle-line class="h-5 w-5 text-green-600"/>
+                                        @endif
+                                    </td>
+                                        @break
+                                    @default
+
+                                @endswitch
+
+                            @endforeach
                         </tr>
                         @endforeach
                         </tbody>

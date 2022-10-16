@@ -2,6 +2,6 @@
 
 return [
 
-    'allowed_languages' => ['ukrainian'],
+    'allowed_languages' => ['ukrainian', 'english', 'german', 'spanish'],
 
 ];
