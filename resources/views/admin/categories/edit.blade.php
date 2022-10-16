@@ -26,7 +26,7 @@
                     @foreach (config('langgim.allowed_languages') as $language)
                     <div class="mt-2">
                         <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
-                        <x-jet-input name="{{$language}}" id="{{$language}}" type="text" />
+                        <x-jet-input name="{{$language}}" id="{{$language}}" type="text" value="{{ $category->{$language} }}"/>
                         <x-jet-input-error for="{{$language}}"/>
                     </div>
                     @endforeach

@@ -29,7 +29,7 @@ class CategoryController extends Controller
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => 'unique:categories,'.$language.'|max:25|min:3'
+                $language => 'unique:categories,'.$language.'|max:25|min:3|nullable'
             ]);
         }
 
@@ -65,7 +65,21 @@ class CategoryController extends Controller
             'name' => ['required', 'max:25', 'min:3', Rule::unique('categories')->ignore($category->id, 'id')]
         ]);
 
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $validated = $request->validate([
+                $language => ['max:25', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'), 'nullable']
+            ]);
+        }
+
+
         $category->name = $request->name;
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $category->{$language} = $request->{$language};
+        }
+
         $category->save();
 
         session()->flash('flash.banner', 'Category updated!');
