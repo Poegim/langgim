@@ -1543,14 +1543,14 @@ select {
 .p-6 {
   padding: 1.5rem;
 }
+.p-0 {
+  padding: 0px;
+}
 .p-4 {
   padding: 1rem;
 }
 .p-3 {
   padding: 0.75rem;
-}
-.p-0 {
-  padding: 0px;
 }
 .px-4 {
   padding-left: 1rem;

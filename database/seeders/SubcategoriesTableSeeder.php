@@ -18,8 +18,8 @@ class SubcategoriesTableSeeder extends Seeder
     {
         $this->faker = Factory::create();
 
-        // if(env('APP_ENV') == 'local')
-        // {
+        if(env('APP_ENV') == 'local')
+        {
             for ($i=0; $i < 50; $i++) {
 
                 DB::table('subcategories')->insert(
@@ -31,6 +31,6 @@ class SubcategoriesTableSeeder extends Seeder
                 );
             }
 
-        // }
+        }
     }
 }

@@ -16,13 +16,21 @@
                     <div class="space-y-3">
                         <div>
                             <x-jet-label for="name">Name:</x-jet-label>
-                            <x-jet-input name="name" id="name" type="text" class="w-64" value="{{$subcategory->name}}"/>
+                            <x-jet-input name="name" id="name" type="text" value="{{$subcategory->name}}"/>
                             <x-jet-input-error for="name"/>
                         </div>
 
+                        @foreach (config('langgim.allowed_languages') as $language)
+                        <div class="mt-2">
+                            <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
+                            <x-jet-input name="{{$language}}" id="{{$language}}" type="text" value="{{ $subcategory->{$language} }}"/>
+                            <x-jet-input-error for="{{$language}}"/>
+                        </div>
+                        @endforeach
+
                         <div>
                             <x-jet-label for="category">Category:</x-jet-label>
-                            <select name="category" id="category" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
+                            <select name="category" id="category" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm">
                                 @foreach ($categories as $category)
                                     <option value="{{$category->id}}" @if($category->id == $subcategory->category_id) selected="selected" @endif>{{$category->name}}</option>
                                 @endforeach
