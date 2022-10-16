@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Traits\ModelAdress;
 use App\Models\Category;
 use App\Models\Subcategory;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    use ModelAdress;
     public $language;
+    private $languageModel;
 
     public function __construct()
     {
@@ -19,16 +21,19 @@ class CategoryController extends Controller
     {
 
         $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
-        $language = auth()->user()->language;
+
+        $this->language = auth()->user()->language;
+        $this->languageModel = $this->getModelAdress($this->language);
 
         return view('categories.index', [
             'categories' => $this->getProgress($categories),
-            'language' => $language,
+            'language' => $this->language,
         ]);
     }
 
     /**
-     * Foreaching over categories/subcategories->words and checking for already learned words.
+     * Foreaching over categories/subcategories->words->userWords
+     * and checking for already learned words of selected language.
      */
     public function getProgress($categories)
     {
@@ -40,7 +45,13 @@ class CategoryController extends Controller
             {
                 if(!$word->userWords->isEmpty())
                 {
-                    $word->userWords[0]->is_learned >= 3 ? $category->learned_words++ : null;
+                    foreach($word->userWords as $userWord)
+                    {
+                        if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                        {
+                            $category->learned_words++;
+                        }
+                    }
                 }
             }
 
@@ -51,7 +62,13 @@ class CategoryController extends Controller
                 {
                     if(!$word->userWords->isEmpty())
                     {
-                        $word->userWords[0]->is_learned >= 3 ? $subcategory->learned_words++ : null;
+                        foreach($word->userWords as $userWord)
+                        {
+                            if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                            {
+                                $subcategory->learned_words++;
+                            }
+                        }
                     }
                 }
             }

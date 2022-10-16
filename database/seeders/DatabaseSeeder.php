@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(UsersTableSeeder::class);
 
-        // if(env('APP_ENV' == 'local'))
-        // {
+        if(env('APP_ENV') == 'local')
+        {
             $this->call(CategoriesTableSeeder::class);
             $this->call(SubcategoriesTableSeeder::class);
             $this->call(WordsTableSeeder::class);
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             $this->call(Ge_wordsTableSeeder::class);
             $this->call(Es_wordsTableSeeder::class);
             $this->call(ErrorsTableSeeder::class);
-        // }
+        }
 
         // \App\Models\User::factory(10)->create();
     }

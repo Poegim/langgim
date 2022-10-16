@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Traits\ModelAdress;
 use App\Models\User;
 use App\Models\Word;
 use Livewire\Component;
@@ -13,6 +14,8 @@ use App\Models\Interfaces\ForeignWordInterface;
 
 class Writing extends Component
 {
+    use ModelAdress;
+
     public ?string $message = null;
     public ?string $title = null;
 
@@ -51,7 +54,7 @@ class Writing extends Component
     public function mount($language, $category = NULL, $subcategory = NULL): void
     {
 
-        $this->langauge = $language;
+        $this->language = $language;
         $this->category = $category;
         $this->subcategory = $subcategory;
         $this->loadWord();
@@ -470,14 +473,20 @@ class Writing extends Component
 
     public function isLessonFinished()
     {
+        $modelAdress = $this->getModelAdress($this->language);
+
         foreach($this->words as $word)
         {
-
-            if($word->userWords[0]->is_learned < 3)
+            foreach($word->userWords as $userWord)
             {
-                return false;
+                if($userWord->wordable_type == $modelAdress)
+                {
+                    if($userWord->is_learned < 3)
+                    {
+                        return false;
+                    }
+                }
             }
-
         }
 
         return true;
