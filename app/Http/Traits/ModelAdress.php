@@ -22,6 +22,10 @@ trait ModelAdress
             case 'spanish':
                 return 'App\Models\EsWord';
                 break;
+
+            default:
+                return '';
+                break;
         }
     }
 }

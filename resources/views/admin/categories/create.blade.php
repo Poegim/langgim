@@ -19,6 +19,15 @@
                             <x-jet-input name="name" id="name" type="text" />
                             <x-jet-input-error for="name"/>
                         </div>
+
+                        @foreach (config('langgim.allowed_languages') as $language)
+                            <div class="mt-2">
+                                <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
+                                <x-jet-input name="{{$language}}" id="{{$language}}" type="text" />
+                                <x-jet-input-error for="{{$language}}"/>
+                            </div>
+                        @endforeach
+
                     </div>
                     <div class="mt-2">
                         <x-jet-button>Save</x-jet-button>

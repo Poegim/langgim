@@ -26,8 +26,21 @@ class CategoryController extends Controller
             'name' => 'required|unique:categories|max:25|min:3',
         ]);
 
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $validated = $request->validate([
+                $language => 'unique:categories,'.$language.'|max:25|min:3'
+            ]);
+        }
+
         $category = new Category;
         $category->name = $request->name;
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $category->{$language} = $request->{$language};
+        }
+
         $category->save();
 
         session()->flash('flash.banner', 'Category added!');
