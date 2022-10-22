@@ -6,6 +6,5 @@
     <div class="rounded-full p-4 bg-fuchsia-900 uppercase">
         <span class="text-3xl text-white">Learn</span>
         <span class="text-3xl text-red-400">Polish</span>
-        <span class="text-3xl text-white">.eu</span>
     </div>
 </a>
