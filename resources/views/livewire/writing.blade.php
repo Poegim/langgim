@@ -66,6 +66,48 @@
         </div>
     </div>
 
+    <!-- Virtual keyboard -->
+    <div class="flex justify-center">
+        <div class="shadow-md absolute w-11/12 sm:w-8/12 lg:w-1/2 -bottom-0">
+            <div class="bg-white rounded-lg pt-2 pb-1 px-2 flex justify-between">
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Q</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">W</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">E</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">R</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">T</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Y</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">U</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">I</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">O</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">P</div>
+
+            </div>
+            <div class="bg-white rounded-lg py-1 px-8 flex">
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">A</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">S</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">D</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">F</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">G</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">H</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">J</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">K</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">L</div>
+            </div>
+            <div class="bg-white rounded-lg py-1 px-14 flex">
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Z</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">X</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">C</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">V</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">B</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">N</div>
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">M</div>
+            </div>
+            <div class="bg-white rounded-lg pt-1 pb-2 px-14 flex">
+                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">SPACE</div>
+            </div>
+        </div>
+    </div>
+
     <!-- Modal Report Error -->
     <x-jet-dialog-modal wire:model="modalReportErrorVisibility" id="modalError">
         <x-slot name="title">
