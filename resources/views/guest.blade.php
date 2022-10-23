@@ -9,11 +9,6 @@
 
         <div class="mt-10 flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100">
 
-            <div>
-                    <span class="text-2xl">
-                        Choose your language:
-                    </span>
-            </div>
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <div class="flex justify-center">
@@ -21,9 +16,14 @@
                     <div class="font-thin">
                         <div class="overflow-hidden sm:rounded-lg">
                             @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
-                                <livewire:writing :language="$language">
-                            @else
-                            <div class="flex justify-center space-x-4">
+                            <livewire:writing :language="$language">
+                                @else
+                            <div>
+                                    <span class="text-2xl">
+                                        Choose your language:
+                                    </span>
+                            </div>
+                            <div class="flex justify-center space-x-4 mt-2">
                                 @foreach (config('langgim.allowed_languages') as $language)
                                     <div>
                                         <a href="{{route('guest', $language)}}">

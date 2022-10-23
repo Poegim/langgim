@@ -11,7 +11,7 @@
                         Virtual Keyboard
                     </span>
                     <div class="overflow-hidden relative">
-                        <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input"
+                        <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input" name="super_hidden_secret_input"
                         style="width:0px; height:0px; opacity:none; " autofocus />
                     </div>
                 </div>
@@ -22,7 +22,7 @@
             <span class=""> {{ __('Last key:')}} {{ $lastKey }} </span>
         </div>
 
-        <div id="word_div" class="">
+        <div name="word_div" id="word_div" class="">
             <div class="mt-4">
 
                 <h1 class="mt-2 text-xl font-extrabold tracking-wider lowercase">{{ $foreignWord->word }}</h1>
@@ -35,10 +35,10 @@
                         <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
-                        <div class="text-green-500 font-bold hidden" id="success_{{$key}}">
+                        <div class="text-green-500 font-bold hidden" id="success_{{$key}}" name="success_{{$key}}">
                             <x-clarity-success-line class="h-5 w-5" />
                         </div>
-                        <div class="text-red-500 hidden" id="failure_{{$key}}">
+                        <div class="text-red-500 hidden" id="failure_{{$key}}" name="failure_{{$key}}"/>
                             <x-clarity-times-line class="h-5 w-5" />
                         </div>
                     </div>
@@ -68,42 +68,53 @@
 
     <!-- Virtual keyboard -->
     <div class="flex justify-center">
-        <div class="shadow-md absolute w-11/12 sm:w-8/12 lg:w-1/2 -bottom-0">
-            <div class="bg-white rounded-lg pt-2 pb-1 px-2 flex justify-between">
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Q</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">W</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">E</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">R</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">T</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Y</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">U</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">I</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">O</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">P</div>
-
+        <div class="shadow-md absolute w-11/12 sm:w-8/12 lg:w-1/2 -bottom-0 bg-white rounded-t-lg">
+            <div class="pt-2 pb-1 px-2 flex justify-between">
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N1">1</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N2">2</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N3">3</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N4">4</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N5">5</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N6">6</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N7">7</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N8">8</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N9">9</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N0">0</button>
             </div>
-            <div class="bg-white rounded-lg py-1 px-8 flex">
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">A</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">S</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">D</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">F</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">G</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">H</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">J</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">K</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">L</div>
+            <div class="pb-1 px-2 flex justify-between">
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Q">Q</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="W">W</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="E">E</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="R">R</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="T">T</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Y">Y</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="U">U</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="I">I</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="O">O</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="P">P</button>
             </div>
-            <div class="bg-white rounded-lg py-1 px-14 flex">
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">Z</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">X</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">C</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">V</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">B</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">N</div>
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">M</div>
+            <div class="rounded-lg py-1 px-8 flex">
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="A">A</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="S">S</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="D">D</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="F">F</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="G">G</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="H">H</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="J">J</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="K">K</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="L">L</button>
             </div>
-            <div class="bg-white rounded-lg pt-1 pb-2 px-14 flex">
-                <div class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center">SPACE</div>
+            <div class="rounded-lg py-1 px-14 flex">
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Z">Z</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="X">X</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="C">C</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="V">V</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="B">B</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N">N</button>
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="M">M</button>
+            </div>
+            <div class="rounded-lg pt-1 pb-2 px-14 flex">
+                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="SPACE">SPACE</button>
             </div>
         </div>
     </div>
@@ -223,15 +234,128 @@
 
 
     <script type="text/javascript">
+
+        let virtualKeyboard = document.getElementsByClassName("rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center");
+
+        let N1= document.getElementById("N1").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '1'}));
+        });
+        let N2= document.getElementById("N2").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '2'}));
+        });
+        let N3= document.getElementById("N3").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '3'}));
+        });
+        let N4= document.getElementById("N4").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '4'}));
+        });
+        let N5= document.getElementById("N5").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '5'}));
+        });
+        let N6= document.getElementById("N6").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '6'}));
+        });
+        let N7= document.getElementById("N7").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '7'}));
+        });
+        let N8= document.getElementById("N8").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '8'}));
+        });
+        let N9= document.getElementById("N9").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '9'}));
+        });
+        let N0= document.getElementById("N0").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': '0'}));
+        });
+        let Q = document.getElementById("Q").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'q'}));
+        });
+        let W = document.getElementById("W").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'w'}));
+        });
+        let E = document.getElementById("E").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'e'}));
+        });
+        let R = document.getElementById("R").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'r'}));
+        });
+        let T = document.getElementById("T").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 't'}));
+        });
+        let Y = document.getElementById("Y").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'y'}));
+        });
+        let U = document.getElementById("U").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'u'}));
+        });
+        let I = document.getElementById("I").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'i'}));
+        });
+        let O = document.getElementById("O").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'o'}));
+        });
+        let P = document.getElementById("P").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'p'}));
+        });
+        let A = document.getElementById("A").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'a'}));
+        });
+        let S = document.getElementById("S").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 's'}));
+        });
+        let D = document.getElementById("D").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'd'}));
+        });
+        let F = document.getElementById("F").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'f'}));
+        });
+        let G = document.getElementById("G").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'g'}));
+        });
+        let H = document.getElementById("H").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'h'}));
+        });
+        let J = document.getElementById("J").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'j'}));
+        });
+        let K = document.getElementById("K").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'k'}));
+        });
+        let L = document.getElementById("L").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'l'}));
+        });
+        let Z = document.getElementById("Z").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'z'}));
+        });
+        let X = document.getElementById("X").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'x'}));
+        });
+        let C = document.getElementById("C").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'c'}));
+        });
+        let V = document.getElementById("V").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'v'}));
+        });
+        let B = document.getElementById("B").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'b'}));
+        });
+        let N = document.getElementById("N").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'n'}));
+        });
+        let M = document.getElementById("M").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown', {'key': 'm'}));
+        });
+        let SPACE = document.getElementById("SPACE").addEventListener("click", function() {
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key': 'Space'}));
+        });
+
         let textInput;
 
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N',
-            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0'
+            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0', 'Space'
         ];
 
         document.addEventListener('keydown', function (event) {
-
-            console.log(event.key);
 
             //Clear hidden text input
             textInput = document.getElementById('super_hidden_secret_input');
@@ -295,11 +419,6 @@
                 div.classList.add("hidden");
             }, 500);
 
-            span = document.getElementById("correctKey");
-            span.classList.remove("hidden");
-            setTimeout(function () {
-                span.classList.add("hidden");
-            }, 500);
         });
 
         //If invalid key is hited this event is loaded
@@ -311,12 +430,6 @@
             div.classList.remove("hidden");
             setTimeout(function () {
                 div.classList.add("hidden");
-            }, 500);
-
-            span = document.getElementById("wrongKey");
-            span.classList.remove("hidden");
-            setTimeout(function () {
-                span.classList.add("hidden");
             }, 500);
 
         });
