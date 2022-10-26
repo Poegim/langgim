@@ -1,13 +1,14 @@
 TODO
-    -- contact form
+    -- dashboard
     -- fill database
-    -- audio
+    -- virtual keyboard
+    -- contact email
 
 BUGS
-    -- words CRUD requires foreach of allowed languages as in categories and subcategories
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
     -- android keyboard events are not recognized or android keyboard is not sending and event when keypressing
+    -- JS console bug
 
 FEATURES
 
@@ -22,6 +23,8 @@ REFACTOR
 TESTING
 
 FUTURE / OPTIONAL
+    -- audio
+    -- models naming convencion change into languages name (?)
     -- success failure modals improvements
 
 OUTSIDE PROBLEMS

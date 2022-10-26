@@ -20,27 +20,18 @@
                             <x-jet-input name="word" id="word" type="text" value="{{$word->pl_word}}"/>
                             <x-jet-input-error for="word" />
                         </div>
-                        <div>
-                            <x-jet-label for="ua_word">Ukrainian:</x-jet-label>
-                            <x-jet-input name="ua_word" id="ua_word" type="text" value="{{$word->uaWord ? $word->uaWord->word : ''}}"/>
-                            <x-jet-input-error for="ua_word" />
+
+                        @foreach (config('langgim.allowed_languages') as $language)
+                        <div class="mt-2">
+                            <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
+                            <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
+                            value="@php @endphp"
+                            />
+                            <x-jet-input-error for="{{$language}}"/>
                         </div>
+                        @endforeach
                         <div>
-                            <x-jet-label for="en_word">English:</x-jet-label>
-                            <x-jet-input name="en_word" id="en_word" type="text" value="{{$word->uenord ? $word->enWord->word : ''}}"/>
-                            <x-jet-input-error for="en_word" />
-                        </div>
-                        <div>
-                            <x-jet-label for="ge_word">German:</x-jet-label>
-                            <x-jet-input name="ge_word" id="ge_word" type="text" value="{{$word->geWord ? $word->geWord->word : ''}}"/>
-                            <x-jet-input-error for="ge_word" />
-                        </div>
-                        <div>
-                            <x-jet-label for="sample_sentence">Sample sentecne:</x-jet-label>
-                            <x-jet-input name="sample_sentence" id="sample_sentence" type="text" value="{{$word->sample_sentence}}"/>
-                            <x-jet-input-error for="sample_sentence" />
-                        </div>
-                        <div>
+
                             <x-jet-label for="category">Category:</x-jet-label>
                             <select name="category" id="category"
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">

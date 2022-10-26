@@ -27,13 +27,17 @@ class WordController extends Controller
 
         $request->validate([
             'word' => ['required',],
-            'ua_word' => ['nullable',],
-            'en_word' => ['nullable',],
-            'ge_word' => ['nullable',],
             'sample_sentecne' => ['nullable',],
             'category' => ['required',],
             'audio_file' => ['nullable','mimes:mp3','max:2048'],
         ]);
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $request->validate([
+                $language => 'max:30|nullable'
+            ]);
+        }
 
         //Split category input into category/subcategory array.
         $request->category = explode( '.', $request->category );
@@ -63,15 +67,19 @@ class WordController extends Controller
         $word->save();
 
         $word->uaWord()->create([
-            'word' => $request->ua_word ? $request->ua_word : '',
+            'word' => $request->ukrainian ? $request->ukrainian : '',
         ]);
 
         $word->enWord()->create([
-            'word' => $request->en_word ? $request->en_word : '',
+            'word' => $request->english ? $request->english : '',
         ]);
 
         $word->geWord()->create([
-            'word' => $request->ge_word ? $request->ge_word : '',
+            'word' => $request->german ? $request->german : '',
+        ]);
+
+        $word->esWord()->create([
+            'word' => $request->spanish ? $request->spanish : '',
         ]);
 
         //Redirect
@@ -96,13 +104,17 @@ class WordController extends Controller
     {
         $request->validate([
             'word' => ['required',],
-            'ua_word' => ['nullable',],
-            'en_word' => ['nullable',],
-            'ge_word' => ['nullable',],
             'sample_sentecne' => ['nullable',],
             'category' => ['required',],
             'audio_file' => ['nullable','mimes:mp3','max:2048'],
         ]);
+
+        foreach(config('langgim.allowed_languages') as $language)
+        {
+            $request->validate([
+                $language => 'max:30|nullable'
+            ]);
+        }
 
         //Split category input into category/subcategory array.
         $request->category = explode( '.', $request->category );
@@ -134,15 +146,19 @@ class WordController extends Controller
         $word->save();
 
         $word->uaWord()->update([
-            'word' => $request->ua_word ? $request->ua_word : '',
+            'word' => $request->ukrainian ? $request->ukrainian : '',
         ]);
 
         $word->enWord()->update([
-            'word' => $request->en_word ? $request->en_word : '',
+            'word' => $request->english ? $request->english : '',
         ]);
 
         $word->geWord()->update([
-            'word' => $request->ge_word ? $request->ge_word : '',
+            'word' => $request->german ? $request->german : '',
+        ]);
+
+        $word->esWord()->update([
+            'word' => $request->spanish ? $request->spanish : '',
         ]);
 
         //Redirect

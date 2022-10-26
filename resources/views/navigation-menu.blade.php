@@ -33,6 +33,12 @@
                     <x-jet-nav-link href="{{ route('guest') }}" :active="request()->routeIs('guest')">
                         {{ __('Guest Mode') }}
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-jet-nav-link>
+
+
                 </div>
             </div>
 
@@ -97,8 +103,8 @@
                     <a href="{{ route('login') }}" class="text-sm text-gray-900 hover:text-gray-400 px-2">Log in
                     </a>
 
-                    {{-- <a href="{{ route('register') }}" class="text-sm text-gray-900 hover:text-gray-400 px-2">Register
-                    </a> --}}
+                    <a href="{{ route('register') }}" class="text-sm text-gray-900 hover:text-gray-400 px-2">Register
+                    </a>
                     @endguest
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -177,24 +183,30 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
 
-        <div class="pt-2 pb-3 space-y-1">
 
-            <x-jet-responsive-nav-link href="{{ route('guest') }}" :active="request()->routeIs('guest')">
-                {{ __('Guest Mode') }}
-            </x-jet-responsive-nav-link>
-
-        </div>
 
         @guest
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
                 {{ __('Log in') }}
             </x-jet-responsive-nav-link>
-            {{-- <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
+            <x-jet-responsive-nav-link href="{{ route('register') }}" :active="request()->routeIs('register')">
                 {{ __('Register') }}
-            </x-jet-responsive-nav-link> --}}
+            </x-jet-responsive-nav-link>
         </div>
         @endguest
+
+        <div class="pt-2 pb-3 space-y-1">
+
+            <x-jet-responsive-nav-link href="{{ route('guest') }}" :active="request()->routeIs('guest')">
+                {{ __('Guest Mode') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                {{ __('About') }}
+            </x-jet-responsive-nav-link>
+
+        </div>
 
 
         @auth

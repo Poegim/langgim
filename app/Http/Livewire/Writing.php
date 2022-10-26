@@ -5,20 +5,22 @@ namespace App\Http\Livewire;
 use App\Http\Traits\ModelAdress;
 use App\Models\User;
 use App\Models\Word;
-use Livewire\Component;
 use App\Models\Category;
-use Illuminate\View\View;
 use App\Models\Subcategory;
-use Illuminate\Database\Eloquent\Collection;
 use App\Models\Interfaces\ForeignWordInterface;
+use Livewire\Component;
+use Illuminate\View\View;
+use Illuminate\Database\Eloquent\Collection;
 
 class Writing extends Component
 {
     use ModelAdress;
 
+    //Error reporting
     public ?string $message = null;
     public ?string $title = null;
 
+    //Writing
     public ?string $lastKey = null;
     public ?Collection $words = null;
     public ?Word $word = null;
@@ -35,16 +37,18 @@ class Writing extends Component
     public int $learnedWords = 0;
     public int $charNumber = 0;
 
+    //Modals
     public bool $modalSuccessVisibility = false;
     public bool $modalFailureVisibility = false;
     public bool $modalLessonSuccessVisibility = false;
     public bool $modalReportErrorVisibility = false;
 
+    //Tries
     public int $wrongTry = 0;
     public const ALLOWED_TRIES = 3;
 
     /**
-     * rules for reporting error validator
+     * Rules for reporting error validator
      */
     protected $rules = [
         'title' => 'required|min:4',
