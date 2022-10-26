@@ -1,4 +1,10 @@
 <x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('About') }}
+        </h2>
+    </x-slot>
+
     <div class="mt-10 flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100">
         <div>
             <h1>
@@ -19,7 +25,7 @@
                     </p>
                     <p class="mt-4">
                         I hope you enyoj this app,
-                        if you have any problems or ideas please contact us via error repors system,
+                        if you have any problems or ideas please contact us via error reports system,
                         with is available for registered users.
                     </p>
                 </div>

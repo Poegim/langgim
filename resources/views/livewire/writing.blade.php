@@ -31,10 +31,10 @@
                         <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
-                        <div class="text-green-500 font-bold hidden" id="success_{{$key}}" name="success_{{$key}}">
+                        <div class="text-green-500 font-bold hidden" id="success_{{$key}}" name="success_{{$key}}" >
                             <x-clarity-success-line class="h-5 w-5" />
                         </div>
-                        <div class="text-red-500 hidden" id="failure_{{$key}}" name="failure_{{$key}}"/>
+                        <div class="text-red-500 hidden" id="failure_{{$key}}" name="failure_{{$key}}" >
                             <x-clarity-times-line class="h-5 w-5" />
                         </div>
                     </div>
