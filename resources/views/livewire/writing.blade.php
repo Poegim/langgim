@@ -1,21 +1,17 @@
-<div class="rounded-lg bg-white shadow-md mb-2">
+<div class="rounded-lg bg-white shadow-md mb-2" x-data="{ open: false }">
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center">
 
         <div class="sm:flex justify-center mt-1 block px-2">
-            <div class="">
-                <div class="flex overflow-hidden relative border rounded-lg p-2 hover:border-gray-400 justify-center" id="keyboard_icon">
-                    <div class="flex justify-center">
-                        <x-clarity-keyboard-line class="w-8 h-8 z-30" />
-                    </div>
-                    <span class="mt-2 ml-1 z-20 text-sm">
+                    <x-jet-button class="mt-2 ml-1 text-sm" x-on:click="open = ! open">
+                        <div class="flex justify-center">
+                            <x-clarity-keyboard-line class="w-6 h-6 mr-2" />
+                        </div>
                         Virtual Keyboard
-                    </span>
-                    <div class="overflow-hidden relative">
+                    </x-jet-button>
+                    {{-- <div class="overflow-hidden relative">
                         <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input" name="super_hidden_secret_input"
                         style="width:0px; height:0px; opacity:none; " autofocus />
-                    </div>
-                </div>
-            </div>
+                    </div> --}}
         </div>
 
         <div class="flex justify-center mt-2 sm:mt-4">
@@ -67,7 +63,7 @@
     </div>
 
     <!-- Virtual keyboard -->
-    <div class="flex justify-center">
+    <div class="flex justify-center" x-cloak x-show="open">
         <div class="shadow-md absolute w-11/12 sm:w-8/12 lg:w-1/2 -bottom-0 bg-white rounded-t-lg">
             <div class="pt-2 pb-1 px-2 flex justify-between">
                 <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N1">1</button>
@@ -349,7 +345,7 @@
             document.dispatchEvent(new KeyboardEvent('keydown',{'key': 'Space'}));
         });
 
-        let textInput;
+        // let textInput;
 
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N',
             'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0', 'Space'
@@ -358,8 +354,8 @@
         document.addEventListener('keydown', function (event) {
 
             //Clear hidden text input
-            textInput = document.getElementById('super_hidden_secret_input');
-            textInput.value = '';
+            // textInput = document.getElementById('super_hidden_secret_input');
+            // textInput.value = '';
 
             //Modals
             modalFailure = document.getElementById('modalFailure');
@@ -435,16 +431,16 @@
         });
 
         //Show virtual keyboard on mobile devices
-        keyboardButton = document.getElementById('keyboard_icon');
-        if (keyboardButton) {
-            keyboardButton.addEventListener("click", showKeyboard);
-        }
+        // keyboardButton = document.getElementById('keyboard_icon');
+        // if (keyboardButton) {
+        //     keyboardButton.addEventListener("click", showKeyboard);
+        // }
 
-        function showKeyboard() {
-            let target = document.getElementById("super_hidden_secret_input");
-            target.focus();
-            target.click();
-        }
+        // function showKeyboard() {
+        //     let target = document.getElementById("super_hidden_secret_input");
+        //     target.focus();
+        //     target.click();
+        // }
 
     </script>
 
