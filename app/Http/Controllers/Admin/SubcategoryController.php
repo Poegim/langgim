@@ -22,14 +22,14 @@ class SubcategoryController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|max:25|min:3',
+            'name' => 'required|max:75|min:3',
             'category' => 'required|exists:categories,id',
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => 'unique:subcategories,'.$language.'|max:25|min:3|nullable'
+                $language => 'unique:subcategories,'.$language.'|max:75|min:3|nullable'
             ]);
         }
 
@@ -64,14 +64,14 @@ class SubcategoryController extends Controller
     public function update(Request $request, Subcategory $subcategory): RedirectResponse
     {
         $validated = $request->validate([
-            'name' => 'required|max:25|min:3',
+            'name' => 'required|max:75|min:3',
             'category' => 'required|exists:categories,id',
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => ['max:25', 'min:3', Rule::unique('subcategories', $language)->ignore($subcategory->id, 'id'), 'nullable']
+                $language => ['max:75', 'min:3', Rule::unique('subcategories', $language)->ignore($subcategory->id, 'id'), 'nullable']
             ]);
         }
 
