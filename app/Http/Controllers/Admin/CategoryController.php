@@ -23,13 +23,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|unique:categories|max:25|min:3',
+            'name' => 'required|unique:categories|max:75|min:3',
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => 'unique:categories,'.$language.'|max:25|min:3|nullable'
+                $language => 'unique:categories,'.$language.'|max:75|min:3|nullable'
             ]);
         }
 
@@ -62,13 +62,13 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
-            'name' => ['required', 'max:25', 'min:3', Rule::unique('categories')->ignore($category->id, 'id')]
+            'name' => ['required', 'max:75', 'min:3', Rule::unique('categories')->ignore($category->id, 'id')]
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => ['max:25', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'), 'nullable']
+                $language => ['max:75', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'), 'nullable']
             ]);
         }
 
