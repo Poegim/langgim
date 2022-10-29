@@ -91,14 +91,14 @@
                                 @switch($language)
                                     @case('ukrainian')
                                     <td class="hidden md:table-cell px-2 py-3">
-                                        @if(isset($word->uaWord->word))
+                                        @if($word->uaWord->word != '')
                                         <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
                                         @endif
                                     </td>
                                         @break
                                     @case('english')
                                     <td class="hidden md:table-cell px-2 py-3">
-                                        @if(isset($word->enWord->word))
+                                        @if($word->enWord->word != '')
                                         <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
                                         @endif
                                     </td>
@@ -106,16 +106,16 @@
 
                                     @case('german')
                                     <td class="hidden md:table-cell px-2 py-3">
-                                        @if(isset($word->geWord->word))
-                                        <x-clarity-check-circle-line class="h-5 w-5 text-green-600"/>
+                                        @if($word->geWord->word != '')
+                                        <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
                                         @endif
                                     </td>
                                         @break
 
                                     @case('spanish')
                                     <td class="hidden md:table-cell px-2 py-3">
-                                        @if(isset($word->esWord->word))
-                                        <x-clarity-check-circle-line class="h-5 w-5 text-green-600"/>
+                                        @if($word->esWord->word != '')
+                                        <x-clarity-check-circle-line class="h-6 w-6 text-green-600"/>
                                         @endif
                                     </td>
                                         @break
