@@ -1,32 +1,36 @@
 <div class="rounded-lg bg-white shadow-md mb-2" x-data="{ open: false }">
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center">
 
-        <div class="sm:flex justify-center mt-1 block px-2">
-                    <x-jet-button class="mt-2 ml-1 text-sm" x-on:click="open = ! open">
+        <div class="sm:flex sm:justify-center mt-1 block px-2 absolute left-2 sm:relative">
+                    <x-jet-button class="ml-1 text-sm" x-on:click="open = ! open">
                         <div class="flex justify-center">
-                            <x-clarity-keyboard-line class="w-6 h-6 mr-2" />
+                            <x-clarity-keyboard-line class="w-6 h-6 sm:mr-2" />
                         </div>
-                        Virtual Keyboard
+                        <span class="hidden sm:block">
+                            Virtual Keyboard
+                        </span>
                     </x-jet-button>
-                    {{-- <div class="overflow-hidden relative">
-                        <input class="absolute" autocomplete="off" type="text" id="super_hidden_secret_input" name="super_hidden_secret_input"
-                        style="width:0px; height:0px; opacity:none; " autofocus />
-                    </div> --}}
         </div>
 
         <div class="flex justify-center mt-2 sm:mt-4">
-            <span class=""> {{ __('Last key:')}} {{ $lastKey }} </span>
+            <span class="uppercase text-sm"> {{ __('Last key:')}} {{ $lastKey }} </span>
+            <div class="text-green-500 font-bold hidden" id="top_success" name="top_success" >
+                <x-clarity-success-line class="h-4 w-4" />
+            </div>
+            <div class="text-red-500 hidden" id="top_failure" name="top_failure" >
+                <x-clarity-times-line class="h-4 w-4" />
+            </div>
         </div>
 
         <div name="word_div" id="word_div" class="">
-            <div class="mt-4">
+            <div class="mt-2 sm:mt-4">
 
-                <h1 class="mt-2 text-xl font-extrabold tracking-wider lowercase">{{ $foreignWord->word }}</h1>
+                <h1 class="text-2xl tracking-wider uppercase">{{ $foreignWord->word }}</h1>
 
             </div>
-            <div class="mt-4 flex justify-center">
+            <div class="mt-2 sm:mt-4 flex justify-center space-x-2">
                 @foreach($guessedChars as $key => $char)
-                <div class="grid grid-cols-1 lowercase">
+                <div class="grid grid-cols-1 uppercase">
                     <div class="w-4" id="field_{{$key}}">
                         <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
                     </div>
@@ -409,40 +413,40 @@
         //If valid key is hited this event is loaded
         document.addEventListener('validKey', function (data) {
             let div;
-            let span;
+            let top_success;
+
+            top_success = document.getElementById("top_success");
+            top_success.classList.remove("hidden");
+            setTimeout(function () {
+                top_success.classList.add("hidden");
+            }, 1000);
 
             div = document.getElementById("success_" + (data.detail.charNumber - 1));
             div.classList.remove("hidden");
             setTimeout(function () {
                 div.classList.add("hidden");
-            }, 500);
+            }, 1000);
 
         });
 
         //If invalid key is hited this event is loaded
         document.addEventListener('invalidKey', function (data) {
             let div;
-            let span;
+            let top_failure;
+
+            top_failure = document.getElementById("top_failure");
+            top_failure.classList.remove("hidden");
+            setTimeout(function () {
+                top_failure.classList.add("hidden");
+            }, 1000);
 
             div = document.getElementById("failure_" + (data.detail.charNumber - 1));
             div.classList.remove("hidden");
             setTimeout(function () {
                 div.classList.add("hidden");
-            }, 500);
+            }, 1000);
 
         });
-
-        //Show virtual keyboard on mobile devices
-        // keyboardButton = document.getElementById('keyboard_icon');
-        // if (keyboardButton) {
-        //     keyboardButton.addEventListener("click", showKeyboard);
-        // }
-
-        // function showKeyboard() {
-        //     let target = document.getElementById("super_hidden_secret_input");
-        //     target.focus();
-        //     target.click();
-        // }
 
     </script>
 
