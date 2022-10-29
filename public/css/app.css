@@ -962,6 +962,27 @@ select {
 .top-0 {
   top: 0px;
 }
+.-right-20 {
+  right: -5rem;
+}
+.-right-32 {
+  right: -8rem;
+}
+.-right-64 {
+  right: -16rem;
+}
+.-left-64 {
+  left: -16rem;
+}
+.-left-12 {
+  left: -3rem;
+}
+.-right-12 {
+  right: -3rem;
+}
+.-right-16 {
+  right: -4rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1133,6 +1154,9 @@ select {
 .h-full {
   height: 100%;
 }
+.h-1 {
+  height: 0.25rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1295,6 +1319,9 @@ select {
 .items-center {
   align-items: center;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-end {
   justify-content: flex-end;
 }
@@ -1303,6 +1330,9 @@ select {
 }
 .justify-between {
   justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
 }
 .justify-items-center {
   justify-items: center;
@@ -1632,6 +1662,10 @@ select {
 .px-14 {
   padding-left: 3.5rem;
   padding-right: 3.5rem;
+}
+.px-12 {
+  padding-left: 3rem;
+  padding-right: 3rem;
 }
 .pt-6 {
   padding-top: 1.5rem;
@@ -2032,6 +2066,9 @@ select {
 }
 .hover\:opacity-90:hover {
   opacity: 0.9;
+}
+.hover\:opacity-0:hover {
+  opacity: 0;
 }
 .hover\:shadow-md:hover {
   --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
