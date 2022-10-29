@@ -6,41 +6,42 @@
     </x-slot>
 
     <div class="py-2 sm:py-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden sm:rounded-lg">
+                @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
+                <livewire:writing :language="$language">
+                    @else
+                    <div class="flex justify-center">
+                        <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
 
-        <div class="mt-10 flex flex-col sm:justify-center items-center sm:pt-0 bg-gray-100">
+                            <div class="mb-4 flex justify-center">
+                                <span class="text-xl">
+                                    Choose your language:
+                                </span>
+                            </div>
 
-            <div>
-                    <span class="text-2xl">
-                        Choose your language:
-                    </span>
-            </div>
-
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <div class="flex justify-center">
-
-                    <div class="font-thin">
-                        <div class="overflow-hidden sm:rounded-lg">
-                            @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
-                                <livewire:writing :language="$language">
-                            @else
-                            <div class="flex justify-center space-x-4">
-                                @foreach (config('langgim.allowed_languages') as $language)
-                                    <div>
-                                        <a href="{{route('guest', $language)}}">
-                                            <img src="{{asset('/images/flags/'.$language.'.svg')}}" class="w-24 hover:opacity-90 rounded-md">
+                            @foreach (config('langgim.allowed_languages') as $language)
+                            <div class="flex justify-around">
+                                <div class="flex space-x-4 mb-4">
+                                    <div class="shadow">
+                                        <a href="{{route('guest', $language)}}" class="flex relative hover:opacity-90">
+                                            <img src="{{asset('/images/flags/'.$language.'.svg')}}"
+                                            class="w-24 rounded-md shadow z-30">
+                                            <img src="{{asset('/images/flags/polish.svg')}}"
+                                            class="w-24 rounded-md -right-16 absolute shadow hover:none">
                                         </a>
                                     </div>
-                                @endforeach
+                                </div>
+                                <div class="mt-6">
+                                    <span class="h-1 font-bold">{{ucfirst($language)}} - Polish</span>
+                                </div>
                             </div>
-                            @endif
+                            @endforeach
                         </div>
                     </div>
-                </div>
+                    @endif
             </div>
         </div>
-
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
-        </div>
     </div>
+
 </x-app-layout>

@@ -9,14 +9,15 @@
     @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
 
     @foreach ($categories as $category)
+    @if ($category->this_language_words != 0)
     <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 sm:mx-2 flex flex-col p-4">
         <div class="font-extrabold flex justify-between">
             <a href="{{route('category.show', [$category])}}">
-                {{$category->name}} ({{$category->learned_words}}/{{$category->words->count()}})
+                {{$category->name}} ({{$category->learned_words}}/{{$category->this_language_words}})
             </a>
             <div class="mr-3 flex">
 
-                @if ($category->learned_words == $category->words->count())
+                @if ($category->learned_words == $category->this_language_words)
                 <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }" x-on:mouseover="tooltip = true"
                     x-on:mouseleave="tooltip = false" class="ml-2 h-5 w-5 cursor-pointer">
 
@@ -38,14 +39,15 @@
 
         <ul class="divide-y-2 divide-gray-100">
             @foreach ($category->subcategories as $subcategory)
+            @if ($subcategory->this_language_words != 0)
             <div class="flex p-3 ml-4 justify-between">
                 <li>
                     <a href="{{route('category.show', [$category, $subcategory])}}">
-                        {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->words->count()}})
+                        {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->this_language_words}})
                     </a>
                 </li>
                 <div class="flex">
-                    @if ($subcategory->learned_words == $subcategory->words->count())
+                    @if ($subcategory->learned_words == $subcategory->this_language_words)
 
                     <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
                         x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
@@ -68,9 +70,11 @@
 
                 </div>
             </div>
+            @endif
             @endforeach
         </ul>
     </div>
+    @endif
     @endforeach
     @else
     <div class="overflow-hidden rounded-lg shadow-lg bg-white mx-2 mt-4 flex flex-col">

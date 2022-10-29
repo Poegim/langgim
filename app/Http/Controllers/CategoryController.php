@@ -33,16 +33,38 @@ class CategoryController extends Controller
 
     /**
      * Foreaching over categories/subcategories->words->userWords
-     * and checking for already learned words of selected language.
+     * and checking for already learned words of selected language
+     * and counting words in selected by user default language
      */
     public function getProgress($categories)
     {
         foreach($categories as $category)
         {
             $category->learned_words = 0;
+            $category->this_language_words = 0;
 
             foreach($category->words as $word)
             {
+                switch (auth()->user()->language) {
+                    case 'ukrainian':
+                        $word->uaWord->word != '' ? $category->this_language_words++ : null;
+
+                        break;
+                    case 'english':
+                        $word->enWord->word != '' ? $category->this_language_words++ : null;
+
+                        break;
+                    case 'german':
+                        $word->geWord->word != '' ? $category->this_language_words++ : null;
+
+                        break;
+                    case 'spanish':
+                        $word->esWord->word != '' ? $category->this_language_words++ : null;
+
+                        break;
+                }
+
+
                 if(!$word->userWords->isEmpty())
                 {
                     foreach($word->userWords as $userWord)
@@ -58,8 +80,29 @@ class CategoryController extends Controller
             foreach($category->subcategories as $subcategory)
             {
                 $subcategory->learned_words = 0;
+                $subcategory->this_language_words = 0;
+
                 foreach($subcategory->words as $word)
                 {
+                    switch (auth()->user()->language) {
+                        case 'ukrainian':
+                            $word->uaWord->word != '' ? $subcategory->this_language_words++ : null;
+
+                            break;
+                        case 'english':
+                            $word->enWord->word != '' ? $subcategory->this_language_words++ : null;
+
+                            break;
+                        case 'german':
+                            $word->geWord->word != '' ? $subcategory->this_language_words++ : null;
+
+                            break;
+                        case 'spanish':
+                            $word->esWord->word != '' ? $subcategory->this_language_words++ : null;
+
+                            break;
+                    }
+
                     if(!$word->userWords->isEmpty())
                     {
                         foreach($word->userWords as $userWord)
