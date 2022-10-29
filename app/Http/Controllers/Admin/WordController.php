@@ -26,8 +26,8 @@ class WordController extends Controller
     {
 
         $request->validate([
-            'word' => ['required',],
-            'sample_sentecne' => ['nullable',],
+            'word' => ['required', 'max:30'],
+            'sample_sentecne' => ['nullable', 'max:256'],
             'category' => ['required',],
             'audio_file' => ['nullable','mimes:mp3','max:2048'],
         ]);

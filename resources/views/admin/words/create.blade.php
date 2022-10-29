@@ -29,6 +29,12 @@
                         @endforeach
 
                         <div>
+                            <x-jet-label for="sample_sentence">Sample sentence:</x-jet-label>
+                            <x-jet-input name="sample_sentence" id="sample_sentence" type="text" />
+                            <x-jet-input-error for="sample_sentence" />
+                        </div>
+
+                        <div>
                             <x-jet-label for="category">Category:</x-jet-label>
                             <select name="category" id="category"
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
