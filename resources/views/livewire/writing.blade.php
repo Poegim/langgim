@@ -63,54 +63,56 @@
     </div>
 
     <!-- Virtual keyboard -->
-    <div class="flex justify-center" x-cloak x-show="open">
-        <div class="shadow-md absolute w-11/12 sm:w-8/12 lg:w-1/2 -bottom-0 bg-white rounded-t-lg">
-            <div class="pt-2 pb-1 px-2 flex justify-between">
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N1">1</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N2">2</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N3">3</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N4">4</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N5">5</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N6">6</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N7">7</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N8">8</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N9">9</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N0">0</button>
-            </div>
-            <div class="pb-1 px-2 flex justify-between">
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Q">Q</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="W">W</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="E">E</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="R">R</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="T">T</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Y">Y</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="U">U</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="I">I</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="O">O</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="P">P</button>
-            </div>
-            <div class="rounded-lg py-1 px-8 flex">
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="A">A</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="S">S</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="D">D</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="F">F</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="G">G</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="H">H</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="J">J</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="K">K</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="L">L</button>
-            </div>
-            <div class="rounded-lg py-1 px-14 flex">
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Z">Z</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="X">X</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="C">C</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="V">V</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="B">B</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N">N</button>
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="M">M</button>
-            </div>
-            <div class="rounded-lg pt-1 pb-2 px-14 flex">
-                <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="SPACE">SPACE</button>
+    <div x-cloak x-show="open">
+        <div class="shadow-md absolute inset-x-0 bottom-0 bg-white rounded-t-lg w-full flex justify-center">
+            <div class="w-11/12 sm:w-8/12 lg:w-1/2">
+                <div class="pt-2 pb-1 px-2 flex justify-between">
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N1">1</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N2">2</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N3">3</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N4">4</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N5">5</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N6">6</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N7">7</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N8">8</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N9">9</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N0">0</button>
+                </div>
+                <div class="pb-1 px-2 flex justify-between">
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Q">Q</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="W">W</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="E">E</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="R">R</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="T">T</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Y">Y</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="U">U</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="I">I</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="O">O</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="P">P</button>
+                </div>
+                <div class="rounded-lg py-1 px-8 flex">
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="A">A</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="S">S</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="D">D</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="F">F</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="G">G</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="H">H</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="J">J</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="K">K</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="L">L</button>
+                </div>
+                <div class="rounded-lg py-1 px-14 flex">
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="Z">Z</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="X">X</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="C">C</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="V">V</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="B">B</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="N">N</button>
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="M">M</button>
+                </div>
+                <div class="rounded-lg pt-1 pb-2 px-14 flex">
+                    <button class="rounded bg-gray-300 shadow-lg m-1 p-1 w-full text-center" id="SPACE">SPACE</button>
+                </div>
             </div>
         </div>
     </div>

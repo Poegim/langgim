@@ -950,6 +950,10 @@ select {
   bottom: 0px;
   left: 0px;
 }
+.inset-x-0 {
+  left: 0px;
+  right: 0px;
+}
 .left-0 {
   left: 0px;
 }
@@ -982,6 +986,9 @@ select {
 }
 .-right-16 {
   right: -4rem;
+}
+.bottom-0 {
+  bottom: 0px;
 }
 .z-0 {
   z-index: 0;
