@@ -26,13 +26,13 @@
                                     <div class="shadow">
                                         <a href="{{route('guest', $language)}}" class="flex relative hover:opacity-90">
                                             <img src="{{asset('/images/flags/'.$language.'.svg')}}"
-                                            class="w-24 rounded-md shadow z-30">
+                                            class="w-16 sm:w-24 rounded-md shadow z-30">
                                             <img src="{{asset('/images/flags/polish.svg')}}"
-                                            class="w-24 rounded-md -right-16 absolute shadow hover:none">
+                                            class="w-16 sm:w-24 rounded-md -right-10 sm:-right-16 absolute shadow hover:none">
                                         </a>
                                     </div>
                                 </div>
-                                <div class="mt-6">
+                                <div class="mt-3 sm:mt-6">
                                     <span class="h-1 font-bold">{{ucfirst($language)}} - Polish</span>
                                 </div>
                             </div>

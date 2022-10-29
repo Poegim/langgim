@@ -990,6 +990,9 @@ select {
 .bottom-0 {
   bottom: 0px;
 }
+.-right-10 {
+  right: -2.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -2213,6 +2216,10 @@ select {
 }
 @media (min-width: 640px) {
 
+  .sm\:-right-16 {
+    right: -4rem;
+  }
+
   .sm\:col-span-4 {
     grid-column: span 4 / span 4;
   }
@@ -2270,6 +2277,10 @@ select {
     margin-top: 1rem;
   }
 
+  .sm\:mt-6 {
+    margin-top: 1.5rem;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -2306,6 +2317,10 @@ select {
     width: -webkit-min-content;
     width: -moz-min-content;
     width: min-content;
+  }
+
+  .sm\:w-24 {
+    width: 6rem;
   }
 
   .sm\:max-w-md {
