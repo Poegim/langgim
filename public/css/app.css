@@ -944,6 +944,10 @@ select {
 .relative {
   position: relative;
 }
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+}
 .inset-0 {
   top: 0px;
   right: 0px;
@@ -992,6 +996,12 @@ select {
 }
 .-right-10 {
   right: -2.5rem;
+}
+.-bottom-20 {
+  bottom: -5rem;
+}
+.left-2 {
+  left: 0.5rem;
 }
 .z-0 {
   z-index: 0;
@@ -2216,6 +2226,10 @@ select {
 }
 @media (min-width: 640px) {
 
+  .sm\:relative {
+    position: relative;
+  }
+
   .sm\:-right-16 {
     right: -4rem;
   }
@@ -2279,6 +2293,10 @@ select {
 
   .sm\:mt-6 {
     margin-top: 1.5rem;
+  }
+
+  .sm\:mr-2 {
+    margin-right: 0.5rem;
   }
 
   .sm\:block {
