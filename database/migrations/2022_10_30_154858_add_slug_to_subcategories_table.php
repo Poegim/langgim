@@ -21,20 +21,20 @@ return new class extends Migration
         });
 
 
-        $categories = Category::all();
-        $subcategories = Subcategory::all();
+        // $categories = Category::all();
+        // $subcategories = Subcategory::all();
 
-        foreach ($categories as $category)
-        {
-            $category->slug = Str::slug($category->name, '-');
-            $category->save();
-        }
+        // foreach ($categories as $category)
+        // {
+        //     $category->slug = Str::slug($category->name, '-');
+        //     $category->save();
+        // }
 
-        foreach ($subcategories as $subcategory)
-        {
-            $subcategory->slug = Str::slug($subcategory->name, '-');
-            $subcategory->save();
-        }
+        // foreach ($subcategories as $subcategory)
+        // {
+        //     $subcategory->slug = Str::slug($subcategory->name, '-');
+        //     $subcategory->save();
+        // }
 
     }
 

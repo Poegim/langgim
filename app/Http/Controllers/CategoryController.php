@@ -12,21 +12,23 @@ class CategoryController extends Controller
     public $language;
     private $languageModel;
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
 
-        $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
-
-        $this->language = auth()->user()->language;
-        $this->languageModel = $this->getModelAdress($this->language);
+        if(auth()->check())
+        {
+            $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
+            $this->language = auth()->user()->language;
+            $this->languageModel = $this->getModelAdress($this->language);
+            $categories = $this->getProgress($categories);
+        } else
+        {
+            $categories = Category::with(['subcategories.words', 'words'])->get();
+            $this->language = collect(config('langgim.allowed_languages'))->random();
+        }
 
         return view('categories.index', [
-            'categories' => $this->getProgress($categories),
+            'categories' => $categories,
             'language' => $this->language,
         ]);
     }
@@ -122,11 +124,18 @@ class CategoryController extends Controller
 
     public function show(Category $category, Subcategory $subcategory = null)
     {
-        return view('categories.show', [
-            'category' => $category,
-            'subcategory' => $subcategory,
-            'language' => auth()->user()->language,
-        ]);
+        if(auth()->check())
+        {
+            return view('categories.show', [
+                'category' => $category,
+                'subcategory' => $subcategory,
+                'language' => auth()->user()->language,
+            ]);
+        } else
+        {
+            return view('welcome');
+        }
+
     }
 
 }
