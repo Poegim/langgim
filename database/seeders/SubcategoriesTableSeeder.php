@@ -26,6 +26,7 @@ class SubcategoriesTableSeeder extends Seeder
                     [
                         // 'name' => $this->faker->word(),
                         'name' => 'subcategory'.$i+1,
+                        'slug' => 'subcategory'.$i+1,
                         'category_id' => rand(1,15),
                     ]
                 );
