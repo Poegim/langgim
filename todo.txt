@@ -4,7 +4,6 @@ TODO
     -- contact email
 
 BUGS
-    -- Space
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
 

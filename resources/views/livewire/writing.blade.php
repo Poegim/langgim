@@ -380,10 +380,8 @@
             document.dispatchEvent(new KeyboardEvent('keydown',{'key': 'Space'}));
         });
 
-        // let textInput;
-
         allowedKeys = ['A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M', 'N',
-            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0', 'Space'
+            'O','Ó', 'P', 'Q', 'R', 'S', 'Ś', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'Ż', 'Ź','1','2','3','4','5','6','7','8','9','0', ' ', 'Space',
         ];
 
         document.addEventListener('keydown', function (event) {
