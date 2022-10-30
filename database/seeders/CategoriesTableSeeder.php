@@ -26,6 +26,7 @@ class CategoriesTableSeeder extends Seeder
                     [
                         // 'name' => $this->faker->word(),
                         'name' => 'category'.$i+1,
+                        'slug' => 'category'.$i+1,
                     ]
                 );
             }

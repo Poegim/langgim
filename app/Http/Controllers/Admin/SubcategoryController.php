@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\View\View;
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -35,6 +36,7 @@ class SubcategoryController extends Controller
 
         $subcategory = new Subcategory();
         $subcategory->name = $request->name;
+        $subcategory->slug = Str::slug($request->name, '-');
 
         foreach(config('langgim.allowed_languages') as $language)
         {
@@ -76,6 +78,7 @@ class SubcategoryController extends Controller
         }
 
         $subcategory->name = $request->name;
+        $subcategory->slug = Str::slug($request->name, '-');
 
         foreach(config('langgim.allowed_languages') as $language)
         {

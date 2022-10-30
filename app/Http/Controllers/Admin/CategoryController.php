@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
@@ -35,6 +36,8 @@ class CategoryController extends Controller
 
         $category = new Category;
         $category->name = $request->name;
+        $category->slug = Str::slug($request->name, '-');
+
 
         foreach(config('langgim.allowed_languages') as $language)
         {
@@ -74,6 +77,7 @@ class CategoryController extends Controller
 
 
         $category->name = $request->name;
+        $category->slug = Str::slug($request->name, '-');
 
         foreach(config('langgim.allowed_languages') as $language)
         {

@@ -51,12 +51,10 @@ Route::name('category.')->prefix('category')->middleware(['auth:sanctum'])->grou
     Route::get('/', [UsersCategoryController::class, 'index'])
     ->name('index');
 
-    Route::get('/{category:name}/{subcategory:name?}', [UsersCategoryController::class, 'show'])
+    Route::get('/{category:slug}/{subcategory:slug?}', [UsersCategoryController::class, 'show'])
     ->name('show');
 
 });
-
-
 
 
 //Guest mode
