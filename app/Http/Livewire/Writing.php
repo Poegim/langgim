@@ -33,6 +33,7 @@ class Writing extends Component
     public ?Category $category = null;
     public ?Subcategory $subcategory = null;
     public ?ForeignWordInterface $foreignWord = null;
+    public ?ForeignWordInterface $previousForeignWord = null;
     public ?int $wordLength = null;
     public int $learnedWords = 0;
     public int $charNumber = 0;
@@ -46,6 +47,9 @@ class Writing extends Component
     //Tries
     public int $wrongTry = 0;
     public const ALLOWED_TRIES = 3;
+    public int $wordSuccessGlobal = 0;
+    public int $wordFailureGlobal = 0;
+
 
     /**
      * Rules for reporting error validator
@@ -68,13 +72,7 @@ class Writing extends Component
             if($this->category != NULL)
             {
                 $this->createUserWords();
-                // $this->createUserCategories();
             }
-
-            // if($this->subcategory != NULL)
-            // {
-            //     $this->createUserCategories();
-            // }
 
             $this->saveLastUsedCategory();
         }
@@ -193,18 +191,25 @@ class Writing extends Component
             case 'ukrainian':
 
                 $this->foreignWord = $this->word->uaWord;
+                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->uaWord : null;
                 break;
 
             case 'english':
                 $this->foreignWord = $this->word->enWord;
+                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->enWord : null;
+
                 break;
 
             case 'german':
                 $this->foreignWord = $this->word->geWord;
+                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->geWord : null;
+
                 break;
 
             case 'spanish':
                 $this->foreignWord = $this->word->esWord;
+                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->esWord : null;
+
                 break;
         }
 
@@ -368,6 +373,8 @@ class Writing extends Component
 
     public function keyPressed($key): void
     {
+
+        $key == 'space' ? $key = ' ' : null;
         $this->lastKey = $key;
         $this->isKeyValid();
     }
@@ -400,6 +407,10 @@ class Writing extends Component
      */
     public function success(): void
     {
+        $this->wordSuccessGlobal++;
+        $this->previousWord = $this->word;
+        $this->previousForeignWord = $this->foreignWord;
+
         if(auth()->check())
         {
             if($this->updateUserWord(true) == true)
@@ -407,12 +418,10 @@ class Writing extends Component
 
                 if($this->isLessonFinished())
                 {
-                    $this->previousWord = $this->word;
                     $this->modalLessonSuccessVisibility = true;
 
                 } else
                 {
-                    $this->previousWord = $this->word;
                     $this->loadWord();
                     $this->modalSuccessVisibility = true;
                 }
@@ -421,7 +430,6 @@ class Writing extends Component
 
         } else
         {
-            $this->previousWord = $this->word;
             $this->loadWord();
             $this->modalSuccessVisibility = true;
         }
@@ -434,8 +442,10 @@ class Writing extends Component
      */
     public function failure(): void
     {
+        $this->wordFailureGlobal++;
         auth()->check() ? $this->updateUserWord(false) : null;
         $this->previousWord = $this->word;
+        $this->previousForeignWord = $this->foreignWord;
         $this->loadWord();
         $this->modalFailureVisibility = true;
     }
@@ -495,6 +505,11 @@ class Writing extends Component
 
         return true;
 
+    }
+
+    public function manualFinishLesson()
+    {
+        $this->modalLessonSuccessVisibility = true;
     }
 
     public function hideModals(): void

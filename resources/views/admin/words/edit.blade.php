@@ -77,7 +77,6 @@
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
                                 @foreach ($categories as $category)
                                 <optgroup label="{{$category->name}}">
-                                    <option value="{{$category->id}}.0" @if($category->id == $word->category_id) selected="selected" @endif>{{$category->name}}</option>
                                     @foreach ($category->subcategories as $subcategory)
                                     <option value="{{$category->id}}.{{$subcategory->id}}" @if($category->id == $word->category_id) selected="selected" @endif>{{$subcategory->name}}</option>
                                     @endforeach

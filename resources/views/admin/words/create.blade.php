@@ -40,7 +40,6 @@
                                 class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
                                 @foreach ($categories as $category)
                                 <optgroup label="{{$category->name}}">
-                                    <option value="{{$category->id}}.0">{{$category->name}}</option>
                                     @foreach ($category->subcategories as $subcategory)
                                     <option value="{{$category->id}}.{{$subcategory->id}}">{{$subcategory->name}}</option>
                                     @endforeach
