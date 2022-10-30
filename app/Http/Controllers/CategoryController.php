@@ -124,11 +124,18 @@ class CategoryController extends Controller
 
     public function show(Category $category, Subcategory $subcategory = null)
     {
-        return view('categories.show', [
-            'category' => $category,
-            'subcategory' => $subcategory,
-            'language' => auth()->user()->language,
-        ]);
+        if(auth()->check())
+        {
+            return view('categories.show', [
+                'category' => $category,
+                'subcategory' => $subcategory,
+                'language' => auth()->user()->language,
+            ]);
+        } else
+        {
+            return view('welcome');
+        }
+
     }
 
 }

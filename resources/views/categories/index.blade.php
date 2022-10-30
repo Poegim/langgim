@@ -67,7 +67,7 @@
                         @if ($subcategory->learned_words != 0)
 
                         <livewire:categories.reset :category="$category" :subcategory="$subcategory">
-                            @endif
+                        @endif
 
                     </div>
                 </div>

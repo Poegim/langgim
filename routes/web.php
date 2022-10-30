@@ -45,16 +45,11 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
     return view('dashboard');
 })->name('dashboard');
 
-//Non-admin AUTH category controller group
-Route::name('category.')->prefix('category')->middleware(['auth:sanctum'])->group(function () {
+//Non-admin NON-AUTH category controller group
+Route::name('category.')->prefix('category')->group(function () {
 
     Route::get('/{category:slug}/{subcategory:slug?}', [UsersCategoryController::class, 'show'])
     ->name('show');
-
-});
-
-//Non-admin NON-AUTH category controller group
-Route::name('category.')->prefix('category')->group(function () {
 
     Route::get('/', [UsersCategoryController::class, 'index'])
     ->name('index');
