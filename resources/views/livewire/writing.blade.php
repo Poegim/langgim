@@ -122,20 +122,20 @@
     </div>
 
     <!-- Modal Report Error -->
-    <x-jet-dialog-modal wire:model="modalReportErrorVisibility" id="modalError">
+    <x-old-dialog-modal wire:model="modalReportErrorVisibility" id="modalError">
         <x-slot name="title">
             {{ __("Report Error") }}
         </x-slot>
 
         <x-slot name="content">
             <div>
-                Is there any mistake?
+                Did u found any mistake?
             </div>
             <div class="mt-4">
-                PL word: <span class="text-wider font-extrabold">{{$word->pl_word}}</span>
+                Polish word: <span class="text-wider uppercase">{{$word->pl_word}}</span>
             </div>
             <div>
-                Foreign word: <span class="text-wider font-extrabold">{{$foreignWord->word}}</span>
+                Foreign word: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
             </div>
 
             <div class="mt-4 mb-4">
@@ -165,16 +165,28 @@
                 </x-jet-danger-button>
             </div>
         </x-slot>
-    </x-jet-dialog-modal>
+    </x-old-dialog-modal>
 
     <!-- Prototype modal success-->
     <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
         <x-slot name="title">
-            {{ __("Success") }}
+            <div class="font-bold text-lg">
+                {{ __("Yes! Good answer!") }}
+            </div>
         </x-slot>
 
         <x-slot name="content">
-            {{ $previousWord->pl_word }}
+            <div class="tracking-wider">
+                <p>
+                    Polish word: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                </p>
+                <p>
+                    Answer: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                </p>
+            </div>
+            <div class="mt-4">
+                Sample sentence: <span class="italic">"{{ $previousWord->sample_sentence }}"</span>
+            </div>
         </x-slot>
 
         <x-slot name="footer">
@@ -191,11 +203,23 @@
     <!-- Prototype modal failure-->
     <x-jet-dialog-modal wire:model="modalFailureVisibility" id="modalFailure">
         <x-slot name="title">
-            {{ __("Failure") }}
+            <div class="font-bold text-lg">
+                {{ __("Oh no! Wrong answer!") }}
+            </div>
         </x-slot>
 
         <x-slot name="content">
-            {{ $previousWord->pl_word }}
+            <div class="tracking-wider">
+                <p>
+                    Polish word: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                </p>
+                <p>
+                    Expected answer: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                </p>
+            </div>
+            <div class="mt-4">
+                Sample sentence: <span class="italic">"{{ $previousWord->sample_sentence }}"</span>
+            </div>
         </x-slot>
 
         <x-slot name="footer">
@@ -213,11 +237,16 @@
     <!-- Prototype modal lesson success-->
     <x-jet-dialog-modal wire:model="modalLessonSuccessVisibility" id="modalLessonSuccess">
         <x-slot name="title">
-            {{ __("Success") }}
+            <div class="font-bold text-lg">
+                {{ __("Lesson finished!") }}
+            </div>
         </x-slot>
 
         <x-slot name="content">
-            Lesson Success!
+            <p>Correct answers: {{ $wordSuccessGlobal }} </p>
+            <p>Wrong answers: {{ $wordFailureGlobal }} </p>
+            <p>Ratio @php if(($wordSuccessGlobal != 0) && ($wordFailureGlobal != 0)) {echo (number_format((($wordSuccessGlobal / ($wordSuccessGlobal+$wordFailureGlobal))*100),1));} @endphp% </p>
+
         </x-slot>
 
         <x-slot name="footer">
@@ -358,10 +387,6 @@
         ];
 
         document.addEventListener('keydown', function (event) {
-
-            //Clear hidden text input
-            // textInput = document.getElementById('super_hidden_secret_input');
-            // textInput.value = '';
 
             //Modals
             modalFailure = document.getElementById('modalFailure');

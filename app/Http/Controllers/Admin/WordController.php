@@ -59,12 +59,15 @@ class WordController extends Controller
         $word->pl_word = $request->word;
         $word->sample_sentence = $request->sample_sentence;
         $word->category_id = $request->category[0];
+        $word->subcategory_id = $request->category[1];
         $request->audio_file ? $word->audio_file = $newFilePath : null;
 
         //Check is subcategory choosed and assign value if yes.
         $request->category[1] != 0 ? $word->subcategory_id = $request->category[1] : $word->subcategory_id = null;
 
         $word->save();
+
+
 
         $word->uaWord()->create([
             'word' => $request->ukrainian ? $request->ukrainian : '',
@@ -138,10 +141,8 @@ class WordController extends Controller
         $word->pl_word = $request->word;
         $word->sample_sentence = $request->sample_sentence;
         $word->category_id = $request->category[0];
+        $word->subcategory_id = $request->category[1];
         $request->audio_file ? $word->audio_file = $newFilePath : null;
-
-        //Check is subcategory choosed and assign value if yes.
-        $request->category[1] != 0 ? $word->subcategory_id = $request->category[1] : $word->subcategory_id = null;
 
         $word->save();
 
