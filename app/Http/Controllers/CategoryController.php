@@ -20,12 +20,13 @@ class CategoryController extends Controller
             $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
             $this->language = auth()->user()->language;
             $this->languageModel = $this->getModelAdress($this->language);
-            $categories = $this->getProgress($categories);
         } else
         {
             $categories = Category::with(['subcategories.words', 'words'])->get();
             $this->language = collect(config('langgim.allowed_languages'))->random();
         }
+
+        $categories = $this->getProgress($categories);
 
         return view('categories.index', [
             'categories' => $categories,
@@ -47,7 +48,7 @@ class CategoryController extends Controller
 
             foreach($category->words as $word)
             {
-                switch (auth()->user()->language) {
+                switch ($this->language) {
                     case 'ukrainian':
                         $word->uaWord->word != '' ? $category->this_language_words++ : null;
 
@@ -66,17 +67,20 @@ class CategoryController extends Controller
                         break;
                 }
 
-
-                if(!$word->userWords->isEmpty())
+                if(auth()->check())
                 {
-                    foreach($word->userWords as $userWord)
+                    if(!$word->userWords->isEmpty())
                     {
-                        if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                        foreach($word->userWords as $userWord)
                         {
-                            $category->learned_words++;
+                            if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                            {
+                                $category->learned_words++;
+                            }
                         }
                     }
                 }
+
             }
 
             foreach($category->subcategories as $subcategory)
@@ -86,7 +90,7 @@ class CategoryController extends Controller
 
                 foreach($subcategory->words as $word)
                 {
-                    switch (auth()->user()->language) {
+                    switch ($this->language) {
                         case 'ukrainian':
                             $word->uaWord->word != '' ? $subcategory->this_language_words++ : null;
 
@@ -105,13 +109,16 @@ class CategoryController extends Controller
                             break;
                     }
 
-                    if(!$word->userWords->isEmpty())
+                    if(auth()->check())
                     {
-                        foreach($word->userWords as $userWord)
+                    if(!$word->userWords->isEmpty())
                         {
-                            if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                            foreach($word->userWords as $userWord)
                             {
-                                $subcategory->learned_words++;
+                                if(($this->languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                                {
+                                    $subcategory->learned_words++;
+                                }
                             }
                         }
                     }

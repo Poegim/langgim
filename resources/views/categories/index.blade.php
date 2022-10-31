@@ -75,7 +75,8 @@
                 @endforeach
             </ul>
         </div>
-        @else
+        @endif
+        @if($category->this_language_words != 0)
         <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 sm:mx-2 flex flex-col p-4">
             <div class="font-extrabold flex justify-between">
                 <a href="{{route('category.show', [$category])}}">
@@ -99,7 +100,8 @@
                     </div>
                 </div>
 
-                @endforeach
+            @endforeach
+
             </ul>
         </div>
         @endif

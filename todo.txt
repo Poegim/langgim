@@ -5,7 +5,8 @@ TODO
     -- contact email
 
 BUGS
-    -- change migrations to not lose data
+    -- category index again show categories witout words
+    -- prevent ddos by clicking
     -- Js console
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
