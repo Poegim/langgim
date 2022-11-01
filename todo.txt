@@ -5,7 +5,6 @@ TODO
     -- contact email
 
 BUGS
-    -- category index again show categories witout words
     -- prevent ddos by clicking
     -- Js console
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
