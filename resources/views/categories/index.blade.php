@@ -76,6 +76,9 @@
             </ul>
         </div>
         @endif
+
+
+        @guest
         @if($category->this_language_words != 0)
         <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 sm:mx-2 flex flex-col p-4">
             <div class="font-extrabold flex justify-between">
@@ -89,6 +92,7 @@
 
             <ul class="divide-y-2 divide-gray-100">
                 @foreach ($category->subcategories as $subcategory)
+                @if ($subcategory->this_language_words != 0)
                 <div class="flex p-3 ml-4 justify-between">
                     <li>
                         <a href="{{route('category.show', [$category, $subcategory])}}">
@@ -99,12 +103,13 @@
 
                     </div>
                 </div>
-
-            @endforeach
+                @endif
+                @endforeach
 
             </ul>
         </div>
         @endif
+        @endguest
 
     @endforeach
 
