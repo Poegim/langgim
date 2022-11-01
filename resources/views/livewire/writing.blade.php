@@ -1,15 +1,26 @@
 <div class="rounded-lg bg-white shadow-md mb-2" x-data="{ open: false }">
-    <div class="py-2 sm:py-4 rounded-md mx-auto text-center">
+    <div class="py-2 sm:py-4 rounded-md mx-auto text-center relative">
 
-        <div class="sm:flex sm:justify-center mt-1 block px-2 absolute left-2 sm:relative">
-                    <x-jet-button class="ml-1 text-sm" x-on:click="open = ! open">
-                        <div class="flex justify-center">
-                            <x-clarity-keyboard-line class="w-6 h-6 sm:mr-2" />
+        <div class="px-2 absolute left-2">
+                    <x-jet-button class="ml-1 text-sm md:w-52" x-on:click="open = ! open">
+                        <div class="flex">
+                            <x-clarity-keyboard-line class="w-6 h-6" />
                         </div>
-                        <span class="hidden sm:block">
+                        <span class="hidden md:block ml-2">
                             Virtual Keyboard
                         </span>
                     </x-jet-button>
+        </div>
+
+        <div class="px-2 absolute left-2 top-16">
+            <x-jet-button class="ml-1 text-sm md:w-52" wire:click="manualFinishLesson">
+                <div class="flex">
+                    <x-clarity-success-standard-line class="w-6 h-6" />
+                    <span class="hidden md:block ml-2 mt-1">
+                        Finish Lesson
+                    </span>
+                </div>
+            </x-jet-button>
         </div>
 
         <div class="flex justify-center mt-2 sm:mt-4">
