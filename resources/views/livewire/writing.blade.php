@@ -256,8 +256,7 @@
         <x-slot name="content">
             <p>Correct answers: {{ $wordSuccessGlobal }} </p>
             <p>Wrong answers: {{ $wordFailureGlobal }} </p>
-            <p>Ratio @php if(($wordSuccessGlobal != 0) && ($wordFailureGlobal != 0)) {echo (number_format((($wordSuccessGlobal / ($wordSuccessGlobal+$wordFailureGlobal))*100),1));} @endphp% </p>
-
+            <p>Ratio @php if(($wordSuccessGlobal != 0) || ($wordFailureGlobal != 0)) {echo (number_format((($wordSuccessGlobal / ($wordSuccessGlobal+$wordFailureGlobal))*100),1));} @endphp% </p>
         </x-slot>
 
         <x-slot name="footer">

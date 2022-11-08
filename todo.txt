@@ -1,12 +1,11 @@
 TODO
-    -- manual finish lesson
     -- dashboard
     -- fill database
     -- contact email
 
 BUGS
-    -- prevent ddos by clicking
     -- Js console
+    -- prevent ddos by clicking
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal
 
