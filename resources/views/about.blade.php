@@ -19,9 +19,9 @@
 
                 <div class="font-thin">
                     <p>
-                        <span class="text-lg font-bold">LearnPolish.eu</span> is free application for learning Polish.
-                        To take full advantage of the application, register your account. Registering account is free!
-                        We will help you quickly learn how write and speak in Polish.
+                        <span class="text-lg font-bold">LearnPolish.eu</span> is free app for learning Polish.
+                        To take full advantage of the application, register your free account.
+                        The app is in development, so expect new features to come soon and the word base continues to grow.
                     </p>
                     <p class="mt-4">
                         I hope you enyoj this app,

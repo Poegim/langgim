@@ -449,16 +449,22 @@
             let top_success;
 
             top_success = document.getElementById("top_success");
+
             top_success.classList.remove("hidden");
             setTimeout(function () {
                 top_success.classList.add("hidden");
             }, 1000);
 
             div = document.getElementById("success_" + (data.detail.charNumber - 1));
-            div.classList.remove("hidden");
-            setTimeout(function () {
-                div.classList.add("hidden");
-            }, 1000);
+
+            if(div != null)
+            {
+                div.classList.remove("hidden");
+                setTimeout(function () {
+                    div.classList.add("hidden");
+                }, 1000);
+            }
+
 
         });
 
@@ -474,10 +480,14 @@
             }, 1000);
 
             div = document.getElementById("failure_" + (data.detail.charNumber - 1));
-            div.classList.remove("hidden");
-            setTimeout(function () {
-                div.classList.add("hidden");
-            }, 1000);
+
+            if(div != null)
+            {
+                div.classList.remove("hidden");
+                setTimeout(function () {
+                    div.classList.add("hidden");
+                }, 1000);
+            }
 
         });
 
