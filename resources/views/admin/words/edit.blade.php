@@ -78,7 +78,7 @@
                                 @foreach ($categories as $category)
                                 <optgroup label="{{$category->name}}">
                                     @foreach ($category->subcategories as $subcategory)
-                                    <option value="{{$category->id}}.{{$subcategory->id}}" @if($category->id == $word->category_id) selected="selected" @endif>{{$subcategory->name}}</option>
+                                    <option value="{{$category->id}}.{{$subcategory->id}}" @if(($category->id == $word->category_id) && ($subcategory->id == $word->subcategory_id)) selected="selected" @endif>{{$subcategory->name}}</option>
                                     @endforeach
                                 @endforeach
                             </select>
