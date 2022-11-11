@@ -34,9 +34,9 @@
                         {{ __('Guest Mode') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+                    {{-- <x-jet-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                         {{ __('About') }}
-                    </x-jet-nav-link>
+                    </x-jet-nav-link> --}}
 
 
                 </div>
@@ -206,9 +206,9 @@
                 {{ __('Guest Mode') }}
             </x-jet-responsive-nav-link>
 
-            <x-jet-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
+            {{-- <x-jet-responsive-nav-link href="{{ route('about') }}" :active="request()->routeIs('about')">
                 {{ __('About') }}
-            </x-jet-responsive-nav-link>
+            </x-jet-responsive-nav-link> --}}
 
         </div>
 

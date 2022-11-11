@@ -19,8 +19,8 @@
 
                 <div class="font-thin">
                     <p>
-                        <span class="text-lg font-bold">LearnPolish.eu</span> is free app for learning Polish.
-                        To take full advantage of the application, register your free account.
+                        <span class="text-lg font-bold">LearnPolish.eu</span> is free app for ... You know what.
+                        To take full advantage, register your free account.
                         The app is in development, so expect new features to come soon and the word base continues to grow.
                     </p>
                     <p class="mt-4">

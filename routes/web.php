@@ -38,7 +38,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 //About
-Route::view('/about', 'about')->name('about');
+// Route::view('/about', 'about')->name('about');
 
 //Dashboard
 Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function () {

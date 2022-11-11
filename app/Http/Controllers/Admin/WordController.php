@@ -24,7 +24,6 @@ class WordController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'word' => ['required', 'max:30'],
             'sample_sentecne' => ['nullable', 'max:256'],
