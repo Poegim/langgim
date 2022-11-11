@@ -22,7 +22,8 @@ class Writing extends Component
 
     //Writing
     public ?string $lastKey = null;
-    public ?Collection $words = null;
+    protected ?Collection $allWords = null; //All  words for create user words
+    public ?Collection $words = null; //Words for this lesson, with arent already learned
     public ?Word $word = null;
     public ?Word $previousWord = null;
     public array $guessedChars = [];
@@ -118,20 +119,13 @@ class Writing extends Component
                 ->whereRelation('userWords', 'is_learned', '<', 3)
                 ->get();
 
-                /**
-                 * If first time in this category or subcategory, get words without user words
-                 * becouse user words not exist jet.
-                 */
-                if($this->words->isEmpty())
-                {
-                    $this
-                    ->words = Word::with([$withLanguage, 'userWords'])
-                    ->with('userWords')
-                    ->where('category_id', '=', $this->category->id)
-                    ->where('subcategory_id', '=', $this->subcategory->id)
-                    ->whereRelation($withLanguage, 'word', '!=', '')
-                    ->get();
-                }
+
+                //Getting all words for create User Words
+                $this->allWords = Word::with([$withLanguage])
+                ->where('category_id', '=', $this->category->id)
+                ->where('subcategory_id', '=', $this->subcategory->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
 
             } else
             {
@@ -143,25 +137,23 @@ class Writing extends Component
                 ->whereRelation('userWords', 'is_learned', '<', 3)
                 ->get();
 
-                /**
-                 * If first time in this category or subcategory, get words without user words
-                 * becouse user words not exist jet.
-                 */
-                if($this->words->isEmpty())
-                {
-                    $this
-                    ->words = Word::with($withLanguage)
-                    ->with('userWords')
-                    ->where('category_id', '=', $this->category->id)
-                    ->whereRelation($withLanguage, 'word', '!=', '')
-                    ->get();
-                }
+                //Getting all words for create User Words
+                $this->allWords = Word::with([$withLanguage])
+                ->where('category_id', '=', $this->category->id)
+                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->get();
+
             }
 
         } else
         {
             $this
             ->words = Word::with($withLanguage)
+            ->whereRelation($withLanguage, 'word', '!=', '')
+            ->get();
+
+            //Getting all words for create User Words
+            $this->allWords = Word::with([$withLanguage])
             ->whereRelation($withLanguage, 'word', '!=', '')
             ->get();
         }
@@ -241,11 +233,11 @@ class Writing extends Component
      */
     public function createUserWords()
     {
-        foreach($this->words as $word)
+
+        foreach($this->allWords as $word)
         {
             switch ($this->language) {
                 case 'ukrainian':
-
                     $word->uaWord->userWords()->updateOrCreate(
                         [
                             'user_id' => auth()->id(),
