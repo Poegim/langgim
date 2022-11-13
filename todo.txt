@@ -1,4 +1,5 @@
 TODO
+    -- Algoryth to get from collection non-learned words
     -- frontend languages unification
 
 BUGS
@@ -12,6 +13,7 @@ REFACTOR
     -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- categories index could(?) bo rewrited to livewire since it loads a ton of views, with
     makes app slow, almost 1000ms of load (but only localy ???)
+    -- models naming convencion change into languages name
 
 TESTING
 
@@ -20,7 +22,6 @@ FUTURE / OPTIONAL
     -- prevent ddos by clicking
     -- contact email
     -- audio
-    -- models naming convencion change into languages name (?)
     -- success failure modals improvements
     -- design improvements, animations
     -- separate writing component

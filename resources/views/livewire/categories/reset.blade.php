@@ -3,6 +3,7 @@
         x-data="{ tooltip: false }"
         x-on:mouseover="tooltip = true"
         x-on:mouseleave="tooltip = false"
+        x-cloak
         class="ml-2 h-5 w-5 cursor-pointer">
 
         <button>
@@ -10,6 +11,7 @@
         </button>
 
         <div
+        x-cloak
         x-show="tooltip"
         class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
         transform translate-y-2">
