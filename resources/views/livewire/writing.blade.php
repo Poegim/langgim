@@ -2,49 +2,50 @@
     @if(!$words->isEmpty())
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center relative">
 
-        <div class="px-2 absolute left-2">
-                    <x-jet-button class="ml-1 text-sm md:w-52" x-on:click="open = ! open">
+        <div class="p-0 sm:px-2 absolute left-2">
+                    <x-jet-secondary-button class="px-1 sm:px-2 ml-1 text-sm md:w-52 " x-on:click="open = ! open">
                         <div class="flex">
-                            <x-clarity-keyboard-line class="w-6 h-6" />
+                            <x-clarity-keyboard-line class="w-6 h-6 " />
                         </div>
-                        <span class="hidden md:block ml-2">
+                        <span class="hidden md:block ml-2 ">
                             Virtual Keyboard
                         </span>
-                    </x-jet-button>
+                    </x-jet-secondary-button>
         </div>
 
-        <div class="px-2 absolute left-2 top-16">
-            <x-jet-button class="ml-1 text-sm md:w-52" wire:click="manualFinishLesson">
+        <div class="p-0 sm:px-2 absolute left-2 top-14 sm:top-16 ">
+            <x-jet-secondary-button class="px-1 sm:px-2 ml-1 text-sm md:w-52 " wire:click="manualFinishLesson">
                 <div class="flex">
-                    <x-clarity-success-standard-line class="w-6 h-6" />
-                    <span class="hidden md:block ml-2 mt-1">
+                    <x-clarity-success-standard-line class="w-6 h-6 " />
+                    <span class="hidden md:block ml-2 mt-1 ">
                         Finish Lesson
                     </span>
                 </div>
-            </x-jet-button>
+            </x-jet-secondary-button>
         </div>
 
-        <div class="flex justify-center mt-2 sm:mt-4">
-            <span class="uppercase text-sm"> {{ __('Last key:')}} {{ $lastKey }} </span>
+        <div class="flex justify-center mt-2 sm:mt-4 ">
+            <span class="uppercase text-sm "> {{ __('Last key:')}} {{ $lastKey }} </span>
             <div class="text-green-500 font-bold hidden" id="top_success" name="top_success" >
-                <x-clarity-success-line class="h-4 w-4" />
+                <x-clarity-success-line class="h-4 w-4 " />
             </div>
-            <div class="text-red-500 hidden" id="top_failure" name="top_failure" >
+            <div class="text-red-500 hidden" id="top_failure " name="top_failure" >
                 <x-clarity-times-line class="h-4 w-4" />
             </div>
         </div>
 
         <div name="word_div" id="word_div" class="">
             <div class="mt-2 sm:mt-4">
-
-                <h1 class="text-2xl tracking-wider uppercase">{{ $foreignWord->word }}</h1>
+                <span class="text-xl sm:text-2xl tracking-wide uppercase ">
+                    {{ $foreignWord->word }}
+                </span>
 
             </div>
-            <div class="mt-2 sm:mt-4 flex justify-center space-x-2">
+            <div class="mt-2 sm:mt-4 flex justify-center space-x-2 ">
                 @foreach($guessedChars as $key => $char)
                 <div class="grid grid-cols-1 uppercase">
                     <div class="w-4" id="field_{{$key}}">
-                        <span class="text-xl font-extrabold tracking-wider"> {{$char}} </span>
+                        <span class="text-lg font-extrabold tracking-wide z-40"> {{$char}} </span>
                     </div>
                     <div class="w-4 h-4">
                         <div class="text-green-500 font-bold hidden" id="success_{{$key}}" name="success_{{$key}}" >
@@ -76,6 +77,7 @@
             </div>
 
         </div>
+
     </div>
 
     <!-- Virtual keyboard -->
