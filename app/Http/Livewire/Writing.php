@@ -53,7 +53,6 @@ class Writing extends Component
     public int $wordSuccessGlobal = 0;
     public int $wordFailureGlobal = 0;
 
-
     /**
      * Rules for reporting error validator
      */

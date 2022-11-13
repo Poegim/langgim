@@ -144,10 +144,10 @@
                 Did u found any mistake?
             </div>
             <div class="mt-4">
-                Polish word: <span class="text-wider uppercase">{{$word->pl_word}}</span>
+                Polish: <span class="text-wider uppercase">{{$word->pl_word}}</span>
             </div>
             <div>
-                Foreign word: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
+                {{ ucfirst($language) }}: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
             </div>
 
             <div class="mt-4 mb-4">
