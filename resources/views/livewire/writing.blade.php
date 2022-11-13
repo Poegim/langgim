@@ -1,4 +1,5 @@
 <div class="rounded-lg bg-white shadow-md mb-2" x-data="{ open: false }">
+    @if(!$words->isEmpty())
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center relative">
 
         <div class="px-2 absolute left-2">
@@ -143,10 +144,10 @@
                 Did u found any mistake?
             </div>
             <div class="mt-4">
-                Polish word: <span class="text-wider uppercase">{{$word->pl_word}}</span>
+                Polish: <span class="text-wider uppercase">{{$word->pl_word}}</span>
             </div>
             <div>
-                Foreign word: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
+                {{ ucfirst($language) }}: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
             </div>
 
             <div class="mt-4 mb-4">
@@ -189,10 +190,10 @@
         <x-slot name="content">
             <div class="tracking-wider">
                 <p>
-                    Polish word: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord->word }} </span>
                 </p>
                 <p>
-                    Answer: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                    Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>
                 </p>
             </div>
             <div class="mt-4">
@@ -222,10 +223,10 @@
         <x-slot name="content">
             <div class="tracking-wider">
                 <p>
-                    Polish word: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord->word }} </span>
                 </p>
                 <p>
-                    Expected answer: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                    Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>
                 </p>
             </div>
             <div class="mt-4">
@@ -272,7 +273,6 @@
             </div>
         </x-slot>
     </x-jet-dialog-modal>
-
 
     <script type="text/javascript">
 
@@ -493,4 +493,20 @@
 
     </script>
 
+    @else
+    <div class="py-2 sm:py-4 rounded-md mx-auto text-center relative">
+        This category is already learned, reset your progress or choose different category.
+        <div class="flex justify-center mt-2">
+            <a href="{{route('category.index')}}">
+                <x-jet-secondary-button>Back to categories</x-jet-secondary-button>
+            </a>
+        </div>
+    </div>
+
+    @endif
+
+
 </div>
+
+
+

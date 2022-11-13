@@ -31,6 +31,7 @@ class Writing extends Component
 
 
     public ?string $language;
+    private ?string $withLanguage;
     public ?Category $category = null;
     public ?Subcategory $subcategory = null;
     public ?ForeignWordInterface $foreignWord = null;
@@ -48,9 +49,9 @@ class Writing extends Component
     //Tries
     public int $wrongTry = 0;
     public const ALLOWED_TRIES = 3;
+    public const IS_LEARNED = 3;
     public int $wordSuccessGlobal = 0;
     public int $wordFailureGlobal = 0;
-
 
     /**
      * Rules for reporting error validator
@@ -66,7 +67,24 @@ class Writing extends Component
         $this->language = $language;
         $this->category = $category;
         $this->subcategory = $subcategory;
-        $this->loadWord();
+
+        switch ($this->language) {
+            case 'ukrainian':
+                $this->withLanguage = 'uaWord';
+                break;
+
+            case 'english':
+                $this->withLanguage = 'enWord';
+                break;
+
+            case 'german':
+                $this->withLanguage = 'geWord';
+                break;
+
+            case 'spanish':
+                $this->withLanguage = 'esWord';
+                break;
+        }
 
         if(auth()->check())
         {
@@ -77,6 +95,9 @@ class Writing extends Component
 
             $this->saveLastUsedCategory();
         }
+
+        $this->queryBuilder();
+        !$this->loadWord() ? $this->render() : $this->generateWordArrays();
     }
 
     /**
@@ -84,63 +105,26 @@ class Writing extends Component
      */
     public function queryBuilder(): void
     {
-        switch ($this->language) {
-            case 'ukrainian':
-                $withLanguage = 'uaWord';
-                break;
-
-            case 'english':
-                $withLanguage = 'enWord';
-                break;
-
-            case 'german':
-                $withLanguage = 'geWord';
-                break;
-
-            case 'spanish':
-                $withLanguage = 'esWord';
-                break;
-
-            default:
-                abort(403, 'Unknown error, contact administrator.');
-                break;
-        }
-
         if ($this->category != null) {
 
             if($this->subcategory !=null)
             {
+
                 $this
-                ->words = Word::with([$withLanguage, 'userWords'])
+                ->words = Word::with([$this->withLanguage, 'userWords'])
                 ->with('userWords')
                 ->where('category_id', '=', $this->category->id)
                 ->where('subcategory_id', '=', $this->subcategory->id)
-                ->whereRelation($withLanguage, 'word', '!=', '')
-                ->whereRelation('userWords', 'is_learned', '<', 3)
-                ->get();
-
-
-                //Getting all words for create User Words
-                $this->allWords = Word::with([$withLanguage])
-                ->where('category_id', '=', $this->category->id)
-                ->where('subcategory_id', '=', $this->subcategory->id)
-                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->whereRelation($this->withLanguage, 'word', '!=', '')
                 ->get();
 
             } else
             {
                 $this
-                ->words = Word::with($withLanguage)
+                ->words = Word::with($this->withLanguage)
                 ->with('userWords')
                 ->where('category_id', '=', $this->category->id)
-                ->whereRelation($withLanguage, 'word', '!=', '')
-                ->whereRelation('userWords', 'is_learned', '<', 3)
-                ->get();
-
-                //Getting all words for create User Words
-                $this->allWords = Word::with([$withLanguage])
-                ->where('category_id', '=', $this->category->id)
-                ->whereRelation($withLanguage, 'word', '!=', '')
+                ->whereRelation($this->withLanguage, 'word', '!=', '')
                 ->get();
 
             }
@@ -148,36 +132,48 @@ class Writing extends Component
         } else
         {
             $this
-            ->words = Word::with($withLanguage)
-            ->whereRelation($withLanguage, 'word', '!=', '')
+            ->words = Word::with($this->withLanguage)
+            ->whereRelation($this->withLanguage, 'word', '!=', '')
             ->get();
 
-            //Getting all words for create User Words
-            $this->allWords = Word::with([$withLanguage])
-            ->whereRelation($withLanguage, 'word', '!=', '')
-            ->get();
         }
     }
 
     /**
      * Loads single word
      */
-    public function loadWord(): void
+    public function loadWord(): bool
     {
         $this->resetVariables();
-        $this->queryBuilder();
 
-
+        /**
+         * If user is logged in remover from collection learned words and get random from not learned.
+         * If there is no words to learn return false.
+         * If user is not logged, just get random word.
+         */
         if(auth()->check())
         {
-            $this->word = $this->words->random();
-        } else
-        {
-            $this->word = $this->words->random();
+            foreach ($this->words as $key => $word)
+            {
+                foreach($word->userWords as $userWord)
+                {
+                    if($userWord->wordable_type == $this->getModelAdress($this->language))
+                    {
+                        $userWord->is_learned >= self::IS_LEARNED ? $this->words->pull($key) : null;
+                    }
+                }
+            }
+
+            if($this->words->isEmpty())
+            {
+                return false;
+
+            }
         }
 
+        $this->word = $this->words->random();
+
         $this->previousWord == null ? $this->previousWord = $this->word : null;
-        $this->generateWordArrays();
 
         switch ($this->language) {
             case 'ukrainian':
@@ -205,8 +201,11 @@ class Writing extends Component
                 break;
         }
 
-    }
+        $this->generateWordArrays();
 
+        return true;
+
+    }
 
     public function saveLastUsedCategory(): void
     {
@@ -233,6 +232,20 @@ class Writing extends Component
      */
     public function createUserWords()
     {
+        if($this->category != NULL)
+        {
+                //Getting all words for create User Words
+                $this->allWords = Word::with([$this->withLanguage])
+                ->where('category_id', '=', $this->category->id)
+                ->whereRelation($this->withLanguage, 'word', '!=', '')
+                ->get();
+        } else
+        {
+                //Getting all words for create User Words
+                $this->allWords = Word::with([$this->withLanguage])
+                ->whereRelation($this->withLanguage, 'word', '!=', '')
+                ->get();
+        }
 
         foreach($this->allWords as $word)
         {
@@ -419,7 +432,6 @@ class Writing extends Component
                 }
             }
 
-
         } else
         {
             $this->loadWord();
@@ -487,7 +499,7 @@ class Writing extends Component
             {
                 if($userWord->wordable_type == $modelAdress)
                 {
-                    if($userWord->is_learned < 3)
+                    if($userWord->is_learned < self::IS_LEARNED)
                     {
                         return false;
                     }

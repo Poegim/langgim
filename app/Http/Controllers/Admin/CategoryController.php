@@ -30,7 +30,7 @@ class CategoryController extends Controller
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => 'unique:categories,'.$language.'|max:75|min:3|nullable'
+                $language => 'required|unique:categories,'.$language.'|max:75|min:3'
             ]);
         }
 
@@ -71,7 +71,7 @@ class CategoryController extends Controller
         foreach(config('langgim.allowed_languages') as $language)
         {
             $validated = $request->validate([
-                $language => ['max:75', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'), 'nullable']
+                $language => ['required','max:75', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'),]
             ]);
         }
 

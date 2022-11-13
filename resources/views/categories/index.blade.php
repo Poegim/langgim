@@ -13,9 +13,24 @@
 
         <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 sm:mx-2 flex flex-col p-4">
             <div class="font-extrabold flex justify-between">
-                <a href="{{route('category.show', [$category])}}">
-                    {{$category->name}} ({{$category->learned_words}}/{{$category->this_language_words}})
-                </a>
+                <div class="flex">
+                    @if ($category->{$language} != NULL)
+                    <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                    class="ml-2 h-5 w-5 cursor-pointer">
+
+                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
+
+                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    transform translate-y-2">
+                        {{ $category->{$language} }}
+                    </div>
+                    </span>
+                    @endif
+                    <a href="{{route('category.show', [$category])}}">
+                        {{$category->name}} ({{$category->learned_words}}/{{$category->this_language_words}})
+                    </a>
+                </div>
                 <div class="mr-3 flex">
 
                     @if ($category->learned_words == $category->this_language_words)
@@ -24,7 +39,7 @@
 
                         <x-tni-tick-circle-o class="w-6 h-6 text-blue-500" />
 
-                        <div x-show="tooltip" class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                        <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
                     transform translate-y-2">
 
                             This category has been fully learned.
@@ -42,14 +57,26 @@
                 @foreach ($category->subcategories as $subcategory)
                 @if ($subcategory->this_language_words != 0)
                 <div class="flex p-3 ml-4 justify-between">
-                    <li>
+                    <li class="flex">
+                        @if ($subcategory->{$language} != NULL)
+                        <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                        x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                        class="ml-2 h-5 w-5 cursor-pointer">
+
+                        <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
+
+                        <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                        transform translate-y-2">
+                            {{ $subcategory->{$language} }}
+                        </div>
+                        </span>
+                        @endif
                         <a href="{{route('category.show', [$category, $subcategory])}}">
                             {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->this_language_words}})
                         </a>
                     </li>
                     <div class="flex">
                         @if ($subcategory->learned_words == $subcategory->this_language_words)
-
                         <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
                             x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
                             class="ml-2 h-5 w-5 cursor-pointer">
