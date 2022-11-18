@@ -385,7 +385,7 @@ class Writing extends Component
     }
 
     /**
-     * Checks is pressed key is an expected key.
+     * Checks is pressed key an expected key.
      */
     public function isKeyValid(): void
     {

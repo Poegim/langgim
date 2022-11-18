@@ -23,7 +23,7 @@
                             @foreach (config('langgim.allowed_languages') as $language)
                             <div class="flex justify-around">
                                 <div class="flex space-x-4 mb-4">
-                                    <div class="shadow">
+                                    <div class="shadow rounded-lg">
                                         <a href="{{route('guest', $language)}}" class="flex relative hover:opacity-90">
                                             <img src="{{asset('/images/flags/'.$language.'.svg')}}"
                                             class="w-16 sm:w-24 rounded-md shadow z-30">
