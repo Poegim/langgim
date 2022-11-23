@@ -66,8 +66,6 @@ class WordController extends Controller
 
         $word->save();
 
-
-
         $word->uaWord()->create([
             'word' => $request->ukrainian ? $request->ukrainian : '',
         ]);
@@ -89,11 +87,6 @@ class WordController extends Controller
         session()->flash('flash.bannerStyle', 'success');
         return redirect()->route('admin.words.index');
 
-    }
-
-    public function show(Word $word)
-    {
-        //
     }
 
     public function edit(Word $word)
