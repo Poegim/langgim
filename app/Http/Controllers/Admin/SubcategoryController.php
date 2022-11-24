@@ -52,11 +52,6 @@ class SubcategoryController extends Controller
 
     }
 
-    public function show(Subcategory $subcategory)
-    {
-        //
-    }
-
     public function edit(Subcategory $subcategory): View
     {
         $categories = Category::all();

@@ -34,7 +34,7 @@ class Error extends Component
 
         $this->resetErrorBag();
         $this->errorModelId = $errorModelId;
-        $this-> errorModel = ErrorModel::findOrfail($this->errorModelId);
+        $this->errorModel = ErrorModel::findOrfail($this->errorModelId);
         $this->title = $this->errorModel->title;
         $this->message = $this->errorModel->message;
         $this->user = $this->errorModel->user;
