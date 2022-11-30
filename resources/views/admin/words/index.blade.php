@@ -129,6 +129,11 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="bg-white rounded p-2 mt-2 shadow mb-2">
+                    {{ $words->links() }}
+                </div>
+
             </div>
         </div>
     </div>

@@ -12,7 +12,11 @@ class WordController extends Controller
 
     public function index()
     {
-        $words = Word::with('category')->get();
+        $words =
+            Word::with('category')
+            ->orderBy('id', 'desc')
+            ->paginate(50);
+
         return view('admin.words.index', compact('words'));
     }
 
