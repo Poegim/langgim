@@ -1,4 +1,4 @@
-<div class="rounded-lg bg-white shadow-md mb-2" x-data="{ open: false }">
+<div class="rounded-lg bg-white shadow-md" x-data="{ open: false }">
     @if(!$words->isEmpty())
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center relative">
 
@@ -22,6 +22,17 @@
                     </span>
                 </div>
             </x-jet-secondary-button>
+        </div>
+
+        <div class="p-0 sm:px-2 absolute left-2 -mt-2 sm:mt-0 top-28 sm:top-30 ">
+            <x-jet-button class="px-1 sm:px-2 ml-1 text-sm md:w-52 " wire:click="failure">
+                <div class="flex">
+                    <x-clarity-help-solid class="w-6 h-6 " />
+                    <span class="hidden md:block ml-2 mt-1 ">
+                        I need a hint
+                    </span>
+                </div>
+            </x-jet-button>
         </div>
 
         <div class="flex justify-center mt-2 sm:mt-4 ">
@@ -218,7 +229,7 @@
     <x-jet-dialog-modal wire:model="modalFailureVisibility" id="modalFailure">
         <x-slot name="title">
             <div class="font-bold text-lg">
-                {{ __("Oh no! Wrong answer!") }}
+                {{ __("I have some hint for you!") }}
             </div>
         </x-slot>
 

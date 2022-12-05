@@ -1,5 +1,6 @@
 TODO
     -- frontend languages unification
+    -- help button
 
 BUGS
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
@@ -8,16 +9,17 @@ BUGS
 FEATURES
 
 REFACTOR
-    -- UI simple project, unification of notifications and language, should it be polish or english or both?
     -- categories index could(?) bo rewrited to livewire since it loads a ton of views, with
     makes app slow, almost 1000ms of load (but only localy ???)
-    -- models naming convencion change into languages name
+    -- models naming convencion change into languages name, to avoid switches
 
 TESTING
 
 FUTURE / OPTIONAL
+    -- search engine in words index
+    -- premium
     -- better dashboard
-    -- prevent ddos by clicking
+    -- prevent ddos by clicking, change engine to client side
     -- contact email
     -- audio
     -- success failure modals improvements
