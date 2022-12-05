@@ -4,26 +4,57 @@
         <!-- Continue Learning -->
         <!-- Couldnt be just passed a null if subcategory is a null? -->
         @if ($category != NULL)
-        <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-4 mx-2 flex flex-col">
+        <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-2 mx-2 flex flex-col">
             <div class="p-4 relative">
 
                 @if($subcategory != NULL)
                 <a href="{{route('category.show', [$category, $subcategory])}}">
-                    <x-buttons.third class="mt-2 w-full">Continue learning</x-button.third>
+                    <x-buttons.third class="w-full">
+                        <div>Continue learning</div>
+                        <div class="text-sm font-extralight">Kontynuuj nauke</div>
+                    </x-button.third>
                 </a>
                 @else
                 <a href="{{route('category.show', [$category])}}">
-                    <x-buttons.third class="mt-2 w-full">Continue learning</x-button.third>
+                    <x-buttons.third class="w-full">
+                        <div>Continue learning</div>
+                        <div class="text-sm font-extralight">Kontynuuj nauke</div>
+                    </x-button.third>
                 </a>
                 @endif
+                <div class="flex mt-2">
+                    <span class="flex mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                    class="ml-2 h-5 w-5 cursor-pointer">
 
-                <p class="leading-normal text-gray-700 mt-6">
-                    Category: {{ $category->name }}
-                </p>
+                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
+
+                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    transform translate-x-3">
+                    Kategoria
+                    </div>
+                    </span>
+                    <p class="flex leading-normal text-gray-700">
+                        Category: {{ $category->name }}
+                    </p>
+                </div>
                 @if($subcategory != NULL)
-                <p class="leading-normal text-gray-700">
-                    Subcategory: {{ $subcategory->name }}
-                </p>
+                <div class="flex mt-2">
+                    <span class="flex mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                    class="ml-2 h-5 w-5 cursor-pointer">
+
+                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
+
+                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    transform translate-x-3">
+                    Podkategoria
+                    </div>
+                    </span>
+                    <p class="flex leading-normal text-gray-700">
+                        Subcategory: {{ $subcategory->name }}
+                    </p>
+                </div>
                 @endif
 
             </div>
@@ -33,17 +64,31 @@
 
         <!-- Chose language -->
         @if (empty(auth()->user()->language))
-        <div class="overflow-hidden rounded-lg shadow-lg bg-white mx-2 mt-4 flex flex-col">
+        <div class="overflow-hidden rounded-lg shadow-lg bg-white mx-2 mt-2 flex flex-col">
             <div class="p-4">
                 <a href="{{route('profile.show')}}">
-                    <x-buttons.third class="mt-2 w-full">Choose language!</x-button.third>
+                    <x-buttons.third class="w-full">
+                        <div>Choose language!</div>
+                        <div class="text-sm font-extralight">Wybierz język!</div>
+                    </x-button.third>
                 </a>
-                <p class="leading-normal text-gray-700 mt-6">
-                    You didnt choose your language, go to profile page to do that.
-                </p>
-                <p class="leading-normal text-gray-700 mt-2">
+
+                <div class="flex mt-2">
+                    <span class="flex mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
+                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                    class="ml-2 h-5 w-5 cursor-pointer">
+
+                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
+
+                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    transform translate-x-3">
                     Nie wybrałeś języka, zrób to w zakładce profil.
-                </p>
+                    </div>
+                    </span>
+                    <p class="flex leading-normal text-gray-700">
+                        You didnt choose your language, go to profile page to do that.
+                    </p>
+                </div>
             </div>
         </div>
         @endif
