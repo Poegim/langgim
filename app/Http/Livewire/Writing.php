@@ -440,6 +440,12 @@ class Writing extends Component
 
     }
 
+    public function hint()
+    {
+        $this->wrongTry = self::ALLOWED_TRIES + 1;
+        $this->failure();
+    }
+
     /**
      * failure is called what user failed to guess word
      * shows modal failure and load next word
