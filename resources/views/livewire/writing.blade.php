@@ -25,7 +25,7 @@
         </div>
 
         <div class="p-0 sm:px-2 absolute left-2 -mt-2 sm:mt-0 top-28 sm:top-30 ">
-            <x-jet-button class="px-1 sm:px-2 ml-1 text-sm md:w-52 " wire:click="failure">
+            <x-jet-button class="px-1 sm:px-2 ml-1 text-sm md:w-52 " wire:click="hint">
                 <div class="flex">
                     <x-clarity-help-solid class="w-6 h-6 " />
                     <span class="hidden md:block ml-2 mt-1 ">
