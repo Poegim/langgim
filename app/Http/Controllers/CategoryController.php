@@ -12,6 +12,11 @@ class CategoryController extends Controller
     public $language;
     private $languageModel;
 
+    public function __construct()
+    {
+        $this->middleware('log')->only('show');
+    }
+
     public function index()
     {
 
@@ -131,18 +136,11 @@ class CategoryController extends Controller
 
     public function show(Category $category, Subcategory $subcategory = null)
     {
-        if(auth()->check())
-        {
-            return view('categories.show', [
-                'category' => $category,
-                'subcategory' => $subcategory,
-                'language' => auth()->user()->language,
-            ]);
-        } else
-        {
-            return view('welcome');
-        }
-
+        return view('categories.show', [
+            'category' => $category,
+            'subcategory' => $subcategory,
+            'language' => auth()->user()->language,
+        ]);
     }
 
 }
