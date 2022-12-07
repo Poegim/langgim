@@ -1,5 +1,5 @@
 <div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 justify-center mb-4 mr-2">
 
         <!-- Continue Learning -->
         <!-- Couldnt be just passed a null if subcategory is a null? -->

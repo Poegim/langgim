@@ -12,9 +12,13 @@ class CategoryController extends Controller
     public $language;
     private $languageModel;
 
+    public function __construct()
+    {
+        $this->middleware('auth')->only('show');
+    }
+
     public function index()
     {
-
         if(auth()->check())
         {
             $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
@@ -131,18 +135,11 @@ class CategoryController extends Controller
 
     public function show(Category $category, Subcategory $subcategory = null)
     {
-        if(auth()->check())
-        {
-            return view('categories.show', [
-                'category' => $category,
-                'subcategory' => $subcategory,
-                'language' => auth()->user()->language,
-            ]);
-        } else
-        {
-            return view('welcome');
-        }
-
+        return view('categories.show', [
+            'category' => $category,
+            'subcategory' => $subcategory,
+            'language' => auth()->user()->language,
+        ]);
     }
 
 }
