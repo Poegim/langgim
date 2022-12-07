@@ -14,12 +14,11 @@ class CategoryController extends Controller
 
     public function __construct()
     {
-        $this->middleware('log')->only('show');
+        $this->middleware('auth')->only('show');
     }
 
     public function index()
     {
-
         if(auth()->check())
         {
             $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();

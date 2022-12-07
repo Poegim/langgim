@@ -1,6 +1,5 @@
 TODO
     -- frontend languages unification
-    -- help button
 
 BUGS
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
@@ -9,28 +8,21 @@ BUGS
 FEATURES
 
 REFACTOR
-    -- categories index could(?) bo rewrited to livewire since it loads a ton of views, with
-    makes app slow, almost 1000ms of load (but only localy ???)
     -- models naming convencion change into languages name, to avoid switches
+    -- categories index could(?) bo rewrited to livewire since it loads a ton of views,
+    however it doesnt impact loads time on dev env
+    -- prevent ddos by clicking, change engine to client side,
+    by rewrite some functions to vanillaJS/vue/react :)
 
 TESTING
 
 FUTURE / OPTIONAL
     -- search engine in words index
     -- premium
-    -- better dashboard
-    -- prevent ddos by clicking, change engine to client side
     -- contact email
     -- audio
-    -- success failure modals improvements
-    -- design improvements, animations
-    -- separate writing component
-    -- "delete.blade" livewire views are typicaly same except item name, could be maybe merged into one view
-    -- flashes
-    -- additional validation of subcategories and categories unique combination
-    -- blog
+    -- quiz mode
 
 OUTSIDE PROBLEMS
-    -- better google indexing
     -- emails server
 
