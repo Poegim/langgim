@@ -20,7 +20,7 @@ Project is created with:
 * PHP 8
 * JavaScript
 * Laravel 8 (Jetstream starter kit)
-* TailwindCSS 2
+* TailwindCSS 3
 * Livewire 2
-* AlpineJS 2
+* AlpineJS 3
 * [Blade UIkit](https://blade-ui-kit.com/)
