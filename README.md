@@ -10,7 +10,7 @@
 This is a Laravel app for learning Polish. I made this app after russian invasion of Ukraine in 2022 to help foreginers learn Polish. However, besides Ukrainian I also added other languages (English, Spanish, German). This application is still being developed by me.
 
 At this moment the application has the following modules:
-+ writing module for guest and authorized users. For logged users app is saving progess,logged users can choos categories and subcategories for learning
++ writing module for guest and authorized users. Logged in users can choose categories and subcategories to study, additionally the application saves their progress
 + categories index
 + user profile
 + administrator section CRUDs for words, categories and subcategories
