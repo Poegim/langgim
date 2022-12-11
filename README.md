@@ -4,7 +4,6 @@
 ## Table of contents
 * [General info](#general-info)
 * [Technologies](#technologies)
-* [Setup](#setup)
 
 ## General info
 This is a Laravel app for learning Polish. I made this app after russian invasion of Ukraine in 2022 to help foreginers learn Polish. However, besides Ukrainian I also added other languages (English, Spanish, German). This application is still being developed by me.
