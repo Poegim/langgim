@@ -5,15 +5,12 @@
 * [General info](#general-info)
 * [Technologies](#technologies)
 * [Setup](#setup)
-* [Media resources](#media-resources)
-* [Screenshots](#screenshots)
 
 ## General info
 This is a Laravel app for learning Polish. I made this app after russian invasion of Ukraine in 2022 to help foreginers learn Polish. However, besides Ukrainian I also added other languages (English, Spanish, German). This application is still being developed by me.
 
 At this moment the application has the following modules:
-+ writing module for guest and authorized users ...
- ...for logged users app is saving progess, also logged users can choos categories and subcategories for learning
++ writing module for guest and authorized users for logged users app is saving progess, also logged users can choos categories and subcategories for learning
 + categories index
 + user profile
 + administrator section CRUDs for words, categories and subcategories
