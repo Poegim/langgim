@@ -9,25 +9,25 @@
                     <thead>
                         <tr>
                             <th
-                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             ID
                             </th>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             Name
                             </th>
                             <th
-                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             E-mail
                             </th>
-                            <th class="text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                            <th class="text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
 
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white">
+                    <tbody class="bg-slate-800">
                         @foreach ($users as $user)
-                        <tr class="bg-white text-gray-800 text-sm text-left">
+                        <tr class="bg-slate-800  text-sm text-left">
                             <td class="px-6 py-3 ">{{$user->id}}</td>
                             <td class="px-6 py-3 ">{{$user->name}}</td>
                             <td class="px-6 py-3 ">{{$user->email}}</td>

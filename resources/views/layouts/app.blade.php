@@ -38,16 +38,16 @@
 
 
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased text-gray-200">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-slate-900">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-2 sm:py-6 px-2 sm:px-6 lg:px-8">
+                <header class="bg-slate-900 shadow">
+                    <div class="mx-auto py-2 sm:py-6 px-2 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
                 </header>

@@ -21,44 +21,44 @@
                         <thead>
                             <tr>
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     ID
                                 </th>
-                                <th class="border-b border-gray-200 bg-gray-50">
+                                <th class="border-b border-gray-200 bg-slate-700">
 
                                 </th>
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Polish
                                 </th>
                                 <th
-                                class="px-1 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="px-1 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Audio
                                 </th>
 
                                 <th
-                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Sample Sentence</th>
                                 <th
-                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Category</th>
                                 <th
-                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                    class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Subcategory
                                 </th>
 
                                 @foreach (config('langgim.allowed_languages') as $language)
                                 <th
-                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     {{ substr($language, 0, 4) }}
                                 </th>
                                 @endforeach
 
                             </tr>
                         </thead>
-                        <tbody class="bg-white">
+                        <tbody class="bg-slate-800">
                         @foreach($words as $word)
-                        <tr class="bg-white text-gray-800 text-sm text-left">
+                        <tr class="bg-slate-800  text-sm text-left">
                             <td class="px-2 py-3">{{$word->id}}</td>
                             <td class="">
                                 <div class="flex">
@@ -130,7 +130,7 @@
                     </table>
                 </div>
 
-                <div class="bg-white rounded p-2 mt-2 shadow mb-2">
+                <div class="bg-slate-800 rounded p-2 mt-2 shadow mb-2">
                     {{ $words->links() }}
                 </div>
 

@@ -8,7 +8,7 @@
     </x-slot>
 
     <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-900">
+        <div class="max-w-xl text-sm text-gray-200">
             {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
         </div>
 
@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="ml-3">
-                            <div class="text-sm text-gray-900">
+                            <div class="text-sm text-gray-200">
                                 {{ $session->agent->platform() ? $session->agent->platform() : 'Unknown' }} - {{ $session->agent->browser() ? $session->agent->browser() : 'Unknown' }}
                             </div>
 
@@ -52,9 +52,9 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
+            <x-buttons.primary wire:click="confirmLogout" wire:loading.attr="disabled">
                 {{ __('Log Out Other Browser Sessions') }}
-            </x-jet-button>
+            </x-buttons.primary>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
                 {{ __('Done.') }}
@@ -86,11 +86,11 @@
                     {{ __('Cancel') }}
                 </x-jet-secondary-button>
 
-                <x-jet-button class="ml-3"
+                <x-buttons.primary class="ml-3"
                             wire:click="logoutOtherBrowserSessions"
                             wire:loading.attr="disabled">
                     {{ __('Log Out Other Browser Sessions') }}
-                </x-jet-button>
+                </x-buttons.primary>
             </x-slot>
         </x-jet-dialog-modal>
     </x-slot>

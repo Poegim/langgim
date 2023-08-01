@@ -7,7 +7,7 @@
 
         @foreach (config('countries') as $key => $country)
         <div>
-            <a href="" class="text-white hover:text-gray-300">
+            <a href="" class="text-gray-200 hover:text-gray-300">
                 <div class="flex justify-center text-lg">
                     {{$country}}
             </div>

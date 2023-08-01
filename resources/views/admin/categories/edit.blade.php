@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Edit Category') }}
         </h2>
     </x-slot>
@@ -32,7 +32,7 @@
                     @endforeach
 
                     <div class="mt-2">
-                        <x-jet-button>Save</x-jet-button>
+                        <x-buttons.primary>Save</x-buttons.primary>
                     </div>
                 </form>
 

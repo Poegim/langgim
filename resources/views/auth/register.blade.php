@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -39,8 +39,8 @@
 
                             <div class="ml-2">
                                 {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-200">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-200">'.__('Privacy Policy').'</a>',
                                 ]) !!}
                             </div>
                         </div>
@@ -49,13 +49,13 @@
             @endif
 
             <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                <a class="underline text-sm text-gray-400 hover:text-gray-200" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-jet-button class="ml-4">
+                <x-buttons.primary class="ml-4">
                     {{ __('Register') }}
-                </x-jet-button>
+                </x-buttons.primary>
             </div>
         </form>
     </x-jet-authentication-card>
@@ -74,4 +74,4 @@
             });
         </script>
     @endpush
-</x-guest-layout>
+</x-app-layout>

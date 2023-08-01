@@ -5,11 +5,11 @@
         </x-slot>
 
         <div x-data="{ recovery: false }">
-            <div class="mb-4 text-sm text-gray-900" x-show="! recovery">
+            <div class="mb-4 text-sm text-gray-200" x-show="! recovery">
                 {{ __('Please confirm access to your account by entering the authentication code provided by your authenticator application.') }}
             </div>
 
-            <div class="mb-4 text-sm text-gray-900" x-show="recovery">
+            <div class="mb-4 text-sm text-gray-200" x-show="recovery">
                 {{ __('Please confirm access to your account by entering one of your emergency recovery codes.') }}
             </div>
 
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <button type="button" class="text-sm text-gray-900 hover:text-gray-900 underline cursor-pointer"
+                    <button type="button" class="text-sm text-gray-200 hover:text-gray-200 underline cursor-pointer"
                                     x-show="! recovery"
                                     x-on:click="
                                         recovery = true;
@@ -38,7 +38,7 @@
                         {{ __('Use a recovery code') }}
                     </button>
 
-                    <button type="button" class="text-sm text-gray-900 hover:text-gray-900 underline cursor-pointer"
+                    <button type="button" class="text-sm text-gray-200 hover:text-gray-200 underline cursor-pointer"
                                     x-show="recovery"
                                     x-on:click="
                                         recovery = false;
@@ -47,9 +47,9 @@
                         {{ __('Use an authentication code') }}
                     </button>
 
-                    <x-jet-button class="ml-4">
+                    <x-buttons.primary class="ml-4">
                         {{ __('Log in') }}
-                    </x-jet-button>
+                    </x-buttons.primary>
                 </div>
             </form>
         </div>

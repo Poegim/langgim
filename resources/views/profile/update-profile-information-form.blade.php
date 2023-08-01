@@ -73,7 +73,7 @@
             @endphp
             <x-jet-label for="language" value="{{ __('Default language') }}" />
             <select
-                class="mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="language"
+                class="text-gray-800 mt-1 block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm" id="language"
                 wire:model.defer="state.language"
                 id="language" name="language">
 
@@ -95,8 +95,8 @@
             {{ __('Saved.') }}
         </x-jet-action-message>
 
-        <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+        <x-buttons.primary wire:loading.attr="disabled" wire:target="photo">
             {{ __('Save') }}
-        </x-jet-button>
+        </x-buttons.primary>
     </x-slot>
 </x-jet-form-section>

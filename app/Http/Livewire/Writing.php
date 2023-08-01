@@ -23,7 +23,11 @@ class Writing extends Component
     //Writing
     public ?string $lastKey = null;
     protected ?Collection $allWords = null; //All  words for create user words
+
     public ?Collection $words = null; //Words for this lesson, with arent already learned
+    public string $wordsArray = "";
+
+
     public ?Word $word = null;
     public ?Word $previousWord = null;
     public array $guessedChars = [];
@@ -97,6 +101,7 @@ class Writing extends Component
         }
 
         $this->queryBuilder();
+        $this->mergeUserWordsIntoWords();
         !$this->loadWord() ? $this->render() : $this->generateWordArrays();
     }
 
@@ -136,21 +141,14 @@ class Writing extends Component
             ->whereRelation($this->withLanguage, 'word', '!=', '')
             ->get();
 
+
         }
+
+        $this->wordsArray = $this->words;
     }
 
-    /**
-     * Loads single word
-     */
-    public function loadWord(): bool
+    private function mergeUserWordsIntoWords(): void
     {
-        $this->resetVariables();
-
-        /**
-         * If user is logged in remover from collection learned words and get random from not learned.
-         * If there is no words to learn return false.
-         * If user is not logged, just get random word.
-         */
         if(auth()->check())
         {
             foreach ($this->words as $key => $word)
@@ -163,11 +161,26 @@ class Writing extends Component
                     }
                 }
             }
+        }
+    }
 
+    /**
+     * Loads single word
+     */
+    public function loadWord(): bool
+    {
+        $this->resetVariables();
+
+        /**
+         * If user is logged-in, delete from words collection already learned words and get random from not learned.
+         * If there is no words to learn return false.
+         * If user is not logged, just get random word.
+         */
+        if(auth()->check())
+        {
             if($this->words->isEmpty())
             {
                 return false;
-
             }
         }
 

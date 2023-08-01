@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Categories') }}
         </h2>
     </x-slot>
@@ -35,23 +35,23 @@
                     <thead>
                         <tr>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50 w-1">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700 w-1">
                                 ID
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 Title
                             </th>
 
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 Subcategories
                             </th>
 
                     </thead>
-                    <tbody class="bg-white">
+                    <tbody class="bg-slate-800">
                     @foreach($categories as $category)
-                    <tr class="bg-white text-gray-800 text-sm text-left border-b">
+                    <tr class="bg-slate-800  text-sm text-left border-b">
                         <td class="sm:px-4 px-1 py-2 ">{{$category->id}}</td>
                         <td class="sm:px-4 px-1 py-2 flex space-x-1">
                             <div class="flex justify-center">

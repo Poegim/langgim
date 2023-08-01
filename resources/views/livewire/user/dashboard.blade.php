@@ -4,22 +4,20 @@
         <!-- Continue Learning -->
         <!-- Couldnt be just passed a null if subcategory is a null? -->
         @if ($category != NULL)
-        <div class="overflow-hidden rounded-lg shadow-lg bg-white mt-2 mx-2 flex flex-col">
+        <div class="overflow-hidden rounded-lg shadow-lg bg-slate-800 mt-2 mx-2 flex flex-col">
             <div class="p-4 relative">
 
                 @if($subcategory != NULL)
                 <a href="{{route('category.show', [$category, $subcategory])}}">
                     <x-buttons.third class="w-full">
                         <div>Continue learning</div>
-                        <div class="text-sm font-extralight">Kontynuuj nauke</div>
                     </x-button.third>
                 </a>
                 @else
                 <a href="{{route('category.show', [$category])}}">
-                    <x-buttons.third class="w-full">
+                    <x-buttons.secondary class="w-full">
                         <div>Continue learning</div>
-                        <div class="text-sm font-extralight">Kontynuuj nauke</div>
-                    </x-button.third>
+                    </x-button.secondary>
                 </a>
                 @endif
                 <div class="flex mt-2">
@@ -29,12 +27,12 @@
 
                     <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
 
-                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
                     transform translate-x-3">
                     Kategoria
                     </div>
                     </span>
-                    <p class="flex leading-normal text-gray-700">
+                    <p class="flex leading-normal">
                         Category: {{ $category->name }}
                     </p>
                 </div>
@@ -46,12 +44,12 @@
 
                     <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
 
-                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
                     transform translate-x-3">
                     Podkategoria
                     </div>
                     </span>
-                    <p class="flex leading-normal text-gray-700">
+                    <p class="flex leading-normal">
                         Subcategory: {{ $subcategory->name }}
                     </p>
                 </div>
@@ -64,10 +62,10 @@
 
         <!-- Chose language -->
         @if (empty(auth()->user()->language))
-        <div class="overflow-hidden rounded-lg shadow-lg bg-white mx-2 mt-2 flex flex-col">
+        <div class="overflow-hidden rounded-lg shadow-lg bg-slate-800 mx-2 mt-2 flex flex-col">
             <div class="p-4">
                 <a href="{{route('profile.show')}}">
-                    <x-buttons.third class="w-full">
+                    <x-buttons.primary class="w-full">
                         <div>Choose language!</div>
                         <div class="text-sm font-extralight">Wybierz język!</div>
                     </x-button.third>
@@ -80,7 +78,7 @@
 
                     <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
 
-                    <div x-show="tooltip" x-cloak class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
                     transform translate-x-3">
                     Nie wybrałeś języka, zrób to w zakładce profil.
                     </div>

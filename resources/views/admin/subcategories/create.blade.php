@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Create Subcategory') }}
         </h2>
     </x-slot>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div>
-                            <x-jet-button>Save</x-jet-button>
+                            <x-buttons.primary>Save</x-buttons.primary>
                             <a href="{{route('admin.categories.index')}}">
                                 <x-jet-danger-button type="button">Back</x-jet-danger-button>
                             </a>

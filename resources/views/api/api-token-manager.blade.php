@@ -39,9 +39,9 @@
                 {{ __('Created.') }}
             </x-jet-action-message>
 
-            <x-jet-button>
+            <x-buttons.primary>
                 {{ __('Create') }}
-            </x-jet-button>
+            </x-buttons.primary>
         </x-slot>
     </x-jet-form-section>
 
@@ -140,9 +140,9 @@
                 {{ __('Cancel') }}
             </x-jet-secondary-button>
 
-            <x-jet-button class="ml-3" wire:click="updateApiToken" wire:loading.attr="disabled">
+            <x-buttons.primary class="ml-3" wire:click="updateApiToken" wire:loading.attr="disabled">
                 {{ __('Save') }}
-            </x-jet-button>
+            </x-buttons.primary>
         </x-slot>
     </x-jet-dialog-modal>
 

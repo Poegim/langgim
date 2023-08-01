@@ -38,9 +38,9 @@
             {{ __('Cancel') }}
         </x-jet-secondary-button>
 
-        <x-jet-button class="ml-3" dusk="confirm-password-button" wire:click="confirmPassword" wire:loading.attr="disabled">
+        <x-buttons.primary class="ml-3" dusk="confirm-password-button" wire:click="confirmPassword" wire:loading.attr="disabled">
             {{ $button }}
-        </x-jet-button>
+        </x-buttons.primary>
     </x-slot>
 </x-jet-dialog-modal>
 @endonce

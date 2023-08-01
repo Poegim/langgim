@@ -4,7 +4,7 @@
             <x-jet-authentication-card-logo />
         </x-slot>
 
-        <div class="mb-4 text-sm text-gray-900">
+        <div class="mb-4 text-sm text-gray-200">
             {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
         </div>
 
@@ -19,16 +19,16 @@
                 @csrf
 
                 <div>
-                    <x-jet-button type="submit">
+                    <x-buttons.primary type="submit">
                         {{ __('Resend Verification Email') }}
-                    </x-jet-button>
+                    </x-buttons.primary>
                 </div>
             </form>
 
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
 
-                <button type="submit" class="underline text-sm text-gray-900 hover:text-gray-900">
+                <button type="submit" class="underline text-sm text-gray-200 hover:text-gray-200">
                     {{ __('Log Out') }}
                 </button>
             </form>

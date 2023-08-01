@@ -9,35 +9,35 @@
                     <thead>
                         <tr>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50 w-1">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700 w-1">
                                 ID
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 Title
                             </th>
 
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 User
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 Status
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 Date
                             </th>
                             <th
-                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-500 uppercase border-b border-gray-200 bg-gray-50">
+                                class="sm:px-4 px-1 py-2 text-sm font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                 CRUD
                             </th>
 
                     </thead>
-                    <tbody class="bg-white">
+                    <tbody class="bg-slate-800">
                         @foreach ($errorsCollection as $errorItem)
-                        <tr class="bg-white text-gray-800 text-sm text-left">
+                        <tr class="bg-slate-800  text-sm text-left">
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->id}}</td>
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->title}}</td>
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->user->name}}</td>
@@ -97,7 +97,7 @@
                 <div>
                     <label for="toggle" class="text-xs text-gray-700">{{$status ? 'Fixed' : 'Waiting'}}</label>
                     <div class="relative inline-block w-10 m-2 align-middle select-none transition duration-200 ease-in">
-                        <input wire:model="status" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+                        <input wire:model="status" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-slate-800 border-4 appearance-none cursor-pointer" />
                         <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
                     </div>
                 </div>
@@ -135,9 +135,9 @@
                     {{ __("Cancel")}}
                 </x-jet-secondary-button>
 
-                <x-jet-button wire:click="updateModel" wire:loading.attr='disabled'>
+                <x-buttons.primary wire:click="updateModel" wire:loading.attr='disabled'>
                     {{ __("Save")}}
-                </x-jet-button>
+                </x-buttons.primary>
             </div>
         </x-slot>
     </x-old-dialog-modal>

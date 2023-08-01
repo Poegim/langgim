@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Guest mode') }}
         </h2>
     </x-slot>
@@ -12,10 +12,10 @@
                 <livewire:writing :language="$language">
                     @else
                     <div class="flex justify-center">
-                        <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+                        <div class="w-full sm:max-w-md px-6 py-4 bg-slate-800 shadow-md overflow-hidden sm:rounded-lg">
 
                             <div class="mb-4 flex justify-center">
-                                <span class="text-xl">
+                                <span class="text-xl uppercase text-gray-300 md:tracking-widest">
                                     Choose your language:
                                 </span>
                             </div>
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 sm:mt-6">
-                                    <span class="h-1 font-bold">{{ucfirst($language)}} - Polish</span>
+                                    <span class="h-1 uppercase text-sm md:text-md">{{Illuminate\Support\Str::limit($language, 3, '')}} - POL</span>
                                 </div>
                             </div>
                             @endforeach

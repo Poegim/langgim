@@ -13,7 +13,8 @@ REFACTOR
     -- categories index could(?) bo rewrited to livewire since it loads a ton of views,
     however it doesnt impact loads time on dev env
 
-    -- rewrite engine to be client side
+    -- rewrite engine to be client side,
+       probably would be better to just rewrite whole Writing as new than updates.
 
 TESTING
 

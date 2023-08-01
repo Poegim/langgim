@@ -1,6 +1,6 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+    <div class="max-w-full mx-auto px-2 sm:px-6 lg:px-8 bg-slate-800">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -50,7 +50,7 @@
                         <x-slot name="trigger">
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:bg-gray-50 hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
+                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-200 bg-slate-800 hover:bg-gray-50 hover:text-gray-400 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition">
                                     {{ Auth::user()->currentTeam->name }}
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -100,11 +100,12 @@
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
                     @guest
-                    <a href="{{ route('login') }}" class="text-sm text-gray-900 hover:text-gray-400 px-2">Log in
-                    </a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-300 hover:text-gray-100 px-2">Log in
+                        </a>
 
-                    <a href="{{ route('register') }}" class="text-sm text-gray-900 hover:text-gray-400 px-2">Register
-                    </a>
+                        <a href="{{ route('register') }}" class="text-sm text-gray-300 hover:text-gray-100 px-2">Register
+                        </a>
+
                     @endguest
                     <x-jet-dropdown align="right" width="48">
                         <x-slot name="trigger">
@@ -118,7 +119,7 @@
                             @else
                             <span class="inline-flex rounded-md">
                                 <button type="button"
-                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition">
+                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-200 bg-slate-800 hover:text-gray-300 focus:outline-none transition">
                                     {{ Auth::user()->name }}
 
                                     <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +136,7 @@
 
                         <x-slot name="content">
                             <!-- Account Management -->
-                            <div class="block px-4 py-2 text-xs text-gray-400">
+                            <div class="block px-4 py-2 text-xs">
                                 {{ __('Manage Account') }}
                             </div>
 
@@ -237,7 +238,7 @@
 
                 @auth
                 <div>
-                    <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
+                    <div class="font-medium text-base ">{{ Auth::user()->name }}</div>
                     <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
                 </div>
                 @endauth

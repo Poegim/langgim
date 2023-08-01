@@ -13,7 +13,7 @@
         <div
         x-cloak
         x-show="tooltip"
-        class="text-sm text-white absolute bg-blue-400 rounded-lg p-2
+        class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
         transform translate-y-2">
             Reset progress
          </div>
