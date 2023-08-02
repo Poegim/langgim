@@ -5,28 +5,33 @@ namespace App\Http\Controllers;
 use App\Http\Traits\ModelAdress;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Repositories\CategoryRepository;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
     use ModelAdress;
-    public $language;
-    private $languageModel;
+    private string $language;
+    private string $languageModel;
+    private CategoryRepository $repository;
 
-    public function __construct()
+    public function __construct(CategoryRepository $repository)
     {
         $this->middleware('auth')->only('show');
+        $this->repository = $repository;
     }
 
-    public function index()
+    public function index(): View
     {
         if(auth()->check())
         {
-            $categories = Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
+            $categories = $this->repository->withUserWords();
             $this->language = auth()->user()->language;
             $this->languageModel = $this->getModelAdress($this->language);
         } else
         {
-            $categories = Category::with(['subcategories.words', 'words'])->get();
+            $categories = $this->repository->withoutUserWords();
             $this->language = collect(config('langgim.allowed_languages'))->random();
         }
 
@@ -41,9 +46,8 @@ class CategoryController extends Controller
     /**
      * Foreaching over categories/subcategories->words->userWords
      * and checking for already learned words of selected language
-     * and counting words in selected by user default language
      */
-    public function getProgress($categories)
+    public function getProgress($categories): Collection
     {
         foreach($categories as $category)
         {

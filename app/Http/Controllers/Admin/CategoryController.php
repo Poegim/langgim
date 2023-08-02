@@ -7,12 +7,21 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
+
+    private CategoryRepository $repository;
+
+    public function __construct(CategoryRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
     public function index()
     {
-        $categories = Category::with('subcategories')->get();
+        $categories = $this->repository->withSubcategories();
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -23,13 +32,13 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => 'required|unique:categories|max:75|min:3',
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
-            $validated = $request->validate([
+            $request->validate([
                 $language => 'required|unique:categories,'.$language.'|max:75|min:3'
             ]);
         }
@@ -59,13 +68,13 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $category)
     {
-        $validated = $request->validate([
+        $request->validate([
             'name' => ['required', 'max:75', 'min:3', Rule::unique('categories')->ignore($category->id, 'id')]
         ]);
 
         foreach(config('langgim.allowed_languages') as $language)
         {
-            $validated = $request->validate([
+            $request->validate([
                 $language => ['required','max:75', 'min:3', Rule::unique('categories', $language)->ignore($category->id, 'id'),]
             ]);
         }

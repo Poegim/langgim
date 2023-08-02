@@ -117,7 +117,7 @@
                 </div>
             </div>
 
-            <ul class="divide-y-2 divide-gray-100">
+            <ul class="divide-y divide-opacity-50 divide-slate-500">
                 @foreach ($category->subcategories as $subcategory)
                 @if ($subcategory->this_language_words != 0)
                 <div class="flex p-3 ml-4 justify-between">

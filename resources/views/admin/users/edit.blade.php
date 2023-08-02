@@ -29,7 +29,7 @@
 
                         <div>
                             <x-jet-label for="category">Role:</x-jet-label>
-                            <select name="role" id="role" class="border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
+                            <select name="role" id="role" class="text-gray-800 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
                                 <option value="1" @if($user->role == 1) selected="selected" @endif>ADMIN</option>
                                 <option value="2" @if($user->role == 2) selected="selected" @endif>PREMIUM USER</option>
                                 <option value="3" @if($user->role == 3) selected="selected" @endif>USER</option>
