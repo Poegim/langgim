@@ -391,7 +391,6 @@ class Writing extends Component
 
     public function keyPressed($key): void
     {
-
         $key == 'space' ? $key = ' ' : null;
         $this->lastKey = $key;
         $this->isKeyValid();

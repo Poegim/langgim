@@ -6,6 +6,8 @@ use App\Models\Word;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreWordRequest;
+use App\Http\Requests\Admin\UpdateWordRequest;
 
 class WordController extends Controller
 {
@@ -26,22 +28,8 @@ class WordController extends Controller
         return view('admin.words.create', compact('categories'));
     }
 
-    public function store(Request $request)
+    public function store(StoreWordRequest $request)
     {
-        $request->validate([
-            'word' => ['required', 'max:30'],
-            'sample_sentecne' => ['nullable', 'max:256'],
-            'category' => ['required',],
-            'audio_file' => ['nullable','mimes:mp3','max:2048'],
-        ]);
-
-        foreach(config('langgim.allowed_languages') as $language)
-        {
-            $request->validate([
-                $language => 'max:30|nullable'
-            ]);
-        }
-
         //Split category input into category/subcategory array.
         $request->category = explode( '.', $request->category );
 
@@ -54,8 +42,8 @@ class WordController extends Controller
             $uploadLocation = 'audio/words/';
             $file->move($uploadLocation,$fileName);
             $newFilePath = 'audio/words/'.$fileName;
-        }
 
+        }
 
         //Saving data
         $word = new Word;
@@ -99,21 +87,8 @@ class WordController extends Controller
         return view('admin.words.edit', compact('categories', 'word'));
     }
 
-    public function update(Request $request, Word $word)
+    public function update(UpdateWordRequest $request, Word $word)
     {
-        $request->validate([
-            'word' => ['required',],
-            'sample_sentecne' => ['nullable',],
-            'category' => ['required',],
-            'audio_file' => ['nullable','mimes:mp3','max:2048'],
-        ]);
-
-        foreach(config('langgim.allowed_languages') as $language)
-        {
-            $request->validate([
-                $language => 'max:30|nullable'
-            ]);
-        }
 
         //Split category input into category/subcategory array.
         $request->category = explode( '.', $request->category );

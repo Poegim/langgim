@@ -6,9 +6,9 @@ use App\Models\Category;
 use Illuminate\View\View;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreSubcategoryRequest;
+use App\Http\Requests\Admin\UpdateSubcategoryRequest;
 use Illuminate\Http\RedirectResponse;
 
 class SubcategoryController extends Controller
@@ -20,20 +20,8 @@ class SubcategoryController extends Controller
         return view('admin.subcategories.create', compact('categories'));
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(StoreSubcategoryRequest $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|max:75|min:3',
-            'category' => 'required|exists:categories,id',
-        ]);
-
-        foreach(config('langgim.allowed_languages') as $language)
-        {
-            $request->validate([
-                $language => 'unique:subcategories,'.$language.'|max:75|min:3|nullable'
-            ]);
-        }
-
         $subcategory = new Subcategory();
         $subcategory->name = $request->name;
         $subcategory->slug = Str::slug($request->name, '-');
@@ -58,20 +46,8 @@ class SubcategoryController extends Controller
         return view('admin.subcategories.edit', compact('categories', 'subcategory'));
     }
 
-    public function update(Request $request, Subcategory $subcategory): RedirectResponse
+    public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required|max:75|min:3',
-            'category' => 'required|exists:categories,id',
-        ]);
-
-        foreach(config('langgim.allowed_languages') as $language)
-        {
-            $request->validate([
-                $language => ['max:75', 'min:3', Rule::unique('subcategories', $language)->ignore($subcategory->id, 'id'), 'nullable']
-            ]);
-        }
-
         $subcategory->name = $request->name;
         $subcategory->slug = Str::slug($request->name, '-');
 

@@ -41,7 +41,7 @@
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->id}}</td>
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->title}}</td>
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->user->name}}</td>
-                            <td class="sm:px-4 px-1 py-2">{{$errorItem->status ? 'Fixed' : 'Waiting'}}</td>
+                            <td class="sm:px-4 px-1 py-2 {{$errorItem->status ? 'text-green-400' : 'text-red-400'}}">{{$errorItem->status ? 'Fixed' : 'Waiting'}}</td>
                             <td class="sm:px-4 px-1 py-2">{{$errorItem->created_at}}</td>
                             <td>
                                 <div class="flex">
@@ -95,10 +95,10 @@
                     {!! $title !!}
                 </div>
                 <div>
-                    <label for="toggle" class="text-xs text-gray-700">{{$status ? 'Fixed' : 'Waiting'}}</label>
+                    <label for="toggle" class="text-xs text-gray-400">{{$status ? 'Fixed' : 'Waiting'}}</label>
                     <div class="relative inline-block w-10 m-2 align-middle select-none transition duration-200 ease-in">
                         <input wire:model="status" type="checkbox" name="toggle" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-slate-800 border-4 appearance-none cursor-pointer" />
-                        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                        <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-red-500 cursor-pointer"></label>
                     </div>
                 </div>
 
