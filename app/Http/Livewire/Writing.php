@@ -147,6 +147,9 @@ class Writing extends Component
         $this->wordsArray = $this->words;
     }
 
+    /*
+    * Merge user words into words to get data about already learned
+    */
     private function mergeUserWordsIntoWords(): void
     {
         if(auth()->check())
@@ -452,7 +455,7 @@ class Writing extends Component
 
     }
 
-    public function hint()
+    public function hint(): void
     {
         $this->wrongTry = self::ALLOWED_TRIES + 1;
         $this->failure();
@@ -507,7 +510,7 @@ class Writing extends Component
 
     }
 
-    public function isLessonFinished()
+    public function isLessonFinished(): bool
     {
         $modelAdress = $this->getModelAdress($this->language);
 
@@ -529,7 +532,7 @@ class Writing extends Component
 
     }
 
-    public function manualFinishLesson()
+    public function manualFinishLesson(): void
     {
         $this->modalLessonSuccessVisibility = true;
     }

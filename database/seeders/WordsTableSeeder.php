@@ -20,11 +20,11 @@ class WordsTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->faker = Factory::create();
-        $categories = Category::all();
 
-        // if(env('APP_ENV') == 'local')
-        // {
+        if(env('APP_ENV') == 'local')
+        {
+            $this->faker = Factory::create();
+            $categories = Category::all();
             foreach ($categories as $category)
             {
                 foreach($category->subcategories as $subcategory)
@@ -41,7 +41,7 @@ class WordsTableSeeder extends Seeder
                     }
                 }
             }
-        // }
+        }
 
     }
 

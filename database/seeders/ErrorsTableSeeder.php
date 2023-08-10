@@ -16,7 +16,7 @@ class ErrorsTableSeeder extends Seeder
      */
     public function run()
     {
-        $this->faker = Factory::create();
+        // $this->faker = Factory::create();
 
         // if(env('APP_ENV') == 'local')
         // {

@@ -1,11 +1,13 @@
 TODO
-    -- frontend languages unification
+    -- contact email
 
 BUGS
     -- checking is lesson learned loads in wrong order somewhere, u need to finish one more word to see
         lesson finish modal (???)
 
 FEATURES
+    -- quiz mode
+    -- search engine in words index
 
 REFACTOR
     -- models naming convencion change into languages name, to avoid switches
@@ -19,11 +21,9 @@ REFACTOR
 TESTING
 
 FUTURE / OPTIONAL
-    -- search engine in words index
-    -- premium
-    -- contact email
     -- audio
-    -- quiz mode
+    -- premium
+
 
 OUTSIDE PROBLEMS
     -- emails server

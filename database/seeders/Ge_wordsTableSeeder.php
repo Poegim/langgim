@@ -16,10 +16,10 @@ class Ge_wordsTableSeeder extends Seeder
      */
     public function run()
     {
-        $words = Word::all();
 
         if(env('APP_ENV') == 'local')
         {
+            $words = Word::all();
             foreach($words as $word)
             {
                 DB::table('ge_words')->insert(
