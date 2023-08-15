@@ -59,6 +59,7 @@ class CategoryController extends Controller
 
         $category->name = $request->name;
         $category->slug = Str::slug($request->name, '-');
+        $category->priority = $request->priority;
 
         foreach(config('langgim.allowed_languages') as $language)
         {

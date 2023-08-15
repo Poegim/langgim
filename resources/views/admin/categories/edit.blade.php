@@ -31,6 +31,12 @@
                     </div>
                     @endforeach
 
+                    <div>
+                        <x-jet-label for="priority">Priority: </x-jet-label>
+                        <x-jet-input name="priority" id="priority" type="number" min="0" max="5" value="{{$category->priority}}"/>
+                        <x-jet-input-error for="priority"/>
+                    </div>
+
                     <div class="mt-2">
                         <x-buttons.primary>Save</x-buttons.primary>
                     </div>

@@ -9,17 +9,17 @@ class CategoryRepository
 {
     public function withUserWords(): Collection
     {
-        return Category::with(['subcategories.words.userWords', 'words.userWords'])->get();
+        return Category::with(['subcategories.words.userWords', 'words.userWords'])->orderBy('priority', 'desc')->get();
     }
 
     public function withoutUserWords(): Collection
     {
-        return Category::with(['subcategories.words', 'words'])->get();
+        return Category::with(['subcategories.words', 'words'])->orderBy('priority', 'desc')->get();
     }
 
     public function withSubcategories(): Collection
     {
-        return Category::with('subcategories')->get();
+        return Category::with('subcategories')->orderBy('priority', 'desc')->get();
     }
 
     /**

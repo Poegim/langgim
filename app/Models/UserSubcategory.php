@@ -17,5 +17,4 @@ class UserSubcategory extends Model
         return $this->morphTo();
     }
 
-
 }

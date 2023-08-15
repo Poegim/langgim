@@ -25,6 +25,7 @@ class StoreCategoryRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|unique:categories|max:75|min:3',
+            'priority' => 'required|min:0|max:5|numeric',
         ];
 
         foreach(config('langgim.allowed_languages') as $language)

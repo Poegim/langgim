@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Faker\Factory;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -98,15 +99,6 @@ class SubcategoriesTableSeeder extends Seeder
                 'german' => 'Nützliche Phrasen für die Reise',
                 'spanish' => 'Frases útiles para viajar',
                 'ukrainian' => 'Корисні вислови для подорожей',
-            ],
-            [
-                'category_id' => 2,
-                'name' => 'Środki transportu',
-                'slug' => Str::slug('Środki transportu', '-'),
-                'english' => 'Modes of Transportation',
-                'german' => 'Verkehrsmittel',
-                'spanish' => 'Medios de transporte',
-                'ukrainian' => 'Засоби транспорту',
             ],
             [
                 'category_id' => 3,
@@ -524,24 +516,6 @@ class SubcategoriesTableSeeder extends Seeder
             ],
             [
                 'category_id' => 17,
-                'name' => 'Środki transportu',
-                'slug' => Str::slug('Środki transportu', '-'),
-                'english' => 'Means of Transport',
-                'german' => 'Verkehrsmittel',
-                'spanish' => 'Medios de Transporte',
-                'ukrainian' => 'Засоби транспорту',
-            ],
-            [
-                'category_id' => 17,
-                'name' => 'Podróżowanie',
-                'slug' => Str::slug('Podróżowanie', '-'),
-                'english' => 'Traveling',
-                'german' => 'Reisen',
-                'spanish' => 'Viajar',
-                'ukrainian' => 'Подорожування',
-            ],
-            [
-                'category_id' => 17,
                 'name' => 'Rozmowy w podróży',
                 'slug' => Str::slug('Rozmowy w podróży', '-'),
                 'english' => 'Conversations while Traveling',
@@ -721,6 +695,21 @@ class SubcategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Соціальне життя',
             ],
         ];
+
+
+        foreach ($subcategories as $subcategory) {
+            DB::table('subcategories')->insert([
+                'category_id' => $subcategory['category_id'],
+                'name' => $subcategory['name'],
+                'slug' => $subcategory['slug'],
+                'english' => $subcategory['english'],
+                'german' => $subcategory['german'],
+                'spanish' => $subcategory['spanish'],
+                'ukrainian' => $subcategory['ukrainian'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
 
     }
 }

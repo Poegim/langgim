@@ -30,6 +30,7 @@ class UpdateCategoryRequest extends FormRequest
 
         $rules = [
             'name' => ['required', 'max:75', 'min:3', Rule::unique('categories')->ignore($category->id, 'id')],
+            'priority' => 'required|min:0|max:5|numeric',
         ];
 
         foreach(config('langgim.allowed_languages') as $language)

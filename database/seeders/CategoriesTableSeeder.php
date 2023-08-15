@@ -37,6 +37,7 @@ class CategoriesTableSeeder extends Seeder
 
         $categories = [
             [
+                'priority' => 1,
                 'name' => 'Jedzenie i napoje',
                 'slug' => Str::slug('Jedzenie i napoje', '-'),
                 'english' => 'Food and Drinks',
@@ -125,6 +126,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Технології та медіа',
             ],
             [
+                'priority' => 2,
                 'name' => 'Podstawowe życiowe sytuacje',
                 'slug' => Str::slug('Podstawowe życiowe sytuacje', '-'),
                 'english' => 'Basic Life Situations',
@@ -133,6 +135,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Основні життєві ситуації',
             ],
             [
+                'priority' => 2,
                 'name' => 'Wnętrze domu',
                 'slug' => Str::slug('Wnętrze domu', '-'),
                 'english' => 'Home Interior',
@@ -141,6 +144,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Інтер’єр дому',
             ],
             [
+                'priority' => 1,
                 'name' => 'Ubrania i moda',
                 'slug' => Str::slug('Ubrania i moda', '-'),
                 'english' => 'Clothing and Fashion',
@@ -173,6 +177,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Транспорт та комунікація',
             ],
             [
+                'priority' => 2,
                 'name' => 'Czas i pory dnia',
                 'slug' => Str::slug('Czas i pory dnia', '-'),
                 'english' => 'Time and Times of the Day',
@@ -181,6 +186,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Час та час доби',
             ],
             [
+                'priority' => 1,
                 'name' => 'Kraje i narodowości',
                 'slug' => Str::slug('Kraje i narodowości', '-'),
                 'english' => 'Countries and Nationalities',
@@ -189,6 +195,7 @@ class CategoriesTableSeeder extends Seeder
                 'ukrainian' => 'Країни та національності',
             ],
             [
+                'priority' => 2,
                 'name' => 'Człowiek i ciało',
                 'slug' => Str::slug('Człowiek i ciało', '-'),
                 'english' => 'Human and Body',
@@ -224,7 +231,13 @@ class CategoriesTableSeeder extends Seeder
         ];
 
         foreach ($categories as $category) {
+            if (!array_key_exists('priority', $category))
+            {
+                $category['priority'] = 0;
+            }
+
             DB::table('categories')->insert([
+                'priority' => $category['priority'],
                 'name' => $category['name'],
                 'slug' => $category['slug'],
                 'english' => $category['english'],
@@ -235,19 +248,5 @@ class CategoriesTableSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
