@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        if(env('APP_ENV' == 'local'))
+        if(env('APP_ENV') == 'local')
         {
             User::factory()->create([
                 'name' => 'Admin2',
