@@ -55,7 +55,7 @@
         <div name="word_div" id="word_div" class="">
             <div class="mt-2 sm:mt-4">
                 <span class="text-xl sm:text-2xl tracking-wide uppercase ">
-                    {{ $foreignWord->word }}
+                    {{ $foreignWord }}
                 </span>
 
             </div>
@@ -167,7 +167,7 @@
                 Polish: <span class="text-wider uppercase">{{$word->pl_word}}</span>
             </div>
             <div>
-                {{ ucfirst($language) }}: <span class="text-wider uppercase">{{$foreignWord->word}}</span>
+                {{ ucfirst($language) }}: <span class="text-wider uppercase">{{$foreignWord}}</span>
             </div>
 
             <div class="mt-4 mb-4">
@@ -210,7 +210,7 @@
         <x-slot name="content">
             <div class="tracking-wider">
                 <p>
-                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord }} </span>
                 </p>
                 <p>
                     Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>
@@ -243,7 +243,7 @@
         <x-slot name="content">
             <div class="tracking-wider">
                 <p>
-                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord->word }} </span>
+                    {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord }} </span>
                 </p>
                 <p>
                     Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>

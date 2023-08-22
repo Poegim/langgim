@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Traits\ModelAdress;
 use App\Models\Category;
 use App\Models\Subcategory;
 use App\Repositories\CategoryRepository;
@@ -10,7 +9,6 @@ use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
-    use ModelAdress;
     private string $language;
     private CategoryRepository $repository;
 

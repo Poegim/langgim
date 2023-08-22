@@ -36,7 +36,8 @@ class CategoryRepository
 
             foreach($category->words as $word)
             {
-                $word->{$language} ? $category->this_language_words++ : null;
+                //Iterate if word->{choosen language} isnt null;
+                $word->{$language} && $category->this_language_words++;
 
                 if(auth()->check())
                 {
@@ -44,7 +45,7 @@ class CategoryRepository
                     {
                         foreach($word->userWords as $userWord)
                         {
-                            if(($languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                            if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                             {
                                 $category->learned_words++;
                             }
@@ -61,7 +62,8 @@ class CategoryRepository
 
                 foreach($subcategory->words as $word)
                 {
-                    $word->{$language} ? $subcategory->this_language_words++ : null;
+                    //Iterate if word->{choosen language} isnt null;
+                    $word->{$language} && $subcategory->this_language_words++;
 
                     if(auth()->check())
                     {
@@ -69,7 +71,7 @@ class CategoryRepository
                         {
                             foreach($word->userWords as $userWord)
                             {
-                                if(($languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                                if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                                 {
                                     $subcategory->learned_words++;
                                 }

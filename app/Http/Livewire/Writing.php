@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Http\Traits\ModelAdress;
 use App\Models\User;
 use App\Models\Word;
 use App\Models\Category;
@@ -14,8 +13,6 @@ use Illuminate\Database\Eloquent\Collection;
 
 class Writing extends Component
 {
-    use ModelAdress;
-
     //Error reporting
     public ?string $message = null;
     public ?string $title = null;
@@ -38,8 +35,8 @@ class Writing extends Component
     private ?string $withLanguage;
     public ?Category $category = null;
     public ?Subcategory $subcategory = null;
-    public ?ForeignWordInterface $foreignWord = null;
-    public ?ForeignWordInterface $previousForeignWord = null;
+    public string $foreignWord = '';
+    public string $previousForeignWord = '';
     public ?int $wordLength = null;
     public int $learnedWords = 0;
     public int $charNumber = 0;
@@ -72,24 +69,6 @@ class Writing extends Component
         $this->category = $category;
         $this->subcategory = $subcategory;
 
-        switch ($this->language) {
-            case 'ukrainian':
-                $this->withLanguage = 'uaWord';
-                break;
-
-            case 'english':
-                $this->withLanguage = 'enWord';
-                break;
-
-            case 'german':
-                $this->withLanguage = 'geWord';
-                break;
-
-            case 'spanish':
-                $this->withLanguage = 'esWord';
-                break;
-        }
-
         if(auth()->check())
         {
             if($this->category != NULL)
@@ -116,32 +95,26 @@ class Writing extends Component
             {
 
                 $this
-                ->words = Word::with([$this->withLanguage, 'userWords'])
-                ->with('userWords')
+                ->words = Word::with('userWords')
+                ->where($this->language, '!=', NULL)
                 ->where('category_id', '=', $this->category->id)
                 ->where('subcategory_id', '=', $this->subcategory->id)
-                ->whereRelation($this->withLanguage, 'word', '!=', '')
+                ->whereRelation('userWords', 'language', '=', $this->language)
                 ->get();
 
             } else
             {
                 $this
-                ->words = Word::with($this->withLanguage)
-                ->with('userWords')
+                ->words = Word::with('userWords')
+                ->where($this->language, '!=', NULL)
                 ->where('category_id', '=', $this->category->id)
-                ->whereRelation($this->withLanguage, 'word', '!=', '')
+                ->whereRelation('userWords', 'language', '=', $this->language)
                 ->get();
 
             }
-
         } else
         {
-            $this
-            ->words = Word::with($this->withLanguage)
-            ->whereRelation($this->withLanguage, 'word', '!=', '')
-            ->get();
-
-
+            $this->words = Word::where($this->language, '!=', NULL)->get();
         }
 
         $this->wordsArray = $this->words;
@@ -158,7 +131,7 @@ class Writing extends Component
             {
                 foreach($word->userWords as $userWord)
                 {
-                    if($userWord->wordable_type == $this->getModelAdress($this->language))
+                    if($userWord->language == $this->language)
                     {
                         $userWord->is_learned >= self::IS_LEARNED ? $this->words->pull($key) : null;
                     }
@@ -190,33 +163,7 @@ class Writing extends Component
         $this->word = $this->words->random();
 
         $this->previousWord == null ? $this->previousWord = $this->word : null;
-
-        switch ($this->language) {
-            case 'ukrainian':
-
-                $this->foreignWord = $this->word->uaWord;
-                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->uaWord : null;
-                break;
-
-            case 'english':
-                $this->foreignWord = $this->word->enWord;
-                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->enWord : null;
-
-                break;
-
-            case 'german':
-                $this->foreignWord = $this->word->geWord;
-                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->geWord : null;
-
-                break;
-
-            case 'spanish':
-                $this->foreignWord = $this->word->esWord;
-                $this->previousForeignWord == null ? $this->previousForeignWord = $this->word->esWord : null;
-
-                break;
-        }
-
+        $this->foreignWord = $this->word->{$this->language};
         $this->generateWordArrays();
 
         return true;
@@ -250,81 +197,24 @@ class Writing extends Component
     {
         if($this->category != NULL)
         {
-                //Getting all words for create User Words
-                $this->allWords = Word::with([$this->withLanguage])
-                ->where('category_id', '=', $this->category->id)
-                ->whereRelation($this->withLanguage, 'word', '!=', '')
-                ->get();
-        } else
-        {
-                //Getting all words for create User Words
-                $this->allWords = Word::with([$this->withLanguage])
-                ->whereRelation($this->withLanguage, 'word', '!=', '')
-                ->get();
-        }
+            //Getting all words for create UserWords
+            $this->allWords = Word::where($this->language, '!=', NULL)
+            ->where('category_id', '=', $this->category->id)
+            ->get();
 
-        foreach($this->allWords as $word)
-        {
-            switch ($this->language) {
-                case 'ukrainian':
-                    $word->uaWord->userWords()->updateOrCreate(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_id' => $word->id,
-                            'wordable_type' => 'App\Models\UaWord',
-                        ],
-                        [
-                            'user_id' => auth()->id(),
-                            'wrong_try' => 0,
-                        ]
-                    );
-
-                    break;
-
-                case 'english':
-                    $word->enWord->userWords()->updateOrCreate(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_id' => $word->id,
-                            'wordable_type' => 'App\Models\EnWord'
-                        ],
-                        [
-                            'user_id' => auth()->id(),
-                            'wrong_try' => 0,
-                        ]
-                    );
-                    break;
-
-                case 'german':
-                    $word->geWord->userWords()->updateOrCreate(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_id' => $word->id,
-                            'wordable_type' => 'App\Models\GeWord',
-                        ],
-                        [
-                            'user_id' => auth()->id(),
-                            'wrong_try' => 0,
-                        ]
-                    );
-                    break;
-
-                case 'spanish':
-                    $word->esWord->userWords()->updateOrCreate(
-                        [
-                            'user_id' => auth()->id(),
-                            'wordable_id' => $word->id,
-                            'wordable_type' => 'App\Models\EsWord'
-                        ],
-                        [
-                            'user_id' => auth()->id(),
-                            'wrong_try' => 0,
-                        ]
-                    );
-                    break;
+            //Creating UserWords
+            foreach($this->allWords as $word)
+            {
+                auth()->user()->userWords()->updateOrCreate(
+                    [
+                        'user_id' => auth()->id(),
+                        'word_id' => $word->id,
+                        'language' => $this->language,
+                        'wrong_try' => 0,
+                    ],
+                );
             }
         }
-
     }
 
     public function resetVariables(): void
@@ -353,10 +243,10 @@ class Writing extends Component
      */
     public function generateWordArrays(): void
     {
-        $this->wordLength = mb_strlen($this->word->pl_word, 'UTF-8');
+        $this->wordLength = mb_strlen($this->word->polish, 'UTF-8');
 
         for ($i = 0; $i < $this->wordLength; $i++) {
-            $this->wordArray[$i] = [strtolower(mb_substr($this->word->pl_word, $i, 1, 'UTF-8'))];
+            $this->wordArray[$i] = [strtolower(mb_substr($this->word->polish, $i, 1, 'UTF-8'))];
 
             switch ($this->wordArray[$i][0] ) {
                 case 'ą':
@@ -481,26 +371,26 @@ class Writing extends Component
     public function updateUserWord(bool $isSucces): bool
     {
 
-        $word = $this->foreignWord->userWords()->firstOrNew(
+        $userWord = auth()->user()->userWords()->firstOrNew(
             [
                 'user_id' => auth()->id(),
-                'wordable_id' => $this->foreignWord->id,
-                'wordable_type' => ($this->foreignWord->userWords->first() ? $this->foreignWord->userWords[0]->wordable_type : null),
+                'word_id' => $this->word->id,
             ]
         );
 
-        $word->user_id = auth()->id();
-        $word->wrong_try = $this->wrongTry;
+        $userWord->user_id = auth()->id();
+        $userWord->wrong_try = $this->wrongTry;
+        $userWord->language = $this->language;
 
         if($isSucces)
         {
-            $word->is_learned++;
+            $userWord->is_learned++;
         } else
         {
-            $word->is_learned <= 0 ? null : $word->is_learned--;
+            $userWord->is_learned <= 0 ? null : $userWord->is_learned--;
         }
 
-        if($word->save())
+        if($userWord->save())
         {
             return true;
         } else
@@ -512,19 +402,11 @@ class Writing extends Component
 
     public function isLessonFinished(): bool
     {
-        $modelAdress = $this->getModelAdress($this->language);
-
         foreach($this->words as $word)
         {
             foreach($word->userWords as $userWord)
             {
-                if($userWord->wordable_type == $modelAdress)
-                {
-                    if($userWord->is_learned < self::IS_LEARNED)
-                    {
-                        return false;
-                    }
-                }
+                if(($userWord->language == $this->language) && ($userWord->is_learned < self::IS_LEARNED)) return false;
             }
         }
 
@@ -553,6 +435,7 @@ class Writing extends Component
             'word_id' => $this->word->id,
             'title' => $this->title,
             'message' => $this->message,
+            'language' => $this->language,
         ]);
 
         $this->modalReportErrorVisibility = false;
