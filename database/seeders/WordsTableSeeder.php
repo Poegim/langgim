@@ -33,7 +33,11 @@ class WordsTableSeeder extends Seeder
                     for ($i=0; $i < 2; $i++) {
                         DB::table('words')->insert(
                             [
-                                'pl_word' => 'word'.$category->id.$subcategory->id.$i+1,
+                                'polish' => 'word'.$category->id.$subcategory->id.$i+1,
+                                'ukrainian' => 'uaword'.$category->id.$subcategory->id.$i+1,
+                                'english' => 'enword'.$category->id.$subcategory->id.$i+1,
+                                'german' => 'deword'.$category->id.$subcategory->id.$i+1,
+                                'spanish' => 'esword'.$category->id.$subcategory->id.$i+1,
                                 'sample_sentence' => $this->faker->realText(25),
                                 'category_id' => $category->id,
                                 'subcategory_id' => $subcategory->id,

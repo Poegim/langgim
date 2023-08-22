@@ -12,7 +12,6 @@ class CategoryController extends Controller
 {
     use ModelAdress;
     private string $language;
-    private string $languageModel = '';
     private CategoryRepository $repository;
 
     public function __construct(CategoryRepository $repository)
@@ -27,14 +26,13 @@ class CategoryController extends Controller
         {
             $categories = $this->repository->withUserWords();
             $this->language = auth()->user()->language;
-            $this->languageModel = $this->getModelAdress($this->language);
         } else
         {
             $categories = $this->repository->withoutUserWords();
             $this->language = collect(config('langgim.allowed_languages'))->random();
         }
 
-        $categories = $this->repository->getProgress($categories, $this->language, $this->languageModel);
+        $categories = $this->repository->getProgress($categories, $this->language);
 
         return view('categories.index', [
             'categories' => $categories,
