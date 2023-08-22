@@ -430,7 +430,7 @@ class Writing extends Component
     {
         $this->validate();
 
-        $this->foreignWord->errors()->create([
+        $this->word->errors()->create([
             'user_id' => auth()->id(),
             'word_id' => $this->word->id,
             'title' => $this->title,

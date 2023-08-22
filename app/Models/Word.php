@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\EnWord;
-use App\Models\GeWord;
-use App\Models\UaWord;
 use App\Models\Category;
 use App\Models\Subcategory;
+use App\Models\Error;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -21,6 +19,11 @@ class Word extends Model
     public function userWords(): HasMany
     {
         return $this->hasMany(UserWord::class, 'word_id')->where('user_id', '=', auth()->id());
+    }
+
+    public function errors(): HasMany
+    {
+        return $this->hasMany(Error::class, 'word_id');
     }
 
     public function category(): BelongsTo
