@@ -48,18 +48,6 @@ class WordsTableSeeder extends Seeder
             }
         }
 
-
-        // foreach($words as $word) {
-        //     DB::table('words')->insert([
-        //         'pl_word' => $word['pl_word'],
-        //         'category_id' => $word['category_id'],
-        //         'subcategory_id' => $word['subcategory_id'],
-        //         'audio_file' => NULL,
-        //         'created_at' => Carbon::now(),
-        //         'updated_at' => Carbon::now(),
-        //     ]);
-        // }
-
     }
 
 }

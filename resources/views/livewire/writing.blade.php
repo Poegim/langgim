@@ -164,7 +164,7 @@
                 Did u found any mistake?
             </div>
             <div class="mt-4">
-                Polish: <span class="text-wider uppercase">{{$word->pl_word}}</span>
+                Polish: <span class="text-wider uppercase">{{$word->polish}}</span>
             </div>
             <div>
                 {{ ucfirst($language) }}: <span class="text-wider uppercase">{{$foreignWord}}</span>
@@ -213,7 +213,7 @@
                     {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord }} </span>
                 </p>
                 <p>
-                    Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                    Polish: <span class="uppercase">{{ $previousWord->polish }} </span>
                 </p>
             </div>
             <div class="mt-4">
@@ -246,7 +246,7 @@
                     {{ucfirst($language)}}: <span class="uppercase">{{ $previousForeignWord }} </span>
                 </p>
                 <p>
-                    Polish: <span class="uppercase">{{ $previousWord->pl_word }} </span>
+                    Polish: <span class="uppercase">{{ $previousWord->polish }} </span>
                 </p>
             </div>
             <div class="mt-4">

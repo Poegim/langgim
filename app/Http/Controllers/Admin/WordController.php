@@ -47,7 +47,12 @@ class WordController extends Controller
 
         //Saving data
         $word = new Word;
-        $word->pl_word = $request->word;
+        $word->polish = $request->word;
+        foreach( config('langgim.allowed_languages') as $language)
+        {
+            $request->{$language} =! NULL ? $word->{$language} = $request->{$language} : null;
+        }
+
         $word->sample_sentence = $request->sample_sentence;
         $word->category_id = $request->category[0];
         $word->subcategory_id = $request->category[1];
@@ -57,22 +62,6 @@ class WordController extends Controller
         $request->category[1] != 0 ? $word->subcategory_id = $request->category[1] : $word->subcategory_id = null;
 
         $word->save();
-
-        $word->uaWord()->create([
-            'word' => $request->ukrainian ? $request->ukrainian : '',
-        ]);
-
-        $word->enWord()->create([
-            'word' => $request->english ? $request->english : '',
-        ]);
-
-        $word->geWord()->create([
-            'word' => $request->german ? $request->german : '',
-        ]);
-
-        $word->esWord()->create([
-            'word' => $request->spanish ? $request->spanish : '',
-        ]);
 
         //Redirect
         session()->flash('flash.banner', 'Word added!');
@@ -109,29 +98,19 @@ class WordController extends Controller
         }
 
         //Saving data
-        $word->pl_word = $request->word;
+        $word->polish = $request->word;
+
+        foreach( config('langgim.allowed_languages') as $language)
+        {
+            $request->{$language} =! NULL ? $word->{$language} = $request->{$language} : null;
+        }
+
         $word->sample_sentence = $request->sample_sentence;
         $word->category_id = $request->category[0];
         $word->subcategory_id = $request->category[1];
         $request->audio_file ? $word->audio_file = $newFilePath : null;
 
         $word->save();
-
-        $word->uaWord()->update([
-            'word' => $request->ukrainian ? $request->ukrainian : '',
-        ]);
-
-        $word->enWord()->update([
-            'word' => $request->english ? $request->english : '',
-        ]);
-
-        $word->geWord()->update([
-            'word' => $request->german ? $request->german : '',
-        ]);
-
-        $word->esWord()->update([
-            'word' => $request->spanish ? $request->spanish : '',
-        ]);
 
         //Redirect
         session()->flash('flash.banner', 'Word updated!');
