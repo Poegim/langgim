@@ -23,9 +23,7 @@ return new class extends Migration
                 ->nullOnDelete();
 
             $table->foreignId('word_id')->constrained()->onDelete('cascade');
-
-            $table->unsignedBigInteger('errorable_id');
-            $table->string('errorable_type');
+            $table->string('language');
 
             $table->string('title');
             $table->text('message');

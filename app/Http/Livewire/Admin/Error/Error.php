@@ -40,28 +40,7 @@ class Error extends Component
         $this->user = $this->errorModel->user;
         $this->status = $this->errorModel->status;
         $this->date = $this->errorModel->created_at;
-        $this->errorable = $this->errorModel->errorable;
-
-        $this->language = get_class($this->errorable);
-
-        switch ($this->language) {
-            case 'App\Models\UaWord':
-                $this->language = 'Ukrainian';
-                break;
-
-            case 'App\Models\EnWord':
-                $this->language = 'English';
-                break;
-
-            case 'App\Models\GeWord':
-                $this->language = 'German';
-                break;
-
-            case 'App\Models\EsWord':
-                $this->language = 'Spanish';
-                break;
-        }
-
+        $this->language = $this->errorModel->language;
         $this->viewModalVisibility = true;
 
     }

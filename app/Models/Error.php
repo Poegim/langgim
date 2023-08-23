@@ -19,13 +19,9 @@ class Error extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function word(): HasOne
+    public function word(): BelongsTo
     {
-        return $this->hasOne(Word::class);
+        return $this->belongsTo(Word::class);
     }
 
-    public function errorable(): MorphTo
-    {
-        return $this->morphTo();
-    }
 }

@@ -6,10 +6,6 @@ use Illuminate\Database\Seeder;
 use Database\Seeders\UsersTableSeeder;
 use Database\Seeders\WordsTableSeeder;
 use Database\Seeders\ErrorsTableSeeder;
-use Database\Seeders\Ua_wordsTableSeeder;
-use Database\Seeders\En_wordsTableSeeder;
-use Database\Seeders\Es_wordsTableSeeder;
-use Database\Seeders\Ge_wordsTableSeeder;
 use Database\Seeders\CategoriesTableSeeder;
 use Database\Seeders\SubcategoriesTableSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -30,10 +26,6 @@ class DatabaseSeeder extends Seeder
             $this->call(CategoriesTableSeeder::class);
             $this->call(SubcategoriesTableSeeder::class);
             $this->call(WordsTableSeeder::class);
-            $this->call(Ua_wordsTableSeeder::class);
-            $this->call(En_wordsTableSeeder::class);
-            $this->call(Ge_wordsTableSeeder::class);
-            $this->call(Es_wordsTableSeeder::class);
             $this->call(ErrorsTableSeeder::class);
         }
 

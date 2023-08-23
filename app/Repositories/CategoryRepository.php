@@ -26,8 +26,9 @@ class CategoryRepository
      * Foreaching over categories/subcategories->words->userWords
      * and checking for already learned words of selected language
      */
-    public function getProgress(Collection $categories, string $language, string $languageModel): Collection
+    public function getProgress(Collection $categories, string $language): Collection
     {
+
         foreach($categories as $category)
         {
             $category->learned_words = 0;
@@ -35,24 +36,8 @@ class CategoryRepository
 
             foreach($category->words as $word)
             {
-                switch ($language) {
-                    case 'ukrainian':
-                        $word->uaWord->word != '' ? $category->this_language_words++ : null;
-
-                        break;
-                    case 'english':
-                        $word->enWord->word != '' ? $category->this_language_words++ : null;
-
-                        break;
-                    case 'german':
-                        $word->geWord->word != '' ? $category->this_language_words++ : null;
-
-                        break;
-                    case 'spanish':
-                        $word->esWord->word != '' ? $category->this_language_words++ : null;
-
-                        break;
-                }
+                //Iterate if word->{choosen language} isnt null;
+                $word->{$language} && $category->this_language_words++;
 
                 if(auth()->check())
                 {
@@ -60,7 +45,7 @@ class CategoryRepository
                     {
                         foreach($word->userWords as $userWord)
                         {
-                            if(($languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                            if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                             {
                                 $category->learned_words++;
                             }
@@ -77,24 +62,8 @@ class CategoryRepository
 
                 foreach($subcategory->words as $word)
                 {
-                    switch ($language) {
-                        case 'ukrainian':
-                            $word->uaWord->word != '' ? $subcategory->this_language_words++ : null;
-
-                            break;
-                        case 'english':
-                            $word->enWord->word != '' ? $subcategory->this_language_words++ : null;
-
-                            break;
-                        case 'german':
-                            $word->geWord->word != '' ? $subcategory->this_language_words++ : null;
-
-                            break;
-                        case 'spanish':
-                            $word->esWord->word != '' ? $subcategory->this_language_words++ : null;
-
-                            break;
-                    }
+                    //Iterate if word->{choosen language} isnt null;
+                    $word->{$language} && $subcategory->this_language_words++;
 
                     if(auth()->check())
                     {
@@ -102,7 +71,7 @@ class CategoryRepository
                         {
                             foreach($word->userWords as $userWord)
                             {
-                                if(($languageModel == $userWord->wordable_type) && ($userWord->is_learned >= 3))
+                                if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                                 {
                                     $subcategory->learned_words++;
                                 }

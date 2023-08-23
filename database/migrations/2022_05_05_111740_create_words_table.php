@@ -15,7 +15,11 @@ return new class extends Migration
     {
         Schema::create('words', function (Blueprint $table) {
             $table->id();
-            $table->string('pl_word');
+            $table->string('polish');
+            $table->string('ukrainian')->nullable();
+            $table->string('english')->nullable();
+            $table->string('german')->nullable();
+            $table->string('spanish')->nullable();
             $table->string('sample_sentence')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
             $table->foreignId('subcategory_id')->nullable()->constrained()->onDelete('cascade');

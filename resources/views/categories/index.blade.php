@@ -1,10 +1,10 @@
 <x-app-layout>
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Choose category') }}
         </h2>
     </x-slot>
+
 
     @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
     @foreach ($categories as $category)

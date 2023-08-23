@@ -17,51 +17,20 @@
                     <div class="space-y-2">
                         <div>
                             <x-jet-label for="word">Polish:</x-jet-label>
-                            <x-jet-input name="word" id="word" type="text" value="{{$word->pl_word}}"/>
+                            <x-jet-input name="word" id="word" type="text" value="{{$word->polish}}"/>
                             <x-jet-input-error for="word" />
                         </div>
 
                         @foreach (config('langgim.allowed_languages') as $language)
-                        @switch($language)
-                            @case('ukrainian')
-                                <div class="mt-2">
-                                    <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
-                                    <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
-                                    value="{{$word->uaWord->word}}"
-                                    />
-                                    <x-jet-input-error for="{{$language}}"/>
-                                </div>
-                                @break
-                            @case('english')
-                                <div class="mt-2">
-                                    <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
-                                    <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
-                                    value="{{$word->enWord->word}}"
-                                    />
-                                    <x-jet-input-error for="{{$language}}"/>
-                                </div>
-                                @break
-                            @case('german')
-                                <div class="mt-2">
-                                    <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
-                                    <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
-                                    value="{{$word->geWord->word}}"
-                                    />
-                                    <x-jet-input-error for="{{$language}}"/>
-                                </div>
-                                @break
-                            @case('spanish')
-                                <div class="mt-2">
-                                    <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
-                                    <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
-                                    value="{{$word->esWord->word}}"
-                                    />
-                                    <x-jet-input-error for="{{$language}}"/>
-                                </div>
-                                @break
-                            @default
 
-                        @endswitch
+                            <div class="mt-2">
+                                <x-jet-label for="{{$language}}">{{ucfirst($language)}} name:</x-jet-label>
+                                <x-jet-input name="{{$language}}" id="{{$language}}" type="text"
+                                value="{{ $word->{$language} }}"
+                                />
+                                <x-jet-input-error for="{{$language}}"/>
+                            </div>
+
                         @endforeach
 
                         <div>
