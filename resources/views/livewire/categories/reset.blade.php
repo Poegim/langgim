@@ -29,6 +29,8 @@
 
         <x-slot name="content">
             {{ __("WARNING! Are you sure want to reset your progress?")}}
+            {{dump($category->id)}}
+            {{dump($subcategory?->id)}}
         </x-slot>
 
         <x-slot name="footer">

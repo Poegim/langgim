@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('user_words', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('wordable_id');
-            $table->string('wordable_type');
+            $table->unsignedBigInteger('word_id');
+            $table->string('language');
             $table->foreignId('user_id')->constrained();
             $table->integer('wrong_try')->default(0);
             $table->integer('is_learned')->default(0);

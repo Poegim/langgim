@@ -31,110 +31,27 @@ class Reset extends Component
     {
         if($this->subcategory == NULL)
         {
-            switch ($this->language) {
-                case 'ukrainian':
-                    $this->words =
+
+            $this->words =
                     auth()
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\UaWord')
+                    ->where('language', '=', $this->language)
                     ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->get();
 
-                    break;
-
-                case 'english':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\EnWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->get();
-
-                    break;
-
-                case 'german':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\GEWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->get();
-
-                    break;
-
-                case 'spanish':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\EsWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->get();
-
-                    break;
-            }
         } else
         {
-            switch ($this->language) {
-
-                case 'ukrainian':
-                    $this->words =
+            $this->words =
                     auth()
                     ->user()
                     ->userWords()
                     ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\UaWord')
+                    ->where('language', '=', $this->language)
                     ->whereRelation('word', 'category_id', '=', $this->category->id)
                     ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
                     ->get();
-
-                    break;
-
-
-
-                case 'english':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\EnWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
-                    ->get();
-                    break;
-
-                case 'german':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\GeWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
-                    ->get();
-                    break;
-
-                case 'spanish':
-                    $this->words =
-                    auth()
-                    ->user()
-                    ->userWords()
-                    ->with('word')
-                    ->where('wordable_type', '=', 'App\Models\EsWord')
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
-                    ->get();
-                    break;
-            }
         }
 
     }
