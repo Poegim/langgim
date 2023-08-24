@@ -12,7 +12,7 @@
         @if ((auth()->check()) && ($category->this_language_words != 0))
 
         <div class="overflow-hidden rounded-lg shadow-lg bg-slate-800 mt-4 sm:mx-2 flex flex-col p-4">
-            <div class="font-extrabold flex justify-between">
+            <div class="flex justify-between">
                 <div class="flex">
                     @if ($category->{$language} != NULL)
                     <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
@@ -21,13 +21,13 @@
 
                     <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
 
-                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
+                    <div x-show="tooltip" x-cloak class="pl-2 text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
                     transform translate-y-2">
                         {{ $category->{$language} }}
                     </div>
                     </span>
                     @endif
-                    <a href="{{route('category.show', [$category])}}">
+                    <a href="{{route('category.show', [$category])}}" class="ml-2 h-6 mt-1 sm:mt-0 text-base sm:text-lg">
                         {{$category->name}} ({{$category->learned_words}}/{{$category->this_language_words}})
                     </a>
                 </div>
@@ -53,10 +53,10 @@
                 </div>
             </div>
 
-            <ul class=" divide-y divide-opacity-50 divide-slate-500">
+            <ul class="divide-y divide-opacity-50 divide-slate-500">
                 @foreach ($category->subcategories as $subcategory)
                 @if ($subcategory->this_language_words != 0)
-                <div class="flex p-3 ml-4 justify-between">
+                <div class="flex p-3 ml-6 justify-between">
                     <li class="flex">
                         @if ($subcategory->{$language} != NULL)
                         <span class="mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
@@ -71,7 +71,7 @@
                         </div>
                         </span>
                         @endif
-                        <a href="{{route('category.show', [$category, $subcategory])}}">
+                        <a href="{{route('category.show', [$category, $subcategory])}}" class="ml-2 h-6 mt-1 text-sm sm:text-base">
                             {{$subcategory->name}} ({{$subcategory->learned_words}}/{{$subcategory->this_language_words}})
                         </a>
                     </li>
@@ -108,7 +108,7 @@
         @guest
         @if($category->this_language_words != 0)
         <div class="overflow-hidden rounded-lg shadow-lg bg-slate-800 mt-4 sm:mx-2 flex flex-col p-4">
-            <div class="font-extrabold flex justify-between">
+            <div class="flex justify-between">
                 <a href="{{route('category.show', [$category])}}">
                     {{$category->name}}
                 </a>
