@@ -13,8 +13,17 @@
                             <x-clarity-add-line class="w-6 h-6" />
                         </x-jet-secondary-button>
                     </a>
+                    <a href="{{route('admin.create-from-json')}}" class="w-full">
+                        <x-jet-secondary-button class="w-full">
+                            <div class="mt-1">
+                                Create from JSON
+                            </div>
+                            <x-clarity-add-line class="w-6 h-6" />
+                        </x-jet-secondary-button>
+                    </a>
 
                 </div>
+
                 <div
                     class="inline-block min-w-full overflow-hidden align-middle border-b border-gray-200 shadow sm:rounded-lg">
                     <table class="min-w-full">

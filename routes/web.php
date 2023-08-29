@@ -62,6 +62,8 @@ Route::get('/guest/{language?}', [Guest::class, 'index'])->name('guest');
 
 //Admin
 Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {
+    Route::get('words/create-from-json', [WordController::class, 'createFromJSON'])->name('create-from-json');
+    Route::post('words/store-from-json', [WordController::class, 'storeFromJSON'])->name('store-from-json');
     Route::get('control-panel', [ControlPanel::class, 'index'])->name('control-panel');
     Route::get('errors', [ErrorController::class, 'index'])->name('errors');
     Route::resource('categories', CategoryController::class);
