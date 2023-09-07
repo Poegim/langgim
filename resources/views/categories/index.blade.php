@@ -11,6 +11,69 @@
 
         @if ((auth()->check()) && ($category->this_language_words != 0))
 
+        <div class="overflow-hidden" x-data="{ open: true }">
+            <div class="flex justify-start min-w-min">
+                <div class="bg-slate-800 w-full px-4 py-2 flex space-x-2">
+                    <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-5 h-5 my-auto">
+                    <p>
+                        <h1 class="text-base sm:text-2xl">{{$category->name}}</h1>
+                    </p>
+                </div>
+                <button type="button" x-on:click="open = ! open"><x-heroicon-s-chevron-up-down class="w-6 h-6"/></button>
+            </div>
+
+            <div x-show="open"
+                x-transition:enter="transition linear duration-300"
+                x-transition:enter-start="opacity-0 scale-90"
+                x-transition:enter-end="opacity-100 scale-100"
+                x-transition:leave="transition linear duration-300"
+                x-transition:leave-start="opacity-100 scale-100"
+                x-transition:leave-end="opacity-0 scale-90"
+        >
+                @foreach ($category->subcategories as $subcategory)
+                @if ($subcategory->this_language_words != 0)
+                <div class="flex justify-start min-w-min">
+                    <div class="bg-slate-900 w-full px-6 py-2 flex space-x-2">
+                        <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-5 h-5 my-auto">
+                        <p>
+                            <h1 class="text-sm sm:text-lg">{{$subcategory->name}}</h1>
+                        </p>
+                    </div>
+                </div>
+                @endif
+                @endforeach
+            </div>
+
+        </div>
+        @endif
+
+
+        @guest
+        @if($category->this_language_words != 0)
+
+            @foreach ($category->subcategories as $subcategory)
+            @if ($subcategory->this_language_words != 0)
+
+            @endif
+            @endforeach
+
+        @endif
+        @endguest
+
+    @endforeach
+    @endif
+
+
+
+    <!-- OLD  -->
+
+
+
+    @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
+    @foreach ($categories as $category)
+
+        @if ((auth()->check()) && ($category->this_language_words != 0))
+
         <div class="overflow-hidden rounded-lg shadow-lg bg-slate-800 mt-4 sm:mx-2 flex flex-col p-4">
             <div class="flex justify-between">
                 <div class="flex">
