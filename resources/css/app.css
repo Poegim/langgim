@@ -8,30 +8,55 @@
     @apply: right-0 border-green-400;
     right: 0;
     border-color: #68D391;
-  }
-  .toggle-checkbox:checked + .toggle-label {
+}
+
+.toggle-checkbox:checked+.toggle-label {
     @apply: bg-green-400;
     background-color: #68D391;
-  }
+}
 
-.primary-bg
-{
+.primary-bg {
     background-color: #BC00D9;
 }
 
-.secondary-bg
-{
+.secondary-bg {
     background-color: #D90089;
 }
 
-.third-bg
-{
+.third-bg {
     background-color: #5000D9;
 }
 
-.secondary-text
-{
+.secondary-text {
     color: #BC00D9;
 }
 
+.admin-index-btn {
 
+    @apply
+        text-gray-200
+        hover:text-white
+        flex
+        w-full
+        border-2
+        border-purple-800
+        bg-purple-900
+        rounded
+        py-2
+        pl-2
+        sm:pl-4
+        my-2
+        text-xl
+        font-thin
+        text-left
+        shadow
+        hover:w-11/12
+        hover:bg-pink-900
+        hover:border-pink-800
+        transition-all
+        duration-500;
+}
+
+.admin-index-icon {
+    @apply my-auto m-2 w-6 h-6;
+}
