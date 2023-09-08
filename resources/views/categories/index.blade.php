@@ -11,15 +11,43 @@
 
         @if ((auth()->check()) && ($category->this_language_words != 0))
 
-        <div class="overflow-hidden border-b border-slate-700" x-data="{ open: true }">
-            <div class="flex justify-start min-w-min">
-                <div class="bg-slate-800 w-full px-4 py-2 flex space-x-2">
-                    <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-5 h-5 my-auto">
+        <div class="overflow-hidden border-b border-slate-700 bg-slate-800" x-data="{ open: true }">
+            <div class="flex justify-start min-w-min overflow-hidden">
+                @if ($category->{$language} != NULL)
+                    <div class="my-auto ml-4 cursor-pointer" x-data="{ tooltip: false }"
+                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
+                    class="cursor-pointer">
+
+                    <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-8 h-8 my-auto">
+
+                        <div x-show="tooltip" x-cloak class="pl-2 text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
+                        transform translate-y-2">
+                            {{ $category->{$language} }}
+                        </div>
+                    </div>
+                @endif
+
+                <div class="bg-slate-800 w-full pl-2 py-2 flex space-x-2">
                     <p>
                         <h1 class="text-base sm:text-2xl">{{$category->name}}</h1>
                     </p>
                 </div>
-                <button type="button" x-on:click="open = ! open"><x-heroicon-s-chevron-up-down class="w-6 h-6"/></button>
+
+                <div class="bg-slate-700 text-gray-300 text-sm px-2 flex">
+                    <div class="my-auto">
+                        {{round(($category->learned_words/$category->this_language_words)*100), 0}}%
+                    </div>
+                </div>
+
+                <div class="flex my-auto overflow-hidden">
+                    @if ($category->learned_words != 0)
+                    <livewire:categories.reset :category="$category" :subcategory="NULL">
+                    @endif
+                </div>
+
+                <button type="button" x-on:click="open = ! open" :class="open ? '' : 'rotate-180'" class="text-gray-300 hover:text-pink-600 transition-all duration-700">
+                    <x-heroicon-s-chevron-up class="w-6 h-6"/>
+                </button>
             </div>
 
             <div x-show="open" x-collapse.duration.700ms>
@@ -32,6 +60,13 @@
                             <h1 class="text-sm sm:text-lg">{{$subcategory->name}}</h1>
                         </p>
                     </div>
+                    <div class="flex my-auto overflow-hidden">
+                        @if ($subcategory->learned_words != 0)
+                        <livewire:categories.reset :category="$category" :subcategory="$subcategory">
+                        @endif
+                    </div>
+
+
                 </div>
                 @endif
                 @endforeach

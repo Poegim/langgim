@@ -1,13 +1,13 @@
-<div>
-    <span class="ml-2 h-5 w-5 cursor-pointer"
+<div class="">
+    <span class="h-5 w-5 cursor-pointer"
         x-data="{ tooltip: false }"
         x-on:mouseover="tooltip = true"
         x-on:mouseleave="tooltip = false"
         x-cloak
         class="ml-2 h-5 w-5 cursor-pointer">
 
-        <button>
-            <x-tni-history-o class="w-5 h-5 text-green-600 hover:text-green-800" wire:click="showModal"/>
+        <button class="h-full hover:text-pink-600 hover:-rotate-90 p-2 {{$subcategory ? 'sm:p-2' : 'sm:p-4'}} text-green-400 hover:text-green-200 transition-all duration-300">
+            <x-tni-history-o class="w-5 h-" wire:click="showModal"/>
         </button>
 
         <div
@@ -29,8 +29,6 @@
 
         <x-slot name="content">
             {{ __("WARNING! Are you sure want to reset your progress?")}}
-            {{dump($category->id)}}
-            {{dump($subcategory?->id)}}
         </x-slot>
 
         <x-slot name="footer">
