@@ -1,12 +1,12 @@
-<div class="">
-    <span class="h-5 w-5 cursor-pointer"
+<div class="w-10">
+    <div
         x-data="{ tooltip: false }"
         x-on:mouseover="tooltip = true"
         x-on:mouseleave="tooltip = false"
         x-cloak
-        class="ml-2 h-5 w-5 cursor-pointer">
+        class="cursor-pointer flex justify-center">
 
-        <button class="h-full hover:text-pink-600 hover:-rotate-90 p-2 {{$subcategory ? 'sm:p-2' : 'sm:p-4'}} text-green-400 hover:text-green-200 transition-all duration-300">
+        <button class="h-full hover:text-pink-600 hover:-rotate-90 text-green-400 transition-all duration-300">
             <x-tni-history-o class="w-5 h-" wire:click="showModal"/>
         </button>
 
@@ -14,11 +14,11 @@
         x-cloak
         x-show="tooltip"
         class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
-        transform translate-y-2">
+        transform translate-y-2 mt-8">
             Reset progress
          </div>
 
-    </span>
+    </div>
 
 
     <!-- Delete Modal -->
