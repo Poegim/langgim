@@ -59,7 +59,17 @@
                     @if ($subcategory->this_language_words != 0)
                     <div class="flex justify-start min-w-min bg-slate-900">
                         <div class=" w-full px-6 py-2 flex space-x-2">
-                            <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-5 h-5 my-auto">
+
+                            @if ($category->{$language} != NULL)
+                            <div x-data="{ tooltip: false }"
+                            x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false" class="my-auto">
+                                <img src="{{asset('images/flags/'.$language.'.svg')}}" alt="{{$language}}" class="w-5 h-5 my-auto">
+                                <div x-show="tooltip" x-cloak class="pl-2 text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
+                                transform translate-y-2">
+                                    {{ $subcategory->{$language} }}
+                                </div>
+                            </div>
+                            @endif
                             <a href="{{route('category.show', [$category, $subcategory])}}" class="w-full hover:text-white hover:font-bold transition-all duration-100">
                                 <p>
                                     <h1 class="text-sm sm:text-lg">{{$subcategory->name}}</h1>
@@ -70,7 +80,7 @@
                             <div class="flex my-auto overflow-hidden mr-1">
                                 @if ($subcategory->learned_words != 0)
                                 <livewire:categories.reset :category="$category" :subcategory="$subcategory">
-                                    @endif
+                                @endif
                             </div>
 
                             <div class="bg-slate-700 text-gray-300 text-xs sm:text-sm w-12 flex">
