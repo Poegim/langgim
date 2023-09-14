@@ -21,14 +21,13 @@
         <script src="https://www.google.com/recaptcha/api.js?render=6Ldrr2wiAAAAALaBNlzaDc31aTl7177oV4W3-rrs"></script>
 
     </head>
-    <body>
+    <body class="font-sans antialiased text-gray-200">
         <x-jet-banner />
 
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-slate-900">
 
-            <!-- Page Content -->
             <main>
-                <div class="max-w-7xl mx-auto py-6 px-2 sm:px-4 lg:px-8">
+                <div class="max-w-7xl mx-auto py-2 sm:py-6 px-2 sm:px-4 lg:px-8">
                 {{ $slot }}
                 </div>
             </main>
