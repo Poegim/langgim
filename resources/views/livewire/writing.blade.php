@@ -77,7 +77,7 @@
                 @endforeach
             </div>
 
-            <div class="flex justify-center mt-4">
+            <div class="flex justify-center mt-4 mb-2">
                 @auth
                 <a class="cursor-pointer flex" wire:click="$toggle('modalReportErrorVisibility')"
                     wire:loading.attr="disabled">
@@ -534,6 +534,8 @@
             let top_success = document.getElementById("top_success");
 
             top_success.classList.remove("hidden");
+
+
             setTimeout(() => {
                 top_success.classList.add("hidden");
             }, 1000);
@@ -556,7 +558,6 @@
             let top_failure = document.getElementById("top_failure");
 
             top_failure.classList.remove("hidden");
-
             setTimeout(() => {
                 top_failure.classList.add("hidden");
             }, 1000);

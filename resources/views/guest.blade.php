@@ -5,14 +5,14 @@
         </h2>
     </x-slot>
 
-    <div class="py-2 sm:py-6">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="p-2">
+        <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden sm:rounded-lg">
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
                 <livewire:writing :language="$language">
                     @else
                     <div class="flex justify-center">
-                        <div class="w-full sm:max-w-md px-6 py-4 bg-slate-800 shadow-md overflow-hidden sm:rounded-lg">
+                        <div class="w-full sm:max-w-md px-4 py-4 bg-slate-800 shadow-md overflow-hidden sm:rounded">
 
                             <div class="mb-4 flex justify-center">
                                 <span class="text-xl uppercase text-gray-300 md:tracking-widest">
@@ -21,21 +21,26 @@
                             </div>
 
                             @foreach (config('langgim.allowed_languages') as $language)
-                            <div class="flex justify-around">
-                                <div class="flex space-x-4 mb-4">
-                                    <div class="shadow rounded-lg">
-                                        <a href="{{route('guest', $language)}}" class="flex relative hover:opacity-90">
+
+                            <a href="{{route('guest', $language)}}" class="">
+                                <div class="flex justify-around hover:bg-purple-900 transition-all duration-300 rounded border border-slate-700 my-2">
+                                    <div class="flex space-x-4 py-2">
+                                        <div class="shadow rounded-lg flex relative">
                                             <img src="{{asset('/images/flags/'.$language.'.svg')}}"
-                                            class="w-16 sm:w-24 rounded-md shadow z-30">
+                                                class="w-16 sm:w-24 rounded-md shadow z-30">
                                             <img src="{{asset('/images/flags/polish.svg')}}"
-                                            class="w-16 sm:w-24 rounded-md -right-10 sm:-right-16 absolute shadow hover:none">
-                                        </a>
+                                                class="w-16 sm:w-24 rounded-md -right-10 sm:-right-16 absolute shadow hover:none">
+                                        </div>
+                                    </div>
+                                    <div class="my-auto">
+                                        <span
+                                            class="h-1 uppercase text-sm md:text-lg font-semibold">{{Illuminate\Support\Str::limit($language, 3, '')}}
+                                            - POL
+                                        </span>
                                     </div>
                                 </div>
-                                <div class="mt-3 sm:mt-6">
-                                    <span class="h-1 uppercase text-sm md:text-md">{{Illuminate\Support\Str::limit($language, 3, '')}} - POL</span>
-                                </div>
-                            </div>
+                            </a>
+
                             @endforeach
                         </div>
                     </div>
