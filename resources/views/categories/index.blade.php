@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  leading-tight">
-            {{ __('Choose category') }}
-        </h2>
+        {{ __('Choose category') }}
     </x-slot>
     <div class="pb-16">
         @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))

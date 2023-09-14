@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  leading-tight">
-            {{ __('Learning: ') }} {{$category->name}}
-        </h2>
+        {{ __('Learning: ') }} {{$category->name}}
     </x-slot>
 
     <div class="py-2 sm:py-6">
