@@ -22,7 +22,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = $this->repository->withSubcategories();
-        return view('admin.categories.index', compact('categories'));
+        $textCol = ["text-gray-400", "text-gray-200", "text-white"];
+        return view('admin.categories.index', compact('categories', 'textCol'));
     }
 
     public function create()
