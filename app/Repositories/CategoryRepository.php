@@ -19,7 +19,7 @@ class CategoryRepository
 
     public function withSubcategories(): Collection
     {
-        return Category::with('subcategories')->orderBy('priority', 'desc')->get();
+        return Category::with('subcategories', 'words')->orderBy('priority', 'desc')->get();
     }
 
     /**

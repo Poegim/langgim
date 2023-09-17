@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
+        {{ __('Dashboard') }}
     </x-slot>
 
 

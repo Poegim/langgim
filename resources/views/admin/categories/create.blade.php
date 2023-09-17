@@ -1,9 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  leading-tight">
-            {{ __('Create Category') }}
-        </h2>
+        {{ __('Create Category') }}
     </x-slot>
 
     <div class="flex flex-col">

@@ -20,5 +20,10 @@ module.exports = {
         require('@tailwindcss/forms'),
         require('@tailwindcss/typography'),
     ],
+    safelist: [
+        'bg-gray-400',
+        'bg-gray-200',
+        'bg-white',
+    ],
 
 };

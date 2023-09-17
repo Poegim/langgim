@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  leading-tight">
-            {{ __('Guest mode') }}
-        </h2>
+
+        {{ __('Guest mode') }}
+
     </x-slot>
 
-    <div class="p-2">
+    <div class="">
         <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden sm:rounded-lg">
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))

@@ -45,21 +45,27 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-slate-900">
-            @livewire('navigation-menu')
 
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-slate-900 shadow">
-                    <div class="mx-auto py-2 sm:py-6 px-2 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
 
             <!-- Page Content -->
             <main>
-                <div class="max-w-7xl mx-auto py-2 sm:py-6 px-2 sm:px-4 lg:px-8">
-                {{ $slot }}
+                <div class="flex flex-col sm:flex-row">
+                    @livewire('navigation-menu')
+                    <div class="w-full py-2 sm:py-6 px-2 sm:px-4 lg:px-8">
+                        <!-- Page Heading -->
+                        @if (isset($header))
+                        <header class="w-full flex justify-end -mb-2 sm:mb-0">
+                            <div class="w:1/2 sm:w-1/4 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 mb-4 flex justify-end align-middle py-2 pr-2 sm:pr-4 text-gray-400">
+
+                                <h2 class="text-xs sm:text-base tracking-wider my-auto pr-2">
+                                    {{ $header }}
+                                </h2>
+                                <x-clarity-map-line class="w-5 h-5 sm:w-8 sm:h-8 my-auto"/>
+                            </div>
+                        </header>
+                        @endif
+                        {{ $slot }}
+                    </div>
                 </div>
             </main>
         </div>

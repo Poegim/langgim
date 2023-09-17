@@ -1,9 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl  leading-tight">
             {{ __('Categories') }}
-        </h2>
     </x-slot>
 
     <!-- Index Post -->
@@ -62,7 +60,19 @@
                                 <livewire:admin.categories.delete :category="$category" />
                             </div>
                             <div>
+
                                 {{$category->name}}
+                                <div>
+                                    (@foreach (config('langgim.levels') as $index => $level)
+                                    <span class="{{$textCol[$index]}} mx-1">
+                                        {{$level}}:
+                                        {{$category->words->filter(function($word) use ($index) {
+                                            return $word->level == ($index + 1);
+                                        })->count()}}
+                                    </span>
+                                    @endforeach)
+                                </div>
+
                             </div>
                         </td>
                         <td class="sm:px-4 px-1 py-2 ">
@@ -77,6 +87,16 @@
                                         </div>
                                         <div>
                                             {{$subcategory->name}}
+                                            <div>
+                                                (@foreach (config('langgim.levels') as $index => $level)
+                                                <span class="{{$textCol[$index]}} mx-1">
+                                                {{$level}}:
+                                                {{$subcategory->words->filter(function($word) use ($index) {
+                                                    return $word->level == ($index + 1);
+                                                })->count()}}
+                                                </span>
+                                                @endforeach)
+                                            </div>
                                         </div>
 
                                     </div>

@@ -49,6 +49,9 @@
                                     class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Sample Sentence</th>
                                 <th
+                                class="hidden md:table-cell px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                                Level</th>
+                                <th
                                     class="px-2 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                                     Category</th>
                                 <th
@@ -90,9 +93,13 @@
                                     @else
                                     <x-tni-file-x-o class="w-5 h-5 text-red-700" />
                                     @endif
+
                                 </td>
 
                                 <td class="hidden md:table-cell px-2 py-3">{!! $word->sample_sentence !!}</td>
+                                <td class="hidden md:table-cell px-2 py-3">
+                                    <livewire:admin.words.level-select :word="$word" />
+                                </td>
                                 <td class="px-2 py-3">{!! $word->category->name !!}</td>
                                 <td class="hidden md:table-cell px-2 py-3">
                                     {{$word->subcategory != null ? $word->subcategory->name : null }}</td>
