@@ -36,6 +36,7 @@
                             <x-jet-label for="category">Category:</x-jet-label>
                             <select name="category" id="category"
                                 class="text-gray-800 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
+                                <option></option>
                                 @foreach ($categories as $category)
                                 <optgroup label="{{$category->name}}">
                                     @foreach ($category->subcategories as $subcategory)

@@ -1,5 +1,5 @@
 <nav>
-    <div class="w-full sm:min-w-[250px] px-2 bg-black sm:h-screen"
+    <div class="w-full sm:min-w-[250px] px-2 bg-black sm:min-h-screen sticky top-0 bot-0"
     x-data="{ expanded: false }"
     x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width > 640) {
         expanded = true
@@ -29,7 +29,7 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="space-y-2 flex flex-col" x-cloak x-show="expanded" x-collapse>
+                <div class="space-y-2 flex flex-col mb-4" x-cloak x-show="expanded" x-collapse>
 
                     @auth
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
@@ -38,7 +38,7 @@
                     @endauth
 
                     <x-jet-nav-link href="{{ route('category.index') }}" :active="request()->routeIs('category.index')">
-                        <x-clarity-applications-solid class="admin-index-icon" /> {{ __('Start Learning') }}
+                        <x-clarity-edit-line class="admin-index-icon" /> {{ __('Writing') }}
                     </x-jet-nav-link>
 
                     @if ((auth()->check() && (auth()->user()->isAdmin())))

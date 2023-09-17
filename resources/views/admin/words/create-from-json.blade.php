@@ -19,7 +19,7 @@
                 <form method="POST" action="{{route('admin.store-from-json')}}">
                     @csrf
 
-                    <div class="space-y-2">
+                    <div class="space-y-2 ml-2">
 
                         <div class="bg-black text-green-300 p-4 mb-4 rounded">
                             Example format:<br />
@@ -40,6 +40,7 @@
                             <x-jet-label for="category">Category:</x-jet-label>
                             <select name="category" id="category"
                                 class="text-gray-800 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm w-64">
+                                <option></option>
                                 @foreach ($categories as $category)
                                 <optgroup label="{{$category->name}}">
                                     @foreach ($category->subcategories as $subcategory)
@@ -47,10 +48,9 @@
                                     @endforeach
                                 @endforeach
                             </select>
-                            <x-jet-input-error for="category" />
                         </div>
                     </div>
-                    <div class="mt-2">
+                    <div class="my-2 ml-2">
                         <x-buttons.primary>Save</x-buttons.primary>
                     </div>
                 </form>
