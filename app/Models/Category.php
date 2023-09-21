@@ -17,6 +17,11 @@ class Category extends Model
         return $this->hasMany(Word::class);
     }
 
+    public function wordsPerLevel(int $level): int
+    {
+        return $this->words()->where('level', $level)->count();
+    }
+
     public function subcategories(): HasMany
     {
         return $this->hasMany(Subcategory::class);

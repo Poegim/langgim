@@ -6,8 +6,6 @@
     <div class="py-2 sm:py-4 rounded-md mx-auto text-center">
 
         <div class="sm:flex px-2">
-
-
             <div class="px-2 w-full">
                 <x-jet-button class="w-full mt-1 sm:mt-2 px-2 py-1 sm:py-2 text-sm bg-purple-700" x-on:click="open = ! open">
                     <div class="flex">

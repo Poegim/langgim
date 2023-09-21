@@ -6,13 +6,15 @@ use App\Models\User;
 use App\Models\Word;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\Interfaces\ForeignWordInterface;
 use Livewire\Component;
 use Illuminate\View\View;
 use Illuminate\Database\Eloquent\Collection;
+use App\Http\Traits\HasTimer;
 
 class Writing extends Component
 {
+    use HasTimer;
+
     //Error reporting
     public ?string $message = null;
     public ?string $title = null;
@@ -151,9 +153,12 @@ class Writing extends Component
          * If user is logged-in, delete from words collection already learned words and get random from not learned.
          * If there is no words to learn return false.
          * If user is not logged, just get random word.
+         * Start timer for logged user.
          */
         if(auth()->check())
         {
+            $this->startTimer();
+
             if($this->words->isEmpty())
             {
                 return false;
@@ -312,8 +317,9 @@ class Writing extends Component
     }
 
     /**
-     * success is called when word has been guessed
-     * shows success modal ale load next word
+     * Success is called when word has been guessed.
+     * Shows success modal ale load next word.
+     * Timer is stopped and time is summed.
      */
     public function success(): void
     {
@@ -323,6 +329,8 @@ class Writing extends Component
 
         if(auth()->check())
         {
+            $this->saveTime();
+
             if($this->updateUserWord(true) == true)
             {
 
@@ -358,7 +366,13 @@ class Writing extends Component
     public function failure(): void
     {
         $this->wordFailureGlobal++;
-        auth()->check() ? $this->updateUserWord(false) : null;
+
+        if(auth()->check())
+        {
+            $this->saveTime();
+            $this->updateUserWord(false);
+        }
+
         $this->previousWord = $this->word;
         $this->previousForeignWord = $this->foreignWord;
         $this->loadWord();
@@ -410,6 +424,7 @@ class Writing extends Component
             }
         }
 
+        $this->saveTime();
         return true;
 
     }
