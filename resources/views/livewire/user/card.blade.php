@@ -19,9 +19,9 @@
                     </a>
                 </span>
             </div>
-            <div class="mt-6 w-fit mx-auto">
-                <img class="rounded-full w-28 h-28" src="{{ Auth::user()->profile_photo_url }}"
-                    alt="{{ Auth::user()->name }}" srcset="">
+            <div class="mt-6 mx-auto w-fit">
+                <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}"
+                    class="rounded-full h-28 w-28">
             </div>
 
             <div class="mt-8 ">
