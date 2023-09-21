@@ -1,10 +1,8 @@
 <nav>
-    <div class="w-full sm:min-w-[250px] px-2 bg-black sm:min-h-screen sticky top-0 bot-0"
-    x-data="{ expanded: false }"
-    x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width > 640) {
+    <div class="w-full sm:min-w-[250px] sm:max-w-[250px] md:min-w-[300px] md:max-w-[300px] break-all px-2 bg-black sm:min-h-screen sticky top-0 bot-0" x-data="{ expanded: false }"
+        x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width > 640) {
         expanded = true
-    };"
-    @resize.window="
+    };" @resize.window="
     width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if (width > 640) {
         expanded = true
@@ -23,8 +21,9 @@
                             <x-jet-application-mark class="block h-10 w-full" />
                         </a>
                     </div>
-                    <button type="button" x-on:click="expanded = ! expanded" :class="expanded ? '' : 'rotate-180'" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-900 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition-all duration-300">
-                        <x-heroicon-s-chevron-up class="w-6 h-6"/>
+                    <button type="button" x-on:click="expanded = ! expanded" :class="expanded ? '' : 'rotate-180'"
+                        class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-pink-900 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition-all duration-300">
+                        <x-heroicon-s-chevron-up class="w-6 h-6" />
                     </button>
                 </div>
 
@@ -77,10 +76,13 @@
                             <x-clarity-logout-line class="admin-index-icon" />{{ __('Log Out') }}
                         </x-jet-nav-link>
                     </form>
+
+                    <livewire:user.card />
                     @endauth
 
                 </div>
             </div>
+
         </div>
     </div>
 </nav>

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\UserWord;
+use Carbon\CarbonInterval;
 use App\Models\UserCategory;
 use Illuminate\Support\Carbon;
 use App\Models\UserSubcategory;
@@ -30,6 +31,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'level',
         'password',
         'role',
         'subcategory',
@@ -87,6 +89,63 @@ class User extends Authenticatable
                 return 'USER';
                 break;
         }
+    }
+
+    public function level(): string
+    {
+        foreach(config('langgim.levels') as $key => $level)
+        {
+            if ($this->level === $key+1)
+            {
+                return $level;
+            }
+        }
+    }
+
+    public function timer(): string
+    {
+        return CarbonInterval::seconds($this->timer)->cascade()->forHumans(['short' => true]);
+    }
+
+    public function learnedWordsOnLevel(): string
+    {
+        $learnedWords = $this->userWords()->whereRelation('word', 'level', '<=', $this->level)->where('is_learned', '>', 2)->where('language', $this->language)->count();
+        $wordsInLevel = Word::where('level', '<=', $this->level)->count();
+        return $learnedWords . " / " . $wordsInLevel;
+    }
+
+    public function levelStatus(): int
+    {
+        $learnedWords = $this->userWords()->whereRelation('word', 'level', '<=', $this->level)->where('is_learned', '>', 2)->where('language', $this->language)->count();
+        $wordsInLevel = Word::where('level', '<=', $this->level)->count();
+        return round(($learnedWords  / $wordsInLevel) * 100);
+    }
+
+    public function categoryLearnedWords(int $categoryId): int
+    {
+        $learnedWords =
+            $this
+            ->userWords()
+            ->where('is_learned', '>', 2)
+            ->where('language', $this->language)
+            ->whereRelation('word', 'category_id', $categoryId)
+            ->count();
+
+        return $learnedWords;
+    }
+
+    public function subcategoryLearnedWords(int $subcategoryId): int
+    {
+        $learnedWords =
+            $this
+            ->userWords()
+            ->whereRelation('word', 'level', '<=', $this->level)
+            ->whereRelation('word', 'subcategory_id', $subcategoryId)
+            ->where('is_learned', '>', 2)
+            ->where('language', $this->language)
+            ->count();
+
+        return $learnedWords;
     }
 
     public function userWords(): HasMany

@@ -20,7 +20,7 @@
     </div>
     <div class="mb-2 p-2 mx-4">
         <a href="{{route('profile.show')}}">
-            <x-buttons.primary class="mt-2 w-full">Lets go!</x-button.third>
+            <x-buttons.third class="mt-2 w-full">Lets go!</x-button.third>
         </a>
     </div>
 </div>

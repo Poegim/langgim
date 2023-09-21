@@ -1,4 +1,9 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const customWidths = {};
+
+for (let width = 1; width <= 100; width++) {
+    customWidths[`${width}p`] = `${width}%`;
+}
 
 module.exports = {
     content: [
@@ -13,6 +18,10 @@ module.exports = {
             fontFamily: {
                 sans: ['Roboto', ...defaultTheme.fontFamily.sans],
             },
+            width: {
+                ...customWidths,
+                '0p': '0px',
+            },
         },
     },
 
@@ -24,6 +33,7 @@ module.exports = {
         'bg-gray-400',
         'bg-gray-200',
         'bg-white',
+        ...Object.keys(customWidths),
     ],
 
 };
