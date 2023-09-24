@@ -2,14 +2,7 @@
     <div class="w-full sm:min-w-[250px] sm:max-w-[250px] md:min-w-[300px] md:max-w-[300px] break-all px-2 bg-black sm:min-h-screen sticky top-0 bot-0" x-data="{ expanded: false }"
         x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width > 640) {
         expanded = true
-    };" @resize.window="
-    width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
-    if (width > 640) {
-        expanded = true
-    }
-    if (width < 640) {
-        expanded = false
-    }
+    };"
     ">
         <!-- Primary Navigation Menu -->
         <div class="flex flex-col justify-between">
