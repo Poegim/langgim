@@ -60,3 +60,8 @@
 .admin-index-icon {
     @apply my-auto m-2 w-6 h-6;
 }
+
+.char {
+    transition-property: all;
+    transition-duration: 100ms;
+}

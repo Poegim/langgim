@@ -9,7 +9,7 @@
         <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden sm:rounded-lg">
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
-                <livewire:writing :language="$language">
+                <livewire:typing :language="$language">
                     @else
                     <div class="flex justify-center">
                         <div class="w-full sm:max-w-md px-4 py-4 bg-slate-800 shadow-md overflow-hidden sm:rounded">

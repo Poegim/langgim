@@ -55,9 +55,8 @@
                         <!-- Page Heading -->
                         @if (isset($header))
                         <header class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
-                            <div class="w:1/2 sm:w-1/4 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 mb-4 flex justify-end align-middle py-2 pr-2 sm:pr-4 text-gray-400">
-
-                                <h2 class="text-xs sm:text-base tracking-wider my-auto pr-2">
+                            <div class="w:1/2 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 sm:mb-4 flex justify-end align-middle py-2 pr-2 sm:pr-4 text-gray-400">
+                                <h2 class="text-xs sm:text-sm lg:text-base tracking-wider my-auto pr-2">
                                     {{ $header }}
                                 </h2>
                                 <x-clarity-map-line class="w-5 h-5 sm:w-8 sm:h-8 my-auto"/>

@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="px-6 py-4 bg-slate-900 text-right {{config('settings.color1')}}">
+    <div class="px-6 py-4 bg-slate-900 text-right">
         {{ $footer }}
     </div>
 </x-old-modal>
