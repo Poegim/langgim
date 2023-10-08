@@ -1,11 +1,11 @@
 <!-- Virtual keyboard -->
-<div x-data="{ open: false }" class="w-full m-0 p-0 h-8 md:h-10">
+<div x-data="{ open: false }" class="w-1/2 lg:w-full m-0 p-0 h-8 md:h-10">
     <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" x-on:click="open = ! open">
         <div class="flex">
             <x-clarity-keyboard-line class="w-6 h-6 " />
         </div>
         <span class="block ml-2 ">
-            Virtual Keyboard
+            Keyboard
         </span>
     </x-jet-button>
     <div class="shadow-md absolute inset-x-0 bottom-0 bg-gradient-to-tr from-gray-800 to-slate-900 border-t border-gray-600 rounded-t-lg w-full flex justify-center" x-cloak x-show="open">

@@ -2,28 +2,34 @@
     <div class="px-2 pb-6 pt-4 bg-slate-800 sm:space-y-4">
 
         <!-- Buttons -->
-        <div class="flex flex-col md:flex-row p-2 space-y-2 md:space-x-2 md:space-y-0">
-            <x-keyboard />
-            <x-jet-button wire:click="finishLesson()" class="w-full text-xs bg-purple-700 h-8 md:h-10">
-                <x-clarity-success-standard-line class="w-6 h-6 mr-2" /> Finish Lesson
-            </x-jet-button>
-            <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" id="hint">
-                <x-clarity-help-solid class="w-6 h-6 mr-2" /> Hint
-            </x-jet-button>
+        <div class="flex flex-col lg:flex-row sm:p-2 space-y-2 lg:space-x-2 lg:space-y-0">
+            <div class="flex space-x-2 lg:w-full">
+                <x-keyboard />
+                <x-jet-button wire:click="finishLesson()" class="w-1/2 lg:w-full text-xs bg-purple-700 h-8 md:h-10">
+                    <x-clarity-success-standard-line class="w-6 h-6 mr-2" />
+                        Finish Lesson
+                </x-jet-button>
+            </div>
 
-            @auth
-            <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
-            <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
-            Report error
+            <div class="flex space-x-2 lg:w-full">
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="hint">
+                    <x-clarity-help-solid class="w-6 h-6 mr-2" /> Hint
+                </x-jet-button>
 
-            </x-jet-button>
-            @endauth
-            @guest
-            <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" disabled>
-                <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
-                Report error
-            </x-jet-button>
-            @endguest
+                @auth
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
+                    Report error
+
+                </x-jet-button>
+                @endauth
+                @guest
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" disabled>
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
+                    Report error
+                </x-jet-button>
+                @endguest
+            </div>
 
         </div>
 

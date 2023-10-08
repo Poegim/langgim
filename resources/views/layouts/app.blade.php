@@ -51,10 +51,10 @@
             <main>
                 <div class="flex flex-col sm:flex-row">
                     @livewire('navigation-menu')
-                    <div class="w-full py-2 sm:py-6 px-2 sm:px-4 lg:px-8">
+                    <div class="sm:w-full py-2 sm:py-6 px-2 sm:px-4 lg:px-8">
                         <!-- Page Heading -->
                         @if (isset($header))
-                        <header class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end">
+                        <header class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end mb-2">
                             <div class="w:1/2 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 sm:mb-4 flex justify-end align-middle py-2 pr-2 sm:pr-4 text-gray-400">
                                 <h2 class="text-xs sm:text-sm lg:text-base tracking-wider my-auto pr-2">
                                     {{ $header }}
