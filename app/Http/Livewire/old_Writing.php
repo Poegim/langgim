@@ -15,6 +15,8 @@ class Writing extends Component
 {
     use HasTimer;
 
+    public $user;
+
     //Error reporting
     public ?string $message = null;
     public ?string $title = null;
@@ -157,7 +159,13 @@ class Writing extends Component
          */
         if(auth()->check())
         {
-            $this->startTimer();
+            if($this->startTime == 0) {
+                $this->startTimer();
+            } else {
+                $this->stopTimer();
+                $this->saveTime();
+                $this->startTimer();
+            }
 
             if($this->words->isEmpty())
             {
@@ -329,8 +337,6 @@ class Writing extends Component
 
         if(auth()->check())
         {
-            $this->saveTime();
-
             if($this->updateUserWord(true) == true)
             {
 
@@ -369,7 +375,6 @@ class Writing extends Component
 
         if(auth()->check())
         {
-            $this->saveTime();
             $this->updateUserWord(false);
         }
 
@@ -424,7 +429,6 @@ class Writing extends Component
             }
         }
 
-        $this->saveTime();
         return true;
 
     }

@@ -9,7 +9,6 @@ trait HasTimer
     public int $startTime = 0;
     public int $stopTime = 0;
     public int $summed = 0;
-    public ?User $user = null;
 
     public function startTimer(): void
     {
@@ -26,21 +25,20 @@ trait HasTimer
         return $this->stopTime - $this->startTime;
     }
 
-    private function saveTime(): void
+    private function saveTime(User $user): void
     {
         $this->stopTimer();
         $this->summed += $this->timeDiff();
 
-        if($this->user == null)
-        {
-            auth()->check() ? $this->user = User::findOrFail(auth()->user()->id) : null;
-        }
 
         if(auth()->check())
         {
-            $this->user->timer += $this->summed;
+            $this->user->timer = $this->user->timer + $this->summed;
             $this->user->save();
         }
+
+        $this->startTime = 0;
+        $this->stopTime = 0;
 
     }
 

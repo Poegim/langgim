@@ -3,11 +3,11 @@
         {{ __('Learning: ') }} {{$category->name}}
     </x-slot>
 
-    <div class="py-2 sm:py-6">
+    <div class="px-0 py-2 sm:py-6">
         <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden sm:rounded-lg shadow-lg">
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
-                    <livewire:writing
+                    <livewire:typing
                         :language="$language"
                         :category="$category"
                         :subcategory="$subcategory"

@@ -41,6 +41,7 @@ class WordsTableSeeder extends Seeder
                                 'sample_sentence' => $this->faker->realText(25),
                                 'category_id' => $category->id,
                                 'subcategory_id' => $subcategory->id,
+                                'level' => rand(1,3),
                             ]
                         );
                     }

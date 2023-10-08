@@ -53,6 +53,14 @@ Route::name('category.')->prefix('category')->group(function () {
 
 });
 
+//Errors
+Route::name('errors.')->prefix('errors')->middleware(['auth:sanctum', /*'verified'*/])->group(function () {
+
+    Route::get('/create/{id}/{language}', [ErrorController::class, 'create'])->name('create');
+    Route::post('/store', [ErrorController::class, 'store'])->name('store');
+
+});
+
 
 //Guest mode
 Route::get('/guest/{language?}', [Guest::class, 'index'])->name('guest');

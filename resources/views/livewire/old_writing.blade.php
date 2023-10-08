@@ -39,7 +39,7 @@
                 </x-jet-button>
             </div>
         </div>
-
+        {{$summed}}
         <div class="flex justify-center mt-2 sm:mt-4 ">
             <span class="uppercase text-sm "> {{ __('Last key:')}} {{ $lastKey }} </span>
             <div class="text-green-500 font-bold hidden" id="top_success" name="top_success">
