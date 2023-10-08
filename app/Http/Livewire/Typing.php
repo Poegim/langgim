@@ -68,7 +68,7 @@ class Typing extends Component
     public function success($data)
     {
         $this->successCount++;
-        if (auth()->check()) $this->updateUserData($data['word']['user_words'][0]['id'], true);
+        if ((auth()->check()) && isset($data['word']['user_words'])) $this->updateUserData($data['word']['user_words'][0]['id'], true);
         $this->data = $data;
         $data['lesson_finished'] ? $this->finishLesson() : $this->finishWord();
     }
@@ -76,7 +76,7 @@ class Typing extends Component
     public function failure($data)
     {
         $this->failureCount++;
-        if (auth()->check()) $this->updateUserData($data['word']['user_words'][0]['id'], false);
+        if ((auth()->check()) && isset($data['word']['user_words'])) $this->updateUserData($data['word']['user_words'][0]['id'], false);
         $this->data = $data;
         $this->modalFailureVisibility = true;
     }

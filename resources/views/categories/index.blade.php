@@ -39,7 +39,6 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
 
                     <div x-show="open" x-cloak x-collapse.duration.500ms>

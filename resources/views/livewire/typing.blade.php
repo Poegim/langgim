@@ -284,7 +284,6 @@
             if(polishToLatinAlphabetMapping(word['polish'][expectedChar]).includes(key.toLowerCase())) {
 
                 showIcon(check);
-                // movePulse();
 
                 //Show char on char divs.
                 charDivs[expectedChar].innerText = word['polish'][expectedChar].toUpperCase();
@@ -298,7 +297,8 @@
                         return obj.id === word.id;
                     });
 
-                    if(authCheck) {
+
+                    if(authCheck && words[index].hasOwnProperty('user_words')) {
                         //Iterate is_learned then
                         words[index].user_words[0].is_learned++;
 
