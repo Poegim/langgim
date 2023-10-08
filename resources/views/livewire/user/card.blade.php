@@ -6,7 +6,7 @@
                 <span class="text-gray-400 text-sm">Time spend: {{auth()->user()->timer()}}</span>
 
 
-                <span class="text-blue-400 hover:text-blue-200 transition-all duration-300relative">
+                <span class="text-blue-400 hover:text-blue-200 transition-all duration-300 relative">
                     @if (auth()->user()->language === '')
                     <span class="flex h-3 w-3 absolute -right-2 -top-2 z-10">
                         <span
@@ -33,7 +33,6 @@
             <div class="h-1 w-full bg-black mt-8 rounded-full">
                 <div class="h-1 rounded-full {{$class}} bg-yellow-500 "></div>
             </div>
-
 
             <div class="flex justify-between">
 

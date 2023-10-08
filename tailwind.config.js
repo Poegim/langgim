@@ -33,7 +33,6 @@ module.exports = {
         'bg-gray-400',
         'bg-gray-200',
         'bg-white',
-        ...Object.keys(customWidths),
     ],
 
 };

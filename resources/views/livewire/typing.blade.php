@@ -133,7 +133,7 @@
         <x-slot name="content">
             <div class="space-y-2 my-4 text-lg w-full">
                 <div class="text-lg">
-                    Gratulacje, ukończyłeś tą kategorie, zmień kategorie lub poziom by kontynuować.
+                    {{ __("Gratulacje! Oto twój rezultat.") }}
                 </div>
                 <div>
                     udane próby: <span class="italic font-thin">{{ $successCount }}</span>
