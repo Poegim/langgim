@@ -24,7 +24,7 @@
                 </x-jet-button>
                 @endauth
                 @guest
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" disabled>
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn" disabled>
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
                     Report error
                 </x-jet-button>
@@ -180,6 +180,7 @@
         const successNextBtn = document.getElementById("success-next-btn");
         const successFinishBtn = document.getElementById("success-finish-btn");
         const reportErrorBtn = document.getElementById("report-error-btn");
+        const hintBtn = document.getElementById("hint");
 
         const allowedTries = 3;
 
@@ -377,9 +378,22 @@
 
         }
 
+        function showHint() {
+            //Dont allow to show last char
+            if(expectedChar < word['polish'].length-1) {
+                //Show char on char divs.
+                charDivs[expectedChar].innerText = word['polish'][expectedChar].toUpperCase();
+                expectedChar++;
+                wrongTry++;
+                movePulse();
+            }
+        }
+
         init(true);
 
         document.addEventListener('init', () => init());
+
+        hintBtn.addEventListener('click', () => showHint());
 
         document.addEventListener('keydown', (event) => {
 
