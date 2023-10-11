@@ -33,9 +33,6 @@
 
         </div>
 
-        <!-- Test div -->
-        {{-- <div id="test"></div> --}}
-
         <!-- Typed char -->
         <div class="w-full h-12 flex justify-center space-x-2">
             <x-clarity-check-line class="h-10 w-10 text-green-600 hidden my-auto" id="check-icon"/>
@@ -166,13 +163,12 @@
             '6', '7', '8', '9', '0', ' ', 'Space',
         ];
 
-        // const test = document.getElementById('test');
-
         let word;
         let words = @js($words);
         const language = @js($language);
         const isLearned = @js($isLearned);
         const authCheck = @js($authCheck);
+        const data = {};
 
         let charDivs = [];
         const wordDiv = document.getElementById("word");
@@ -214,12 +210,14 @@
             });
         }
 
+        //Prints underscores for every char wich is not guessed.
         function printUnderscores() {
             for (let i = 0; i < charDivs.length; i++) {
                 charDivs[i].innerText = "_";
             }
         }
 
+        //Moves pulse class to next char
         function movePulse() {
             if(expectedChar < word['polish'].length) {
                 for (let i = 0; i < charDivs.length; i++) {
@@ -266,11 +264,12 @@
             }
         }
 
+        //Called after every pressed key.
         function isExpected(key) {
+
             const check = document.getElementById("check-icon");
             const times = document.getElementById("times-icon");
             const typedChar = document.getElementById("typed-char");
-            const data = {};
 
             hideIcons([check, times]);
 
@@ -331,18 +330,18 @@
 
             //If typed char isnt expected char.
             } else {
-
                 showIcon(times);
                 wrongTry++;
+                isFailure();
+            }
+        }
 
-                if(wrongTry >= allowedTries) {
-
-                    data.lesson_finished = false;
-                    data.word = word;
-
-                    modalsFlag = true;
-                    @this.failure(data);
-                }
+        function isFailure() {
+            if(wrongTry >= allowedTries) {
+                data.lesson_finished = false;
+                data.word = word;
+                modalsFlag = true;
+                @this.failure(data);
             }
         }
 
@@ -353,7 +352,6 @@
         }
 
         function init(isFirst = false) {
-
 
             if(words.length > 0) {
                 //If its not a first init, remove previous word char divs and reset variables.
@@ -370,7 +368,6 @@
                 printUnderscores();
                 movePulse();
 
-                // test.innerText = word[language] + " " + word['polish'] + " " + word['level'];
             } else {
                 modalsFlag = true;
                 @this.finishLesson();
@@ -385,10 +382,12 @@
                 charDivs[expectedChar].innerText = word['polish'][expectedChar].toUpperCase();
                 expectedChar++;
                 wrongTry++;
+                isFailure();
                 movePulse();
             }
         }
 
+        //Called as first.
         init(true);
 
         document.addEventListener('init', () => init());

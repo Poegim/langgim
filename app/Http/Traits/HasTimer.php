@@ -20,25 +20,16 @@ trait HasTimer
         $this->stopTime = microtime(true);
     }
 
-    public function timeDiff(): int
-    {
-        return $this->stopTime - $this->startTime;
-    }
-
     private function saveTime(User $user): void
     {
         $this->stopTimer();
-        $this->summed += $this->timeDiff();
-
+        $this->summed = $this->stopTime - $this->startTime;
 
         if(auth()->check())
         {
-            $this->user->timer = $this->user->timer + $this->summed;
-            $this->user->save();
+            $user->timer = $this->user->timer + $this->summed;
+            $user->save();
         }
-
-        $this->startTime = 0;
-        $this->stopTime = 0;
 
     }
 

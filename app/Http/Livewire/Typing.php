@@ -9,10 +9,12 @@ use App\Models\UserWord;
 use App\Models\Word;
 use Livewire\Component;
 use App\Http\Traits\GetWords;
+use App\Http\Traits\HasTimer;
 
 class Typing extends Component
 {
     use GetWords;
+    use HasTimer;
 
     public int $isLearned = 5;
     public int $successCount = 0;
@@ -63,6 +65,7 @@ class Typing extends Component
         }
 
         $this->words = json_decode($this->getWords()->toJson());
+        $this->startTimer();
     }
 
     public function success($data)
@@ -112,6 +115,10 @@ class Typing extends Component
 
     public function finishLesson()
     {
+        if(auth()->check()) {
+            $this->saveTime($this->user);
+        }
+
         $this->modalFinishLessonVisibility = true;
     }
 
