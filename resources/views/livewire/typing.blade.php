@@ -298,7 +298,7 @@
             1000);
 
             //If typed char is expected char.
-            if(polishToLatinAlphabetMapping(word['polish'][expectedChar]).includes(key.toLowerCase())) {
+            if(polishToLatinAlphabetMapping(word['polish'][expectedChar].toLowerCase()).includes(key.toLowerCase())) {
 
                 showIcon(check);
 
