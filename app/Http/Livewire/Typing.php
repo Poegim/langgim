@@ -56,10 +56,10 @@ class Typing extends Component
 
         if(auth()->check())
         {
-            if($this->category != NULL)
-            {
-                $this->createUserWords();
-            }
+            // if($this->category != NULL)
+            // {
+            //     $this->createUserWords();
+            // }
 
             $this->saveLastUsedCategory();
         }
@@ -71,7 +71,7 @@ class Typing extends Component
     public function success($data)
     {
         $this->successCount++;
-        if ((auth()->check()) && isset($data['word']['user_words'])) $this->updateUserData($data['word']['user_words'][0]['id'], true);
+        if (auth()->check()) $this->updateUserData($data['word']['id'], true);
         $this->data = $data;
         $data['lesson_finished'] ? $this->finishLesson() : $this->finishWord();
     }
@@ -79,31 +79,47 @@ class Typing extends Component
     public function failure($data)
     {
         $this->failureCount++;
-        if ((auth()->check()) && isset($data['word']['user_words'])) $this->updateUserData($data['word']['user_words'][0]['id'], false);
+        if (auth()->check()) $this->updateUserData($data['word']['id'], false);
         $this->data = $data;
         $this->modalFailureVisibility = true;
     }
 
     private function updateUserData(int $id, bool $flag)
     {
-        $userWord = UserWord::findOrFail($id);
+
+        $userWord = UserWord::firstOrCreate(
+            [
+                'word_id' => $id,
+                'user_id' => auth()->user()->id,
+                'language' => $this->language,
+            ],
+            [
+                'word_id' => $id,
+                'user_id' => auth()->user()->id,
+                'language' => $this->language,
+            ]
+        );
 
         if($flag) {
+
             $userWord->is_learned++;
             $userWord->save();
 
             $this->user->success_typing_count++;
             $this->user->save();
+
         }
 
         if(!$flag) {
+
             $this->user->failure_typing_count++;
             $this->user->save();
-        }
 
-        if((!$flag) && ($userWord->is_learned > 0)) {
-            $userWord->is_learned--;
-            $userWord->save();
+            if($userWord->is_learned > 0) {
+                $userWord->is_learned--;
+                $userWord->save();
+            }
+
         }
 
     }
@@ -126,28 +142,28 @@ class Typing extends Component
      * If user learning this category first time, we are creating user_words
      * to save learning progress.
      */
-    public function createUserWords(): void
-    {
-        if($this->category != NULL)
-        {
-            $words = Word::where($this->language, '!=', NULL)
-            ->where('category_id', '=', $this->category->id)
-            ->get();
+    // public function createUserWords(): void
+    // {
+    //     if($this->category != NULL)
+    //     {
+    //         $words = Word::where($this->language, '!=', NULL)
+    //         ->where('category_id', '=', $this->category->id)
+    //         ->get();
 
-            //Creating UserWords
-            foreach($words as $word)
-            {
-                auth()->user()->userWords()->updateOrCreate(
-                    [
-                        'user_id' => auth()->id(),
-                        'word_id' => $word->id,
-                        'language' => $this->language,
-                        'wrong_try' => 0,
-                    ],
-                );
-            }
-        }
-    }
+    //         //Creating UserWords
+    //         foreach($words as $word)
+    //         {
+    //             auth()->user()->userWords()->updateOrCreate(
+    //                 [
+    //                     'user_id' => auth()->id(),
+    //                     'word_id' => $word->id,
+    //                     'language' => $this->language,
+    //                     'wrong_try' => 0,
+    //                 ],
+    //             );
+    //         }
+    //     }
+    // }
 
     public function saveLastUsedCategory(): void
     {

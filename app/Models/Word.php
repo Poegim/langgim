@@ -35,7 +35,7 @@ class Word extends Model
         return $this->belongsTo(Subcategory::class);
     }
 
-    public function level()
+    public function level(): string
     {
         return config('langgim.levels')[$this->level-1];
     }

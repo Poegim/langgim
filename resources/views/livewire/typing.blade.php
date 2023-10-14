@@ -190,6 +190,23 @@
             word = words[Math.floor(Math.random() * words.length)];
         }
 
+        //Remove learned words from collection and set new to is_learned = 0.
+        function removeLearned() {
+            newWords = words.filter((word) => {
+                if(!word.hasOwnProperty('user_words') || word.user_words.length == 0) {
+                    word.user_words = [];
+                    word.user_words[0] = {'is_learned':0};
+                }
+                return (word.user_words[0].is_learned < isLearned);
+            });
+
+            if(newWords.length != 0) {
+                words = [...newWords];
+            } else {
+                words.length = 0;
+            }
+        }
+
         //Create divs for every expected char of the word
         function createCharDivs(n) {
             for (let i = 0; i < n; i++) {
@@ -299,18 +316,28 @@
 
 
                     if(authCheck && words[index].hasOwnProperty('user_words')) {
-                        //Iterate is_learned then
+
                         words[index].user_words[0].is_learned++;
 
-                        //Remove learned words from collection.
-                        newWords = words.filter((word) => {
-                            return word.user_words[0].is_learned < isLearned;
-                        });
+                        //Iterate is_learned then
+                        // if(words[index].user_words.length == 0) {
+                        //     words[index].user_words[0] = {'is_learned':1};
+                        // } else {
+                        // }
+
+                        // //Remove learned words from collection and set new to is_learned = 0.
+                        // newWords = words.filter((word) => {
+                        //     if(word.user_words.length == 0) {
+                        //         word.user_words[0] = {'is_learned':0};
+                        //     }
+                        //     return (word.user_words[0].is_learned < isLearned);
+                        // });
 
                         //If there is no more words to learn, set finish lesson flag to true.
 
-                        if(!newWords.length == 0) {
-                            words = [...newWords];
+                        removeLearned();
+
+                        if(!words.length == 0) {
                             data.lesson_finished = false;
                         } else {
                             data.lesson_finished = true;
@@ -353,6 +380,10 @@
 
         function init(isFirst = false) {
 
+            if(isFirst === true) {
+                removeLearned();
+            }
+
             if(words.length > 0) {
                 //If its not a first init, remove previous word char divs and reset variables.
                 if(!isFirst) {
@@ -360,7 +391,6 @@
                     selectCharDivs();
                     removeCharDivs();
                 }
-
                 loadRandomWord();
                 foreignWordDiv.innerText = word[language];
                 createCharDivs(word['polish'].length);
@@ -387,7 +417,6 @@
             }
         }
 
-        //Called as first.
         init(true);
 
         document.addEventListener('init', () => init());
