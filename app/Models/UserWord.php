@@ -12,11 +12,6 @@ class UserWord extends Model
 
     protected $guarded = [];
 
-    // public function wordable(): MorphTo
-    // {
-    //     return $this->morphTo();
-    // }
-
     public function word()
     {
         return $this->belongsTo(Word::class, 'word_id');

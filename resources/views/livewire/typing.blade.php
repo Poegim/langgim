@@ -24,7 +24,7 @@
                 </x-jet-button>
                 @endauth
                 @guest
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" disabled>
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn" disabled>
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
                     Report error
                 </x-jet-button>
@@ -32,9 +32,6 @@
             </div>
 
         </div>
-
-        <!-- Test div -->
-        {{-- <div id="test"></div> --}}
 
         <!-- Typed char -->
         <div class="w-full h-12 flex justify-center space-x-2">
@@ -166,13 +163,12 @@
             '6', '7', '8', '9', '0', ' ', 'Space',
         ];
 
-        // const test = document.getElementById('test');
-
         let word;
         let words = @js($words);
         const language = @js($language);
         const isLearned = @js($isLearned);
         const authCheck = @js($authCheck);
+        const data = {};
 
         let charDivs = [];
         const wordDiv = document.getElementById("word");
@@ -180,6 +176,7 @@
         const successNextBtn = document.getElementById("success-next-btn");
         const successFinishBtn = document.getElementById("success-finish-btn");
         const reportErrorBtn = document.getElementById("report-error-btn");
+        const hintBtn = document.getElementById("hint");
 
         const allowedTries = 3;
 
@@ -191,6 +188,23 @@
 
         function loadRandomWord() {
             word = words[Math.floor(Math.random() * words.length)];
+        }
+
+        //Remove learned words from collection and set new to is_learned = 0.
+        function removeLearned() {
+            newWords = words.filter((word) => {
+                if(!word.hasOwnProperty('user_words') || word.user_words.length == 0) {
+                    word.user_words = [];
+                    word.user_words[0] = {'is_learned':0};
+                }
+                return (word.user_words[0].is_learned < isLearned);
+            });
+
+            if(newWords.length != 0) {
+                words = [...newWords];
+            } else {
+                words.length = 0;
+            }
         }
 
         //Create divs for every expected char of the word
@@ -213,12 +227,14 @@
             });
         }
 
+        //Prints underscores for every char wich is not guessed.
         function printUnderscores() {
             for (let i = 0; i < charDivs.length; i++) {
                 charDivs[i].innerText = "_";
             }
         }
 
+        //Moves pulse class to next char
         function movePulse() {
             if(expectedChar < word['polish'].length) {
                 for (let i = 0; i < charDivs.length; i++) {
@@ -265,11 +281,12 @@
             }
         }
 
+        //Called after every pressed key.
         function isExpected(key) {
+
             const check = document.getElementById("check-icon");
             const times = document.getElementById("times-icon");
             const typedChar = document.getElementById("typed-char");
-            const data = {};
 
             hideIcons([check, times]);
 
@@ -299,18 +316,28 @@
 
 
                     if(authCheck && words[index].hasOwnProperty('user_words')) {
-                        //Iterate is_learned then
+
                         words[index].user_words[0].is_learned++;
 
-                        //Remove learned words from collection.
-                        newWords = words.filter((word) => {
-                            return word.user_words[0].is_learned < isLearned;
-                        });
+                        //Iterate is_learned then
+                        // if(words[index].user_words.length == 0) {
+                        //     words[index].user_words[0] = {'is_learned':1};
+                        // } else {
+                        // }
+
+                        // //Remove learned words from collection and set new to is_learned = 0.
+                        // newWords = words.filter((word) => {
+                        //     if(word.user_words.length == 0) {
+                        //         word.user_words[0] = {'is_learned':0};
+                        //     }
+                        //     return (word.user_words[0].is_learned < isLearned);
+                        // });
 
                         //If there is no more words to learn, set finish lesson flag to true.
 
-                        if(!newWords.length == 0) {
-                            words = [...newWords];
+                        removeLearned();
+
+                        if(!words.length == 0) {
                             data.lesson_finished = false;
                         } else {
                             data.lesson_finished = true;
@@ -330,18 +357,18 @@
 
             //If typed char isnt expected char.
             } else {
-
                 showIcon(times);
                 wrongTry++;
+                isFailure();
+            }
+        }
 
-                if(wrongTry >= allowedTries) {
-
-                    data.lesson_finished = false;
-                    data.word = word;
-
-                    modalsFlag = true;
-                    @this.failure(data);
-                }
+        function isFailure() {
+            if(wrongTry >= allowedTries) {
+                data.lesson_finished = false;
+                data.word = word;
+                modalsFlag = true;
+                @this.failure(data);
             }
         }
 
@@ -353,6 +380,9 @@
 
         function init(isFirst = false) {
 
+            if(isFirst === true) {
+                removeLearned();
+            }
 
             if(words.length > 0) {
                 //If its not a first init, remove previous word char divs and reset variables.
@@ -361,7 +391,6 @@
                     selectCharDivs();
                     removeCharDivs();
                 }
-
                 loadRandomWord();
                 foreignWordDiv.innerText = word[language];
                 createCharDivs(word['polish'].length);
@@ -369,7 +398,6 @@
                 printUnderscores();
                 movePulse();
 
-                // test.innerText = word[language] + " " + word['polish'] + " " + word['level'];
             } else {
                 modalsFlag = true;
                 @this.finishLesson();
@@ -377,9 +405,23 @@
 
         }
 
+        function showHint() {
+            //Dont allow to show last char
+            if(expectedChar < word['polish'].length-1) {
+                //Show char on char divs.
+                charDivs[expectedChar].innerText = word['polish'][expectedChar].toUpperCase();
+                expectedChar++;
+                wrongTry++;
+                isFailure();
+                movePulse();
+            }
+        }
+
         init(true);
 
         document.addEventListener('init', () => init());
+
+        hintBtn.addEventListener('click', () => showHint());
 
         document.addEventListener('keydown', (event) => {
 

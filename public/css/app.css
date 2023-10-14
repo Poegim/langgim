@@ -3351,12 +3351,12 @@ select {
     height: 2.5rem;
   }
 
-  .md\:min-w-\[250px\] {
-    min-width: 250px;
+  .md\:min-w-\[300px\] {
+    min-width: 300px;
   }
 
-  .md\:max-w-\[250px\] {
-    max-width: 250px;
+  .md\:max-w-\[300px\] {
+    max-width: 300px;
   }
 
   .md\:grid-cols-3 {

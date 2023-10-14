@@ -1,5 +1,5 @@
 <nav>
-    <div class="w-full sm:min-w-[250px] sm:max-w-[250px] md:min-w-[250px] md:max-w-[250px] break-all px-2 bg-black sm:min-h-screen sticky top-0 bot-0" x-data="{ expanded: false }"
+    <div class="w-full sm:min-w-[250px] sm:max-w-[250px] md:min-w-[300px] md:max-w-[300px] break-all px-2 bg-black sm:min-h-screen sticky top-0 bot-0" x-data="{ expanded: false }"
         x-init="width = (window.innerWidth > 0) ? window.innerWidth : screen.width; if (width > 640) {
         expanded = true
     };"

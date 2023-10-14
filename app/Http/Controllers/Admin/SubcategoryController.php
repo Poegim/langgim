@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Word;
 use App\Models\Category;
 use Illuminate\View\View;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Admin\StoreSubcategoryRequest;
 use App\Http\Requests\Admin\UpdateSubcategoryRequest;
-use Illuminate\Http\RedirectResponse;
 
 class SubcategoryController extends Controller
 {
@@ -48,6 +49,14 @@ class SubcategoryController extends Controller
 
     public function update(UpdateSubcategoryRequest $request, Subcategory $subcategory): RedirectResponse
     {
+        //Move words to new category
+        $words = Word::where('subcategory_id', $subcategory->id)->get();
+        // dd($words);
+        foreach($words as $word) {
+            $word->category_id = $request->category;
+            $word->save();
+        }
+
         $subcategory->name = $request->name;
         $subcategory->slug = Str::slug($request->name, '-');
 
