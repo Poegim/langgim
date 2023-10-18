@@ -3,22 +3,20 @@
 namespace App\Http\Livewire\Categories;
 
 use Livewire\Component;
-use App\Models\Category;
-use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Collection;
 
 class Reset extends Component
 {
-    public ?Category $category = null;
-    public ?Subcategory $subcategory = null;
+    public ?int $categoryId = null;
+    public ?int $subcategoryId = null;
     public ?Collection $words = null;
     public ?string $language = null;
     public bool $modalVisibility = false;
 
-    public function mount($category = NULL, $subcategory = NULL)
+    public function mount($categoryId = NULL, $subcategoryId = NULL)
     {
-        $this->category = $category;
-        $this->subcategory = $subcategory;
+        $this->categoryId = $categoryId;
+        $this->subcategoryId = $subcategoryId;
         $this->language = auth()->user()->language;
     }
 
@@ -29,16 +27,17 @@ class Reset extends Component
 
     public function getUserWords()
     {
-        if($this->subcategory == NULL)
+        if($this->subcategoryId == NULL)
         {
 
             $this->words =
                     auth()
                     ->user()
                     ->userWords()
-                    ->with('word')
+                    ->where('is_learned', '>', 0)
                     ->where('language', '=', $this->language)
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
+                    ->with('word')
+                    ->whereRelation('word', 'category_id', '=', $this->categoryId)
                     ->get();
 
         } else
@@ -47,10 +46,11 @@ class Reset extends Component
                     auth()
                     ->user()
                     ->userWords()
-                    ->with('word')
+                    ->where('is_learned', '>', 0)
                     ->where('language', '=', $this->language)
-                    ->whereRelation('word', 'category_id', '=', $this->category->id)
-                    ->whereRelation('word', 'subcategory_id', '=', $this->subcategory->id)
+                    ->with('word')
+                    ->whereRelation('word', 'category_id', '=', $this->categoryId)
+                    ->whereRelation('word', 'subcategory_id', '=', $this->subcategoryId)
                     ->get();
         }
 

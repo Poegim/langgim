@@ -28,7 +28,6 @@ class CategoryRepository
      */
     public function getProgress(Collection $categories, string $language): Collection
     {
-
         foreach($categories as $category)
         {
             $category->learned_words = 0;
@@ -84,6 +83,5 @@ class CategoryRepository
 
         return $categories;
     }
-
 
 }

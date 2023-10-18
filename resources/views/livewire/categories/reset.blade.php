@@ -5,7 +5,6 @@
         x-on:mouseleave="tooltip = false"
         x-cloak
         class="cursor-pointer flex justify-center">
-
         <button class="h-full hover:text-pink-600 hover:-rotate-90 text-green-400 transition-all duration-300">
             <x-tni-history-o class="w-5 h-" wire:click="showModal"/>
         </button>

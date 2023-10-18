@@ -29,7 +29,7 @@
                         <div class="flex justify-start">
                             <div class="flex my-auto overflow-hidden mr-1">
                                 @if ($category->learned_words != 0)
-                                <livewire:categories.reset :category="$category" :subcategory="NULL">
+                                <livewire:categories.reset :categoryId="$category->id" :subcategoryId="NULL">
                                 @endif
                             </div>
 
@@ -58,7 +58,7 @@
                             <div class="flex justify-start">
                                 <div class="flex my-auto overflow-hidden mr-1">
                                     @if ($subcategory->learned_words != 0)
-                                    <livewire:categories.reset :category="$category" :subcategory="$subcategory">
+                                    <livewire:categories.reset :categoryId="$category->id" :subcategoryId="$subcategory->id">
                                     @endif
                                 </div>
 
