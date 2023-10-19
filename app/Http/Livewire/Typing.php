@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use App\Models\User;
 use App\Models\UserWord;
-use App\Models\Word;
 use Livewire\Component;
 use App\Http\Traits\GetWords;
 use App\Http\Traits\HasTimer;
@@ -14,7 +13,6 @@ use App\Http\Traits\HasTimer;
 class Typing extends Component
 {
     use GetWords;
-    use HasTimer;
 
     public int $isLearned = 5;
     public int $successCount = 0;
@@ -56,22 +54,16 @@ class Typing extends Component
 
         if(auth()->check())
         {
-            // if($this->category != NULL)
-            // {
-            //     $this->createUserWords();
-            // }
-
             $this->saveLastUsedCategory();
         }
 
         $this->words = json_decode($this->getWords()->toJson());
-        $this->startTimer();
     }
 
     public function success($data)
     {
         $this->successCount++;
-        if (auth()->check()) $this->updateUserData($data['word']['id'], true);
+        if (auth()->check()) $this->updateUserData($data['word']['id'], true, $data['time']);
         $this->data = $data;
         $data['lesson_finished'] ? $this->finishLesson() : $this->finishWord();
     }
@@ -79,14 +71,22 @@ class Typing extends Component
     public function failure($data)
     {
         $this->failureCount++;
-        if (auth()->check()) $this->updateUserData($data['word']['id'], false);
+        if (auth()->check()) $this->updateUserData($data['word']['id'], false, $data['time']);
         $this->data = $data;
         $this->modalFailureVisibility = true;
     }
 
-    private function updateUserData(int $id, bool $flag)
+    /**
+     * Updating user data.
+     * Word id.
+     * @param integer $id
+     * Flag of success or failure.
+     * @param boolean $flag
+     * User timer.
+     * @param integer $time
+     */
+    private function updateUserData(int $id, bool $flag, int $time)
     {
-
         $userWord = UserWord::firstOrCreate(
             [
                 'word_id' => $id,
@@ -103,25 +103,22 @@ class Typing extends Component
         if($flag) {
 
             $userWord->is_learned++;
-            $userWord->save();
-
             $this->user->success_typing_count++;
-            $this->user->save();
 
         }
 
         if(!$flag) {
 
             $this->user->failure_typing_count++;
-            $this->user->save();
 
             if($userWord->is_learned > 0) {
                 $userWord->is_learned--;
-                $userWord->save();
             }
-
         }
 
+        $this->user->timer += $time;
+        $this->user->save();
+        $userWord->save();
     }
 
     private function finishWord()
@@ -131,41 +128,10 @@ class Typing extends Component
 
     public function finishLesson()
     {
-        if(auth()->check()) {
-            $this->saveTime($this->user);
-        }
-
         $this->modalFinishLessonVisibility = true;
     }
 
-    /**
-     * If user learning this category first time, we are creating user_words
-     * to save learning progress.
-     */
-    // public function createUserWords(): void
-    // {
-    //     if($this->category != NULL)
-    //     {
-    //         $words = Word::where($this->language, '!=', NULL)
-    //         ->where('category_id', '=', $this->category->id)
-    //         ->get();
-
-    //         //Creating UserWords
-    //         foreach($words as $word)
-    //         {
-    //             auth()->user()->userWords()->updateOrCreate(
-    //                 [
-    //                     'user_id' => auth()->id(),
-    //                     'word_id' => $word->id,
-    //                     'language' => $this->language,
-    //                     'wrong_try' => 0,
-    //                 ],
-    //             );
-    //         }
-    //     }
-    // }
-
-    public function saveLastUsedCategory(): void
+    public function saveLastUsedCategory()
     {
         if($this->category != NULL)
         {

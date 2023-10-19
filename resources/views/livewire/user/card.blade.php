@@ -21,7 +21,7 @@
             </div>
             <div class="mt-6 mx-auto w-fit">
                 <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}"
-                    class="rounded-full h-28 w-28">
+                    class="rounded-full h-28 w-28 object-cover">
             </div>
 
             <div class="mt-8 ">

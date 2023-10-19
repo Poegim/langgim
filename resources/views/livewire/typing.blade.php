@@ -165,6 +165,9 @@
 
         let word;
         let words = @js($words);
+        let startTime;
+        let stopTime;
+
         const language = @js($language);
         const isLearned = @js($isLearned);
         const authCheck = @js($authCheck);
@@ -188,6 +191,8 @@
 
         function loadRandomWord() {
             word = words[Math.floor(Math.random() * words.length)];
+            word['polish'] = removeSpecialChars(word['polish']);
+            startTime = Math.floor(Date.now() / 1000);
         }
 
         //Remove learned words from collection and set new to is_learned = 0.
@@ -319,22 +324,7 @@
 
                         words[index].user_words[0].is_learned++;
 
-                        //Iterate is_learned then
-                        // if(words[index].user_words.length == 0) {
-                        //     words[index].user_words[0] = {'is_learned':1};
-                        // } else {
-                        // }
-
-                        // //Remove learned words from collection and set new to is_learned = 0.
-                        // newWords = words.filter((word) => {
-                        //     if(word.user_words.length == 0) {
-                        //         word.user_words[0] = {'is_learned':0};
-                        //     }
-                        //     return (word.user_words[0].is_learned < isLearned);
-                        // });
-
                         //If there is no more words to learn, set finish lesson flag to true.
-
                         removeLearned();
 
                         if(!words.length == 0) {
@@ -346,7 +336,7 @@
                     } else {
                         data.lesson_finished = false;
                     }
-
+                    data.time = Math.floor(Date.now() / 1000) - startTime;
                     data.word = word;
                     @this.success(data);
 
@@ -367,6 +357,7 @@
             if(wrongTry >= allowedTries) {
                 data.lesson_finished = false;
                 data.word = word;
+                data.time = Math.floor(Date.now() / 1000) - startTime;
                 modalsFlag = true;
                 @this.failure(data);
             }
@@ -415,6 +406,10 @@
                 isFailure();
                 movePulse();
             }
+        }
+
+        function removeSpecialChars(string) {
+            return string.replace(/[^\w\sąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '');
         }
 
         init(true);
