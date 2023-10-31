@@ -12,6 +12,11 @@ class CategoryRepository
         return Category::with(['subcategories.words.userWords', 'words.userWords'])->orderBy('priority', 'desc')->get();
     }
 
+    public function withUserQuizWords(): Collection
+    {
+        return Category::with(['subcategories.words.userQuizWords', 'words.userQuizWords'])->orderBy('priority', 'desc')->get();
+    }
+
     public function withoutUserWords(): Collection
     {
         return Category::with(['subcategories.words', 'words'])->orderBy('priority', 'desc')->get();
@@ -26,8 +31,15 @@ class CategoryRepository
      * Foreaching over categories/subcategories->words->userWords
      * and checking for already learned words of selected language
      */
-    public function getProgress(Collection $categories, string $language): Collection
+    public function getProgress(string $mode, Collection $categories, string $language): Collection
     {
+        //Depends of mode, we get different user words progress.
+        if($mode === 'quiz') {
+            $relation = 'userQuizWords';
+        } elseif ($mode === 'typing') {
+            $relation = 'userWords';
+        }
+
         foreach($categories as $category)
         {
             $category->learned_words = 0;
@@ -40,9 +52,9 @@ class CategoryRepository
 
                 if(auth()->check())
                 {
-                    if(!$word->userWords->isEmpty())
+                    if(!$word->{$relation}->isEmpty())
                     {
-                        foreach($word->userWords as $userWord)
+                        foreach($word->{$relation} as $userWord)
                         {
                             if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                             {
@@ -66,9 +78,9 @@ class CategoryRepository
 
                     if(auth()->check())
                     {
-                    if(!$word->userWords->isEmpty())
+                    if(!$word->{$relation}->isEmpty())
                         {
-                            foreach($word->userWords as $userWord)
+                            foreach($word->{$relation} as $userWord)
                             {
                                 if(($language == $userWord->language) && ($userWord->is_learned >= 3))
                                 {

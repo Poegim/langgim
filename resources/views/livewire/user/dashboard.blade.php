@@ -8,13 +8,13 @@
             <div class="p-4 relative">
 
                 @if($subcategory != NULL)
-                <a href="{{route('category.show', [$category, $subcategory])}}">
+                <a href="{{route('category.show', ['typing', $category, $subcategory->slug])}}">
                     <x-buttons.third class="w-full">
                         <div>Continue learning</div>
                     </x-button.third>
                 </a>
                 @else
-                <a href="{{route('category.show', [$category])}}">
+                <a href="{{route('category.show', ['typing', $category])}}">
                     <x-buttons.secondary class="w-full">
                         <div>Continue learning</div>
                     </x-button.secondary>

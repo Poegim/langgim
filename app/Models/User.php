@@ -153,6 +153,11 @@ class User extends Authenticatable
         return $this->hasMany(UserWord::class);
     }
 
+    public function userQuizWords(): HasMany
+    {
+        return $this->hasMany(UserQuizWord::class);
+    }
+
     public function userCategories(): HasMany
     {
         return $this->hasMany(UserCategory::class);

@@ -30,7 +30,7 @@ class WordsTableSeeder extends Seeder
             {
                 foreach($category->subcategories as $subcategory)
                 {
-                    for ($i=0; $i < 2; $i++) {
+                    for ($i=0; $i < 6; $i++) {
                         DB::table('words')->insert(
                             [
                                 'polish' => 'word'.$category->id.$subcategory->id.$i+1,

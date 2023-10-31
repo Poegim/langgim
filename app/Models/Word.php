@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
+use App\Models\Error;
 use App\Models\Category;
 use App\Models\Subcategory;
-use App\Models\Error;
+use App\Models\UserQuizWord;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -18,6 +19,11 @@ class Word extends Model
     public function userWords(): HasMany
     {
         return $this->hasMany(UserWord::class, 'word_id')->where('user_id', '=', auth()->id());
+    }
+
+    public function userQuizWords(): HasMany
+    {
+        return $this->hasMany(UserQuizWord::class, 'word_id')->where('user_id', '=', auth()->id());
     }
 
     public function errors(): HasMany

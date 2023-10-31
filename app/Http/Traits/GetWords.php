@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 
 trait GetWords
 {
-    public function getWords(): Collection
+    public function getWords(string $withRelation): Collection
     {
 
         if(auth()->check())
@@ -16,7 +16,7 @@ trait GetWords
 
                 if($this->subcategory != null)
                 {
-                    $words = Word::with('userWords')
+                    $words = Word::with($withRelation)
                     ->where($this->language, '!=', NULL)
                     ->where('category_id', '=', $this->category->id)
                     ->where('subcategory_id', '=', $this->subcategory->id)
@@ -24,7 +24,7 @@ trait GetWords
                     ->get();
                 } else
                 {
-                    $words = Word::with('userWords')
+                    $words = Word::with($withRelation)
                     ->where($this->language, '!=', NULL)
                     ->where('category_id', '=', $this->category->id)
                     ->where('level', '<=', $this->user->level)

@@ -20,7 +20,6 @@
                 <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
                     Report error
-
                 </x-jet-button>
                 @endauth
                 @guest
@@ -144,7 +143,7 @@
         <x-slot name="footer">
             <div class="space-x-1">
 
-                <a href="{{route('category.index')}}">
+                <a href="{{route('category.index', 'typing')}}">
                     <x-buttons.third class="w-1/2">
                         {{ __("Next")}}
                     </x-buttons.third>
@@ -166,12 +165,11 @@
         let word;
         let words = @js($words);
         let startTime;
-        let stopTime;
 
         const language = @js($language);
         const isLearned = @js($isLearned);
         const authCheck = @js($authCheck);
-        const data = {};
+        let data = {'class':'UserWord'};
 
         let charDivs = [];
         const wordDiv = document.getElementById("word");
@@ -181,7 +179,7 @@
         const reportErrorBtn = document.getElementById("report-error-btn");
         const hintBtn = document.getElementById("hint");
 
-        const allowedTries = 3;
+        const allowedTries = 4;
 
         let wrongTry = 0;
         let expectedChar = 0;
@@ -336,6 +334,7 @@
                     } else {
                         data.lesson_finished = false;
                     }
+
                     data.time = Math.floor(Date.now() / 1000) - startTime;
                     data.word = word;
                     @this.success(data);
@@ -388,12 +387,10 @@
                 selectCharDivs();
                 printUnderscores();
                 movePulse();
-
             } else {
                 modalsFlag = true;
                 @this.finishLesson();
             }
-
         }
 
         function showHint() {
