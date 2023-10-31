@@ -177,7 +177,7 @@
             }
 
             function fillDiv() {
-                wordDiv.textContent = word[language] + " " + word['id'];
+                wordDiv.textContent = word[language];
             }
 
             //Load 3 wrong words.
