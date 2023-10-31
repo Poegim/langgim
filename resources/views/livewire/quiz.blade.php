@@ -230,10 +230,11 @@
             }
 
             function handleCorrectAnswer() {
-                ///Find index of word user was typing
+
+                ///Find index of word
                 let index = words.findIndex(obj => {
-                        return obj.id === word.id;
-                    });
+                    return obj.id === word.id;
+                });
 
                 if(authCheck && words[index].hasOwnProperty('user_quiz_words')) {
 
@@ -287,7 +288,7 @@
 
             function init(isFirst = false) {
 
-                if(isFirst === true) {
+                if(isFirst) {
                     removeLearned();
                 }
 
@@ -298,6 +299,8 @@
                     fillDiv();
                     loadWrongAnswers();
                     assignAnswersToBtns();
+                } else {
+                    @this.finishLesson();
                 }
 
                 startTime = startTimer();
