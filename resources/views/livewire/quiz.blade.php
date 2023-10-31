@@ -182,19 +182,17 @@
 
             //Load 3 wrong words.
             function loadWrongAnswers() {
-                if(isEnoughWords()) {
-                    //Get randome word.
-                    newWord = words[Math.floor(Math.random() * words.length)];
+                //Get randome word.
+                newWord = words[Math.floor(Math.random() * words.length)];
 
-                    // If word is same as expected answer or this word is already in wrongAnswers arr, call recurency to get another.
-                    // Else sanitize word and push to wrongAnswers.
-                    if((newWord['id'] === word['id']) || wrongAnswers.includes(newWord)){
-                        loadWrongAnswers();
-                    } else {
-                        newWord['polish'] = removeSpecialChars(newWord['polish']);
-                        wrongAnswers.push(newWord);
-                        if(wrongAnswers.length < 3) loadWrongAnswers();
-                    }
+                // If word is same as expected answer or this word is already in wrongAnswers arr, call recurency to get another.
+                // Else sanitize word and push to wrongAnswers.
+                if((newWord['id'] === word['id']) || wrongAnswers.includes(newWord)){
+                    loadWrongAnswers();
+                } else {
+                    newWord['polish'] = removeSpecialChars(newWord['polish']);
+                    wrongAnswers.push(newWord);
+                    if(wrongAnswers.length < 3) loadWrongAnswers();
                 }
             }
 
