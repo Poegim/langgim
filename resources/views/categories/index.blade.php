@@ -15,7 +15,7 @@
                             <x-heroicon-s-chevron-up class="w-6 h-6 rounded-full bg-slate-900 p-1"/>
                         </button>
 
-                        <a href="{{route('category.show', [$category])}}" class="w-full hover:text-white hover:ml-1 transition-all duration-100 hover:font-bold p-2">
+                        <a href="{{route('category.show', [$mode, $category])}}" class="w-full hover:text-white hover:ml-1 transition-all duration-100 hover:font-bold p-2">
                             <div class="w-full">
                                 <p>
                                     <h1 class="text-sm sm:text-xl uppercase">{{$category->name}}</h1>
@@ -45,7 +45,7 @@
                         @foreach ($category->subcategories as $subcategory)
                         @if ($subcategory->this_language_words != 0)
                         <div class="flex justify-start min-w-min bg-slate-900">
-                            <a href="{{route('category.show', [$category, $subcategory])}}" class="hover:bg-slate-700 w-full hover:text-white hover:font-bold transition-all duration-100 p-2">
+                            <a href="{{route('category.show', [$mode, $category, $subcategory->slug])}}" class="hover:bg-slate-700 w-full hover:text-white hover:font-bold transition-all duration-100 p-2">
                                 <div class="w-full">
                                     <p>
                                         <h1 class="text-sm sm:text-lg">{{$subcategory->name}}</h1>
@@ -86,7 +86,7 @@
                             <x-heroicon-s-chevron-up class="w-6 h-6 rounded-full bg-slate-900 p-1"/>
                         </button>
 
-                        <a href="{{route('category.show', [$category])}}" class="w-full hover:text-white hover:ml-1 transition-all duration-100 hover:font-bold p-2">
+                        <a href="{{route('category.show', [$mode, $category])}}" class="w-full hover:text-white hover:ml-1 transition-all duration-100 hover:font-bold p-2">
                             <div class="w-full">
                                 <p>
                                     <h1 class="text-sm sm:text-xl uppercase">{{$category->name}}</h1>
@@ -102,7 +102,7 @@
                         @foreach ($category->subcategories as $subcategory)
                         @if ($subcategory->this_language_words != 0)
                         <div class="flex justify-start min-w-min bg-slate-900">
-                            <a href="{{route('category.show', [$category, $subcategory])}}" class="hover:bg-slate-700 w-full hover:text-white hover:font-bold transition-all duration-100 p-2">
+                            <a href="{{route('category.show', [$mode, $category, $subcategory->slug])}}" class="hover:bg-slate-700 w-full hover:text-white hover:font-bold transition-all duration-100 p-2">
                                 <div class="w-full">
                                     <p>
                                         <h1 class="text-sm sm:text-lg">{{$subcategory->name}}</h1>

@@ -6,12 +6,25 @@
     <div class="px-0 py-2 sm:py-6">
         <div class="max-w-7xl mx-auto">
             <div class="overflow-hidden sm:rounded-lg shadow-lg">
+
                 @if ((!$language == NULL) && in_array($language, config('langgim.allowed_languages')))
+                    @if ($mode === 'typing')
+
                     <livewire:typing
                         :language="$language"
                         :category="$category"
                         :subcategory="$subcategory"
                         >
+
+                    @elseif ($mode === 'quiz')
+
+                    <livewire:quiz
+                        :language="$language"
+                        :category="$category"
+                        :subcategory="$subcategory"
+                        >
+
+                    @endif
                 @else
                 <x-choose-language />
                 @endif

@@ -18,29 +18,38 @@ class CategoryController extends Controller
         $this->repository = $repository;
     }
 
-    public function index(): View
+    public function index(string $mode): View
     {
         if(auth()->check())
         {
-            $categories = $this->repository->withUserWords();
             $this->language = auth()->user()->language;
+
+            if($mode == 'typing') {
+                $categories = $this->repository->withUserWords();
+            } elseif($mode == 'quiz') {
+                $categories = $this->repository->withUserQuizWords();
+            } else {
+                abort(404);
+            }
         } else
         {
             $categories = $this->repository->withoutUserWords();
             $this->language = collect(config('langgim.allowed_languages'))->random();
         }
 
-        $categories = $this->repository->getProgress($categories, $this->language);
+        $categories = $this->repository->getProgress($mode, $categories, $this->language);
 
         return view('categories.index', [
+            'mode' => $mode,
             'categories' => $categories,
             'language' => $this->language,
         ]);
     }
 
-    public function show(Category $category, Subcategory $subcategory = null)
+    public function show(string $mode, Category $category, Subcategory $subcategory = null)
     {
         return view('categories.show', [
+            'mode' => $mode,
             'category' => $category,
             'subcategory' => $subcategory,
             'language' => auth()->user()->language,

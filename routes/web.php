@@ -43,7 +43,7 @@ Route::middleware(['auth:sanctum', /*'verified'*/])->get('/dashboard', function 
 })->name('dashboard');
 
 //Non-admin NON-AUTH category controller group
-Route::name('category.')->prefix('category')->group(function () {
+Route::name('category.')->prefix('{mode}/category')->group(function () {
 
     Route::get('/{category:slug}/{subcategory:slug?}', [UsersCategoryController::class, 'show'])
     ->name('show');
