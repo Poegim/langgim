@@ -21,15 +21,15 @@
             <div class="mt-6">
                 <a href="{{route('login')}}">
                     <x-buttons.secondary class="w-full h-16 md:text-lg">
-                        <div>Log in</div>
-                        </x-buttons.secondary>
+                    <div>Log in</div>
+                    </x-buttons.secondary>
                 </a>
             </div>
             <div class="mt-6">
                 <a href="{{route('guest')}}">
                     <x-buttons.third class="w-full h-16 md:text-lg">
-                        <div>Guest mode</div>
-                        </x-buttons.third>
+                    <div>Guest mode</div>
+                    </x-buttons.third>
                 </a>
             </div>
         </div>

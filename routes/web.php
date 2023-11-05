@@ -1,17 +1,17 @@
 <?php
 
+use App\Http\Livewire\Guest;
 use Illuminate\Http\Request;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ControlPanel;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WordController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ErrorController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubcategoryController;
-use App\Http\Controllers\CategoryController as UsersCategoryController;
-use App\Http\Controllers\Guest;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\CategoryController as UsersCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,7 +63,7 @@ Route::name('errors.')->prefix('errors')->middleware(['auth:sanctum', /*'verifie
 
 
 //Guest mode
-Route::get('/guest/{language?}', [Guest::class, 'index'])->name('guest');
+Route::get('/guest/{mode?}/{language?}', Guest::class)->name('guest');
 
 //Admin
 Route::name('admin.')->prefix('admin')->middleware(IsAdmin::class)->group(function () {
