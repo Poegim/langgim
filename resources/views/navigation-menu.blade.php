@@ -30,7 +30,7 @@
                     @endauth
 
                     <x-jet-nav-link href="{{ route('category.index', 'typing') }}" :active="request()->routeIs('category.index') && request()->segment(1) === 'typing'">
-                        <x-clarity-edit-line class="admin-index-icon" /> {{ __('Writing') }}
+                        <x-clarity-keyboard-line class="admin-index-icon" /> {{ __('Writing') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('category.index', 'quiz') }}" :active="request()->routeIs('category.index') && request()->segment(1) === 'quiz'">
                         <x-tni-question-circle-o class="admin-index-icon"/> {{ __('Quiz') }}
