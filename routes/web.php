@@ -24,6 +24,11 @@ use App\Http\Controllers\CategoryController as UsersCategoryController;
 |
 */
 
+Route::get('language/{locale}', function ($locale) {
+    app()->setLocale($locale);
+    session()->put('locale', $locale);
+    return redirect()->back();
+})->name('language-switch');
 
 //Landing Page
 Route::get('/', function () {
@@ -94,4 +99,3 @@ Route::post('/email/verification-notification', function (Request $request) {
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
-
