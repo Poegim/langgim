@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('Learning: ') }} {{$category->name}}
+        {{ __('messages.learning') }}: {{$category->name}}
     </x-slot>
 
     <div class="max-w-7xl mx-auto sm:py-10 sm:px-6 lg:px-8">

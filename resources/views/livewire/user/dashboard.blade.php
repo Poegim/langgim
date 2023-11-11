@@ -1,78 +1,64 @@
 <div>
-    <div class="grid grid-cols-1 sm:grid-cols-2 justify-center mb-4 gap-2">
+    <div class="grid grid-cols-1 lg:grid-cols-2 justify-center mb-4 gap-2">
 
         <!-- Continue Learning -->
         <!-- Couldnt be just passed a null if subcategory is a null? -->
         @if ($category != NULL)
-        <div class="rounded-lg shadow-lg bg-slate-800 flex flex-col">
-            <div class="p-2 relative">
-
-                @if($subcategory != NULL)
-                <a href="{{route('category.show', ['typing', $category, $subcategory->slug])}}">
-                    <x-buttons.third class="w-full">
-                        <div>Continue writing</div>
-                    </x-button.third>
-                </a>
-                @else
-                <a href="{{route('category.show', ['typing', $category])}}">
-                    <x-buttons.secondary class="w-full">
-                        <div>Continue writing</div>
-                    </x-button.secondary>
-                </a>
-                @endif
-
-                <div class="flex justify-between mt-2">
-                    <p class="flex leading-normal">
-                        Category: {{ $category->{$language} }}
-                    </p>
-                    <span class="flex mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
-                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
-                    class="ml-2 h-5 w-5 cursor-pointer">
-
-                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
-
-                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-900 rounded-lg p-2
-                    transform translate-x-8">
-                    {{ $category->name }}
-                    </div>
-                    </span>
-
-                </div>
-
-                @if($subcategory != NULL)
-                <div class="flex mt-2">
-                    <span class="flex mr-2 h-5 w-5 cursor-pointer" x-data="{ tooltip: false }"
-                    x-on:mouseover="tooltip = true" x-on:mouseleave="tooltip = false"
-                    class="ml-2 h-5 w-5 cursor-pointer">
-
-                    <x-tni-info-circle-o class="w-6 h-6 text-blue-500" />
-
-                    <div x-show="tooltip" x-cloak class="text-sm text-gray-200 absolute bg-blue-400 rounded-lg p-2
-                    transform translate-x-3">
-                    {{ $subcategory->name }}
-                    </div>
-                    </span>
-                    <p class="flex leading-normal">
-                        Subcategory: {{ $subcategory->{$language} }}
-                    </p>
-                </div>
-                @endif
-
-
-            </div>
-
-        </div>
-        @else
             <div class="rounded-lg shadow-lg bg-slate-800 flex flex-col">
-                <div class="p-2 relative">
+                <div class="p-4 relative flex h-full space-x-2">
+                    <div class="my-auto">
+                        <x-clarity-keyboard-line class="w-20 h-20"/>
+                    </div>
+                    <div class="my-auto">
+                        <span class="text-lg font-bold">
+                            <span class="capitalize">{{ __("messages.continue") }}</span> {{ __("messages.writing") }}:
+                        </span>
+                        <div>
+                            <span class="text-gray-300 italic">
+                                <p>
+                                    {{ $category->{$language} }}
+                                </p>
+                                <p>
+                                    {{$category->name}}
+                                </p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    @if($subcategory != NULL)
+                    <a href="{{route('category.show', ['typing', $category, $subcategory->slug])}}">
+                        <x-buttons.third class="w-full">
+                            <div>{{__('messages.continue')}}</div>
+                        </x-button.third>
+                    </a>
+                    @else
                     <a href="{{route('category.show', ['typing', $category])}}">
                         <x-buttons.secondary class="w-full">
-                            <div>{{ __("Zacznij pisać") }}</div>
+                            <div>{{__('messages.continue')}}</div>
                         </x-button.secondary>
                     </a>
-                    <div class="mt-2">
-                        {{ __("Jeszcze nie próbowałeś pisać, sprawdź się teraz.") }}
+                    @endif
+                </div>
+            </div>
+
+        @else
+            <div class="rounded-lg shadow-lg bg-slate-800 flex flex-col">
+                <div class="p-4 relative flex h-full space-x-2">
+
+                    <div class="my-auto">
+                        <x-clarity-keyboard-line class="w-20 h-20"/>
                     </div>
+                    <div class="my-auto">
+                        {{ __("messages.It looks like you havent tried writing yet, you can start now.") }}
+                    </div>
+                </div>
+                <div class="p-4">
+                    <a href="{{route('category.index', ['typing'])}}">
+                        <x-buttons.secondary class="w-full">
+                            <div>{{ __("messages.writing") }}</div>
+                        </x-button.secondary>
+                    </a>
                 </div>
             </div>
         @endif

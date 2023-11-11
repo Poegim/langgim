@@ -1,25 +1,23 @@
 <x-app-layout>
     <x-slot name="header">
-
-        {{ __('Report error') }}
-
+            {{__('messages.report error')}}
     </x-slot>
 
     <form method="POST" action="{{route('errors.store')}}">
         @csrf
         <div class="mt-4 mb-4 flex flex-col space-y-2 capitalize rounded bg-slate-700 p-4 lg:w-1/2 max-w-7xl mx-auto">
-            <div class="normal-case">
-                {{__('Did u found any mistake')}}?
+            <div class="uppercase font-bold">
+                {{__('messages.report error')}}
             </div>
             <div>
-                <label for="title">{{__('messages.title')}}:</label>
+                <label class="text-gray-300 text-sm" for="title">{{__('messages.title')}}:</label>
                 <x-jet-input type="text" class="block w-full" name="title" id="title">
                 </x-jet-input>
                 <x-jet-input-error for="title" />
             </div>
 
             <div>
-                <label for="message">{{__('message')}}:</label>
+                <label class="text-gray-300 text-sm" for="message">{{__('message')}}:</label>
                 <x-jet-input type="text" class="block w-full" name="message" id="message">
                 </x-jet-input>
                 <x-jet-input-error for="message" />
@@ -31,7 +29,7 @@
             <x-jet-input-error for="word_id" />
 
             <div>
-                <x-jet-button class="mt-2">{{__('save')}}</x-jet-button>
+                <x-jet-danger-button type="submit" class="mt-2">{{__('messages.save')}}</x-jet-danger-button>
             </div>
         </div>
     </form>

@@ -5,7 +5,7 @@
             <div class="flex space-x-2 w-full">
                 <x-jet-button class="w-full text-xs bg-purple-700 h-8 md:h-10" wire:click="finishLesson()">
                     <x-clarity-success-standard-line class="w-6 h-6 mr-2" />
-                        Finish Lesson
+                        {{__('messages.finish lesson')}}
                 </x-jet-button>
             </div>
 
@@ -13,14 +13,14 @@
                 @auth
                 <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
-                    Report error
+                    {{__('messages.report error')}}
                 </x-jet-button>
                 @endauth
 
                 @guest
                 <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" id="report-error-btn" disabled>
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
-                    Report error
+                    {{__('messages.report error')}}
                 </x-jet-button>
                 @endguest
             </div>

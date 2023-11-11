@@ -4,8 +4,8 @@
         <div class="flex">
             <x-clarity-keyboard-line class="w-6 h-6 " />
         </div>
-        <span class="block ml-2 ">
-            Keyboard
+        <span class="block ml-2 capitalize">
+            {{__('messages.Keyboard')}}
         </span>
     </x-jet-button>
     <div class="shadow-md absolute inset-x-0 bottom-0 bg-gradient-to-tr from-gray-800 to-slate-900 border-t border-gray-600 rounded-t-lg w-full flex justify-center" x-cloak x-show="open">

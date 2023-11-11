@@ -27,7 +27,7 @@
 
                     @auth
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        <x-clarity-home-line class="admin-index-icon" /> {{ __('messages.dashboard') }}
+                        <x-clarity-home-line class="admin-index-icon" /> {{ __('messages.start') }}
                     </x-jet-nav-link>
                     @endauth
 
