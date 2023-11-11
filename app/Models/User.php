@@ -104,7 +104,7 @@ class User extends Authenticatable
 
     public function timer(): string
     {
-        return CarbonInterval::seconds($this->timer)->cascade()->forHumans(['short' => true]);
+        return CarbonInterval::minutes(($this->timer/60))->cascade()->forHumans(['short' => true]);
     }
 
     public function learnedWordsOnLevel(): string
