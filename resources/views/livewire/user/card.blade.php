@@ -3,7 +3,7 @@
 
         <section class="w-full mx-auto bg-slate-800 rounded px-4 py-4 shadow-lg mt-4">
             <div class="flex items-center justify-between">
-                <span class="text-gray-400 text-sm">Time spend: {{auth()->user()->timer()}}</span>
+                <span class="text-gray-400 text-sm">{{__('messages.Time spend')}}: {{auth()->user()->timer()}}</span>
 
 
                 <span class="text-blue-400 hover:text-blue-200 transition-all duration-300 relative">
@@ -28,7 +28,7 @@
                 <h2 class="text-white font-bold text-2xl tracking-wide">{{ Auth::user()->name }}</h2>
             </div>
             <p class="text-blue-400 font-semibold ">
-                {{auth()->user()->level()}}
+                {{__('messages.'.auth()->user()->level())}}
             </p>
             <div class="h-1 w-full bg-black mt-8 rounded-full">
                 <div class="h-1 rounded-full {{$class}} bg-yellow-500 "></div>
@@ -37,7 +37,7 @@
             <div class="flex justify-between">
 
                 <div class="mt-2 text-white text-sm">
-                    <span class="text-gray-400 font-semibold">Level status:</span>
+                    <span class="text-gray-400 font-semibold capitalize">{{__('messages.writing')}}</span>
                     <span>{{$levelStatus}}%</span>
                 </div>
 
@@ -49,7 +49,7 @@
             </div>
             <div class="flex justify-between">
                 <div class="mt-2 text-white text-sm">
-                    <span class="text-gray-400 font-semibold">Words:</span>
+                    <span class="text-gray-400 font-semibold capitalize">{{__('messages.words')}}:</span>
                     <span>{{$learnedWordsOnLevel}}</span>
                 </div>
                 {{-- <div class="mt-2 text-white text-sm">
@@ -66,7 +66,6 @@
 
                 </div>
             </div> --}}
-
 
         </section>
     </section>

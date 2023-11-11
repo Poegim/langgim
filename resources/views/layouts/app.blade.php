@@ -60,11 +60,11 @@
                         <!-- Page Heading -->
                         @if (isset($header))
                         <header class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex justify-end mb-2">
-                            <div class="w:1/2 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 sm:mb-4 flex justify-end align-middle py-2 pr-2 sm:pr-4 text-gray-400">
-                                <h2 class="text-xs sm:text-sm lg:text-base tracking-wider my-auto pr-2">
+                            <div class="w:1/2 rounded-r bg-gradient-to-r from-slate-900 to-slate-800 sm:mb-4 flex justify-end align-middle py-1 pr-2 sm:pr-4 text-slate-300">
+                                <h2 class="text-xs sm:text-sm lg:text-base tracking-wider my-auto pr-2 italic lowercase">
                                     {{ $header }}
                                 </h2>
-                                <x-clarity-map-line class="w-5 h-5 sm:w-8 sm:h-8 my-auto"/>
+                                <x-clarity-map-line class="w-5 h-5 my-auto"/>
                             </div>
                         </header>
                         @endif

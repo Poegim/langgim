@@ -17,7 +17,7 @@
                 <div class="w-full sm:max-w-md px-4 py-4 bg-slate-800 shadow-md overflow-hidden sm:rounded">
                     <div class="mb-4 flex justify-center">
                         <span class="text-xl uppercase text-gray-300 md:tracking-widest">
-                            {{ __("Choose mode") }}:
+                            {{ __("messages.Choose mode") }}:
                         </span>
                     </div>
                     <div class="flex space-x-2">
@@ -27,7 +27,7 @@
                                         <x-tni-question-circle-o class="w-10 h-10 mx-auto"/>
                                     </div>
                                     <div>
-                                        quiz
+                                        {{__('messages.quiz')}}
                                     </div>
                                 </div>
                             </x-jet-secondary-button>
@@ -38,7 +38,7 @@
                                         <x-clarity-keyboard-line class="w-10 h-10 mx-auto"/>
                                     </div>
                                     <div>
-                                        typing
+                                        {{__('messages.writing')}}
                                     </div>
                                 </div>
                             </x-jet-secondary-button>
