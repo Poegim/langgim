@@ -5,7 +5,6 @@
             <div class="flex items-center justify-between">
                 <span class="text-gray-400 text-sm">{{__('messages.Time spend')}}: {{auth()->user()->timer()}}</span>
 
-
                 <span class="text-blue-400 hover:text-blue-200 transition-all duration-300 relative">
                     @if (auth()->user()->language === '')
                     <span class="flex h-3 w-3 absolute -right-2 -top-2 z-10">
@@ -18,6 +17,7 @@
                         <x-clarity-settings-solid class="h-8 w-8 hover:rotate-90 transition-all duration-1000"/>
                     </a>
                 </span>
+
             </div>
             <div class="mt-6 mx-auto w-fit">
                 <img src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}"
