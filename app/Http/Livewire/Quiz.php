@@ -46,6 +46,18 @@ class Quiz extends Component
         $this->category = $category;
         $this->subcategory = $subcategory;
         $this->words = json_decode($this->getWords('userQuizWords')->toJson());
+        $this->user = auth()->check() ? $this->saveLastUsedCategory() : null;
+
+    }
+
+    public function saveLastUsedCategory()
+    {
+        if($this->category != NULL)
+        {
+            $this->user->last_category_quiz = $this->category->id;
+            $this->user->last_subcategory_quiz = $this->subcategory ? $this->subcategory->id : null;
+            $this->user->save();
+        }
     }
 
     public function render()
