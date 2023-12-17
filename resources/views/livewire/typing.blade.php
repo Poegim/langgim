@@ -283,21 +283,23 @@
             }
         }
 
-        //Called after every pressed key.
-        function isExpected(key) {
-
-            const check = document.getElementById("check-icon");
-            const times = document.getElementById("times-icon");
+        function showTypedChar(key) {
             const typedChar = document.getElementById("typed-char");
-
-            hideIcons([check, times]);
-
-            //Show typed char.
             typedChar.innerText = key.toUpperCase();
             setTimeout( () => {
                 typedChar.innerText = "";
                 },
             1000);
+        }
+
+        //Called after every pressed key.
+        function isExpected(key) {
+
+            const check = document.getElementById("check-icon");
+            const times = document.getElementById("times-icon");
+
+            hideIcons([check, times]);
+            showTypedChar(key.toUpperCase());
 
             //If typed char is expected char.
             if(polishToLatinAlphabetMapping(word['polish'][expectedChar].toLowerCase()).includes(key.toLowerCase())) {
@@ -307,7 +309,7 @@
                 //Show char on char divs.
                 charDivs[expectedChar].innerText = word['polish'][expectedChar].toUpperCase();
 
-                //If that was last char, it means word typing is over, so open success modal.
+                //Check is last, and if that was last char, it means word typing is over, so open success modal.
                 if(expectedChar >= word['polish'].length-1) {
                     modalsFlag = true;
 
@@ -330,6 +332,7 @@
                             data.lesson_finished = true;
                         }
 
+                    //else do not finish word.
                     } else {
                         data.lesson_finished = false;
                     }
