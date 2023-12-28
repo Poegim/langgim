@@ -6,18 +6,20 @@
 * [Technologies](#technologies)
 
 ## General info
-This is a Laravel app for learning Polish. I made this app after russian invasion of Ukraine in 2022 to help foreginers learn Polish. However, besides Ukrainian I also added other languages (English, Spanish, German). This application is still being developed by me.
+This is a Laravel app for learning Polish. I made it after russian invasion of Ukraine in 2022 to help foreginers learn Polish. However, besides Ukrainian I also added other languages (English, Spanish, German).
 
-At this moment the application has the following modules:
-+ writing module for guest and authorized users. Logged in users can choose categories and subcategories to study, additionally the application saves their progress
-+ categories index
+At this moment the app has the following modules:
+
++ writing
++ quiz
++ guest mode of wring and quiz which is loading random words of all categories and works without saving user progress
 + user profile
-+ administrator section CRUDs for words, categories and subcategories
++ administrator section CRUDs for users, words, categories and subcategories
 	
 ## Technologies
 Project is created with:
 * PHP 8
-* JavaScript
+* Vanilla JavaScript
 * Laravel 8 (Jetstream starter kit)
 * TailwindCSS 3
 * Livewire 2
