@@ -5,20 +5,21 @@ namespace App\Http\Traits;
 trait UpdateUserData {
 
     /**
-    * Updating user data.
-    * Class name
-    * @param string $class
-    * Word id.
-    * @param integer $id
-    * Flag of success or failure.
-    * @param boolean $flag
-    * User timer.
-    * @param integer $time
-    */
+     * Updating user data.
+     * Class name
+     * @param string $class
+     * Word id.
+     * @param integer $id
+     * Flag of success or failure.
+     * @param boolean $flag
+     * User timer.
+     * @param integer $time
+     */
     private function updateUserData(string $class, int $id, bool $flag, int $time)
     {
+        $user = auth()->user();
+
         $className = "App\\Models\\".$class;
-        // dd($className);
 
         if($class === 'UserWord') {
             $successIterationColumn = 'success_typing_count';
@@ -46,17 +47,17 @@ trait UpdateUserData {
 
         if($flag) {
             $userWord->is_learned++;
-            $this->user->{$successIterationColumn}++;
+            $user->{$successIterationColumn}++;
         }
 
         if(!$flag) {
-            $this->user->{$failureIterationColumn}++;
+            $user->{$failureIterationColumn}++;
             $userWord->wrong_try++;
             if($userWord->is_learned > 0) $userWord->is_learned--;
         }
 
-        $this->user->timer += $time;
-        $this->user->save();
+        $user->timer += $time;
+        $user->save();
         $userWord->save();
     }
 }
