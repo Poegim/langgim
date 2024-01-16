@@ -5,25 +5,25 @@
         <div class="flex flex-col lg:flex-row sm:p-2 space-y-2 lg:space-x-2 lg:space-y-0">
             <div class="flex space-x-2 lg:w-full">
                 <x-keyboard />
-                <x-jet-button wire:click="finishLesson()" class="w-1/2 lg:w-full text-xs bg-purple-700 h-8 md:h-10 capitalize">
+                <x-jet-button wire:click="finishLesson()" class="w-1/2 lg:w-full text-xs bg-purple-700 h-8 md:h-10">
                     <x-clarity-success-standard-line class="w-6 h-6 mr-2" />
                     {{__('messages.finish lesson')}}
                 </x-jet-button>
             </div>
 
             <div class="flex space-x-2 lg:w-full">
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10 capitalize" id="hint">
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="hint">
                     <x-clarity-help-solid class="w-6 h-6 mr-2" />{{__('messages.hint')}}
                 </x-jet-button>
 
                 @auth
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10 capitalize" id="report-error-btn">
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
                     {{__('messages.report error')}}
                 </x-jet-button>
                 @endauth
                 @guest
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10 capitalize" id="report-error-btn" disabled>
+                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn" disabled>
                     <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
                     {{__('messages.report error')}}
                 </x-jet-button>
@@ -53,8 +53,11 @@
     <!-- Prototype modal success-->
     <x-jet-dialog-modal wire:model="modalSuccessVisibility" id="modalSuccess">
         <x-slot name="title">
-            <div class="font-bold text-lg">
-                {{ __("messages.Yes! Good Answer!") }}
+            <div class="w-full flex justify-center font-bold text-lg">
+                <div class="my-auto mr-2">
+                    {{ __("messages.Yes! Good Answer!") }}
+                </div>
+                <x-clarity-success-standard-line class="text-green-400 h-12 my-auto"/>
             </div>
         </x-slot>
 
@@ -86,8 +89,11 @@
     <!-- Prototype modal failure-->
     <x-jet-dialog-modal wire:model="modalFailureVisibility" id="modalFailure">
         <x-slot name="title">
-            <div class="font-bold text-lg">
-                {{ __("messages.Ups! Wrong Answer!") }}
+            <div class="w-full flex justify-center font-bold text-lg">
+                <div class="my-auto mr-2">
+                    {{ __("messages.Ups! Wrong Answer!") }}
+                </div>
+                <x-clarity-exclamation-circle-line class="text-red-600 h-12 my-auto"/>
             </div>
         </x-slot>
 

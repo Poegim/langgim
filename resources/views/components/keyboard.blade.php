@@ -4,7 +4,7 @@
         <div class="flex">
             <x-clarity-keyboard-line class="w-6 h-6 " />
         </div>
-        <span class="block ml-2 capitalize">
+        <span class="block ml-2">
             {{__('messages.Keyboard')}}
         </span>
     </x-jet-button>
