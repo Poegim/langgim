@@ -45,7 +45,7 @@
         <x-slot name="title">
             <div class="w-full flex justify-center font-bold text-lg">
                 <div class="my-auto mr-2">
-                    {{ __("Tak! Dobra odpowiedź!") }}
+                    {{ __("messages.Yes! Good Answer!") }}
                 </div>
                 <x-clarity-success-standard-line class="text-green-400 h-12 my-auto"/>
             </div>
@@ -54,13 +54,13 @@
         <x-slot name="content">
             <div class="space-y-2 my-4 text-lg w-full">
                 <div>
-                    j.polski: <span class="italic font-thin">{{ $data['word']['polish'] }}</span>
+                    {{__('messages.polish language')}}: <span class="italic font-thin">{{ $data['word']['polish'] }}</span>
                 </div>
                 <div>
-                    twój język: <span class="italic font-thin">{{ $data['word'][$language] }}</span>
+                    {{__('messages.your language')}}: <span class="italic font-thin">{{ $data['word'][$language] }}</span>
                 </div>
                 <div>
-                    przykładowe zdanie: <span class="italic font-thin">{{ $data['word']['sample_sentence'] }}</span>
+                    {{__('messages.sample sentence')}}: <span class="italic font-thin">{{ $data['word']['sample_sentence'] }}</span>
                 </div>
             </div>
         </x-slot>
@@ -69,7 +69,7 @@
             <div class="space-x-1">
 
                 <x-buttons.secondary wire:click="hideModals" class="w-1/2">
-                    {{ __("Next")}}
+                    {{ __("messages.continue")}}
                 </x-buttons.secondary>
 
             </div>
@@ -81,7 +81,7 @@
         <x-slot name="title">
             <div class="w-full flex justify-center font-bold text-lg">
                 <div class="my-auto mr-2">
-                    {{ __("Ups! Tym razem się nie udało!") }}
+                    {{ __("messages.Ups! Wrong Answer!") }}
                 </div>
                 <x-clarity-exclamation-circle-line class="text-red-600 h-12 my-auto"/>
             </div>
@@ -90,13 +90,13 @@
         <x-slot name="content">
             <div class="space-y-2 my-4 text-lg w-full">
                 <div>
-                    j.polski: <span class="italic font-thin">{{ $data['word']['polish'] }}</span>
+                    {{__('messages.polish language')}}: <span class="italic font-thin">{{ $data['word']['polish'] }}</span>
                 </div>
                 <div>
-                    twój język: <span class="italic font-thin">{{ $data['word'][$language] }}</span>
+                    {{__('messages.your language')}}: <span class="italic font-thin">{{ $data['word'][$language] }}</span>
                 </div>
                 <div>
-                    przykładowe zdanie: <span class="italic font-thin">{{ $data['word']['sample_sentence'] }}</span>
+                    {{__('messages.sample sentence')}}: <span class="italic font-thin">{{ $data['word']['sample_sentence'] }}</span>
                 </div>
             </div>
         </x-slot>
@@ -105,7 +105,7 @@
             <div class="space-x-1">
 
                 <x-buttons.secondary wire:click="hideModals" class="w-1/2">
-                    {{ __("Next")}}
+                    {{ __("messages.continue")}}
                 </x-buttons.secondary>
 
             </div>
@@ -116,20 +116,20 @@
     <x-jet-dialog-modal wire:model="modalFinishLessonVisibility">
         <x-slot name="title">
             <div class="font-bold text-lg">
-                {{ __("Gratulacje! Skończyłeś lekcje!") }}
+                {{ __("messages.Congratulations! Lesson finished!") }}
             </div>
         </x-slot>
 
         <x-slot name="content">
             <div class="space-y-2 my-4 text-lg w-full">
                 <div class="text-lg">
-                    {{ __("Gratulacje! Oto twój rezultat.") }}
+                    {{ __("messages.Thats your score.") }}
                 </div>
                 <div>
-                    udane próby: <span class="italic font-thin">{{ $successCount }}</span>
+                    {{ __("messages.successful attempts") }}: <span class="italic font-thin">{{ $successCount }}</span>
                 </div>
                 <div>
-                    nieudane próby: <span class="italic font-thin">{{ $failureCount }}</span>
+                    {{ __("messages.failed attempts") }}: <span class="italic font-thin">{{ $failureCount }}</span>
                 </div>
             </div>
         </x-slot>
@@ -139,7 +139,7 @@
 
                 <a href="{{route('category.index', 'quiz')}}">
                     <x-buttons.third class="w-1/2">
-                        {{ __("Next")}}
+                        {{ __("messages.continue")}}
                     </x-buttons.third>
                 </a>
 
