@@ -29,7 +29,6 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <x-clarity-home-line class="admin-index-icon" /> {{ __('messages.start') }}
                     </x-jet-nav-link>
-                    @endauth
 
                     <x-jet-nav-link href="{{ route('category.index', 'typing') }}" :active="request()->routeIs('category.index') && request()->segment(1) === 'typing'">
                         <x-clarity-keyboard-line class="admin-index-icon" /> {{ __('messages.writing') }}
@@ -37,6 +36,8 @@
                     <x-jet-nav-link href="{{ route('category.index', 'quiz') }}" :active="request()->routeIs('category.index') && request()->segment(1) === 'quiz'">
                         <x-tni-question-circle-o class="admin-index-icon"/> {{ __('messages.quiz') }}
                     </x-jet-nav-link>
+
+                    @endauth
 
                     @if ((auth()->check() && (auth()->user()->isAdmin())))
                     <x-jet-nav-link href="{{ route('admin.control-panel') }}"
