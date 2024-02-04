@@ -51,4 +51,5 @@ return [
     'It looks like you havent tried quiz yet, you can start now.' => 'It looks like you havent tried quiz yet, you can start now.',
     'You didnt choose your language, go to profile page to do that.' => 'You didnt choose your language, go to profile page to do that.',
     'profil' => 'Profil',
+    'Last login at' => 'Last login at',
 ];
