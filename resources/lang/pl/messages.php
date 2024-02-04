@@ -49,5 +49,5 @@ return [
     'It looks like you havent tried writing yet, you can start now.' => 'Wygląda na to że jeszcze nie próbowałeś pisać, możesz zacząc teraz.',
     'It looks like you havent tried quiz yet, you can start now.' => 'Wygląda na to że jeszcze nie próbowałeś quizu, możesz zacząc teraz.',
     'You didnt choose your language, go to profile page to do that.' => 'Nie wybrałeś swojego języka, zrób to w zakładce profil.',
-
+    'Last login at' => 'Ostatnio zalogowany',
 ];

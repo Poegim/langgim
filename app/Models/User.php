@@ -37,6 +37,7 @@ class User extends Authenticatable
         'subcategory',
         'category',
         'language',
+        'last_login_at'
     ];
 
     /**
@@ -114,6 +115,13 @@ class User extends Authenticatable
         return $learnedWords . " / " . $wordsInLevel;
     }
 
+    public function learnedQuizWordsOnLevel(): string
+    {
+        $learnedWords = $this->userQuizWords()->whereRelation('word', 'level', '<=', $this->level)->where('is_learned', '>', 2)->where('language', $this->language)->count();
+        $wordsInLevel = Word::where('level', '<=', $this->level)->count();
+        return $learnedWords . " / " . $wordsInLevel;
+    }
+
     public function levelStatus(): int
     {
         $learnedWords = $this->userWords()->whereRelation('word', 'level', '<=', $this->level)->where('is_learned', '>', 2)->where('language', $this->language)->count();
@@ -186,6 +194,10 @@ class User extends Authenticatable
     public function createdAt(): string
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->format('Y-m-d');
+    }
+    public function lastLogin(): string
+    {
+        return $this->last_login_at;
     }
 
 }

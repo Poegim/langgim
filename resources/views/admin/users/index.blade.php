@@ -9,15 +9,23 @@
                     <thead>
                         <tr>
                             <th
-                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                            class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             ID
                             </th>
                             <th
-                                class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                                class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             Name
                             </th>
                             <th
-                            class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                                class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                            Timer
+                            </th>
+                            <th
+                                class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
+                            Last login
+                            </th>
+                            <th
+                            class="px-4 py-3 text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
                             E-mail
                             </th>
                             <th class="text-xs font-medium leading-4 tracking-wider text-left text-gray-200 uppercase border-b border-gray-200 bg-slate-700">
@@ -28,9 +36,11 @@
                     <tbody class="bg-slate-800">
                         @foreach ($users as $user)
                         <tr class="bg-slate-800  text-sm text-left">
-                            <td class="px-6 py-3 ">{{$user->id}}</td>
-                            <td class="px-6 py-3 ">{{$user->name}}</td>
-                            <td class="px-6 py-3 ">{{$user->email}}</td>
+                            <td class="px-4 py-3 ">{{$user->id}}</td>
+                            <td class="px-4 py-3 "><a href="{{route('admin.users.show', $user)}}" class="underline hover:text-gray-400">{{$user->name}} </a> </td>
+                            <td class="px-4 py-3 ">{{$user->timer()}} </a> </td>
+                            <td class="px-4 py-3 ">{{$user->lastLogin()}} </a> </td>
+                            <td class="px-4 py-3 ">{{$user->email}}</td>
                             <td>
                                 <div class="flex space-x-1">
                                     <livewire:admin.users.delete :user="$user" />

@@ -52,6 +52,10 @@
                     <span class="text-gray-400 font-semibold capitalize">{{__('messages.words')}}:</span>
                     <span>{{$learnedWordsOnLevel}}</span>
                 </div>
+                <div class="mt-2 text-white text-sm">
+                    <span class="text-gray-400 font-semibold capitalize">{{__('messages.quiz')}}:</span>
+                    <span>{{$learnedQuizWordsOnLevel}}</span>
+                </div>
                 {{-- <div class="mt-2 text-white text-sm">
                     <span class="text-gray-400 font-semibold">Quiz points:</span>
                     <span>999</span>
