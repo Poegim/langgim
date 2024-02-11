@@ -52,4 +52,6 @@ return [
     'You didnt choose your language, go to profile page to do that.' => 'You didnt choose your language, go to profile page to do that.',
     'profil' => 'Profil',
     'Last login at' => 'Last login at',
+    'Language' => 'Language',
+    'Name' => 'Name',
 ];
