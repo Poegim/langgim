@@ -4,8 +4,13 @@
                 ID:{{$user->id }}
            </p>
            <h1 class="text-lg font-bold my-4">
-                Name:{{$user->name }}
+            {{__('messages.Name')}}: {{$user->name }}
            </h1>
+
+           <p class="capitalize">
+                {{__('messages.Language')}}: {{$user->language()}}
+           </p>
+
            <p class="capitalize">
                 {{__('messages.writing')}}: {{$user->learnedWordsOnLevel()}}
            </p>

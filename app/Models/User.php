@@ -200,4 +200,9 @@ class User extends Authenticatable
         return $this->last_login_at;
     }
 
+    public function language(): string
+    {
+        return $this->language;
+    }
+
 }
