@@ -54,4 +54,5 @@ return [
     'Name' => 'Nazwa',
     'User words count' => 'Liczba słów',
     'User quiz words count' => 'Liczba słów quizu',
+    'Remember: finish lesson to save your progress!' => 'Przypomnienie: zakończ lekcje by zapisać swój postęp!'
 ];
