@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'writing' => 'writing',
     'quiz' => 'quiz',
     'login' => 'log in',
@@ -54,4 +55,7 @@ return [
     'Last login at' => 'Last login at',
     'Language' => 'Language',
     'Name' => 'Name',
+    'User words count' => 'User words count',
+    'User quiz words count' => 'User quiz words count',
+
 ];

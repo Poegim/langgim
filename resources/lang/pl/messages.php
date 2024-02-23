@@ -52,4 +52,6 @@ return [
     'Last login at' => 'Ostatnio zalogowany',
     'Language' => 'Język',
     'Name' => 'Nazwa',
+    'User words count' => 'Liczba słów',
+    'User quiz words count' => 'Liczba słów quizu',
 ];
