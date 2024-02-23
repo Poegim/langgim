@@ -1,30 +1,38 @@
 <div>
     <div class="px-2 pb-6 pt-4 bg-slate-800 sm:space-y-4">
 
+        @auth
+            <div class="text-xs sm:text-base text-green-300 sm:px-2 my-2 sm:my-1">
+                 {{ __('messages.Remember: finish lesson to save your progress!')}}
+             </div>
+        @endauth
+
         <!-- Buttons -->
         <div class="flex flex-col lg:flex-row sm:p-2 space-y-2 lg:space-x-2 lg:space-y-0">
             <div class="flex space-x-2 lg:w-full">
                 <x-keyboard />
-                <x-jet-button wire:click="finishLesson()" class="w-1/2 lg:w-full text-xs bg-purple-700 h-8 md:h-10">
+
+                <x-jet-button wire:click="finishLesson()" class="w-1/2 lg:w-full text-xs bg-green-600 h-8 md:h-10">
                     <x-clarity-success-standard-line class="w-6 h-6 mr-2" />
                     {{__('messages.finish lesson')}}
                 </x-jet-button>
             </div>
 
             <div class="flex space-x-2 lg:w-full">
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="hint">
+                <x-jet-button class="w-1/2 lg:w-full bg-cyan-500 h-8 md:h-10" id="hint">
                     <x-clarity-help-solid class="w-6 h-6 mr-2" />{{__('messages.hint')}}
                 </x-jet-button>
 
                 @auth
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn">
-                    <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
+                <x-jet-button class="w-1/2 lg:w-full bg-red-600 h-8 md:h-10" id="report-error-btn">
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-gray-800 mr-2" />
                     {{__('messages.report error')}}
                 </x-jet-button>
                 @endauth
+
                 @guest
-                <x-jet-button class="w-1/2 lg:w-full bg-purple-700 h-8 md:h-10" id="report-error-btn" disabled>
-                    <x-clarity-error-standard-solid class="w-6 h-6 text-red-400 mr-2" />
+                <x-jet-button class="w-1/2 lg:w-full bg-red-600 h-8 md:h-10" id="report-error-btn" disabled>
+                    <x-clarity-error-standard-solid class="w-6 h-6 text-gray-800 mr-2" />
                     {{__('messages.report error')}}
                 </x-jet-button>
                 @endguest

@@ -1,6 +1,6 @@
 <!-- Virtual keyboard -->
 <div x-data="{ open: false }" class="w-1/2 lg:w-full m-0 p-0 h-8 md:h-10">
-    <x-jet-button class="w-full bg-purple-700 h-8 md:h-10" x-on:click="open = ! open">
+    <x-jet-button class="w-full  bg-amber-500 h-8 md:h-10" x-on:click="open = ! open">
         <div class="flex">
             <x-clarity-keyboard-line class="w-6 h-6 " />
         </div>
